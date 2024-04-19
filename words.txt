@@ -137,7 +137,7 @@ a:ақылды:smart,intelligent:intelligent:умный:똑똑한
 n:Ауыз:mouth:bouche:рот:입
 n:Ақыл:intelligence:intelligence:ум:지능
 n:іш:belly:ventre:живот:배
-v: :to enter a school: : :입학하다
-v: :to graduate: : :졸업하
-v: :to take a break from school: : :휴학하다
-n: :entrance: : :입구
+v:-:to enter a school:-:-:입학하다
+v:-:to graduate:-:-:졸업하
+v:-:to take a break from school:-:-:휴학하다
+n:-:entrance:-:-:입구
