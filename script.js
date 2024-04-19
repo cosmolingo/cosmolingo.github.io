@@ -103,10 +103,10 @@ function get_words(){
         start_game();
     });
 
-    if ($('#letters_div').length > 0){
+    if ($('#alphabet').length > 0){
         populate_alphabet();
     }
-    if ($('#numbers_div').length > 0){
+    if ($('#numbers').length > 0){
         populate_numbers();
     }
 }
@@ -117,7 +117,7 @@ function populate_alphabet(){
         var letter = $("<p>").text(alphabet[i]);
         letter.addClass("letter");
         letter.on("click", play_letter_sound);
-        $("#letters_div").append(letter);
+        $("#alphabet").append(letter);
         var url = base_url + '/word_sounds/' + alphabet[i] + '.mp3';
         var audio = new Audio(url);
         get_audio_duration(audio,i);
@@ -139,7 +139,7 @@ function populate_numbers(){
         number.append(number_p);
         var number_p = $("<p>").text(nbs[i]);
         number.append(number_p);
-        $("#numbers_div").append(number);
+        $("#numbers").append(number);
     }
 }
 

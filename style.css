@@ -322,7 +322,7 @@ h2{
     text-align:left;
 }
 
-#numbers_div{
+#numbers{
     max-width:700px;
     text-align:center;
 }
@@ -406,11 +406,8 @@ h2{
     text-align: right;
 }
 
-#verb,#cases{
+.cases_table,.tense_table{
     min-width:500px;
-}
-
-#cases,#verb{
     border:1px solid #5a4813;
     border-collapse:collapse;
     width:90%;
@@ -426,58 +423,58 @@ h2{
    }
    
 /* Apply a border to the right of all but the last column */
-#cases th:not(:last-child),
-#cases td:not(:last-child),
-#verb th:not(:last-child),
-#verb td:not(:last-child){
+.cases_table th:not(:last-child),
+.cases_table td:not(:last-child),
+.tense_table th:not(:last-child),
+.tense_table td:not(:last-child){
 border-right: 1px solid black;
 }
 
-#cases th,#verb th{
+.cases_table th,.tense_table th{
     background-color: var(--primary-color);
     height:35px;
     text-align:center;
 }
 
-#cases td,#verb td{
+.cases_table td,.tense_table td{
     text-align:center;
     height:25px;
     background-color:#e7e0c4;
 }
 
-#cases td:first-child{
+.cases_table td:first-child{
     width:100px;
     font-weight: 700;
 }
 
-#verb td:first-child{
+.tense_table td:first-child{
     width:130px;
     font-weight: 700;
 }
 
 /* Apply a border to the bottom of all but the last row */
-#cases>thead>tr:not(:last-child)>th,
-#cases>thead>tr:not(:last-child)>td,
-#cases>tbody>tr:not(:last-child)>th,
-#cases>tbody>tr:not(:last-child)>td,
-#cases>tfoot>tr:not(:last-child)>th,
-#cases>tfoot>tr:not(:last-child)>td,
-#cases>tr:not(:last-child)>td,
-#cases>tr:not(:last-child)>th,
-#cases>thead:not(:last-child),
-#cases>tbody:not(:last-child),
-#cases>tfoot:not(:last-child),
-#verb>thead>tr:not(:last-child)>th,
-#verb>thead>tr:not(:last-child)>td,
-#verb>tbody>tr:not(:last-child)>th,
-#verb>tbody>tr:not(:last-child)>td,
-#verb>tfoot>tr:not(:last-child)>th,
-#verb>tfoot>tr:not(:last-child)>td,
-#verb>tr:not(:last-child)>td,
-#verb>tr:not(:last-child)>th,
-#verb>thead:not(:last-child),
-#verb>tbody:not(:last-child),
-#verb>tfoot:not(:last-child) {
+.cases_table>thead>tr:not(:last-child)>th,
+.cases_table>thead>tr:not(:last-child)>td,
+.cases_table>tbody>tr:not(:last-child)>th,
+.cases_table>tbody>tr:not(:last-child)>td,
+.cases_table>tfoot>tr:not(:last-child)>th,
+.cases_table>tfoot>tr:not(:last-child)>td,
+.cases_table>tr:not(:last-child)>td,
+.cases_table>tr:not(:last-child)>th,
+.cases_table>thead:not(:last-child),
+.cases_table>tbody:not(:last-child),
+.cases_table>tfoot:not(:last-child),
+.tense_table>thead>tr:not(:last-child)>th,
+.tense_table>thead>tr:not(:last-child)>td,
+.tense_table>tbody>tr:not(:last-child)>th,
+.tense_table>tbody>tr:not(:last-child)>td,
+.tense_table>tfoot>tr:not(:last-child)>th,
+.tense_table>tfoot>tr:not(:last-child)>td,
+.tense_table>tr:not(:last-child)>td,
+.tense_table>tr:not(:last-child)>th,
+.tense_table>thead:not(:last-child),
+.tense_table>tbody:not(:last-child),
+.tense_table>tfoot:not(:last-child) {
     border-bottom: 1px solid black;
 }
 
