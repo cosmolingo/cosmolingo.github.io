@@ -35,6 +35,7 @@ $(document).ready(function(){
     $('#wave_top path').attr('style','stroke: none;fill: '+colors[lang_i][0]+';');
     $('#wave_bottom path').attr('style','stroke: none;fill: '+colors[lang_i][0]+';');
     $('#title').html(titles[lang_i]);
+    $('link[rel="icon"]').attr('href', base_url + '/src/symbols/' + languages[lang_i] + '.ico');
     //Populate grammar section based on language
     var url = base_url + "/sections/" + languages[lang_i] + ".html";	
     $.get({url: url,cache: false}).then(function(data) {
@@ -116,7 +117,7 @@ function populate_alphabet(){
         letter.addClass("letter");
         letter.on("click", play_letter_sound);
         $("#alphabet").append(letter);
-        var url = base_url + '/src/sounds' + languages[lang_i] + '/word_sounds/' + alphabet[i] + '.mp3';
+        var url = base_url + '/src/sounds/' + languages[lang_i] + '/word_sounds/' + alphabet[i] + '.mp3';
         var audio = new Audio(url);
         get_audio_duration(audio,i);
         audio.src = url;
@@ -232,6 +233,7 @@ function play_audio_index(url,time){
 function play_word_sound(){
     var letters = $(this).attr('ka_words').split("");
     var total_duration = 0;
+    var alphabet = alphabets[lang_i];
     for (var i = 0; i < letters.length; i++) {
         if (letters[i] == " ") {
             total_duration += 0.25;
@@ -241,7 +243,7 @@ function play_word_sound(){
             continue;
         }
         var letter = letters[i].toLowerCase();
-        var url = base_url + '/src/sounds' + languages[lang_i] + '/word_sounds/' + letter + '.mp3';
+        var url = base_url + '/src/sounds/' + languages[lang_i] + '/word_sounds/' + letter + '.mp3';
         var audio = new Audio(url);
         audio.src = url;
         play_audio_index(url,total_duration);
