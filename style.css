@@ -25,21 +25,9 @@ body{
     font-family: "Balsamiq Sans", "Single Day", sans-serif !important;
 }
 
-@keyframes bob_logo {
-    0% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-15px);
-    }
-    100% {
-        transform: translateY(0);
-    }
-}
 
 #logo{
     height:150px;
-    animation: bob_logo 3s ease-in-out  0.25s infinite;
 }
 
 #logo_div{
@@ -47,8 +35,8 @@ body{
     width: 100%;
     height: 200px;
     position: absolute;
-    left:50px;
-    top:50px;
+    left:25px;
+    top:25px;
 }
 
 #wave_top,#wave_bottom{

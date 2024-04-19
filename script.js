@@ -51,6 +51,18 @@ $(document).ready(function(){
     $('#wave_top path').attr('style','stroke: none;fill: '+colors[lang][0]+';');
     $('#wave_bottom path').attr('style','stroke: none;fill: '+colors[lang][0]+';');
     $('#title').html(titles[lang]);
+    //Populate grammar section based on language
+    switch(lang){
+        case 0://kazakh
+            var sections = ['kazakh/alphabet.html','kazakh/numbers.html','kazakh/cases.html','kazakh/tenses.html'];
+            break;
+    }
+    for (var i = 0; i < sections.length; i++){
+        var url = base_url + '/' + sections[i];
+        $.get({url: url,cache: false}).then(function(data) {
+            $('#grammar').append(data);
+        });
+    }
     //Get word list and populate words section
     var url = base_url + "/words.txt";
     $.get({url: url,cache: false}).then(function(data) {
