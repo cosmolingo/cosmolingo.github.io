@@ -14,6 +14,7 @@ var getUrlParameter = function getUrlParameter(sParam) {
     return false;
 };
 
+var base_url = 'https://cosmolingo.studio';
 var words_list = [];
 var shuffled_list = [];
 var guess_index = 0;
@@ -51,7 +52,7 @@ $(document).ready(function(){
     $('#wave_bottom path').attr('style','stroke: none;fill: '+colors[lang][0]+';');
     $('#title').html(titles[lang]);
     //Get word list and populate words section
-    var url = "https://cosmolingo.github.io/words.txt";
+    var url = base_url + "/words.txt";
     $.get({url: url,cache: false}).then(function(data) {
         var lines = data.split("\n").reverse();
         var wordsDiv = $("#words");
@@ -60,6 +61,9 @@ $(document).ready(function(){
         $('#search_bar').val('');
 
         lines.forEach(function(line) {
+            if (line.length == 0) {
+                return;
+            }
             var parts = line.split(":");
             var type    = parts[0].trim();
             var k_words = parts[1].trim();
@@ -106,7 +110,7 @@ $(document).ready(function(){
         letter.addClass("letter");
         letter.on("click", play_letter_sound);
         $("#letters_div").append(letter);
-        var url = 'https://cosmolingo.github.io/word_sounds/' + alphabet[i] + '.mp3';
+        var url = base_url + '/word_sounds/' + alphabet[i] + '.mp3';
         var audio = new Audio(url);
         get_audio_duration(audio,i);
         audio.src = url;
@@ -235,7 +239,7 @@ function play_word_sound(){
             continue;
         }
         var letter = letters[i].toLowerCase();
-        var url = 'https://cosmolingo.github.io/kazakh/word_sounds/' + letter + '.mp3';
+        var url = base_url + '/word_sounds/' + letter + '.mp3';
         var audio = new Audio(url);
         audio.src = url;
         play_audio_index(url,total_duration);
@@ -244,7 +248,7 @@ function play_word_sound(){
 }
 
 function play_letter_sound(){
-    var audio = new Audio('https://cosmolingo.github.io/kazakh/sounds/' + $(this).html() + '.mp3');
+    var audio = new Audio(base_url + '/sounds/' + $(this).html() + '.mp3');
     audio.play();
 }
 
