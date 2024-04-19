@@ -1,19 +1,3 @@
-var getUrlParameter = function getUrlParameter(sParam) {
-    var sPageURL = window.location.search.substring(1),
-        sURLVariables = sPageURL.split('&'),
-        sParameterName,
-        i;
-
-    for (i = 0; i < sURLVariables.length; i++) {
-        sParameterName = sURLVariables[i].split('=');
-
-        if (sParameterName[0] === sParam) {
-            return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
-        }
-    }
-    return false;
-};
-
 var base_url = 'https://cosmolingo.studio';
 var words_list = [];
 var shuffled_list = [];
@@ -32,38 +16,36 @@ var titles = [
     '<i class="flower"></i>   My korean words   <i class="flower"></i>'
 ];
 
-var lang = 0;
+var lang_i = 0;
+var languages = ['kazakh','russian','french','korean'];
 var url_lang = getUrlParameter('lang');
 if (url_lang == 'ru'){
-    lang = 1;
+    lang_i = 1;
 }
 else if (url_lang == 'fr'){
-    lang = 2;
+    lang_i = 2;
 }
 else if (url_lang == 'kr'){
-    lang = 3;
+    lang_i = 3;
 }
 
 $(document).ready(function(){
     //Change theme color depending on the language
-    document.documentElement.style.setProperty("--primary-color", colors[lang][0]);
-    document.documentElement.style.setProperty("--secondary-color", colors[lang][1]);
-    $('#wave_top path').attr('style','stroke: none;fill: '+colors[lang][0]+';');
-    $('#wave_bottom path').attr('style','stroke: none;fill: '+colors[lang][0]+';');
-    $('#title').html(titles[lang]);
+    document.documentElement.style.setProperty("--primary-color", colors[lang_i][0]);
+    document.documentElement.style.setProperty("--secondary-color", colors[lang_i][1]);
+    $('#wave_top path').attr('style','stroke: none;fill: '+colors[lang_i][0]+';');
+    $('#wave_bottom path').attr('style','stroke: none;fill: '+colors[lang_i][0]+';');
+    $('#title').html(titles[lang_i]);
     //Populate grammar section based on language
-    switch(lang){
-        case 0://kazakh
-            var sections = ['kazakh/alphabet.html','kazakh/numbers.html','kazakh/cases.html','kazakh/tenses.html'];
-            break;
-    }
-    for (var i = 0; i < sections.length; i++){
-        var url = base_url + '/' + sections[i];
-        $.get({url: url,cache: false}).then(function(data) {
-            $('#grammar').append(data);
-        });
-    }
-    //Get word list and populate words section
+    var url = base_url + "/sections/" + languages[lang_i] + ".html";	
+    $.get({url: url,cache: false}).then(function(data) {
+        $('#grammar').html(data);
+        //Get word list and populate words section
+        get_words();
+    });
+});
+
+function get_words(){
     var url = base_url + "/words.txt";
     $.get({url: url,cache: false}).then(function(data) {
         var lines = data.split("\n").reverse();
@@ -78,37 +60,38 @@ $(document).ready(function(){
             }
             var parts = line.split(":");
             var type    = parts[0].trim();
-            var k_words = parts[1].trim();
-            var e_words = parts[2].trim();
-            var f_words = parts[3].trim();
-            var r_words = parts[4].trim();
+            var ka_words = parts[1].trim();
+            var en_words = parts[2].trim();
+            var fr_words = parts[3].trim();
+            var ru_words = parts[4].trim();
             var ko_words = parts[5].trim();
-            if ([k_words,r_words,f_words,ko_words][lang] == "-") {
+            if ([ka_words,ru_words,fr_words,ko_words][lang_i] == "-") {
                 return;
             }
 
-            var e_words_display = e_words;
+            //Add "to" in front of verbs
+            var en_words_display = en_words;
             if (type == 'v'){
-                var len = e_words.split(",").length;
+                var len = en_words.split(",").length;
                 for (var i = 0; i < len; i++){
-                    var e_word = e_words.split(",")[i];
-                    e_words_display = "to " + e_word;
+                    var en_word = en_words.split(",")[i];
+                    en_words_display = "to " + e_word;
                 }
             }
-            words_list.push({type:type, k_words: k_words, e_words: e_words, f_words: f_words, r_words: r_words, ko_words: ko_words});
-            k_words = k_words.replace(/,/g,", ");
-            e_words = e_words.replace(/,/g,", ");
-            f_words = f_words.replace(/,/g,", ");
-            r_words = r_words.replace(/,/g,", ");
+            words_list.push({type:type, ka_words: ka_words, en_words: en_words, fr_words: fr_words, ru_words: ru_words, ko_words: ko_words});
+            ka_words = ka_words.replace(/,/g,", ");
+            en_words = en_words.replace(/,/g,", ");
+            fr_words = fr_words.replace(/,/g,", ");
+            ru_words = ru_words.replace(/,/g,", ");
             ko_words = ko_words.replace(/,/g,", ");
             
-            all_words = [k_words,r_words,f_words,ko_words];
-            var wordElement = $("<p>").text(all_words[lang] + ' : ' + e_words_display);
+            all_words = [ka_words,ru_words,fr_words,ko_words];
+            var wordElement = $("<p>").text(all_words[lang_i] + ' : ' + en_words_display);
             wordElement.attr('type'   , type   );
-            wordElement.attr('k_words', k_words);
-            wordElement.attr('e_words', e_words);
-            wordElement.attr('f_words', f_words);
-            wordElement.attr('r_words', r_words);
+            wordElement.attr('ka_words', ka_words);
+            wordElement.attr('en_words', en_words);
+            wordElement.attr('fr_words', fr_words);
+            wordElement.attr('ru_words', ru_words);
             wordElement.attr('ko_words', ko_words);
             wordElement.addClass("word");
             wordElement.on("click", play_word_sound);
@@ -120,6 +103,11 @@ $(document).ready(function(){
         start_game();
     });
 
+    populate_alphabet();
+    populate_numbers();
+}
+
+function populate_alphabet(){
     //Populate alphabet section
     for (var i = 0; i < alphabet.length; i++) {
         var letter = $("<p>").text(alphabet[i]);
@@ -131,7 +119,9 @@ $(document).ready(function(){
         get_audio_duration(audio,i);
         audio.src = url;
     }
+}
 
+function populate_numbers(){
     //Populate number section
     for (var i = 0; i < 20;i++){
         var nb = i;
@@ -147,7 +137,7 @@ $(document).ready(function(){
         number.append(number_p);
         $("#numbers_div").append(number);
     }
-});
+}
 
 function get_audio_duration(audio,i){
     $(audio).on("loadedmetadata", function(){
@@ -160,19 +150,19 @@ $("#search_bar").on("input", function() {
     var searchValue = $(this).val().toLowerCase();
     $(".word").each(function() {
         var type = $(this).attr("type");
-        var kWords = $(this).attr("k_words").toLowerCase();
-        var eWords = $(this).attr("e_words").toLowerCase();
-        var fWords = $(this).attr("f_words").toLowerCase();
-        var rWords = $(this).attr("r_words").toLowerCase();
-        var koWords = $(this).attr("ko_words").toLowerCase();
+        var ka_words = $(this).attr("ka_words").toLowerCase();
+        var en_words = $(this).attr("en_words").toLowerCase();
+        var fr_words = $(this).attr("fr_words").toLowerCase();
+        var ru_words = $(this).attr("ru_words").toLowerCase();
+        var ko_words = $(this).attr("ko_words").toLowerCase();
         if (type == 'v'){
-            var len = eWords.split(",").length;
+            var len = en_words.split(",").length;
             for (var i = 0; i < len; i++){
-                var eWord = eWords.split(",")[i];
-                eWords = eWords + "," + "to " + eWord;
+                var en_word = en_words.split(",")[i];
+                en_words = en_words + "," + "to " + en_word;
             }
         }
-        if (kWords.includes(searchValue) || eWords.includes(searchValue) || fWords.includes(searchValue)) {
+        if (ka_words.includes(searchValue) || en_words.includes(searchValue)) {
             $(this).show();
         } else {
             $(this).hide();
@@ -186,31 +176,31 @@ $('#guess_input').on('keypress', function(e) {
         return;
     }
     var guess = $(this).val().toLowerCase();
-    var e_words = $('#guess_word').attr('e_words').toLowerCase().split(",");
-    var e_words_possible = e_words.slice();
+    var en_words = $('#guess_word').attr('en_words').toLowerCase().split(",");
+    var en_words_possible = en_words.slice();
     if ($('#guess_word').attr('type') == 'v'){
-        var len = e_words.length;
+        var len = en_words.length;
         for (var i = 0; i < len; i++){
-            var e_word = e_words[i];
-            e_words_possible.push('to ' + e_word);
-            e_words[i] = 'to ' + e_word;
+            var en_word = en_words[i];
+            en_words_possible.push('to ' + en_word);
+            en_words[i] = 'to ' + en_word;
         }
     }
     
     guess = guess.replace("?", "");
-    e_words_possible = e_words_possible.map(word => word.replace("?", ""));
+    en_words_possible = en_words_possible.map(word => word.replace("?", ""));
 
     $('#guess_result').css('opacity',1);
     var time = 500;
-    if ((e_words_possible.includes(guess))){
+    if ((en_words_possible.includes(guess))){
         $("#guess_result").text("Correct!");
         correct_guesses++;
     } else {
         if (guess.length == 0) {
-            $("#guess_result").text("It was " + e_words);
+            $("#guess_result").text("It was " + en_words);
         }
         else{
-            $("#guess_result").text("Nope, it was " + e_words);
+            $("#guess_result").text("Nope, it was " + en_words);
         }
         time = 1500;
     }
@@ -244,7 +234,7 @@ function play_audio_index(url,time){
 }
 
 function play_word_sound(){
-    var letters = $(this).attr('k_words').split("");
+    var letters = $(this).attr('ka_words').split("");
     var total_duration = 0;
     for (var i = 0; i < letters.length; i++) {
         if (letters[i] == " ") {
@@ -273,15 +263,15 @@ function start_game() {
         return;
     }
     var word = shuffled_list[guess_index];
-    var words = [word.k_words,word.r_words,word.f_words,word.ko_words];
-    $("#guess_word p").text(words[lang]);
+    var words = [word.ka_words,word.ru_words,word.fr_words,word.ko_words];
+    $("#guess_word p").text(words[lang_i]);
     $('#guess_word').attr('type', word.type);
-    $('#guess_word').attr('k_words', word.k_words);
-    $('#guess_word').attr('e_words', word.e_words);
-    $('#guess_word').attr('f_words', word.f_words);
-    $('#guess_word').attr('r_words', word.r_words);
+    $('#guess_word').attr('ka_words', word.ka_words);
+    $('#guess_word').attr('en_words', word.en_words);
+    $('#guess_word').attr('fr_words', word.fr_words);
+    $('#guess_word').attr('ru_words', word.ru_words);
     $('#guess_word').attr('ko_words', word.ko_words);
-    var col = $('.word[k_words="' + word.k_words + '"]').css('background-color');
+    var col = $('.word[ka_words="' + word.k_words + '"]').css('background-color');
     $("#guess_word").css("background-color", col);
     $("#guess_input").val("");
 }
@@ -294,3 +284,19 @@ function shuffleArray(array) {
     }
     return newArray;
 }
+
+function getUrlParameter(sParam) {
+    var sPageURL = window.location.search.substring(1),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+        }
+    }
+    return false;
+};
