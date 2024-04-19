@@ -25,10 +25,6 @@ body{
     font-family: "Balsamiq Sans", "Single Day", sans-serif !important;
 }
 
-#logo{
-    height:150px;
-}
-
 #logo_div{
     z-index: 100;
     width: 100%;
@@ -36,6 +32,29 @@ body{
     position: absolute;
     left:25px;
     top:25px;
+}
+
+#logo{
+    height:150px;
+    cursor:pointer;
+}
+
+#flags_div{
+    z-index: 100;
+    position: absolute;
+    right:25px;
+    top:50px;
+    padding-left:10px;
+    padding-right:10px;
+    background-color: var(--secondary-color);
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+}
+
+.flag{
+    margin-left:5px;
+    margin-right:5px;
+    width:50px;
 }
 
 #wave_top,#wave_bottom{
@@ -85,21 +104,21 @@ h1{
 }
 
 .baguette{
-    background: url('baguette.svg');
+    background: url('src/symbols/baguette.svg');
     vertical-align: middle;
     height: 50px;
     width: 50px;
 }
 
 .star{
-    background: url('star.svg');
+    background: url('src/symbols/star.svg');
     vertical-align: text-top;
     height: 50px;
     width: 50px;
 }
 
 .flower{
-    background: url('flower.svg');
+    background: url('src/symbols/flower.svg');
     vertical-align: -2px;
     height:40px;
     width:40px;
@@ -183,7 +202,7 @@ h1 .fa-sun{
     justify-content: space-evenly;
     overflow-y: auto;
     padding-bottom:10px;
-    background-image: url('bg.png');
+    background-image: url('src/bg.png');
     background-attachment: local;
     background-size: 50%;
 }

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1">
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="src/favicon.ico" type="image/x-icon">
     <title>Cosmolingo</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="style.css">
@@ -16,7 +16,14 @@
 <body>
     
     <div id="logo_div">
-        <img id="logo" src="logo.svg" alt="logo">
+        <img id="logo" src="src/logo.svg" alt="logo">
+    </div>
+
+    <div id="flags_div">
+        <a  href="?lang=ka"><img class="flag" src="src/flags/ka.png" alt="ka"/></a>
+        <a  href="?lang=ru"><img class="flag" src="src/flags/ru.png" alt="ru"/></a>
+        <a  href="?lang=fr"><img class="flag" src="src/flags/fr.png" alt="fr"/></a>
+        <a  href="?lang=kr"><img class="flag" src="src/flags/kr.png" alt="kr"/></a>
     </div>
     
     <div id="wave_top">
@@ -24,7 +31,7 @@
           <path d="M1000,101.71c0,0-106.81-108.65-238.66,0s-261.34,0-261.34,0s-106.81-108.65-238.66,0S0,101.71,0,101.71V0h1000 V101.71z" style="stroke: none;fill: #f2e269;"></path>
         </svg>
     </div>
-    <h1 id="title"><i class="star"></i>   My russian words   <i class="star"></i></h1>
+    <h1 id="title"></h1>
     <div id="search_bar_div">
         <input id="search_bar" type="text" id="search_input" placeholder="" autofocus>
     </div>

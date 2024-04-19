@@ -2,21 +2,21 @@ var base_url = 'https://cosmolingo.studio';
 var words_list = [];
 var shuffled_list = [];
 var guess_index = 0;
-var alphabet = ["а","ә","б","в","г","ғ","д","е","ж","з","и","й","к","қ","л","м","н","ң","о","ө","п","р","с","т","у","ұ","ү","ф","х","һ","ц","ч","ш","щ","ы","і","э","ю","я"];
-var letter_duration = new Array(alphabet.length).fill(0);
 var correct_guesses = 0;
 var total_guesses = 0;
+var letter_duration = new Array(100).fill(0);
 
-var colors = [['#7db1db','#5092c8'],['#f2e269','#cba000'],['#e8766d','#d7544a'],['#c499e0','#a463ce']];
+var languages = ['kazakh','russian','french','korean'];
+var colors = [['#7db1db','#5092c8'],['#ffb361','#ff9829'],['#c499e0','#a463ce'],['#f2e269','#cba000'],['#e8766d','#d7544a']];
 var titles = [
     '<i class="fa-solid fa-sun"></i>   My kazakh words   <i class="fa-solid fa-sun"></i>',
     '<i class="star"></i>   My russian words   <i class="star"></i>',
     '<i class="baguette"></i>   My french words   <i class="baguette"></i>',
     '<i class="flower"></i>   My korean words   <i class="flower"></i>'
 ];
+var alphabets = [["а","ә","б","в","г","ғ","д","е","ж","з","и","й","к","қ","л","м","н","ң","о","ө","п","р","с","т","у","ұ","ү","ф","х","һ","ц","ч","ш","щ","ы","і","э","ю","я"]];
 
 var lang_i = 0;
-var languages = ['kazakh','russian','french','korean'];
 var url_lang = getUrlParameter('lang');
 if (url_lang == 'ru'){
     lang_i = 1;
@@ -50,8 +50,7 @@ function get_words(){
         var lines = data.split("\n").reverse();
         var wordsDiv = $("#words");
 
-        $('#search_bar').attr('placeholder', 'Search in ' + lines.length + ' words');
-        $('#search_bar').val('');
+        var total_words = 0;
 
         lines.forEach(function(line) {
             if (line.length == 0) {
@@ -67,7 +66,7 @@ function get_words(){
             if ([ka_words,ru_words,fr_words,ko_words][lang_i] == "-") {
                 return;
             }
-
+            total_words++;
             //Add "to" in front of verbs
             var en_words_display = en_words;
             if (type == 'v'){
@@ -97,48 +96,30 @@ function get_words(){
 
             wordsDiv.append(wordElement);
         });
+        $('#search_bar').attr('placeholder', 'Search in ' + total_words + ' words');
+        $('#search_bar').val('');
         shuffled_list = shuffleArray(words_list);
         
-        start_game();
+        update_game_guess();
     });
 
     if ($('#alphabet').length > 0){
         populate_alphabet();
     }
-    if ($('#numbers').length > 0){
-        //populate_numbers();
-    }
 }
 
+//Populate alphabet section
 function populate_alphabet(){
-    //Populate alphabet section
+    var alphabet = alphabets[lang_i];
     for (var i = 0; i < alphabet.length; i++) {
         var letter = $("<p>").text(alphabet[i]);
         letter.addClass("letter");
         letter.on("click", play_letter_sound);
         $("#alphabet").append(letter);
-        var url = base_url + 'sounds' + languages[lang_i] + '/word_sounds/' + alphabet[i] + '.mp3';
+        var url = base_url + '/src/sounds' + languages[lang_i] + '/word_sounds/' + alphabet[i] + '.mp3';
         var audio = new Audio(url);
         get_audio_duration(audio,i);
         audio.src = url;
-    }
-}
-
-function populate_numbers(){
-    //Populate number section
-    for (var i = 0; i < 20;i++){
-        var nb = i;
-        if (i > 10){
-            nb = (i - 10)*10+10;
-        }
-
-        var number = $("<div>");
-        number.addClass("number");
-        var number_p = $("<p>").text(nb);
-        number.append(number_p);
-        var number_p = $("<p>").text(nbs[i]);
-        number.append(number_p);
-        $("#numbers").append(number);
     }
 }
 
@@ -169,7 +150,7 @@ $("#search_bar").on("input", function() {
 
 //Guess input behaviour
 $('#guess_input').on('keypress', function(e) {
-    if(e.which != 13) {
+    if(e.which != 13) {//Only listen to enter key
         return;
     }
     var guess = $(this).val().toLowerCase();
@@ -199,17 +180,35 @@ $('#guess_input').on('keypress', function(e) {
         else{
             $("#guess_result").text("Nope, it was " + en_words);
         }
-        time = 1500;
+        time = 2500;
     }
 
     guess_index++;
     total_guesses++;
     update_progress_bar();
-    start_game();
+    update_game_guess();
     setTimeout(function() {
         $('#guess_result').animate({ opacity: 0 });
     }, time);
 });
+
+function update_game_guess() {
+    if (guess_index >= words_list.length) {
+        return;
+    }
+    var word = shuffled_list[guess_index];
+    var words = [word.ka_words,word.ru_words,word.fr_words,word.ko_words];
+    $("#guess_word p").text(words[lang_i]);
+    $('#guess_word').attr('type', word.type);
+    $('#guess_word').attr('ka_words', word.ka_words);
+    $('#guess_word').attr('en_words', word.en_words);
+    $('#guess_word').attr('fr_words', word.fr_words);
+    $('#guess_word').attr('ru_words', word.ru_words);
+    $('#guess_word').attr('ko_words', word.ko_words);
+    var col = $('.word[ka_words="' + word.ka_words + '"]').css('background-color');
+    $("#guess_word").css("background-color", col);
+    $("#guess_input").val("");
+}
 
 function update_progress_bar() {
     var progress = correct_guesses / words_list.length * 100;
@@ -242,7 +241,7 @@ function play_word_sound(){
             continue;
         }
         var letter = letters[i].toLowerCase();
-        var url = base_url + 'sounds' + languages[lang_i] + '/word_sounds/' + letter + '.mp3';
+        var url = base_url + '/src/sounds' + languages[lang_i] + '/word_sounds/' + letter + '.mp3';
         var audio = new Audio(url);
         audio.src = url;
         play_audio_index(url,total_duration);
@@ -251,26 +250,8 @@ function play_word_sound(){
 }
 
 function play_letter_sound(){
-    var audio = new Audio(base_url + '/sounds/' + languages[lang_i] + '/letter_sounds/' + $(this).html() + '.mp3');
+    var audio = new Audio(base_url + '/src/sounds/' + languages[lang_i] + '/letter_sounds/' + $(this).html() + '.mp3');
     audio.play();
-}
-
-function start_game() {
-    if (guess_index >= words_list.length) {
-        return;
-    }
-    var word = shuffled_list[guess_index];
-    var words = [word.ka_words,word.ru_words,word.fr_words,word.ko_words];
-    $("#guess_word p").text(words[lang_i]);
-    $('#guess_word').attr('type', word.type);
-    $('#guess_word').attr('ka_words', word.ka_words);
-    $('#guess_word').attr('en_words', word.en_words);
-    $('#guess_word').attr('fr_words', word.fr_words);
-    $('#guess_word').attr('ru_words', word.ru_words);
-    $('#guess_word').attr('ko_words', word.ko_words);
-    var col = $('.word[ka_words="' + word.ka_words + '"]').css('background-color');
-    $("#guess_word").css("background-color", col);
-    $("#guess_input").val("");
 }
 
 function get_audio_duration(audio,i){
