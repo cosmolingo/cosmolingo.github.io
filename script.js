@@ -75,7 +75,7 @@ function get_words(){
                 var len = en_words.split(",").length;
                 for (var i = 0; i < len; i++){
                     var en_word = en_words.split(",")[i];
-                    en_words_display = "to " + e_word;
+                    en_words_display = "to " + en_word;
                 }
             }
             words_list.push({type:type, ka_words: ka_words, en_words: en_words, fr_words: fr_words, ru_words: ru_words, ko_words: ko_words});
@@ -271,7 +271,7 @@ function start_game() {
     $('#guess_word').attr('fr_words', word.fr_words);
     $('#guess_word').attr('ru_words', word.ru_words);
     $('#guess_word').attr('ko_words', word.ko_words);
-    var col = $('.word[ka_words="' + word.k_words + '"]').css('background-color');
+    var col = $('.word[ka_words="' + word.ka_words + '"]').css('background-color');
     $("#guess_word").css("background-color", col);
     $("#guess_input").val("");
 }
