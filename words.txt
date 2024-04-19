@@ -132,8 +132,8 @@ n:көз:eye,eyes:oeil,yeux:глаз,глаза:눈
 n:Құлақ:ear:oreille:ухо:귀
 n:шаш:hair:cheveux:волосы:머리
 n:аяқ:leg,legs,foot,feet:jambe,jambes,pied,pieds:нога,ноги:다리,발
-n:ерін:lips:lèvres:губа:
-a:ақылды:smart,intelligent:intelligent:умный:
-n:Ауыз:mouth:bouche:рот:
-n:Ақыл:intelligence:intelligence:ум:
-n:іш:belly:ventre:живот:
+n:ерін:lips:lèvres:губа:입술
+a:ақылды:smart,intelligent:intelligent:умный:똑똑한
+n:Ауыз:mouth:bouche:рот:입
+n:Ақыл:intelligence:intelligence:ум:지능
+n:іш:belly:ventre:живот:배
