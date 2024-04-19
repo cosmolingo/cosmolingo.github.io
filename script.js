@@ -71,6 +71,11 @@ $(document).ready(function(){
             var f_words = parts[3].trim();
             var r_words = parts[4].trim();
             var ko_words = parts[5].trim();
+
+            if ([k_words,r_words,f_words,ko_words][lang] == " ") {
+                return;
+            }
+
             var e_words_display = e_words;
             if (type == 'v'){
                 var len = e_words.split(",").length;
