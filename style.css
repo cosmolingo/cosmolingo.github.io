@@ -103,35 +103,38 @@ h1{
     box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.1);
 }
 
-.baguette{
-    background: url('src/symbols/baguette.svg');
-    vertical-align: middle;
-    height: 50px;
-    width: 50px;
-}
-
-.star{
-    background: url('src/symbols/star.svg');
-    vertical-align: text-top;
-    height: 50px;
-    width: 50px;
-}
-
-.flower{
-    background: url('src/symbols/flower.svg');
+.kazakh{
+    background: url('src/symbols/kazakh.svg');
     vertical-align: -2px;
     height:40px;
     width:40px;
 }
 
-.baguette,.star,.flower{
+.french{
+    background: url('src/symbols/french.svg');
+    vertical-align: middle;
+    height: 50px;
+    width: 50px;
+}
+
+.russian{
+    background: url('src/symbols/russian.svg');
+    vertical-align: text-top;
+    height: 50px;
+    width: 50px;
+}
+
+.korean{
+    background: url('src/symbols/korean.svg');
+    vertical-align: -2px;
+    height:40px;
+    width:40px;
+}
+
+.kazakh,.french,.russian,.korean{
     background-repeat: no-repeat;
     background-size: cover;
     display: inline-block;
-}
-
-.fa-snowflake{
-    font-size:45px;
 }
 
 #search_bar{

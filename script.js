@@ -7,13 +7,7 @@ var total_guesses = 0;
 var letter_duration = new Array(100).fill(0);
 
 var languages = ['kazakh','russian','french','korean'];
-var colors = [['#7db1db','#5092c8'],['#ffb361','#ff9829'],['#c499e0','#a463ce'],['#f2e269','#cba000'],['#e8766d','#d7544a']];
-var titles = [
-    '<i class="fa-solid fa-sun"></i>   My kazakh words   <i class="fa-solid fa-sun"></i>',
-    '<i class="star"></i>   My russian words   <i class="star"></i>',
-    '<i class="baguette"></i>   My french words   <i class="baguette"></i>',
-    '<i class="flower"></i>   My korean words   <i class="flower"></i>'
-];
+var colors = [['#7db1db','#5092c8'],['#ffb361','#ff9829'],['#c499e0','#a463ce'],['#f2e269','#e3b713'],['#e8766d','#d7544a']];
 var alphabets = [["а","ә","б","в","г","ғ","д","е","ж","з","и","й","к","қ","л","м","н","ң","о","ө","п","р","с","т","у","ұ","ү","ф","х","һ","ц","ч","ш","щ","ы","і","э","ю","я"]];
 
 var lang_i = 0;
@@ -34,7 +28,7 @@ $(document).ready(function(){
     document.documentElement.style.setProperty("--secondary-color", colors[lang_i][1]);
     $('#wave_top path').attr('style','stroke: none;fill: '+colors[lang_i][0]+';');
     $('#wave_bottom path').attr('style','stroke: none;fill: '+colors[lang_i][0]+';');
-    $('#title').html(titles[lang_i]);
+    $('#title').html('<i class="' + languages[lang_i] + '" ></i>   My ' + languages[lang_i] + ' words   <i class="' + languages[lang_i] + '" ></i>');
     $('link[rel="icon"]').attr('href', base_url + '/src/symbols/' + languages[lang_i] + '.ico');
     //Populate grammar section based on language
     var url = base_url + "/sections/" + languages[lang_i] + ".html";	
