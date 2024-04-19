@@ -3,7 +3,6 @@ var words_list = [];
 var shuffled_list = [];
 var guess_index = 0;
 var alphabet = ["а","ә","б","в","г","ғ","д","е","ж","з","и","й","к","қ","л","м","н","ң","о","ө","п","р","с","т","у","ұ","ү","ф","х","һ","ц","ч","ш","щ","ы","і","э","ю","я"];
-var nbs = ["нөл","бір","екі","үш","төрт","бес","алты","жеті","сегіз","тоғыз","он","жиырма","отыз","қырық","елу","алпыс","жетпіс","сексен","тоқсан","жүз"];
 var letter_duration = new Array(alphabet.length).fill(0);
 var correct_guesses = 0;
 var total_guesses = 0;
@@ -107,7 +106,7 @@ function get_words(){
         populate_alphabet();
     }
     if ($('#numbers').length > 0){
-        populate_numbers();
+        //populate_numbers();
     }
 }
 
@@ -118,7 +117,7 @@ function populate_alphabet(){
         letter.addClass("letter");
         letter.on("click", play_letter_sound);
         $("#alphabet").append(letter);
-        var url = base_url + '/word_sounds/' + alphabet[i] + '.mp3';
+        var url = base_url + 'sounds' + languages[lang_i] + '/word_sounds/' + alphabet[i] + '.mp3';
         var audio = new Audio(url);
         get_audio_duration(audio,i);
         audio.src = url;
@@ -243,7 +242,7 @@ function play_word_sound(){
             continue;
         }
         var letter = letters[i].toLowerCase();
-        var url = base_url + '/word_sounds/' + letter + '.mp3';
+        var url = base_url + 'sounds' + languages[lang_i] + '/word_sounds/' + letter + '.mp3';
         var audio = new Audio(url);
         audio.src = url;
         play_audio_index(url,total_duration);
@@ -252,7 +251,7 @@ function play_word_sound(){
 }
 
 function play_letter_sound(){
-    var audio = new Audio(base_url + '/sounds/' + $(this).html() + '.mp3');
+    var audio = new Audio(base_url + '/sounds/' + languages[lang_i] + '/letter_sounds/' + $(this).html() + '.mp3');
     audio.play();
 }
 
