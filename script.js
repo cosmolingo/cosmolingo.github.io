@@ -103,8 +103,12 @@ function get_words(){
         start_game();
     });
 
-    populate_alphabet();
-    populate_numbers();
+    if ($('#letters_div').length > 0){
+        populate_alphabet();
+    }
+    if ($('#numbers_div').length > 0){
+        populate_numbers();
+    }
 }
 
 function populate_alphabet(){
@@ -137,12 +141,6 @@ function populate_numbers(){
         number.append(number_p);
         $("#numbers_div").append(number);
     }
-}
-
-function get_audio_duration(audio,i){
-    $(audio).on("loadedmetadata", function(){
-        letter_duration[i] = audio.duration;
-    });
 }
 
 //Search bar behaviour
@@ -274,6 +272,12 @@ function start_game() {
     var col = $('.word[ka_words="' + word.ka_words + '"]').css('background-color');
     $("#guess_word").css("background-color", col);
     $("#guess_input").val("");
+}
+
+function get_audio_duration(audio,i){
+    $(audio).on("loadedmetadata", function(){
+        letter_duration[i] = audio.duration;
+    });
 }
 
 function shuffleArray(array) {

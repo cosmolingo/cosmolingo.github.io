@@ -3,7 +3,7 @@ html{
     --secondary-color: #cba000;
 }
 
-.icon::before {
+.icon::before{
     display: inline-block;
     text-rendering: auto;
     -webkit-font-smoothing: antialiased;
@@ -24,7 +24,6 @@ body{
     width:100vw;
     font-family: "Balsamiq Sans", "Single Day", sans-serif !important;
 }
-
 
 #logo{
     height:150px;
@@ -232,16 +231,6 @@ h1 .fa-sun{
     background-color:#e6b8b8;
 }
 
-.divisor{
-    display:block;
-    width:400px;
-    margin:0 auto;
-    height:3px;
-    background-color:#5a4813;
-    margin-top:50px;
-    margin-bottom:50px;
-}
-
 #guess_game{
     width:90%;
     max-width:750px;
@@ -322,19 +311,19 @@ h2{
     outline:none;
 }
 
-#letters_div{
+.section{
     width:90%;
-    max-width:400px;
     margin:0 auto;
     display:block;
+}
+
+#alphabet{
+    max-width:400px;
     text-align:left;
 }
 
 #numbers_div{
-    width:90%;
     max-width:700px;
-    margin:0 auto;
-    display:block;
     text-align:center;
 }
 
@@ -381,7 +370,7 @@ h2{
     padding-top:10px;
 }
 
-#cases_div,#verb_div{
+#cases,#tenses{
     width:100%;
     overflow-x: auto;
 }
