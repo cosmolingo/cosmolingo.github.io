@@ -141,4 +141,4 @@ v:-:enter a school:-:-:입학하다
 v:-:graduate:-:-:졸업하
 v:-:take a break from school:-:-:휴학하다
 n:-:entrance:-:-:입구
-n:мұрын:nose:nez:нос::
+n:мұрын:nose:nez:нос::코
