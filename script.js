@@ -28,7 +28,7 @@ $(document).ready(function(){
     document.documentElement.style.setProperty("--secondary-color", colors[lang_i][1]);
     $('#wave_top path').attr('style','stroke: none;fill: '+colors[lang_i][0]+';');
     $('#wave_bottom path').attr('style','stroke: none;fill: '+colors[lang_i][0]+';');
-    $('#title').html('<i class="' + languages[lang_i] + '" ></i>   My ' + languages[lang_i] + ' words   <i class="' + languages[lang_i] + '" ></i>');
+    $('#title h1').html('<i class="' + languages[lang_i] + '" ></i>   My ' + languages[lang_i] + ' words   <i class="' + languages[lang_i] + '" ></i>');
     $('link[rel="icon"]').attr('href', base_url + '/src/symbols/' + languages[lang_i] + '.ico');
     //Populate grammar section based on language
     var url = base_url + "/sections/" + languages[lang_i] + ".html";	
