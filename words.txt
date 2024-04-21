@@ -142,4 +142,6 @@ v:-:graduate:-:-:졸업하
 v:-:take a break from school:-:-:휴학하다
 n:-:entrance:-:-:입구
 n:мұрын:nose:nez:нос:코
+n:арқа:back:dos:спина:
+o:Де:lol,jk,just kidding:lol,je rigole::
 n:саусақ:finger:doigt:палец:
