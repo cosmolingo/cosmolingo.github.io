@@ -607,10 +607,17 @@ border-right: 1px solid black;
         top: 35px;
     }
 
-    .kazakh{
+    .kazakh,.french,.korean{
         height:20px;
         width:20px;
     }
+
+    .russian{
+        height:25px;
+        width:25px;
+        margin-top: 2px;
+    }
+
 
     #guess_word{
         margin-bottom:25px;
