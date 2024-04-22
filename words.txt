@@ -148,4 +148,4 @@ n:арқа:back:dos(d_o):спина:
 o:Де:lol,jk,just kidding:lol,je rigole(l_oa_l_ _j_e_ _r_i_g_oa_l)::
 n:саусақ:finger:doigt(d_o_a):палец:
 n:сақал:beard:barbe(b_a_r_b):борода:
-n:мұрт:moustache(m_ou_s_t_a_ch):jsp:усы:
+n:мұрт:moustache:moustache(m_ou_s_t_a_ch):усы:

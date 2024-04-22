@@ -14,6 +14,12 @@ var alphabets = [
     ["a","b","c","d","e","é","è","ê","ë","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"],
     []
 ];
+var pron_alphabets = [
+    ["а","ә","б","в","г","ғ","д","е","ж","з","и","й","к","қ","л","м","н","ң","о","ө","п","р","с","т","у","ұ","ү","ф","х","һ","ц","ч","ш","щ","ы","і","э","ю","я"],
+    [],
+    ["a","an","b","ch","d","e","é","è","eu","f","g","i","j","k","l","m","n","o","oa","on","ou","p","r","s","t","u","v","x","y","z"],
+    []
+];
 
 var lang_i = 0;
 var url_lang = getUrlParameter('lang');
@@ -82,15 +88,20 @@ function get_words(){
             fr_words = fr_words.replace(/,/g,", ");
             ru_words = ru_words.replace(/,/g,", ");
             ko_words = ko_words.replace(/,/g,", ");
+
+            var new_fr_words = fr_words.split('(')[0];
+            console.log(fr_words);
+            var fr_pron = fr_words.split('(')[1].slice(0,-1);
             
             all_words = [ka_words,ru_words,fr_words,ko_words];
             var wordElement = $("<p>").text(all_words[lang_i] + ' : ' + en_words_display);
             wordElement.attr('type'   , type   );
             wordElement.attr('ka_words', ka_words);
             wordElement.attr('en_words', en_words);
-            wordElement.attr('fr_words', fr_words);
+            wordElement.attr('fr_words', new_fr_words);
             wordElement.attr('ru_words', ru_words);
             wordElement.attr('ko_words', ko_words);
+            wordElement.attr('fr_pron' , fr_pron );
             wordElement.addClass("word");
             wordElement.on("click", play_word_sound);
 
@@ -106,6 +117,14 @@ function get_words(){
     if ($('#alphabet').length > 0){
         populate_alphabet();
     }
+
+    var alphabet = pron_alphabets[lang_i];
+    for (var i = 0; i < alphabet.length; i++) {
+        var url = base_url + '/src/sounds/' + languages[lang_i] + '/word_sounds/' + alphabet[i] + '.mp3';
+        var audio = new Audio(url);
+        get_audio_duration(audio,i);
+        audio.src = url;
+    }
 }
 
 //Populate alphabet section
@@ -116,10 +135,6 @@ function populate_alphabet(){
         letter.addClass("letter");
         letter.on("click", play_letter_sound);
         $("#alphabet").append(letter);
-        var url = base_url + '/src/sounds/' + languages[lang_i] + '/word_sounds/' + alphabet[i] + '.mp3';
-        var audio = new Audio(url);
-        get_audio_duration(audio,i);
-        audio.src = url;
     }
 }
 
