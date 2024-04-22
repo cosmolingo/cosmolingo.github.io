@@ -82,17 +82,17 @@ function get_words(){
                     en_words_display = "to " + en_word;
                 }
             }
-            words_list.push({type:type, ka_words: ka_words, en_words: en_words, fr_words: fr_words, ru_words: ru_words, ko_words: ko_words});
+            var new_fr_words = fr_words.split('(')[0];
+            words_list.push({type:type, ka_words: ka_words, en_words: en_words, fr_words: new_fr_words, ru_words: ru_words, ko_words: ko_words});
             ka_words = ka_words.replace(/,/g,", ");
             en_words = en_words.replace(/,/g,", ");
-            fr_words = fr_words.replace(/,/g,", ");
+            new_fr_words = new_fr_words.replace(/,/g,", ");
             ru_words = ru_words.replace(/,/g,", ");
             ko_words = ko_words.replace(/,/g,", ");
 
-            var new_fr_words = fr_words.split('(')[0];
-            var fr_pron = fr_words.split('(')[1].slice(0,-1);
+            var fr_pron = fr_words.split('(')[1].slice(0,-1).split('_');
             
-            all_words = [ka_words,ru_words,fr_words,ko_words];
+            all_words = [ka_words,ru_words,new_fr_words,ko_words];
             var wordElement = $("<p>").text(all_words[lang_i] + ' : ' + en_words_display);
             wordElement.attr('type'   , type   );
             wordElement.attr('ka_words', ka_words);
@@ -100,7 +100,7 @@ function get_words(){
             wordElement.attr('fr_words', new_fr_words);
             wordElement.attr('ru_words', ru_words);
             wordElement.attr('ko_words', ko_words);
-            wordElement.attr('fr_pron' , fr_pron );
+            wordElement.attr('fr_pron' , JSON.stringify(fr_pron));
             wordElement.addClass("word");
             wordElement.on("click", play_word_sound);
 
@@ -251,13 +251,14 @@ function play_word_sound(){
         var letters = $(this).attr('ru_words').split("");
     }
     else if (lang_i == 2){
-        var letters = $(this).attr('fr_words').split("");
+        var letters = JSON.parse($(this).attr('fr_pron'));
     }
     else if (lang_i == 3){
         var letters = $(this).attr('ko_words').split("");
     }
     var total_duration = 0;
-    var alphabet = alphabets[lang_i];
+    var alphabet = pron_alphabets[lang_i];
+    console.log(letters);
     for (var i = 0; i < letters.length; i++) {
         if (letters[i] == " ") {
             total_duration += 0.25;
