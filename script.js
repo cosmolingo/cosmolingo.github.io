@@ -282,7 +282,7 @@ function play_letter_sound(){
 
 function get_audio_duration(audio,i){
     $(audio).on("loadedmetadata", function(){
-        letter_duration[i] = audio.duration;
+        letter_duration[i] = Math.max(audio.duration,0.15);
     });
 }
 
