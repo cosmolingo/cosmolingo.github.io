@@ -133,9 +133,9 @@ n:Құлақ:ear:oreille(o_r_è_i_y):ухо:귀
 n:шаш:hair:cheveux(ch_eu_v_eu):волосы:머리
 n:аяқ:leg,legs,foot,feet:jambe,jambes,pied,pieds(j_an_b_ _p_i_é):нога,ноги:다리,발
 n:ерін:lips:lèvres(l_è_v_r):губа:입술
-a:ақылды:smart,intelligent:intelligent(in_t_é_l_i_g_an):умный:똑똑한
+a:ақылды:smart,intelligent:intelligent(in_t_é_l_i_j_an):умный:똑똑한
 n:Ауыз:mouth:bouche(b_ou_ch):рот:입
-n:Ақыл:intelligence:intelligence(in_t_é_l_i_g_an_s):ум:지능
+n:Ақыл:intelligence:intelligence(in_t_é_l_i_j_an_s):ум:지능
 n:іш:belly:ventre(v_an_t_r):живот:배
 v:-:enter a school:-:-:입학하다
 v:-:graduate:-:-:졸업하
