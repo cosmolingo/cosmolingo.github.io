@@ -2,19 +2,19 @@ n:мысық:cat:chat(ch_a):кот:고양이
 n:ит:dog:chien(ch_i_in):собака:개,강아지
 n:дос:friend:ami(a_m_i):друг,подруга:친구
 n:түн:night:nuit(n_u_i):ночь:밤
-n:күн:day,sun:jour,soleil(j_ou_r,s_o_l_è_i):день,солнце:일,날,해,태양
-n:ай:moon,month,ouch:lune,mois,aie(l_u_n,m_o_a,a_i):луна,месяц:달,월
+n:күн:day,sun:jour,soleil(j_ou_r_ _s_o_l_è_i):день,солнце:일,날,해,태양
+n:ай:moon,month,ouch:lune,mois,aie(l_u_n_ _m_o_a_ _a_i):луна,месяц:달,월
 v:сігу:fuck:baiser(b_è_z_é):ебаться:섹스하다
 a:үлкен:big:grand(g_r_an):большой:큰
 a:кішкентай:small,little:petit(p_eu_t_i):маленький:작은
 o:рахмет:thank you,thanks:merci(m_è_r_s_i):спасибо:감사합니다
 n:ми:brain:cerveau(s_è_r_v_o):мозг:뇌
 o:сау бол:bye,goodbye:au revoir(o_ _r_eu_v_oa_a_r):до свидания,пока:안녕히 가세요
-o:сәлем:hello,hi:bonjour,salut(b_o_n_j_o_u_r_ _s_a_l_u):здравствуйте,привет:안녕하세요
+o:сәлем:hello,hi:bonjour,salut(b_on_j_ou_r_ _s_a_l_u):здравствуйте,привет:안녕하세요
 o:қош бол:farewell:adieu(a_d_i_eu):прощай:잘 지내세요
 a:қазақ:kazakh:kazakh(k_a_z_a_k):казахский:카자흐어
 n:ағаш:tree:arbre(a_r_b_r):дерево:나무
-n:ара:bee:abeille(a_b_è_i):пчела:벌
+n:ара:bee:abeille(a_b_è_i_y):пчела:벌
 n:ғарыш:space:espace(é_s_p_a_s):космос:우주
 o:емес:not:pas(p_a):не:아니다
 o:мен,және:and:et(é):и:그리고
@@ -23,19 +23,19 @@ o:мен:I,me:je,moi(j_eu_ _m_o_a):я:저는,제가,나는,내가
 o:сен:you:tu,toi(t_u_ _m_o_a):ты:너는,네가
 a:жаман:bad:mauvais(m_o_v_è):плохой:나쁜
 a:жақсы:good:bon(b_on):хороший:좋은
-n:ат:name,horse:nom,cheval(n_on_ _ch_e_v_a_l):имя,лошадь:말
+n:ат:name,horse:nom,cheval(n_on_ _ch_eu_v_a_l):имя,лошадь:말
 a:қуасың:crazy:fou(f_ou):сумасшедший:미친
 o:қуасың ба?:are you crazy?:tu es fou?(t_u_ _è_ _f_ou):ты сумасшедший?:미쳤어요?
 n:тамақ:food,throat:nourriture,gorge(n_ou_r_i_t_u_r_ _g_oa_r_j):еда,горло:음식,목
 n:ұл:boy,son:garçon,fils(g_a_r_s_on_ _f_i_s):мальчик:소년,남자 아이,아들
 n:қыз:girl,daughter:fille(f_i_y):девочка:소녀,여자 아이,딸
-n:жүз:hundred,face:cent,visage(s_en_ _v_i_z_a_j):сто,лицо:백,얼굴
+n:жүз:hundred,face:cent,visage(s_an_ _v_i_z_a_j):сто,лицо:백,얼굴
 v:жүз:swim:nager(n_a_j_é):плавать:수영하다
 n:кофе:coffee:café(k_a_f_é):кофе:커피
 o:кешір:sorry:désolé(d_é_z_o_l_é):извини,прости:죄송합니다
 a:кір:dirty:sale(s_a_l):грязный:더럽다
 o:бәрі бір:whatever:n'importe quoi(n_in_p_oa_r_t_eu_ _k_o_a):без разницы,всё равно:아무것
-o:маған бәрі бір:I don't care,idc:je m'en fiche,balek,osef(j_eu_ _m_an_ _f_i_ch):мне всё равно:난 상관없어
+o:маған бәрі бір:I don't care,idc:je m'en fiche,balek,osef(j_eu_ _m_an_ _f_i_ch_ _b_a_l_è_k_ _o_z_è_f):мне всё равно:난 상관없어
 n:нан:bread:pain(p_in):хлеб:빵
 v:жеу:eat:manger(m_an_j_é):есть,кушать:먹다
 v:ішу:drink:boire(b_o_a_r):пить:마시다
