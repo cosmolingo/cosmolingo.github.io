@@ -258,7 +258,6 @@ function play_word_sound(){
     }
     var total_duration = 0;
     var alphabet = pron_alphabets[lang_i];
-    console.log(letters);
     for (var i = 0; i < letters.length; i++) {
         if (letters[i] == " ") {
             total_duration += 0.25;
