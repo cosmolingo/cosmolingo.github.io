@@ -90,7 +90,6 @@ function get_words(){
             ko_words = ko_words.replace(/,/g,", ");
 
             var new_fr_words = fr_words.split('(')[0];
-            console.log(fr_words);
             var fr_pron = fr_words.split('(')[1].slice(0,-1);
             
             all_words = [ka_words,ru_words,fr_words,ko_words];

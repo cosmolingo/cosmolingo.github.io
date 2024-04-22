@@ -1,5 +1,3 @@
-ch,in,on,ou,e,oa,an,y(ie)
-
 n:мысық:cat:chat(ch_a):кот:고양이
 n:ит:dog:chien(ch_i_in):собака:개,강아지
 n:дос:friend:ami(a_m_i):друг,подруга:친구
