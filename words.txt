@@ -47,7 +47,7 @@ o:иә:yes:oui(ou_i):да:예,네,어,응
 o:Жоқ:no:non(n_on):нет:아니요
 o:айтпа:exactly,right:exactement(é_x_a_k_t_eu_m_an):точно:정확히
 o:Тағы да:again,more:encore,plus(an_k_o_r_ _p_l_u_s):ещё:다시,더
-o:өтінемін:please:s'il-te-plaît,s'il-vous-plait,svp,stp(s_i_l_t_eu_p_l_è_ _s_i_l_v_ou_p_l_è_ _è_s_t_é_p_é_ _s_v_é_p_é):пожалуйста:주시기 바랍니다,주세요,줘,제발
+o:өтінемін:please:s'il-te-plaît,s'il-vous-plait,svp,stp(s_i_l_t_eu_p_l_è_ _s_i_l_v_ou_p_l_è_ _è_s_t_é_p_é_ _è_s_v_é_p_é):пожалуйста:주시기 바랍니다,주세요,줘,제발
 v:Болу:be:être(è_t_r):быть:이다
 o:сау:healthy:en bonne santé(an_ _b_oa_n_ _s_an_t_é):здоровье:건강하다
 o:ғой:though:par contre(p_a_r_ _k_on_t_r):же:그렇지만,R+지만
