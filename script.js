@@ -230,7 +230,18 @@ function play_audio_index(url,time){
 }
 
 function play_word_sound(){
-    var letters = $(this).attr('ka_words').split("");
+    if (lang_i == 0){
+        var letters = $(this).attr('ka_words').split("");
+    }
+    else if (lang_i == 1){
+        var letters = $(this).attr('ru_words').split("");
+    }
+    else if (lang_i == 2){
+        var letters = $(this).attr('fr_words').split("");
+    }
+    else if (lang_i == 3){
+        var letters = $(this).attr('ko_words').split("");
+    }
     var total_duration = 0;
     var alphabet = alphabets[lang_i];
     for (var i = 0; i < letters.length; i++) {
