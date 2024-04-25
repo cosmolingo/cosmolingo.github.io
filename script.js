@@ -44,6 +44,12 @@ $(document).ready(function(){
     //Populate grammar section based on language
     var url = base_url + "/sections/" + languages[lang_i] + ".html";	
     $.get({url: url,cache: false}).then(function(data) {
+        
+        var lines = data.split('\n');
+        lines.splice(0,13);
+        lines.splice(-2,2);
+        data = lines.join('\n');
+
         $('#grammar').html(data);
         //Get word list and populate words section
         get_words();
