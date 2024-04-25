@@ -147,3 +147,7 @@ o:Де:lol,jk,just kidding:lol,je rigole(l_oa_l_ _j_e_ _r_i_g_oa_l)::
 n:саусақ:finger:doigt(d_o_a):палец:
 n:сақал:beard:barbe(b_a_r_b):борода:
 n:мұрт:moustache:moustache(m_ou_s_t_a_ch):усы:
+n:иық:shoulder:épaule(é_p_o_l):плечо:
+n:тізе:knee:genou(j_eu_n_ou):колено:
+n:шынтақ:elbow:coude(k_ou_d):локоть:
+n:аю:bear:ours(ou_r_s):медведь:
