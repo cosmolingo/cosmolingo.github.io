@@ -176,7 +176,7 @@ function body_info(){
             else if (lang_i == 3){
                 attr = 'ko_words';
             }
-            var en_words = $(this).attr('en_words');
+            var en_words = $(this).attr('en_words').split(', ');
             
             if (en_words.includes(en_name)){
                 translated_name = $(this).attr(attr);
