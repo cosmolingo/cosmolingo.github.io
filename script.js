@@ -182,7 +182,12 @@ function body_info(){
                 translated_name = $(this).attr(attr);
             }
         });
-        $('#body_info p').html(translated_name + ' : ' + $('polygon:hover').attr('name'));
+        if (translated_name == ''){
+            $('#body_info p').html($('polygon:hover').attr('name'));
+        }
+        else{
+            $('#body_info p').html(translated_name + ' : ' + $('polygon:hover').attr('name'));
+        }
     }
     var mouseX = event.pageX - 50;
     var mouseY = event.pageY + 30;
