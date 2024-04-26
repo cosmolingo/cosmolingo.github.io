@@ -149,6 +149,7 @@ $(document).on('mousemove','.body_parts',function(e){
 
 $(document).on('click','.body_parts',function(e){
     body_info();
+    console.log('click');
 });
 
 function body_info(){
