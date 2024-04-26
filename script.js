@@ -186,7 +186,7 @@ function body_info(){
             $('#body_info p').html($('polygon:hover').attr('name'));
         }
         else{
-            $('#body_info p').html(translated_name + ' : ' + $('polygon:hover').attr('name'));
+            $('#body_info p').html($('polygon:hover').attr('name') + ' : ' + translated_name);
         }
     }
     var mouseX = event.pageX - 50;
