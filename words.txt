@@ -151,3 +151,5 @@ n:иық:shoulder:épaule(é_p_o_l):плечо:
 n:тізе:knee:genou(j_eu_n_ou):колено:
 n:шынтақ:elbow:coude(k_ou_d):локоть:
 n:аю:bear:ours(ou_r_s):медведь:
+n:мойын:neck:cou(k_ou):шея:
+n:кеуде:chest:poitrine(p_o_a_t_r_i_n):грудная клетка:

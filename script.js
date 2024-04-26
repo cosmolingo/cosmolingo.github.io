@@ -163,7 +163,26 @@ function body_info(){
         bodyInfo.css('opacity','1');
         bodyInfo.css('height','50px');
         bodyInfo.css('width','100px');
-        $('#body_info p').html($('polygon:hover').attr('name'));
+        var en_name = $('polygon:hover').attr('name');
+        var translated_name = '';
+        $('.word').each(function(){
+            var attr = 'ka_words';
+            if (lang_i == 1){
+                attr = 'ru_words';
+            }
+            else if (lang_i == 2){
+                attr = 'fr_words';
+            }
+            else if (lang_i == 3){
+                attr = 'ko_words';
+            }
+            var en_words = $(this).attr('en_words');
+            
+            if (en_words.includes(en_name)){
+                translated_name = $(this).attr(attr);
+            }
+        });
+        $('#body_info p').html(translated_name + ' : ' + $('polygon:hover').attr('name'));
     }
     var mouseX = event.pageX - 50;
     var mouseY = event.pageY + 30;
