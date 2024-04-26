@@ -144,9 +144,16 @@ function populate_alphabet(){
 }
 
 $(document).on('mousemove','.body_parts',function(e){
+    body_info();
+});
+
+$(document).on('click','.body_parts',function(e){
+    body_info();
+});
+
+function body_info(){
     var bodyInfo = $('#body_info');
     var nbhovered = $('polygon:hover').length;
-    console.log(nbhovered);
     if (nbhovered == 0) {
         bodyInfo.css('height','0px');
         bodyInfo.css('width','0px');
@@ -161,7 +168,7 @@ $(document).on('mousemove','.body_parts',function(e){
     var mouseX = event.pageX - 50;
     var mouseY = event.pageY + 30;
     bodyInfo.css({top: mouseY, left: mouseX});
-});
+}
 
 //Search bar behaviour
 $("#search_bar").on("input", function() {
