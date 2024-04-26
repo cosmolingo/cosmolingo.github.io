@@ -46,7 +46,7 @@ $(document).ready(function(){
     $.get({url: url,cache: false}).then(function(data) {
         
         var lines = data.split('\n');
-        lines.splice(0,13);
+        lines.splice(0,14);
         lines.splice(-2,2);
         data = lines.join('\n');
 
@@ -142,6 +142,26 @@ function populate_alphabet(){
         $("#alphabet").append(letter);
     }
 }
+
+$(document).on('mousemove','.body_parts',function(e){
+    var bodyInfo = $('#body_info');
+    var nbhovered = $('polygon:hover').length;
+    console.log(nbhovered);
+    if (nbhovered == 0) {
+        bodyInfo.css('height','0px');
+        bodyInfo.css('width','0px');
+        bodyInfo.css('opacity','0');
+    }
+    else {
+        bodyInfo.css('opacity','1');
+        bodyInfo.css('height','50px');
+        bodyInfo.css('width','100px');
+        $('#body_info p').html($('polygon:hover').attr('name'));
+    }
+    var mouseX = event.pageX - 50;
+    var mouseY = event.pageY + 30;
+    bodyInfo.css({top: mouseY, left: mouseX});
+});
 
 //Search bar behaviour
 $("#search_bar").on("input", function() {

@@ -586,6 +586,49 @@ border-right: 1px solid black;
     z-index:0;
 }
 
+.body_part{
+    width: 90%;
+    max-width: 700px;;
+    margin:0 auto;
+    display:block;
+}
+
+#Layer_1{
+    pointer-events: none;
+}
+
+#Layer_2 polygon{
+    fill:none;
+    stroke-width: 5px;
+    pointer-events: fill;
+}
+
+#Layer_2 polygon:hover{
+    fill:var(--primary-color);
+}
+
+#body_info{
+    width:fit-content;
+    padding-left: 15px;
+    padding-right: 15px;
+    height:0px;
+    position:absolute;
+    pointer-events: none;
+    background-color: var(--primary-color);
+    border-radius: 10px;
+    border: 1px solid #5a4813;
+    border-bottom: 2px solid #5a4813;
+    transition:height .2s cubic-bezier(.68,-0.55,.27,1.55),width .2s cubic-bezier(.68,-0.55,.27,1.55),opacity .1s cubic-bezier(.68,-0.55,.27,1.55);
+    overflow-y: hidden;
+    overflow-x: hidden;
+    box-shadow: 0 7px 7px 0 rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+#body_info p{
+    transition: opacity 0.1s ease-in-out;
+}
+
 @media only screen and (max-width: 700px) {
     #logo_div{
         width: 285px;
