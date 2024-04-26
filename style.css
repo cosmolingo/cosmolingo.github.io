@@ -608,8 +608,7 @@ border-right: 1px solid black;
 }
 
 #body_info{
-    display: flex;
-    align-items: center;
+    display: table;
     width:fit-content;
     padding-left: 15px;
     padding-right: 15px;
