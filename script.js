@@ -46,7 +46,7 @@ $(document).ready(function(){
     $.get({url: url,cache: false}).then(function(data) {
         
         var lines = data.split('\n');
-        lines.splice(0,14);
+        lines.splice(0,16);
         lines.splice(-2,2);
         data = lines.join('\n');
 
@@ -149,7 +149,6 @@ $(document).on('mousemove','.body_parts',function(e){
 
 $(document).on('click','.body_parts',function(e){
     body_info();
-    console.log('click');
 });
 
 function body_info(){
