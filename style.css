@@ -597,13 +597,13 @@ border-right: 1px solid black;
     pointer-events: none;
 }
 
-#Layer_2 polygon{
+#Layer_2 polygon, #Layer_2 path{
     fill:none;
     stroke-width: 5px;
     pointer-events: fill;
 }
 
-#Layer_2 polygon:hover{
+#Layer_2 polygon:hover, #Layer_2 path:hover{
     fill:var(--primary-color);
 }
 
