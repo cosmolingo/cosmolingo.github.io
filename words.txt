@@ -155,3 +155,4 @@ n:мойын:neck:cou(k_ou):шея:
 n:кеуде:chest:poitrine(p_o_a_t_r_i_n):грудная клетка:
 n:маңдай:forehead:front(f_r_on):лоб:
 n:қас:eyebrow:sourcil(s_ou_r_s_i_l):бровь:
+n:бет:face,cheek,cheeks:visage,joue,joues(v_i_z_a_j_ _j_ou):лицо:
