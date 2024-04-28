@@ -224,6 +224,9 @@ $('#guess_input').on('keypress', function(e) {
     if(e.which != 13) {//Only listen to enter key
         return;
     }
+    if (guess_index >= words_list.length) {
+        return;
+    }
     var guess = $(this).val().toLowerCase();
     var en_words = $('#guess_word').attr('en_words').toLowerCase().split(",");
     var en_words_possible = en_words.slice();
@@ -258,9 +261,28 @@ $('#guess_input').on('keypress', function(e) {
     total_guesses++;
     update_progress_bar();
     update_game_guess();
-    setTimeout(function() {
-        $('#guess_result').animate({ opacity: 0 });
-    }, time);
+    if (guess_index >= words_list.length) {
+        $("#guess_result").text("Game finished! Click to restart.");
+        $('#guess_result').css('cursor','pointer');
+        $('#guess_result').animate({ opacity: 1 });
+        $("#guess_result").on("click", function() {
+            guess_index = 0;
+            correct_guesses = 0;
+            total_guesses = 0;
+            shuffled_list = shuffleArray(words_list);
+            update_progress_bar();
+            update_game_guess();
+            $('#guess_result').css('cursor','default');
+            $('#guess_result').animate({ opacity: 0 });
+            $('#guess_result').off("click");
+            $('#guess_input').focus();
+        });
+    }
+    else{
+        setTimeout(function() {
+            $('#guess_result').animate({ opacity: 0 });
+        }, time);
+    }
 });
 
 function update_game_guess() {
@@ -285,6 +307,9 @@ function update_progress_bar() {
     var progress = correct_guesses / words_list.length * 100;
     var progress_total = total_guesses / words_list.length * 100;
     var good_guesses = correct_guesses / total_guesses * 100;
+    if (total_guesses == 0) {
+        good_guesses = 0;
+    }
     $("#progress_div .progress").css("width", progress + "%");
     $("#progress_div .progress_total").css("width", progress_total + "%");
     $("#progress_div p").text(correct_guesses + " / " + total_guesses + " (" + good_guesses.toFixed(0) + "%)");
