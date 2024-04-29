@@ -710,13 +710,12 @@ border-right: 1px solid black;
         margin-top: 2px;
     }
 
+    #search_filters{
+        height:50px;
+    }
 
     #guess_word{
         margin-bottom:25px;
-    }
-
-    #words{
-        padding-top: 10px;
     }
 
     #wave_top{
