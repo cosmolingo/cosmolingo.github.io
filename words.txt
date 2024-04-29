@@ -157,4 +157,4 @@ n:маңдай:forehead:front(f_r_on):лоб:
 n:қас:eyebrow:sourcil(s_ou_r_s_i_l):бровь:
 n:бет:face,cheek,cheeks:visage,joue,joues(v_i_z_a_j_ _j_ou):лицо,щека:
 n:құс:bird:oiseau(o_a_z_o):птица:
-n:Панда:panda:panda(p_en_d_a)::Панда:
+n:Панда:panda:panda(p_en_d_a):Панда:

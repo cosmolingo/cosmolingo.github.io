@@ -142,6 +142,7 @@ function create_body_diagram(){
     $.get({url: url,cache: false}).then(function(data) {
         $('#body_parts').append(data);
     });
+}
 
 //Populate alphabet section
 function populate_alphabet(){
