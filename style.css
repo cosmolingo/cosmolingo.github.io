@@ -714,6 +714,13 @@ border-right: 1px solid black;
         height:50px;
     }
 
+    .filter{
+        margin-left:1px;
+        margin-right:1px;
+        font-size:17px;
+        
+    }
+
     #guess_word{
         margin-bottom:25px;
     }
