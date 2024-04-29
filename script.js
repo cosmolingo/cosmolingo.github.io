@@ -117,6 +117,7 @@ function get_words(){
         shuffled_list = shuffleArray(words_list);
         
         update_game_guess();
+        create_body_diagram();
     });
 
     if ($('#alphabet').length > 0){
@@ -131,6 +132,16 @@ function get_words(){
         audio.src = url;
     }
 }
+
+//Create body parts diagram
+function create_body_diagram(){
+    if ($('#body_parts').length == 0){
+        return;
+    }
+    var url = base_url + "/src/body/body_parts.svg";
+    $.get({url: url,cache: false}).then(function(data) {
+        $('#body_parts').append(data);
+    });
 
 //Populate alphabet section
 function populate_alphabet(){
