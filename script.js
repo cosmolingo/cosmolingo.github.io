@@ -96,7 +96,6 @@ function get_words(){
             ru_words = ru_words.replace(/,/g,", ");
             ko_words = ko_words.replace(/,/g,", ");
 
-            var fr_pron = fr_words.split('(')[1].slice(0,-1).split('_');
             
             all_words = [ka_words,ru_words,new_fr_words,ko_words];
             var wordElement = $("<p>").text(all_words[lang_i] + ' : ' + en_words_display);
@@ -106,7 +105,10 @@ function get_words(){
             wordElement.attr('fr_words', new_fr_words);
             wordElement.attr('ru_words', ru_words);
             wordElement.attr('ko_words', ko_words);
-            wordElement.attr('fr_pron' , JSON.stringify(fr_pron));
+            if (fr_words != '-'){
+                var fr_pron = fr_words.split('(')[1].slice(0,-1).split('_');
+                wordElement.attr('fr_pron' , JSON.stringify(fr_pron));
+            }
             wordElement.addClass("word");
             wordElement.on("click", play_word_sound);
 
@@ -135,12 +137,12 @@ function get_words(){
 
 //Create body parts diagram
 function create_body_diagram(){
-    if ($('#body_parts').length == 0){
+    if ($('.body_parts').length == 0){
         return;
     }
     var url = base_url + "/src/body/body_parts.svg";
     $.get({url: url,cache: false}).then(function(data) {
-        $('#body_parts').append(data);
+        $('.body_parts').append(data.activeElement);
     });
 }
 
