@@ -36,7 +36,16 @@
     <div id="search_bar_div">
         <input id="search_bar" type="text" id="search_input" placeholder="" autofocus>
     </div>
-    <div id="words_outer"><div id="words"></div></div></div>
+    <div id="words_outer">
+        <div id="words">
+            <div id="search_filters">
+                <div class="filter" active='False' id="filter_nouns"     ><p>Nouns</p></div>
+                <div class="filter" active='False' id="filter_verbs"     ><p>Verbs</p></div>
+                <div class="filter" active='False' id="filter_adjectives"><p>Adjectives</p></div>
+                <div class="filter" active='False' id="filter_other"     ><p>Other</p></div>
+            </div>
+        </div>
+    </div>
     <div id="guess_game">
         <h2>Guess the word</h2>
         <div id="progress_div">
@@ -51,7 +60,9 @@
     </div>
     
     
-    <div id="grammar"></div>
+    <div id="grammar">
+        
+    </div>
 
     <div id="wave_bottom">
         <svg viewBox="0 0 1000 150" preserveAspectRatio="none" style="height: 100%; width: 100%;">

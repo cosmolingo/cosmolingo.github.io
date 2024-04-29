@@ -165,6 +165,11 @@ $(document).on('click','.body_parts',function(e){
     body_info();
 });
 
+$(document).on('click','.filter',function(e){
+    $(this).attr('active',$(this).attr('active') == 'true' ? 'false' : 'true');
+    update_word_list();
+});
+
 function body_info(){
     var bodyInfo = $('#body_info');
     var nbhovered = $('polygon:hover').length;
@@ -208,9 +213,12 @@ function body_info(){
     bodyInfo.css({top: mouseY, left: mouseX});
 }
 
-//Search bar behaviour
-$("#search_bar").on("input", function() {
-    var searchValue = $(this).val().toLowerCase();
+function update_word_list(){
+    var searchValue = $('#search_bar').val().toLowerCase();
+    var filters = [false,false,false,false];
+    $('.filter').each(function(i,e){
+        filters[i] = $(e).attr('active') == 'true';
+    });
     $(".word").each(function() {
         var type = $(this).attr("type");
         var ka_words = $(this).attr("ka_words").toLowerCase();
@@ -218,6 +226,7 @@ $("#search_bar").on("input", function() {
         var fr_words = $(this).attr("fr_words").toLowerCase();
         var ru_words = $(this).attr("ru_words").toLowerCase();
         var ko_words = $(this).attr("ko_words").toLowerCase();
+        lang_words = [ka_words,ru_words,fr_words,ko_words];
         if (type == 'v'){
             var len = en_words.split(",").length;
             for (var i = 0; i < len; i++){
@@ -225,12 +234,23 @@ $("#search_bar").on("input", function() {
                 en_words = en_words + "," + "to " + en_word;
             }
         }
-        if (ka_words.includes(searchValue) || en_words.includes(searchValue)) {
-            $(this).show();
+        if (lang_words[lang_i].includes(searchValue) || en_words.includes(searchValue)) {
+            var type_i = ['n','v','a','o'].indexOf(type);
+            if ((filters[type_i]) || (filters.includes(true) == false)){
+                $(this).show();
+            }
+            else{
+                $(this).hide();
+            }
         } else {
             $(this).hide();
         }
     });
+}
+
+//Search bar behaviour
+$("#search_bar").on("input", function() {
+    update_word_list();
 });
 
 //Guess input behaviour
