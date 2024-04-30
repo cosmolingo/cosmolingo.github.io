@@ -159,3 +159,5 @@ n:бет:face,cheek,cheeks:visage,joue,joues(v_i_z_a_j_ _j_ou):лицо,щека
 n:құс:bird:oiseau(o_a_z_o):птица:
 n:Панда:panda:panda(p_en_d_a):Панда:
 n:шошқа:pig:cochon(k_o_ch_on):свинья:
+n:жануар:animal:animal(a_n_i_m_a_l):животное:
+n:сиыр:cow:vache(v_a_ch):корова:
