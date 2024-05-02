@@ -232,7 +232,6 @@ function position_tag_list(){
     var tags_list = $('#tags_list');
     tags_list.css('top',filter_tags.offset().top + filter_tags.height() + 15);
     tags_list.css('left', filter_tags.offset().left + filter_tags.outerWidth() / 2 - tags_list.outerWidth() / 2);
-    console.log([filter_tags.offset().left,filter_tags.width(),tags_list.width()]);
 }
 
 function body_info(){
