@@ -161,5 +161,6 @@ n:Панда:panda:panda(p_en_d_a):Панда:판다
 n:шошқа:pig:cochon(k_o_ch_on):свинья:돼지
 n:жануар:animal:animal(a_n_i_m_a_l):животное:동물
 n:сиыр:cow:vache(v_a_ch):корова:소
-n:сурет:painting:tableau(t_a_b_l_o)::
-n:Туған күн:birthday:anniversaire(a_n_i_v_è_r_s_è_r)::
+n:сурет:painting:tableau(t_a_b_l_o):картина:
+n:Туған күн:birthday:anniversaire(a_n_i_v_è_r_s_è_r):день рождения:
+n:қой:sheep:mouton(m_ou_t_on):овца:
