@@ -87,11 +87,11 @@ o:неше?:how many?:combien?(k_on_b_i_in):сколько?:얼마나
 n:кесе:bowl:bol(b_oa_l):чаша:그릇
 o:кеше:yersterday:hier(i_è_r):вчера:어제
 o:әлде:or:ou(ou):или:혹은,또는,N+(이)나,R+거나,아니면
-n,family:әке:father:père(p_è_r):папа:아버지
-n,family:ана:mother:mère(m_è_r):мама:어머니
+n;family:әке:father:père(p_è_r):папа:아버지
+n;family:ана:mother:mère(m_è_r):мама:어머니
 n:Сағат:hour,time:heure,temps(e_r_ _t_an):час,время:시간
 o:Қалай?:how?:comment?(k_o_m_an):как?:어떻게?
-n,family:Бөпе:baby:bébé(b_é_b_é):ребёнок:아기
+n;family:Бөпе:baby:bébé(b_é_b_é):ребёнок:아기
 o:мүмкін:maybe:peut-être(p_eu_t_è_t_r):может быть:아마도,아마,어쩌면
 o:әрине:of course:bien sûr(b_i_in_s_u_r):конечно:그럼요,물론(이다),당연하다
 v:бару:go:aller(a_l_é):идти:가다
