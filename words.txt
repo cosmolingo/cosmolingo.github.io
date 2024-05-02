@@ -138,7 +138,7 @@ n:Ауыз:mouth:bouche(b_ou_ch):рот:입
 n:Ақыл:intelligence:intelligence(in_t_é_l_i_j_an_s):ум:지능
 n:іш:belly:ventre(v_an_t_r):живот:배
 v:-:enter a school:-:-:입학하다
-v:-:graduate:-:-:졸업하
+v:-:graduate:-:-:졸업하다
 v:-:take a break from school:-:-:휴학하다
 n:-:entrance:-:-:입구
 n:мұрын:nose:nez(n_é):нос:코
