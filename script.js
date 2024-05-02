@@ -1,6 +1,7 @@
 var base_url = 'https://cosmolingo.studio';
 var words_list = [];
 var shuffled_list = [];
+var tag_list = [];
 var guess_index = 0;
 var correct_guesses = 0;
 var total_guesses = 0;
@@ -74,6 +75,17 @@ function get_words(){
             if (type.includes(';')){
                 tags = type.split(';')[1];
                 type = type.split(';')[0];
+                if (tags.includes(',')){
+                    var tags_in_word = tags.split(',');
+                }
+                else{    
+                    var tags_in_word = [tags];
+                }
+                for (var i = 0; i < tags_in_word.length; i++){
+                    if (tag_list.includes(tags_in_word[i]) == false){
+                        tag_list.push(tags_in_word[i]);
+                    }
+                }
             }
             var ka_words = parts[1].trim();
             var en_words = parts[2].trim();
@@ -124,6 +136,7 @@ function get_words(){
         $('#search_bar').val('');
         shuffled_list = shuffleArray(words_list);
         
+        update_tag_filter();
         update_game_guess();
         create_body_diagram();
     });
@@ -139,6 +152,16 @@ function get_words(){
         get_audio_duration(audio,i);
         audio.src = url;
     }
+}
+
+function update_tag_filter(){
+    var tag_div = $('#tags_list');
+    for (var i = 0; i < tag_list.length; i++){
+        var tag = $("<div>").text(tag_list[i]);
+        tag.addClass('tag');
+        tag_div.append(tag);
+    }
+    position_tag_list();
 }
 
 //Create body parts diagram
@@ -163,6 +186,30 @@ function populate_alphabet(){
     }
 }
 
+$(document).on('click','#filter_tags',function(e){
+    if ($('#tags_list').is(':visible')){
+        $(this).attr('active','false');
+        $('#tags_list').fadeOut();
+    }
+    else{
+        $(this).attr('active','true');
+        $('#tags_list').fadeIn();
+    }
+});
+
+$(document).on('click','.tag',function(e){
+    var filter = 'Tags';
+    if ($(this).html() != 'All'){
+        filter = $(this).html();
+    }
+    else{
+        $('#filter_tags').attr('active','false');
+    }
+    $('.tag-filter p').html(filter);
+    $('#tags_list').fadeOut();
+    update_word_list();
+});
+
 $(document).on('mousemove','.body_parts',function(e){
     body_info();
 });
@@ -175,6 +222,18 @@ $(document).on('click','.filter',function(e){
     $(this).attr('active',$(this).attr('active') == 'true' ? 'false' : 'true');
     update_word_list();
 });
+
+$(window).resize(function() {
+    position_tag_list();
+});
+
+function position_tag_list(){
+    var filter_tags = $('#filter_tags');
+    var tags_list = $('#tags_list');
+    tags_list.css('top',filter_tags.offset().top + filter_tags.height() + 15);
+    tags_list.css('left', filter_tags.offset().left + filter_tags.outerWidth() / 2 - tags_list.outerWidth() / 2);
+    console.log([filter_tags.offset().left,filter_tags.width(),tags_list.width()]);
+}
 
 function body_info(){
     var bodyInfo = $('#body_info');
@@ -243,7 +302,17 @@ function update_word_list(){
         if (lang_words[lang_i].includes(searchValue) || en_words.includes(searchValue)) {
             var type_i = ['n','v','a','o'].indexOf(type);
             if ((filters[type_i]) || (filters.includes(true) == false)){
-                $(this).show();
+                if ($('.tag-filter p').html() != 'Tags'){
+                    if ($(this).attr('tags').split(',').includes($('.tag-filter p').html())){
+                        $(this).show();
+                    }
+                    else{
+                        $(this).hide();
+                    }
+                }
+                else{
+                    $(this).show();
+                }
             }
             else{
                 $(this).hide();

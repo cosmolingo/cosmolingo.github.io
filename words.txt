@@ -14,7 +14,7 @@ o:сәлем:hello,hi:bonjour,salut(b_on_j_ou_r_ _s_a_l_u):здравствуй�
 o:қош бол:farewell:adieu(a_d_i_eu):прощай:잘 지내세요
 a:қазақ:kazakh:kazakh(k_a_z_a_k):казахский:카자흐어
 n:ағаш:tree:arbre(a_r_b_r):дерево:나무
-n:ара:bee:abeille(a_b_è_i_y):пчела:벌
+n,animal:ара:bee:abeille(a_b_è_i_y):пчела:벌
 n:ғарыш:space:espace(é_s_p_a_s):космос:우주
 o:емес:not:pas(p_a):не:아니다
 o:мен,және:and:et(é):и:그리고
@@ -23,26 +23,26 @@ o:мен:I,me:je,moi(j_eu_ _m_o_a):я:저는,제가,나는,내가
 o:сен:you:tu,toi(t_u_ _m_o_a):ты:너는,네가
 a:жаман:bad:mauvais(m_o_v_è):плохой:나쁜
 a:жақсы:good:bon(b_on):хороший:좋은
-n:ат:name,horse:nom,cheval(n_on_ _ch_eu_v_a_l):имя,лошадь:말
+n,animal:ат:name,horse:nom,cheval(n_on_ _ch_eu_v_a_l):имя,лошадь:말
 a:қуасың:crazy:fou(f_ou):сумасшедший:미친
 o:қуасың ба?:are you crazy?:tu es fou?(t_u_ _è_ _f_ou):ты сумасшедший?:미쳤어요?
-n:тамақ:food,throat:nourriture,gorge(n_ou_r_i_t_u_r_ _g_oa_r_j):еда,горло:음식,목
-n:ұл:boy,son:garçon,fils(g_a_r_s_on_ _f_i_s):мальчик:소년,남자 아이,아들
-n:қыз:girl,daughter:fille(f_i_y):девочка:소녀,여자 아이,딸
-n:жүз:hundred,face:cent,visage(s_an_ _v_i_z_a_j):сто,лицо:백,얼굴
+n,body part,food:тамақ:food,throat:nourriture,gorge(n_ou_r_i_t_u_r_ _g_oa_r_j):еда,горло:음식,목
+n,family:ұл:boy,son:garçon,fils(g_a_r_s_on_ _f_i_s):мальчик:소년,남자 아이,아들
+n,family:қыз:girl,daughter:fille(f_i_y):девочка:소녀,여자 아이,딸
+n,body part:жүз:hundred,face:cent,visage(s_an_ _v_i_z_a_j):сто,лицо:백,얼굴
 v:жүз:swim:nager(n_a_j_é):плавать:수영하다
-n:кофе:coffee:café(k_a_f_é):кофе:커피
+n,food:кофе:coffee:café(k_a_f_é):кофе:커피
 o:кешір:sorry:désolé(d_é_z_o_l_é):извини,прости:죄송합니다
 a:кір:dirty:sale(s_a_l):грязный:더럽다
 o:бәрі бір:whatever:n'importe quoi(n_in_p_oa_r_t_eu_ _k_o_a):без разницы,всё равно:아무것
 o:маған бәрі бір:I don't care,idc:je m'en fiche,balek,osef(j_eu_ _m_an_ _f_i_ch_ _b_a_l_è_k_ _o_z_è_f):мне всё равно:난 상관없어
-n:нан:bread:pain(p_in):хлеб:빵
+n,food:нан:bread:pain(p_in):хлеб:빵
 v:жеу:eat:manger(m_an_j_é):есть,кушать:먹다
 v:ішу:drink:boire(b_o_a_r):пить:마시다
 a:қара:black:noir(n_o_a_r):чёрный:검정색,검은색,까만색
 o:оқасы жоқ:you're welcome:de rien(d_eu_ _r_i_in):не за что, пожалуйста:천만에요,아니에요,괜찮아요
-n:аға:brother:frère(f_r_è_r):брат:형,오빠,남동생
-n:әпке:sister:soeur(s_e_r):сестра:누나,언니,여동생
+n,family:аға:brother:frère(f_r_è_r):брат:형,오빠,남동생
+n,family:әпке:sister:soeur(s_e_r):сестра:누나,언니,여동생
 o:иә:yes:oui(ou_i):да:예,네,어,응
 o:Жоқ:no:non(n_on):нет:아니요
 o:айтпа:exactly,right:exactement(é_x_a_k_t_eu_m_an):точно:정확히
@@ -87,33 +87,33 @@ o:неше?:how many?:combien?(k_on_b_i_in):сколько?:얼마나
 n:кесе:bowl:bol(b_oa_l):чаша:그릇
 o:кеше:yersterday:hier(i_è_r):вчера:어제
 o:әлде:or:ou(ou):или:혹은,또는,N+(이)나,R+거나,아니면
-n:әке:father:père(p_è_r):папа:아버지
-n:ана:mother:mère(m_è_r):мама:어머니
+n,family:әке:father:père(p_è_r):папа:아버지
+n,family:ана:mother:mère(m_è_r):мама:어머니
 n:Сағат:hour,time:heure,temps(e_r_ _t_an):час,время:시간
 o:Қалай?:how?:comment?(k_o_m_an):как?:어떻게?
-n:Бөпе:baby:bébé(b_é_b_é):ребёнок:아기
+n,family:Бөпе:baby:bébé(b_é_b_é):ребёнок:아기
 o:мүмкін:maybe:peut-être(p_eu_t_è_t_r):может быть:아마도,아마,어쩌면
 o:әрине:of course:bien sûr(b_i_in_s_u_r):конечно:그럼요,물론(이다),당연하다
 v:бару:go:aller(a_l_é):идти:가다
 o:істеу:do,make:faire(f_è_r):делать:하다,만들다
-n:кәмшат:otter:loutre(l_ou_t_r):выдра:수달
+n,animal:кәмшат:otter:loutre(l_ou_t_r):выдра:수달
 v:кету:go,leave:aller,partir(a_l_é_ _p_a_r_t_i_r):уходить:떠나다
 o:кетш:get out:n'importe quoi(n_in_p_oa_r_t_eu_k_o_a):уйди:나가다
-n:бас:head:tête(t_è_t):голова:머리
+n,body part:бас:head:tête(t_è_t):голова:머리
 v:жазу:write:écrire(é_k_r_i_r):писать:쓰다
 o:жиі:often:souvent(s_ou_v_an):часто:자주
-n:қол:hand,arm:main,bras(m_in_ _b_r_a):рука:손,팔
+n,body part:қол:hand,arm:main,bras(m_in_ _b_r_a):рука:손,팔
 v:ойлану:reflect:réflechir(r_é_f_l_é_ch_i_r):размышлять,думать:반사하다,반영하다
 v:ойлау:think:penser(p_an_s_é):думать:생각하다
 n:ой:thought:pensée(p_an_s_é):мысль:생각
 n:кісі:person:personne(p_è_r_s_oa_n):человек:사람
 v:өлтіру:kill:tuer(t_u_é):убить:죽이다
 o:осы:this:ce(s_e):это,эта,этот:이것
-n:көтен:booty:petit cul(p_eu_t_i_ _k_u):попа:전리품
+n,body part:көтен:booty:petit cul(p_eu_t_i_ _k_u):попа:전리품
 v:білу:know:savoir(s_a_v_o_a_r):знать:알다
 a:Әдемі:beautiful,pretty:beau(b_o):красивый:아름다운,예쁜
 n:Қотақбас:dickhead:tête de bite(t_è_t_ _d_e_ _b_i_t):придурок:
-n:Қотақ:dick:bite(b_i_t):член:음경
+n,body part:Қотақ:dick:bite(b_i_t):член:음경
 v:көру:see:voir(v_o_a_r):видеть:보다
 v:келу:come:venir(v_eu_n_i_r):приходить:오다
 v:жақсы көру:love:aimer(è_m_é):любить:사랑하다
@@ -128,34 +128,34 @@ a:Оңай:easy:facile(f_a_s_i_l):легко:쉬워지다,쉽다
 a:Қиын:difficult:difficile(d_i_f_i_s_i_l):сложно:어렵다
 n:Сүт:milk:lait(l_è):молоко:우유
 v:сөйлеу:speak:parler(p_a_r_l_é):разговаривать:말하다,대화하다
-n:көз:eye,eyes:oeil,yeux(e_i_ _i_eu):глаз,глаза:눈
-n:Құлақ:ear:oreille(o_r_è_i_y):ухо:귀
-n:шаш:hair:cheveux(ch_eu_v_eu):волосы:머리
-n:аяқ:leg,legs,foot,feet:jambe,jambes,pied,pieds(j_an_b_ _p_i_é):нога,ноги:다리,발
-n:ерін:lips:lèvres(l_è_v_r):губа:입술
+n,body part:көз:eye,eyes:oeil,yeux(e_i_ _i_eu):глаз,глаза:눈
+n,body part:Құлақ:ear:oreille(o_r_è_i_y):ухо:귀
+n,body part:шаш:hair:cheveux(ch_eu_v_eu):волосы:머리
+n,body part:аяқ:leg,legs,foot,feet:jambe,jambes,pied,pieds(j_an_b_ _p_i_é):нога,ноги:다리,발
+n,body part:ерін:lips:lèvres(l_è_v_r):губа:입술
 a:ақылды:smart,intelligent:intelligent(in_t_é_l_i_j_an):умный:똑똑한
-n:Ауыз:mouth:bouche(b_ou_ch):рот:입
+n,body part:Ауыз:mouth:bouche(b_ou_ch):рот:입
 n:Ақыл:intelligence:intelligence(in_t_é_l_i_j_an_s):ум:지능
-n:іш:belly:ventre(v_an_t_r):живот:배
+n,body part:іш:belly:ventre(v_an_t_r):живот:배
 v:-:enter a school:-:-:입학하다
 v:-:graduate:-:-:졸업하다
 v:-:take a break from school:-:-:휴학하다
 n:-:entrance:-:-:입구
-n:мұрын:nose:nez(n_é):нос:코
-n:арқа:back:dos(d_o):спина:등
+n,body part:мұрын:nose:nez(n_é):нос:코
+n,body part:арқа:back:dos(d_o):спина:등
 o:Де:lol,jk,just kidding:lol,je rigole(l_oa_l_ _j_e_ _r_i_g_oa_l)::그냥 농담이야
-n:саусақ:finger:doigt(d_o_a):палец:손가락
-n:сақал:beard:barbe(b_a_r_b):борода:수염
-n:мұрт:moustache:moustache(m_ou_s_t_a_ch):усы:수염
-n:иық:shoulder:épaule(é_p_o_l):плечо:어깨
-n:тізе:knee:genou(j_eu_n_ou):колено:무릎
-n:шынтақ:elbow:coude(k_ou_d):локоть:팔꿈치
+n,body part:саусақ:finger:doigt(d_o_a):палец:손가락
+n,body part:сақал:beard:barbe(b_a_r_b):борода:수염
+n,body part:мұрт:moustache:moustache(m_ou_s_t_a_ch):усы:수염
+n,body part:иық:shoulder:épaule(é_p_o_l):плечо:어깨
+n,body part:тізе:knee:genou(j_eu_n_ou):колено:무릎
+n,body part:шынтақ:elbow:coude(k_ou_d):локоть:팔꿈치
 n;animal:аю:bear:ours(ou_r_s):медведь:곰
-n:мойын:neck:cou(k_ou):шея:목
-n:кеуде:chest:poitrine(p_o_a_t_r_i_n):грудная клетка:가슴
-n:маңдай:forehead:front(f_r_on):лоб:이마
-n:қас:eyebrow:sourcil(s_ou_r_s_i_l):бровь:눈썹
-n:бет:face,cheek,cheeks:visage,joue,joues(v_i_z_a_j_ _j_ou):лицо,щека:얼굴,볼,뺨
+n,body part:мойын:neck:cou(k_ou):шея:목
+n,body part:кеуде:chest:poitrine(p_o_a_t_r_i_n):грудная клетка:가슴
+n,body part:маңдай:forehead:front(f_r_on):лоб:이마
+n,body part:қас:eyebrow:sourcil(s_ou_r_s_i_l):бровь:눈썹
+n,body part:бет:face,cheek,cheeks:visage,joue,joues(v_i_z_a_j_ _j_ou):лицо,щека:얼굴,볼,뺨
 n;animal:құс:bird:oiseau(o_a_z_o):птица:새
 n;animal:Панда:panda:panda(p_en_d_a):Панда:판다
 n;animal:шошқа:pig:cochon(k_o_ch_on):свинья:돼지
