@@ -141,6 +141,11 @@ v:-:enter a school:-:-:입학하다
 v:-:graduate:-:-:졸업하다
 v:-:take a break from school:-:-:휴학하다
 n:-:entrance:-:-:입구
+v:-:restart school:-:-:북학하다
+v:-:get a job:-:-:회사에 취직하다
+v:-:take a leave of absence:-:-:회사를 휴직하다
+v:-:restart working:-:-:회사에 북직하다
+v:-:leave the company:-:-:회사를 그만두다
 n;body part:мұрын:nose:nez(n_é):нос:코
 n;body part:арқа:back:dos(d_o):спина:등
 o:Де:lol,jk,just kidding:lol,je rigole(l_oa_l_ _j_e_ _r_i_g_oa_l)::그냥 농담이야
