@@ -142,22 +142,22 @@ v:-:graduate:-:-:졸업하
 v:-:take a break from school:-:-:휴학하다
 n:-:entrance:-:-:입구
 n:мұрын:nose:nez(n_é):нос:코
-n:арқа:back:dos(d_o):спина:
-o:Де:lol,jk,just kidding:lol,je rigole(l_oa_l_ _j_e_ _r_i_g_oa_l)::
-n:саусақ:finger:doigt(d_o_a):палец:
-n:сақал:beard:barbe(b_a_r_b):борода:
-n:мұрт:moustache:moustache(m_ou_s_t_a_ch):усы:
-n:иық:shoulder:épaule(é_p_o_l):плечо:
-n:тізе:knee:genou(j_eu_n_ou):колено:
-n:шынтақ:elbow:coude(k_ou_d):локоть:
-n:аю:bear:ours(ou_r_s):медведь:
-n:мойын:neck:cou(k_ou):шея:
-n:кеуде:chest:poitrine(p_o_a_t_r_i_n):грудная клетка:
-n:маңдай:forehead:front(f_r_on):лоб:
-n:қас:eyebrow:sourcil(s_ou_r_s_i_l):бровь:
-n:бет:face,cheek,cheeks:visage,joue,joues(v_i_z_a_j_ _j_ou):лицо,щека:
-n:құс:bird:oiseau(o_a_z_o):птица:
-n:Панда:panda:panda(p_en_d_a):Панда:
-n:шошқа:pig:cochon(k_o_ch_on):свинья:
-n:жануар:animal:animal(a_n_i_m_a_l):животное:
-n:сиыр:cow:vache(v_a_ch):корова:
+n:арқа:back:dos(d_o):спина:등
+o:Де:lol,jk,just kidding:lol,je rigole(l_oa_l_ _j_e_ _r_i_g_oa_l)::그냥 농담이야
+n:саусақ:finger:doigt(d_o_a):палец:손가락
+n:сақал:beard:barbe(b_a_r_b):борода:수염
+n:мұрт:moustache:moustache(m_ou_s_t_a_ch):усы:수염
+n:иық:shoulder:épaule(é_p_o_l):плечо:어깨
+n:тізе:knee:genou(j_eu_n_ou):колено:무릎
+n:шынтақ:elbow:coude(k_ou_d):локоть:팔꿈치
+n:аю:bear:ours(ou_r_s):медведь:곰
+n:мойын:neck:cou(k_ou):шея:목
+n:кеуде:chest:poitrine(p_o_a_t_r_i_n):грудная клетка:가슴
+n:маңдай:forehead:front(f_r_on):лоб:이마
+n:қас:eyebrow:sourcil(s_ou_r_s_i_l):бровь:눈썹
+n:бет:face,cheek,cheeks:visage,joue,joues(v_i_z_a_j_ _j_ou):лицо,щека:얼굴,볼,뺨
+n:құс:bird:oiseau(o_a_z_o):птица:새
+n:Панда:panda:panda(p_en_d_a):Панда:판다
+n:шошқа:pig:cochon(k_o_ch_on):свинья:돼지
+n:жануар:animal:animal(a_n_i_m_a_l):животное:동물
+n:сиыр:cow:vache(v_a_ch):корова:소
