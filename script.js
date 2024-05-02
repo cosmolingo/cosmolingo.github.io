@@ -70,6 +70,11 @@ function get_words(){
             }
             var parts = line.split(":");
             var type    = parts[0].trim();
+            var tags = [];
+            if (type.includes(';')){
+                tags = type.split(';')[1];
+                type = type.split(';')[0];
+            }
             var ka_words = parts[1].trim();
             var en_words = parts[2].trim();
             var fr_words = parts[3].trim();
@@ -89,7 +94,7 @@ function get_words(){
                 }
             }
             var new_fr_words = fr_words.split('(')[0];
-            words_list.push({type:type, ka_words: ka_words, en_words: en_words, fr_words: new_fr_words, ru_words: ru_words, ko_words: ko_words});
+            words_list.push({type:type, tags:tags, ka_words: ka_words, en_words: en_words, fr_words: new_fr_words, ru_words: ru_words, ko_words: ko_words});
             ka_words = ka_words.replace(/,/g,", ");
             en_words = en_words.replace(/,/g,", ");
             new_fr_words = new_fr_words.replace(/,/g,", ");
@@ -100,6 +105,7 @@ function get_words(){
             all_words = [ka_words,ru_words,new_fr_words,ko_words];
             var wordElement = $("<p>").text(all_words[lang_i] + ' : ' + en_words_display);
             wordElement.attr('type'   , type   );
+            wordElement.attr('tags'   , tags);
             wordElement.attr('ka_words', ka_words);
             wordElement.attr('en_words', en_words);
             wordElement.attr('fr_words', new_fr_words);

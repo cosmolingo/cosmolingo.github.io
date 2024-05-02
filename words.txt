@@ -1,5 +1,5 @@
-n:мысық:cat:chat(ch_a):кот:고양이
-n:ит:dog:chien(ch_i_in):собака:개,강아지
+n;animal:мысық:cat:chat(ch_a):кот:고양이
+n;animal:ит:dog:chien(ch_i_in):собака:개,강아지
 n:дос:friend:ami(a_m_i):друг,подруга:친구
 n:түн:night:nuit(n_u_i):ночь:밤
 n:күн:day,sun:jour,soleil(j_ou_r_ _s_o_l_è_i):день,солнце:일,날,해,태양
@@ -150,17 +150,17 @@ n:мұрт:moustache:moustache(m_ou_s_t_a_ch):усы:수염
 n:иық:shoulder:épaule(é_p_o_l):плечо:어깨
 n:тізе:knee:genou(j_eu_n_ou):колено:무릎
 n:шынтақ:elbow:coude(k_ou_d):локоть:팔꿈치
-n:аю:bear:ours(ou_r_s):медведь:곰
+n;animal:аю:bear:ours(ou_r_s):медведь:곰
 n:мойын:neck:cou(k_ou):шея:목
 n:кеуде:chest:poitrine(p_o_a_t_r_i_n):грудная клетка:가슴
 n:маңдай:forehead:front(f_r_on):лоб:이마
 n:қас:eyebrow:sourcil(s_ou_r_s_i_l):бровь:눈썹
 n:бет:face,cheek,cheeks:visage,joue,joues(v_i_z_a_j_ _j_ou):лицо,щека:얼굴,볼,뺨
-n:құс:bird:oiseau(o_a_z_o):птица:새
-n:Панда:panda:panda(p_en_d_a):Панда:판다
-n:шошқа:pig:cochon(k_o_ch_on):свинья:돼지
-n:жануар:animal:animal(a_n_i_m_a_l):животное:동물
-n:сиыр:cow:vache(v_a_ch):корова:소
+n;animal:құс:bird:oiseau(o_a_z_o):птица:새
+n;animal:Панда:panda:panda(p_en_d_a):Панда:판다
+n;animal:шошқа:pig:cochon(k_o_ch_on):свинья:돼지
+n;animal:жануар:animal:animal(a_n_i_m_a_l):животное:동물
+n;animal:сиыр:cow:vache(v_a_ch):корова:소
 n:сурет:painting:tableau(t_a_b_l_o):картина:
 n:Туған күн:birthday:anniversaire(a_n_i_v_è_r_s_è_r):день рождения:
-n:қой:sheep:mouton(m_ou_t_on):овца:
+n;animal:қой:sheep:mouton(m_ou_t_on):овца:
