@@ -137,15 +137,21 @@ a:ақылды:smart,intelligent:intelligent(in_t_é_l_i_j_an):умный:똑똑
 n;body part:Ауыз:mouth:bouche(b_ou_ch):рот:입
 n:Ақыл:intelligence:intelligence(in_t_é_l_i_j_an_s):ум:지능
 n;body part:іш:belly:ventre(v_an_t_r):живот:배
-v:-:enter a school:-:-:입학하다
-v:-:graduate:-:-:졸업하다
-v:-:take a break from school:-:-:휴학하다
+v:-:enter a school:-:-:학교에 입학하다
+v:-:graduate:-:-:대학교를 졸업하다
+v:-:take a break from school:-:-:대학교를 휴학하다
 n:-:entrance:-:-:입구
-v:-:restart school:-:-:북학하다
+v:-:restart school:-:-:대학교에 북학하다
 v:-:get a job:-:-:회사에 취직하다
 v:-:take a leave of absence:-:-:회사를 휴직하다
 v:-:restart working:-:-:회사에 북직하다
 v:-:leave the company:-:-:회사를 그만두다
+v:-:have a part-time job:-:-:아르바이트를 하다
+v:-:move to N:-:-:N+로 이사하다
+v:-:get enganged:-:-:약혼하다
+v:-:get married:-:-:결혼하다
+v:-:make friends of the opposite gender:-:-:이성 친구가 생기다
+v:-:do one's hobby:-:-:취미 생활을 하다
 n;body part:мұрын:nose:nez(n_é):нос:코
 n;body part:арқа:back:dos(d_o):спина:등
 o:Де:lol,jk,just kidding:lol,je rigole(l_oa_l_ _j_e_ _r_i_g_oa_l)::그냥 농담이야
@@ -169,4 +175,4 @@ n;animal:сиыр:cow:vache(v_a_ch):корова:소
 n:сурет:painting:tableau(t_a_b_l_o):картина:그림
 n:Туған күн:birthday:anniversaire(a_n_i_v_è_r_s_è_r):день рождения:생신,생일
 n;animal:қой:sheep:mouton(m_ou_t_on):овца:양
-n;animal:қоян:rabbit:lapin(l_a_p_in):заяц:
+n;animal:қоян:rabbit:lapin(l_a_p_in):заяц:토끼
