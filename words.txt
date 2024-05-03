@@ -152,6 +152,7 @@ v:-:get enganged:-:-:약혼하다
 v:-:get married:-:-:결혼하다
 v:-:make friends of the opposite gender:-:-:이성 친구가 생기다
 v:-:do one's hobby:-:-:취미 생활을 하다
+n:-:life,activity:-:-:생활
 n;body part:мұрын:nose:nez(n_é):нос:코
 n;body part:арқа:back:dos(d_o):спина:등
 o:Де:lol,jk,just kidding:lol,je rigole(l_oa_l_ _j_e_ _r_i_g_oa_l)::그냥 농담이야
