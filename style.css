@@ -260,6 +260,42 @@ h1 .fa-sun{
     background-color:#e6b8b8;
 }
 
+.word:nth-child(7n):active,.letter:nth-child(7n):active,.number:nth-child(7n):active{
+    background-color:#e0ab85;
+    border-bottom: 1.5px solid #5a4813;
+    box-shadow: 0 2px 2px rgba(0,0,0,0.25) inset;
+}
+.word:nth-child(7n+1):active,.letter:nth-child(7n+1):active,.number:nth-child(7n+1):active{
+    background-color:#c7b056;
+    border-bottom: 1.5px solid #5a4813;
+    box-shadow: 0 2px 2px rgba(0,0,0,0.25) inset;
+}
+.word:nth-child(7n+2):active,.letter:nth-child(7n+2):active,.number:nth-child(7n+2):active{
+    background-color:#ae82ca;
+    border-bottom: 1.5px solid #5a4813;
+    box-shadow: 0 2px 2px rgba(0,0,0,0.25) inset;
+}
+.word:nth-child(7n+3):active,.letter:nth-child(7n+3):active,.number:nth-child(7n+3):active{
+    background-color:#d8837a;
+    border-bottom: 1.5px solid #5a4813;
+    box-shadow: 0 2px 2px rgba(0,0,0,0.25) inset;
+}
+.word:nth-child(7n+4):active,.letter:nth-child(7n+4):active,.number:nth-child(7n+4):active{
+    background-color:#8ac59d;
+    border-bottom: 1.5px solid #5a4813;
+    box-shadow: 0 2px 2px rgba(0,0,0,0.25) inset;
+}
+.word:nth-child(7n+5):active,.letter:nth-child(7n+5):active,.number:nth-child(7n+5):active{
+    background-color:#80a9d1;
+    border-bottom: 1.5px solid #5a4813;
+    box-shadow: 0 2px 2px rgba(0,0,0,0.25) inset;
+}
+.word:nth-child(7n+6):active,.letter:nth-child(7n+6):active,.number:nth-child(7n+6):active{
+    background-color:#ca9797;
+    border-bottom: 1.5px solid #5a4813;
+    box-shadow: 0 2px 2px rgba(0,0,0,0.25) inset;
+}
+
 #guess_game{
     width:90%;
     max-width:750px;
@@ -675,8 +711,18 @@ border-right: 1px solid black;
     box-shadow: 0 2px 2px rgba(0,0,0,0.25) inset;
 }
 
+.filter:active,#filter_tags:active{
+    background-color:#c7b056;
+    border-bottom: 1.5px solid #5a4813;
+    box-shadow: 0 2px 2px rgba(0,0,0,0.25) inset;
+}
+
 .filter[active="true"] p,#filter_tags[active="true"] p{
     transform: translateY(-1px);
+}
+
+.filter:active p,#filter_tags:active p{
+    transform: translateY(-2px);
 }
 
 .tag{
