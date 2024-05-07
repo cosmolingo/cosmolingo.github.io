@@ -178,3 +178,4 @@ n:Туған күн:birthday:anniversaire(a_n_i_v_è_r_s_è_r):день рожд
 n;animal:қой:sheep:mouton(m_ou_t_on):овца:양
 n;animal:қоян:rabbit:lapin(l_a_p_in):заяц:토끼
 n;animal:тауық:chicken:poule(p_ou_l):курица:
+n;animal:бақа:frog:grenouille:лягушка::
