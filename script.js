@@ -96,7 +96,7 @@ function get_words(){
                     genders = genders.split(',');
                 }
                 else{
-                    gengers = [genders];
+                    genders = [genders];
                 }
             }
             var ka_words = parts[1].trim();
@@ -130,9 +130,35 @@ function get_words(){
             ru_words = ru_words.replace(/,/g,", ");
             ko_words = ko_words.replace(/,/g,", ");
 
+            if (genders.length > 0 && lang_i == 2){
+                if (new_fr_words.includes(', ')){
+                    var fr_words = new_fr_words.split(', ');
+                    console.log(genders);
+                    console.log(fr_words);
+                    for (var i = 0; i < fr_words.length; i++){
+                        if (genders[i].length == 0){
+                            continue;
+                        }
+                        var prep = ['le','la'][['m','f'].indexOf(genders[i])];
+                        if (fr_words[i][0] == 'a' || fr_words[i][0] == 'e' || fr_words[i][0] == 'i' || fr_words[i][0] == 'o' || fr_words[i][0] == 'u' || fr_words[i][0] == 'y'){
+                            prep = ['un','une'][['m','f'].indexOf(genders[i])];
+                        }
+                        fr_words[i] = prep + ' ' + fr_words[i];
+                    }
+                    new_fr_words = fr_words.join(', ');
+                }
+                else{
+                    var prep = ['le','la'][['m','f'].indexOf(genders)];
+                    if (new_fr_words[0] == 'a' || new_fr_words[0] == 'e' || new_fr_words[0] == 'i' || new_fr_words[0] == 'o' || new_fr_words[0] == 'u' || new_fr_words[0] == 'y'){
+                        prep = ['un','une'][['m','f'].indexOf(genders)];
+                    }
+                    new_fr_words = prep + ' ' + new_fr_words;
+                }
+            }
             
-            all_words = [ka_words,ru_words,new_fr_words,ko_words];
-            var wordElement = $("<p>").text(all_words[lang_i] + ' : ' + en_words_display);
+            display_words = [ka_words,ru_words,new_fr_words,ko_words];
+
+            var wordElement = $("<p>").text(display_words[lang_i] + ' : ' + en_words_display);
             wordElement.attr('type'    , type   );
             wordElement.attr('tags'    , tags);
             wordElement.attr('genders' , genders);
