@@ -128,11 +128,11 @@ a:Оңай:easy:facile(f_a_s_i_l):легко:쉬워지다,쉽다
 a:Қиын:difficult:difficile(d_i_f_i_s_i_l):сложно:어렵다
 n-m:Сүт:milk:lait(l_è):молоко:우유
 v:сөйлеу:speak:parler(p_a_r_l_é):разговаривать:말하다,대화하다
-n-m,m;body part:көз:eye,eyes:oeil,yeux(e_i_ _i_eu):глаз,глаза:눈
+n-m,p;body part:көз:eye,eyes:oeil,yeux(e_i_ _i_eu):глаз,глаза:눈
 n-f;body part:Құлақ:ear:oreille(o_r_è_i_y):ухо:귀
-n-m;body part:шаш:hair:cheveux(ch_eu_v_eu):волосы:머리
-n-f,f,m,m;body part:аяқ:leg,legs,foot,feet:jambe,jambes,pied,pieds(j_an_b_ _p_i_é):нога,ноги:다리,발
-n-f;body part:ерін:lips:lèvres(l_è_v_r):губа:입술
+n-p;body part:шаш:hair:cheveux(ch_eu_v_eu):волосы:머리
+n-f,p,m,p;body part:аяқ:leg,legs,foot,feet:jambe,jambes,pied,pieds(j_an_b_ _p_i_é):нога,ноги:다리,발
+n-f,p;body part:ерін:lips:lèvre,lèvres(l_è_v_r):губа:입술
 a:ақылды:smart,intelligent:intelligent(in_t_é_l_i_j_an):умный:똑똑한
 n-f;body part:Ауыз:mouth:bouche(b_ou_ch):рот:입
 n-f:Ақыл:intelligence:intelligence(in_t_é_l_i_j_an_s):ум:지능
