@@ -211,9 +211,8 @@ function create_body_diagram(){
         return;
     }
     var url = base_url + "/src/body/body_parts.svg";
-    $.get({url: url,cache: false}).then(function(data) {
-        $('.body_parts').append(data.activeElement);
-    });
+    
+    $('#diagrams').load(url);
 }
 
 //Populate alphabet section
