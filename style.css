@@ -216,6 +216,7 @@ h1 .fa-sun{
     background-image: url('src/bg.png');
     background-attachment: local;
     background-size: 50%;
+    background-color: #ded5ac;
 }
 
 .word{
