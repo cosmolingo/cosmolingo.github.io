@@ -105,7 +105,12 @@ function get_words(){
                     en_words_display = "to " + en_word;
                 }
             }
-            var new_fr_words = fr_words.split('(')[0];
+            if (fr_words.includes('(')){
+                var new_fr_words = fr_words.split('(')[0];
+            }
+            else{
+                var new_fr_words = fr_words;
+            }
             words_list.push({type:type, tags:tags, ka_words: ka_words, en_words: en_words, fr_words: new_fr_words, ru_words: ru_words, ko_words: ko_words});
             ka_words = ka_words.replace(/,/g,", ");
             en_words = en_words.replace(/,/g,", ");
@@ -123,9 +128,12 @@ function get_words(){
             wordElement.attr('fr_words', new_fr_words);
             wordElement.attr('ru_words', ru_words);
             wordElement.attr('ko_words', ko_words);
-            if (fr_words != '-'){
+            if (fr_words != '-' && fr_words.includes('(')){
                 var fr_pron = fr_words.split('(')[1].slice(0,-1).split('_');
                 wordElement.attr('fr_pron' , JSON.stringify(fr_pron));
+            }
+            else{
+                wordElement.attr('fr_pron' , '-');
             }
             wordElement.addClass("word");
             wordElement.on("click", play_word_sound);
@@ -441,6 +449,9 @@ function play_word_sound(){
         var letters = $(this).attr('ru_words').split("");
     }
     else if (lang_i == 2){
+        if ($(this).attr('fr_pron') == '-'){
+            return;
+        }
         var letters = JSON.parse($(this).attr('fr_pron'));
     }
     else if (lang_i == 3){
