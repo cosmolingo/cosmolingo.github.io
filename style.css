@@ -437,7 +437,7 @@ h2{
     padding-top:10px;
 }
 
-#cases,#tenses{
+.cases,#tenses{
     width:100%;
     overflow-x: auto;
 }
