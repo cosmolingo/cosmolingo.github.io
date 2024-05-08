@@ -473,7 +473,7 @@ h2{
     text-align: right;
 }
 
-.cases_table,.tense_table{
+.cases_table,.cases_general_table,.tense_table{
     min-width:500px;
     border:1px solid #5a4813;
     border-collapse:collapse;
@@ -487,7 +487,11 @@ h2{
     border:1.5px solid #5a4813;
     border-bottom: 3px solid #5a4813;
     box-shadow:0 5px 10px rgba(0,0,0,0.1);
-   }
+}
+
+.cases_general_table{
+    min-width: 700px;
+}
    
 /* Apply a border to the right of all but the last column */
 .cases_table th:not(:last-child),
