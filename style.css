@@ -836,9 +836,9 @@ border-right: 1px solid black;
     .filter,.filter_tags,.tag-filter p{
         margin-left:1px;
         margin-right:1px;
-        padding-left:3px;
-        padding-right:3px;
-        font-size:15px;   
+        padding-left:2px;
+        padding-right:2px;
+        font-size:14px;   
     }
 
     #guess_word{
