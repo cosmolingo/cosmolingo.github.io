@@ -525,6 +525,24 @@ border-right: 1px solid black;
     font-weight: 700;
 }
 
+.cases_general_table td:first-child{
+    width:100px;
+    font-weight: 700;
+}
+
+.cases_general_table td:nth-child(3){
+    width:80px;
+    font-weight: 700;
+}
+
+.cases_general_table td:nth-child(4){
+    width:150px;
+}
+
+.cases_general_table td:nth-child(5){
+    width:100px;
+}
+
 /* Apply a border to the bottom of all but the last row */
 .cases_table>thead>tr:not(:last-child)>th,
 .cases_table>thead>tr:not(:last-child)>td,
