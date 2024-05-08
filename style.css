@@ -497,17 +497,19 @@ h2{
 .cases_table th:not(:last-child),
 .cases_table td:not(:last-child),
 .tense_table th:not(:last-child),
-.tense_table td:not(:last-child){
+.tense_table td:not(:last-child),
+.cases_general_table th:not(:last-child),
+.cases_general_table td:not(:last-child){
 border-right: 1px solid black;
 }
 
-.cases_table th,.tense_table th{
+.cases_table th,.tense_table th, .cases_general_table th{
     background-color: var(--primary-color);
     height:35px;
     text-align:center;
 }
 
-.cases_table td,.tense_table td{
+.cases_table td,.tense_table td, .cases_general_table td{
     text-align:center;
     height:25px;
     background-color:#e7e0c4;
@@ -545,7 +547,18 @@ border-right: 1px solid black;
 .tense_table>tr:not(:last-child)>th,
 .tense_table>thead:not(:last-child),
 .tense_table>tbody:not(:last-child),
-.tense_table>tfoot:not(:last-child) {
+.tense_table>tfoot:not(:last-child),
+.cases_general_table>thead>tr:not(:last-child)>th,
+.cases_general_table>thead>tr:not(:last-child)>td,
+.cases_general_table>tbody>tr:not(:last-child)>th,
+.cases_general_table>tbody>tr:not(:last-child)>td,
+.cases_general_table>tfoot>tr:not(:last-child)>th,
+.cases_general_table>tfoot>tr:not(:last-child)>td,
+.cases_general_table>tr:not(:last-child)>td,
+.cases_general_table>tr:not(:last-child)>th,
+.cases_general_table>thead:not(:last-child),
+.cases_general_table>tbody:not(:last-child),
+.cases_general_table>tfoot:not(:last-child) {
     border-bottom: 1px solid black;
 }
 
