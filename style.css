@@ -554,6 +554,22 @@ border-right: 1px solid black;
     border-bottom: 1px solid black;
 }
 
+.grammar_table tr:first-child th:first-child{
+    border-top-left-radius: 9px;
+}
+
+.grammar_table tr:first-child th:last-child{
+    border-top-right-radius: 9px;
+}
+
+.grammar_table tr:last-child td:first-child{
+    border-bottom-left-radius: 9px;
+}
+
+.grammar_table tr:last-child td:last-child{
+    border-bottom-right-radius: 9px;
+}
+
 #progress_div{
     width:90%;
     max-width:750px;
@@ -820,9 +836,9 @@ border-right: 1px solid black;
     .filter,.filter_tags,.tag-filter p{
         margin-left:1px;
         margin-right:1px;
-        padding-left:4px;
-        padding-right:4px;
-        font-size:16px;   
+        padding-left:3px;
+        padding-right:3px;
+        font-size:15px;   
     }
 
     #guess_word{
