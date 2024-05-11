@@ -179,3 +179,4 @@ n-m;animal:қой:sheep:mouton(m_ou_t_on):овца:양
 n-m;animal:қоян:rabbit:lapin(l_a_p_in):заяц:토끼
 n-f;animal:тауық:chicken:poule(p_ou_l):курица:
 n-f;animal:бақа:frog:grenouille(g_r_e_n_ou_i_y):лягушка::
+n;color:көк:blue:bleu(b_l_eu):синий:
