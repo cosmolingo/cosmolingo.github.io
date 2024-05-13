@@ -182,3 +182,4 @@ n-f;animal:бақа:frog:grenouille(g_r_e_n_ou_i_y):лягушка::
 n;color:көк:blue:bleu(b_l_eu):синий:
 n;color:қызыл:red:rouge(r_ou_j):красный:
 n;color:жасыл:green:vert(v_è_r):зелёный:
+n;color:сары:yellow:jaune(j_o_n):жёлтый:
