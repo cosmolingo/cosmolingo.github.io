@@ -251,15 +251,71 @@ function populate_alphabet(){
 
 $(document).on('input','#number_input',function(e){
     var number = $(this).val();
+    var translated_number = get_spelled_out_number(number);
+    $('#number_output p').text(translated_number);
+    var bg_colors = ["#fbc59f","#f4eb84","#c499e0","#f39f95","#a9e3bb","#a6cdf4","#e6b8b8"];
+    $('#number_output').css('background-color',bg_colors[Math.floor(Math.random() * bg_colors.length)]);
+});
+
+function get_spelled_out_number(number){
+    if (number > 999999){
+        if (lang_i == 0){
+            return 'Тым үлкен!';
+        }
+        else if (lang_i == 1){
+            return 'Слишком большая!';
+        }
+        else if (lang_i == 2){
+            return 'Trop grand !';
+        }
+        else if (lang_i == 3){
+            return '';
+        }
+    }
+    if (number == 0){
+        return special_numbers[lang_i][0];
+    }
+    var translated_number = '';
+    var thousands = Math.floor(number / 1000);
+    var hundreds = Math.floor((number % 1000) / 100);
+    var tens = Math.floor((number % 100) / 10);
+    var units = number % 10;
     var lang_numbers = special_numbers[lang_i];
     var translated_number = '';
-    if (number in lang_numbers){
-        $('#number_output').html(lang_numbers[number]);
+    if (thousands > 0){
+        if (thousands > 1){
+            if (thousands > 10){
+                translated_number += get_spelled_out_number(thousands) + ' ' + lang_numbers[1000] + ' ';
+            }
+            else{
+                translated_number += lang_numbers[thousands] + ' ' + lang_numbers[1000] + ' ';
+            }
+        }
+        else{
+            translated_number += lang_numbers[1000] + ' ';
+        }
+    }
+    if (hundreds > 0){
+        if ((hundreds == 1 && thousands > 0) || hundreds > 1){
+            translated_number += lang_numbers[hundreds] + ' ' + lang_numbers[100] + ' ';
+        }
+        else{
+            translated_number += lang_numbers[100] + ' ';
+        }
+    }
+    if (tens*10 + units in lang_numbers && tens*10 + units != 0){
+        translated_number += lang_numbers[tens*10 + units];
     }
     else{
-        $('#number_output').html('Not found');
+        if (tens > 0){
+            translated_number += lang_numbers[tens*10] + ' ';
+        }
+        if (units > 0){
+            translated_number += lang_numbers[units];
+        }
     }
-});
+    return translated_number;
+}
 
 $(document).on('click','#filter_tags',function(e){
     if ($('#tags_list').is(':visible')){

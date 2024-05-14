@@ -330,7 +330,7 @@ h2{
     opacity:0;
 }
 
-#guess_word{
+#guess_word, #number_output{
     height:61px;
     width:260px;
     display:inline-block;
@@ -356,7 +356,7 @@ h2{
     line-height: 20px;
 }
 
-#guess_input{
+#guess_input, #number_input{
     padding:0;
     height:65px;
     width:250px;
@@ -374,8 +374,25 @@ h2{
     text-align:center;
 }
 
-#guess_input:focus{
+#guess_input:focus, #number_input:focus{
     outline:none;
+}
+
+#number_translate{
+    margin:0 auto;
+    margin-top: 50px;
+    width: 90%;
+    max-width: 750px;
+    display: block;
+    text-align: center;
+}
+
+#number_output{
+    background-color:#fbc59f;
+}
+#number_output p{
+    display: flex;
+    align-items: center;
 }
 
 .section{
@@ -391,7 +408,7 @@ h2{
 
 #numbers{
     max-width:600px;
-    text-align:left;
+    text-align:center;
 }
 
 .number p{
@@ -477,7 +494,7 @@ h2{
     border:1px solid #5a4813;
     border-collapse:collapse;
     width:90%;
-    max-width:1200px;
+    max-width:1000px;
     margin:0 auto;
     border-radius:5px;
     border-spacing: 0;
@@ -486,6 +503,12 @@ h2{
     border:1.5px solid #5a4813;
     border-bottom: 3px solid #5a4813;
     box-shadow:0 5px 10px rgba(0,0,0,0.1);
+}
+
+.highlight{
+    display: inline-block;
+    color:var(--secondary-color);
+    font-weight: 700;
 }
 
 .cases_general_table{
@@ -526,12 +549,12 @@ border-right: 1px solid black;
 }
 
 .cases_general_table td:nth-child(3){
-    width:80px;
+    width:100px;
     font-weight: 700;
 }
 
 .cases_general_table td:nth-child(4){
-    width:350px;
+    width:250px;
 }
 
 .cases_general_table td:nth-child(5){
