@@ -395,7 +395,7 @@ h2{
 }
 
 .number p{
-    font-size: 25px;
+    font-size: 30px;
     margin:0 auto;
     height:25px;
     line-height: 25px;
@@ -433,7 +433,8 @@ h2{
 }
 
 .number{
-    width:60px;
+    height:65px;
+    width:75px;
     padding-top:10px;
 }
 

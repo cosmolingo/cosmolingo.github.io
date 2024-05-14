@@ -22,6 +22,16 @@ var pron_alphabets = [
     []
 ];
 
+var special_numbers = [
+    {0:'нөл',1:'бір',2:'екі',3:'үш',4:'төрт',5:'бес',6:'алты',7:'жеті',8:'сегіз',9:'тоғыз',10:'он',
+    20:'жиырма',30:'отыз',40:'қырық',50:'елу',60:'алпыс',70:'жетпіс',80:'сексен',90:'тоқсан',100:'жүз',1000:'мың'},
+    {},
+    {0:'zéro',1:'un',2:'deux',3:'trois',4:'quatre',5:'cinq',6:'six',7:'sept',8:'huit',9:'neuf',10:'dix',
+    11:'onze',12:'douze',13:'treize',14:'quatorze',15:'quinze',16:'seize',17:'dix-sept',18:'dix-huit',19:'dix-neuf',
+    20:'vingt',30:'trente',40:'quarante',50:'cinquante',60:'soixante',70:'soixante-dix',80:'quatre-vingts',90:'quatre-vingt-dix',100:'cent',1000:'mille'},
+    {}
+]
+
 var lang_i = 0;
 var url_lang = getUrlParameter('lang');
 if (url_lang == 'ru'){
@@ -54,8 +64,21 @@ $(document).ready(function(){
         $('#grammar').html(data);
         //Get word list and populate words section
         get_words();
+        populate_numbers();
     });
 });
+
+function populate_numbers(){
+    for (const [key, value] of Object.entries(special_numbers[lang_i])) {
+        var number = $("<div>");
+        number.addClass("number");
+        var number_p = $("<p>").text(key);
+        number.append(number_p);
+        var number_p = $("<p>").text(value);
+        number.append(number_p);
+        $("#numbers").append(number);
+    }
+}
 
 function get_words(){
     var url = base_url + "/words.txt";
@@ -225,6 +248,18 @@ function populate_alphabet(){
         $("#alphabet").append(letter);
     }
 }
+
+$(document).on('input','#number_input',function(e){
+    var number = $(this).val();
+    var lang_numbers = special_numbers[lang_i];
+    var translated_number = '';
+    if (number in lang_numbers){
+        $('#number_output').html(lang_numbers[number]);
+    }
+    else{
+        $('#number_output').html('Not found');
+    }
+});
 
 $(document).on('click','#filter_tags',function(e){
     if ($('#tags_list').is(':visible')){
