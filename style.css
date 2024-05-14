@@ -814,6 +814,10 @@ border-right: 1px solid black;
         font-size:30px;
     }
 
+    #alphabet{
+        text-align: center;
+    }
+
     #flags_div{
         top: 35px;
     }
