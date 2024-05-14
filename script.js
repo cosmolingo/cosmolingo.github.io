@@ -77,7 +77,7 @@ function populate_numbers(){
         number.append(number_p);
         var number_p = $("<p>").text(value);
         number.append(number_p);
-        $("#numbers").append(number);
+        number.insertAfter('#numbers h2');
     }
 }
 
@@ -320,11 +320,12 @@ function get_spelled_out_number(number){
 
 $(document).on('click','.section h2',function(e){
     $(this).attr('active',$(this).attr('active') == 'true' ? 'false' : 'true');
+    console.log($(this).siblings('.content'));
     if ($(this).attr('active') == 'true'){
-        $(this).parent().css('height','auto');
+        $(this).siblings('.content').css('height','auto');
     }
     else{
-        $(this).parent().css('height','0px');
+        $(this).siblings('.content').css('height','0px');
     }
 });
 

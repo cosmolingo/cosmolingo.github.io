@@ -110,6 +110,11 @@ h1{
     box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.1);
 }
 
+.section .content{
+    overflow-y: hidden;
+    height:0px;
+}
+
 .section h2{
     cursor: pointer;
 }
@@ -118,12 +123,12 @@ h1{
     transition: all 0.25s ease-in-out;
     display: inline-block;
     content: "\25be";
-    transform: scale(1.5) translateX(7.5px);
+    transform: scale(1.5) translateX(7.5px) rotate(180deg);
     margin-top: -5px;
 }
 
 .section h2[active="true"]::after{
-    transform: scale(1.5) translateX(7.5px) rotate(180deg);
+    transform: scale(1.5) translateX(7.5px);
 }
 
 .kazakh{
