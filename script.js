@@ -69,7 +69,7 @@ $(document).ready(function(){
 });
 
 function populate_numbers(){
-    for (const [key, value] of Object.entries(special_numbers[lang_i])) {
+    for (const [index, [key, value]] of Object.entries(Object.entries(special_numbers[lang_i]))) {
         var number = $("<div>");
         number.addClass("number");
         var number_p = $("<p>").text(key);

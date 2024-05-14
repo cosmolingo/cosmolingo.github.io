@@ -390,8 +390,8 @@ h2{
 }
 
 #numbers{
-    max-width:700px;
-    text-align:center;
+    max-width:600px;
+    text-align:left;
 }
 
 .number p{
@@ -446,9 +446,6 @@ h2{
 #vowels_table{
     font-style: italic;
     margin:0 auto;
-}
-
-#vowels_table{
     border-collapse: collapse;
     margin-bottom:25px;
 }
@@ -475,11 +472,12 @@ h2{
 }
 
 .grammar_table{
+    font-size:20px;
     min-width:500px;
     border:1px solid #5a4813;
     border-collapse:collapse;
     width:90%;
-    max-width:600px;
+    max-width:1200px;
     margin:0 auto;
     border-radius:5px;
     border-spacing: 0;
@@ -502,13 +500,13 @@ border-right: 1px solid black;
 
 .grammar_table th{
     background-color: var(--primary-color);
-    height:35px;
+    height:45px;
     text-align:center;
 }
 
 .grammar_table td{
     text-align:center;
-    height:25px;
+    height:35px;
     background-color:#e7e0c4;
 }
 
@@ -533,11 +531,11 @@ border-right: 1px solid black;
 }
 
 .cases_general_table td:nth-child(4){
-    width:150px;
+    width:350px;
 }
 
 .cases_general_table td:nth-child(5){
-    width:100px;
+    width:200px;
 }
 
 /* Apply a border to the bottom of all but the last row */
@@ -815,7 +813,7 @@ border-right: 1px solid black;
         font-size:30px;
     }
 
-    #alphabet{
+    #alphabet, #numbers{
         text-align: center;
     }
 
