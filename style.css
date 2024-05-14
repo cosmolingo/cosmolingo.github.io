@@ -110,11 +110,20 @@ h1{
     box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.1);
 }
 
+.section h2{
+    cursor: pointer;
+}
+
 .section h2::after{
+    transition: all 0.25s ease-in-out;
     display: inline-block;
     content: "\25be";
     transform: scale(1.5) translateX(7.5px);
     margin-top: -5px;
+}
+
+.section h2[active="true"]::after{
+    transform: scale(1.5) translateX(7.5px) rotate(180deg);
 }
 
 .kazakh{
@@ -340,7 +349,7 @@ h2{
 #guess_word, #number_output{
     height:61px;
     width:260px;
-    display:inline-block;
+    display: inline-table;
     margin:0 auto;
     border:1.5px solid #5a4813;
     border-bottom: 3px solid #5a4813;
@@ -396,9 +405,9 @@ h2{
 
 #number_output{
     background-color:#fbc59f;
-    display: inline-table;
 }
-#number_output p{
+
+#number_output p, #guess_word p{
     margin:0 auto;
     display:table-cell;
     vertical-align: middle;
@@ -414,11 +423,13 @@ h2{
 #alphabet{
     max-width:400px;
     text-align:left;
+    margin:0 auto;
 }
 
 #numbers{
     max-width:600px;
     text-align:center;
+    margin:0 auto;
 }
 
 .number p{

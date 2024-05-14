@@ -318,6 +318,16 @@ function get_spelled_out_number(number){
     return translated_number;
 }
 
+$(document).on('click','.section h2',function(e){
+    $(this).attr('active',$(this).attr('active') == 'true' ? 'false' : 'true');
+    if ($(this).attr('active') == 'true'){
+        $(this).parent().css('height','auto');
+    }
+    else{
+        $(this).parent().css('height','0px');
+    }
+});
+
 $(document).on('click','#filter_tags',function(e){
     if ($('#tags_list').is(':visible')){
         $(this).attr('active','false');
