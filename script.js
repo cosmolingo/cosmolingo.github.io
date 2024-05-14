@@ -65,6 +65,7 @@ $(document).ready(function(){
         //Get word list and populate words section
         get_words();
         populate_numbers();
+        $('#number_output p').text(special_numbers[lang_i][0]);
     });
 });
 

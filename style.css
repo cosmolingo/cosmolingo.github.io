@@ -110,6 +110,13 @@ h1{
     box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.1);
 }
 
+.section h2::after{
+    display: inline-block;
+    content: "\25be";
+    transform: scale(1.5) translateX(7.5px);
+    margin-top: -5px;
+}
+
 .kazakh{
     background: url('src/symbols/kazakh.svg');
     vertical-align: -2px;
@@ -389,10 +396,13 @@ h2{
 
 #number_output{
     background-color:#fbc59f;
+    display: inline-table;
 }
 #number_output p{
-    display: flex;
-    align-items: center;
+    margin:0 auto;
+    display:table-cell;
+    vertical-align: middle;
+    line-height: 30px;
 }
 
 .section{
