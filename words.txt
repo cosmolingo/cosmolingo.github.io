@@ -183,3 +183,4 @@ a;color:көк:blue:bleu(b_l_eu):синий:
 a;color:қызыл:red:rouge(r_ou_j):красный:
 a;color:жасыл:green:vert(v_è_r):зелёный:
 a;color:сары:yellow:jaune(j_o_n):жёлтый:
+a;color:ақ:white:blanc(b_l_an):белый:
