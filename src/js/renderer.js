@@ -3,8 +3,7 @@ function setup_renderer(){
     mouse = new THREE.Vector2();
     scene = new THREE.Scene();
     camera = new THREE.PerspectiveCamera(1, 7/5, 1, 10000);
-    camera.position.set(0, 500, 700);
-    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.position.set(0, 500, 400);
     camera.updateProjectionMatrix();
     renderer = new THREE.WebGLRenderer({
         antialias: true,
@@ -15,13 +14,12 @@ function setup_renderer(){
     controls = new THREE.OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
     controls.enablePan = false;
-    controls.dampingFactor = 0.2;
-    controls.rotateSpeed = 0.2;
-    controls.enableZoom = true;
+    controls.dampingFactor = 0.1;
+    controls.rotateSpeed = 0.05;
+    controls.enableZoom = false;
     controls.minPolarAngle = 0;
     controls.maxPolarAngle = Math.PI / 2;
     controls.update();
-    renderer.setPixelRatio(7/5);
     renderer.setSize(700, 500);
     renderer.domElement.addEventListener("click", onclick, true);
     window.addEventListener('resize', onWindowResize, false);
@@ -56,6 +54,7 @@ function setup_renderer(){
     objs = [];
     SpawnCar();
     render();
+    onWindowResize();
 }
 
 function SpawnCar() {
@@ -92,9 +91,22 @@ function SpawnCar() {
 }
 
 function onWindowResize() {
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    if (window.innerWidth < 700/.9){
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth*.9, window.innerWidth*.9*5/7);
+        //canvas.attr('width', window.innerWidth*.9);
+        //canvas.attr('height', window.innerWidth*.9*5/7);
+        //canvas.css('width', window.innerWidth*.9 + 'px');
+        //canvas.css('height', window.innerWidth*.9*5/7 + 'px');
+    }
+    else{
+        camera.updateProjectionMatrix();
+        renderer.setSize(700, 500);
+        //canvas.attr('width', '700');
+        //canvas.attr('height', '500');
+        //canvas.css('width', '700px');
+        //canvas.css('height', '500px');
+    }
 }
 
 
