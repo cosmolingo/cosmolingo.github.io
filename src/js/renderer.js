@@ -131,8 +131,8 @@ function onDocumentTouch(event) {
     event.preventDefault();
     //event.offsetX = event.touches[0].pageX;
     //event.offsetY = event.touches[0].pageY - document.getElementById('location_renderer').offsetTop;
-    mouse.x = (event.offsetX / renderer.domElement.clientWidth) * 2 - 1;
-    mouse.y = -(event.offsetY / renderer.domElement.clientHeight) * 2 + 1;
+    mouse.x = (event.touches[0].pageX / renderer.domElement.clientWidth) * 2 - 1;
+    mouse.y = -(event.touches[0].pageY / renderer.domElement.clientHeight) * 2 + 1;
 }
 
 function onDocumentMouseUp(event) {
