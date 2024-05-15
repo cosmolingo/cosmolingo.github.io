@@ -71,13 +71,14 @@ $(document).ready(function(){
 
 function populate_numbers(){
     for (const [index, [key, value]] of Object.entries(Object.entries(special_numbers[lang_i]))) {
+        console.log(key, value);
         var number = $("<div>");
         number.addClass("number");
         var number_p = $("<p>").text(key);
         number.append(number_p);
         var number_p = $("<p>").text(value);
         number.append(number_p);
-        number.insertAfter('#numbers h2');
+        number.insertBefore('#number_translate');
     }
 }
 
