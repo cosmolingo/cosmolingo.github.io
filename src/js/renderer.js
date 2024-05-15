@@ -30,7 +30,7 @@ function setup_renderer(){
     renderer.domElement.addEventListener('click', onDocumentMouseUp, false);
     renderer.domElement.addEventListener("touchstart", onDocumentTouch, false);
     renderer.domElement.addEventListener("touchmove", onDocumentTouch, false);
-    renderer.domElement.addEventListener("touchend", onDocumentMouseUp, false);
+    //renderer.domElement.addEventListener("touchend", onDocumentMouseUp, false);
     canvas.id = "render";
 
     matY = new THREE.MeshBasicMaterial({
@@ -90,8 +90,14 @@ function onWindowResize() {
     }
 }
 
-
 function render() {
+    window.requestAnimationFrame(render);
+    controls.update();
+    renderer.render(scene, camera);
+}
+
+function raycast(){
+    console.log(mouse.x,mouse.y);
     raycaster.setFromCamera(mouse, camera);
     canvas = $('#location_renderer canvas');
     if (scene.children.length == 2) {
@@ -116,27 +122,24 @@ function render() {
             canvas.css('cursor','grab');
         }
     }
-    window.requestAnimationFrame(render);
-    controls.update();
-    renderer.render(scene, camera);
 }
 
 function onDocumentMouseMove(event) {
     event.preventDefault();
-    mouse.x = (event.offsetX / renderer.domElement.clientWidth) * 2 - 1;
-    mouse.y = -(event.offsetY / renderer.domElement.clientHeight) * 2 + 1;
 }
 
 function onDocumentTouch(event) {
     event.preventDefault();
-    //event.offsetX = event.touches[0].pageX;
-    //event.offsetY = event.touches[0].pageY - document.getElementById('location_renderer').offsetTop;
-    mouse.x = (event.touches[0].pageX / renderer.domElement.clientWidth) * 2 - 1;
-    mouse.y = -(event.touches[0].pageY / renderer.domElement.clientHeight) * 2 + 1;
+    event.offsetX = event.touches[0].pageX - document.getElementById('location_renderer').offsetLeft;
+    event.offsetY = event.touches[0].pageY - document.getElementById('location_renderer').offsetTop;
+    onDocumentMouseUp(event);
 }
 
 function onDocumentMouseUp(event) {
     event.preventDefault();
+    mouse.x =  (event.offsetX / renderer.domElement.clientWidth ) * 2 - 1;
+    mouse.y = -(event.offsetY / renderer.domElement.clientHeight) * 2 + 1;
+    raycast();
     for (var obj of objs) {
         if (obj != clicked) {
             obj.material = matY;
