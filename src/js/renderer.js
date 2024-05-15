@@ -1,4 +1,4 @@
-var mouse, INTERSECTED, intersects, clicked, scene, camera, renderer, raycaster, controls, canvas, matY, matB, matG, matT, c3, objs;
+var mouse, INTERSECTED, intersects, clicked, scene, camera, renderer, raycaster, controls, canvas, matY, matB, matG, matT, objs;
 
 function setup_renderer(){
     mouse = new THREE.Vector2();
@@ -51,7 +51,6 @@ function setup_renderer(){
         opacity: 0,
         transparent: true
     });
-    c3 = null;
     objs = [];
     SpawnCar();
     render();
@@ -61,33 +60,22 @@ function setup_renderer(){
 function SpawnCar() {
     var objLoader = new THREE.OBJLoader();
     objLoader.load('src/models/empty_cube.obj', function(obj) {
-    obj.traverse(function(child) {
-        if (child instanceof THREE.Mesh) {
-        child.material = matY;
-        objs.push(child);
-        }
-    });
-    scene.add(obj);
+        obj.traverse(function(child) {
+            if (child instanceof THREE.Mesh) {
+            child.material = matY;
+            objs.push(child);
+            }
+        });
+        scene.add(obj);
     });
     objLoader.load('src/models/sceno2.obj', function(obj) {
-    obj.traverse(function(child) {
-        if (child instanceof THREE.Mesh) {
-        child.material = matY;
-        objs.push(child);
-        }
-    });
-    scene.add(obj);
-    });
-    objLoader.load('src/models/text.obj', function(obj) {
-    obj.traverse(function(child) {
-        if (child instanceof THREE.Mesh) {
-        child.geometry.rotateX(Math.PI / 2);
-        child.geometry.center();
-        child.material = matT;
-        scene.add(child);
-        c3 = child;
-        }
-    });
+        obj.traverse(function(child) {
+            if (child instanceof THREE.Mesh) {
+            child.material = matY;
+            objs.push(child);
+            }
+        });
+        scene.add(obj);
     });
 }
 
@@ -95,43 +83,38 @@ function onWindowResize() {
     if (window.innerWidth < 700/.9){
         camera.updateProjectionMatrix();
         renderer.setSize(window.innerWidth*.9, window.innerWidth*.9*5/7);
-        //canvas.attr('width', window.innerWidth*.9);
-        //canvas.attr('height', window.innerWidth*.9*5/7);
-        //canvas.css('width', window.innerWidth*.9 + 'px');
-        //canvas.css('height', window.innerWidth*.9*5/7 + 'px');
     }
     else{
         camera.updateProjectionMatrix();
         renderer.setSize(700, 500);
-        //canvas.attr('width', '700');
-        //canvas.attr('height', '500');
-        //canvas.css('width', '700px');
-        //canvas.css('height', '500px');
     }
 }
 
 
 function render() {
-    if (c3 != null) {
-    c3.quaternion.copy(camera.quaternion);
-    }
     raycaster.setFromCamera(mouse, camera);
     canvas = $('#location_renderer canvas');
-    if (scene.children.length == 3) {
-    intersects = raycaster.intersectObjects(objs, true);
-    if (intersects.length > 0) {
-        if (INTERSECTED != intersects[0].object) {
-        canvas.css('cursor','pointer');
-        if (INTERSECTED && clicked != INTERSECTED) INTERSECTED.material = INTERSECTED.currentHex;
-        INTERSECTED = intersects[0].object;
-        if (INTERSECTED.currentHex != matG) INTERSECTED.currentHex = INTERSECTED.material;
-        INTERSECTED.material = matG;
+    if (scene.children.length == 2) {
+        intersects = raycaster.intersectObjects(objs, true);
+        if (intersects.length > 0) {
+            if (INTERSECTED != intersects[0].object) {
+                canvas.css('cursor','pointer');
+                if (INTERSECTED && clicked != INTERSECTED){
+                    INTERSECTED.material = INTERSECTED.currentHex;
+                }
+                INTERSECTED = intersects[0].object;
+                if (INTERSECTED.currentHex != matG){
+                    INTERSECTED.currentHex = INTERSECTED.material;
+                }
+                INTERSECTED.material = matG;
+            }
+        } else {
+            if (INTERSECTED && clicked != INTERSECTED){
+                INTERSECTED.material = INTERSECTED.currentHex;
+            }
+            INTERSECTED = null;
+            canvas.css('cursor','grab');
         }
-    } else {
-        if (INTERSECTED && clicked != INTERSECTED) INTERSECTED.material = INTERSECTED.currentHex;
-        INTERSECTED = null;
-        canvas.css('cursor','grab');
-    }
     }
     window.requestAnimationFrame(render);
     controls.update();
@@ -146,41 +129,26 @@ function onDocumentMouseMove(event) {
 
 function onDocumentTouch(event) {
     event.preventDefault();
-    event.offsetX = event.touches[0].pageX;
-    event.offsetY = event.touches[0].pageY - document.getElementById('location_renderer').offsetTop;
+    //event.offsetX = event.touches[0].pageX;
+    //event.offsetY = event.touches[0].pageY - document.getElementById('location_renderer').offsetTop;
     mouse.x = (event.offsetX / renderer.domElement.clientWidth) * 2 - 1;
     mouse.y = -(event.offsetY / renderer.domElement.clientHeight) * 2 + 1;
 }
 
 function onDocumentMouseUp(event) {
     event.preventDefault();
-    for (var obj in objs) {
-        obj = objs[obj];
+    for (var obj of objs) {
         if (obj != clicked) {
-            if (obj.parent.materialLibraries[0] == 'sceno1.mtl') { // A CHANGER
-            obj.material = matB;
-            } else {
             obj.material = matY;
-            }
         }
     }
-    if (intersects.length > 0) {
-        if (intersects[0].object != clicked) {
-            clicked = intersects[0].object;
-            for (var obj in objs) {
-            obj = objs[obj];
+    if (intersects.length > 0 && intersects[0].object != clicked) {
+        clicked = intersects[0].object;
+        for (var obj of objs) {    
             if (obj != clicked) {
-                if (obj.parent.materialLibraries[0] == 'sceno1.mtl') { // A CHANGER
-                obj.material = matB;
-                } else {
                 obj.material = matY;
-                }
             }
-            }
-            clicked.material = matG;
-            c3.position.set(clicked.geometry.boundingSphere.center.x, clicked.geometry.boundingSphere.center.y + .5, clicked.geometry.boundingSphere.center.z);
-            c3.material.opacity = 1;
-            c3.material.transparent = false;
         }
+        clicked.material = matG;
     }
 }
