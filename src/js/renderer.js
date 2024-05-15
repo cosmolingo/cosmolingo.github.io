@@ -1,10 +1,8 @@
 var mouse, INTERSECTED, intersects, clicked, scene, camera, renderer, raycaster, controls, canvas, matY, matB, matG, matT, c3, objs;
 function setup_renderer(){
-    mouse = new THREE.Vector2(),
-        INTERSECTED;
-    intersects, clicked;
+    mouse = new THREE.Vector2();
     scene = new THREE.Scene();
-    camera = new THREE.PerspectiveCamera(1, 1000 / 750, 1, 10000);
+    camera = new THREE.PerspectiveCamera(1, 7/5, 1, 10000);
     camera.position.set(0, 500, 700);
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
@@ -23,8 +21,8 @@ function setup_renderer(){
     controls.minPolarAngle = 0;
     controls.maxPolarAngle = Math.PI / 2;
     controls.update();
-    renderer.setPixelRatio(window.devicePixelRatio);
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(7/5);
+    renderer.setSize(700, 500);
     renderer.domElement.addEventListener("click", onclick, true);
     window.addEventListener('resize', onWindowResize, false);
 
@@ -58,12 +56,11 @@ function setup_renderer(){
     objs = [];
     SpawnCar();
     render();
-
 }
 
 function SpawnCar() {
     var objLoader = new THREE.OBJLoader();
-    objLoader.load('sceno1.obj', function(obj) {
+    objLoader.load('src/models/sceno1.obj', function(obj) {
     obj.traverse(function(child) {
         if (child instanceof THREE.Mesh) {
         child.material = matB;
@@ -72,7 +69,7 @@ function SpawnCar() {
     });
     scene.add(obj);
     });
-    objLoader.load('sceno2.obj', function(obj) {
+    objLoader.load('src/models/sceno2.obj', function(obj) {
     obj.traverse(function(child) {
         if (child instanceof THREE.Mesh) {
         child.material = matY;
@@ -81,7 +78,7 @@ function SpawnCar() {
     });
     scene.add(obj);
     });
-    objLoader.load('text.obj', function(obj) {
+    objLoader.load('src/models/text.obj', function(obj) {
     obj.traverse(function(child) {
         if (child instanceof THREE.Mesh) {
         child.geometry.rotateX(Math.PI / 2);
@@ -111,7 +108,7 @@ function render() {
     intersects = raycaster.intersectObjects(objs, true);
     if (intersects.length > 0) {
         if (INTERSECTED != intersects[0].object) {
-        canvas.style.cursor = 'pointer';
+        canvas.css('cursor','pointer');
         if (INTERSECTED && clicked != INTERSECTED) INTERSECTED.material = INTERSECTED.currentHex;
         INTERSECTED = intersects[0].object;
         if (INTERSECTED.currentHex != matG) INTERSECTED.currentHex = INTERSECTED.material;
@@ -120,7 +117,7 @@ function render() {
     } else {
         if (INTERSECTED && clicked != INTERSECTED) INTERSECTED.material = INTERSECTED.currentHex;
         INTERSECTED = null;
-        canvas.style.cursor = 'grab';
+        canvas.css('cursor','grab');
     }
     }
     window.requestAnimationFrame(render);
