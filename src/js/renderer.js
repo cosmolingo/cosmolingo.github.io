@@ -1,4 +1,5 @@
 var mouse, INTERSECTED, intersects, clicked, scene, camera, renderer, raycaster, controls, canvas, matY, matB, matG, matT, c3, objs;
+
 function setup_renderer(){
     mouse = new THREE.Vector2();
     scene = new THREE.Scene();
@@ -59,10 +60,10 @@ function setup_renderer(){
 
 function SpawnCar() {
     var objLoader = new THREE.OBJLoader();
-    objLoader.load('src/models/sceno1.obj', function(obj) {
+    objLoader.load('src/models/empty_cube.obj', function(obj) {
     obj.traverse(function(child) {
         if (child instanceof THREE.Mesh) {
-        child.material = matB;
+        child.material = matY;
         objs.push(child);
         }
     });
@@ -146,7 +147,7 @@ function onDocumentMouseMove(event) {
 function onDocumentTouch(event) {
     event.preventDefault();
     event.offsetX = event.touches[0].pageX;
-    event.offsetY = event.touches[0].pageY - document.getElementById('rendercontainer').offsetTop;
+    event.offsetY = event.touches[0].pageY - document.getElementById('location_renderer').offsetTop;
     mouse.x = (event.offsetX / renderer.domElement.clientWidth) * 2 - 1;
     mouse.y = -(event.offsetY / renderer.domElement.clientHeight) * 2 + 1;
 }
@@ -154,19 +155,6 @@ function onDocumentTouch(event) {
 function onDocumentMouseUp(event) {
     event.preventDefault();
     for (var obj in objs) {
-    obj = objs[obj];
-    if (obj != clicked) {
-        if (obj.parent.materialLibraries[0] == 'sceno1.mtl') { // A CHANGER
-        obj.material = matB;
-        } else {
-        obj.material = matY;
-        }
-    }
-    }
-    if (intersects.length > 0) {
-    if (intersects[0].object != clicked) {
-        clicked = intersects[0].object;
-        for (var obj in objs) {
         obj = objs[obj];
         if (obj != clicked) {
             if (obj.parent.materialLibraries[0] == 'sceno1.mtl') { // A CHANGER
@@ -175,13 +163,24 @@ function onDocumentMouseUp(event) {
             obj.material = matY;
             }
         }
-        }
-        clicked.material = matG;
-        c3.position.set(clicked.geometry.boundingSphere.center.x, clicked.geometry.boundingSphere.center.y + .5, clicked.geometry.boundingSphere.center.z);
-        c3.material.opacity = 1;
-        c3.material.transparent = false;
-    } else {
-        console.log('rentrer');
     }
+    if (intersects.length > 0) {
+        if (intersects[0].object != clicked) {
+            clicked = intersects[0].object;
+            for (var obj in objs) {
+            obj = objs[obj];
+            if (obj != clicked) {
+                if (obj.parent.materialLibraries[0] == 'sceno1.mtl') { // A CHANGER
+                obj.material = matB;
+                } else {
+                obj.material = matY;
+                }
+            }
+            }
+            clicked.material = matG;
+            c3.position.set(clicked.geometry.boundingSphere.center.x, clicked.geometry.boundingSphere.center.y + .5, clicked.geometry.boundingSphere.center.z);
+            c3.material.opacity = 1;
+            c3.material.transparent = false;
+        }
     }
 }
