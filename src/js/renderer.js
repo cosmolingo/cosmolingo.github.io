@@ -127,6 +127,7 @@ function onDocumentTouchMove(event) {
     event.preventDefault();
     event.offsetX = event.touches[0].pageX - document.getElementById('location_renderer').offsetLeft;
     event.offsetY = event.touches[0].pageY - document.getElementById('location_renderer').offsetTop;
+    setTouches(event);
     onDocumentMouseMove(event);
 }
 
@@ -134,7 +135,6 @@ function onDocumentTouchStart(event) {
     event.preventDefault();
     event.offsetX = event.touches[0].pageX - document.getElementById('location_renderer').offsetLeft;
     event.offsetY = event.touches[0].pageY - document.getElementById('location_renderer').offsetTop;
-    setTouches(event);
     onDocumentMouseMove(event);
 }
 
