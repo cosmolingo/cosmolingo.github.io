@@ -321,7 +321,6 @@ function get_spelled_out_number(number){
 
 $(document).on('click','.section h2',function(e){
     $(this).attr('active',$(this).attr('active') == 'true' ? 'false' : 'true');
-    console.log($(this).siblings('.content'));
     if ($(this).attr('active') == 'true'){
         $(this).siblings('.content').css('height','auto');
     }

@@ -28,9 +28,9 @@ function setup_renderer(){
     canvas = $('#location_renderer').append(renderer.domElement);
     renderer.domElement.addEventListener('mousemove', onDocumentMouseMove, false);
     renderer.domElement.addEventListener('click', onDocumentMouseUp, false);
-    renderer.domElement.addEventListener("touchstart", onDocumentTouch, false);
-    renderer.domElement.addEventListener("touchmove", onDocumentTouch, false);
-    //renderer.domElement.addEventListener("touchend", onDocumentMouseUp, false);
+    //renderer.domElement.addEventListener("touchstart", onDocumentTouch, false);
+    //renderer.domElement.addEventListener("touchmove", onDocumentTouch, false);
+    renderer.domElement.addEventListener("touchend", onDocumentTouch, false);
     canvas.id = "render";
 
     matY = new THREE.MeshBasicMaterial({
@@ -58,17 +58,22 @@ function setup_renderer(){
 }
 
 function SpawnCar() {
+    var line = new THREE.Geometry();
+    line.vertices.push(new THREE.Vector3(0, 0, 0));
+    line.vertices.push(new THREE.Vector3(0, 5, 0));
+    line = new THREE.Line(line, matB);
+    const material = new THREE.LineDashedMaterial( {
+        color: 'rgb(0,0,0)',
+        scale: 1,
+        dashSize: .3,
+        gapSize: .1,
+    } );
+    line.computeLineDistances();
+    line.material = material;
+    scene.add(line);
+    objs.push(line);
     var objLoader = new THREE.OBJLoader();
     objLoader.load('src/models/empty_cube.obj', function(obj) {
-        obj.traverse(function(child) {
-            if (child instanceof THREE.Mesh) {
-            child.material = matY;
-            objs.push(child);
-            }
-        });
-        scene.add(obj);
-    });
-    objLoader.load('src/models/sceno2.obj', function(obj) {
         obj.traverse(function(child) {
             if (child instanceof THREE.Mesh) {
             child.material = matY;
@@ -97,61 +102,28 @@ function render() {
 }
 
 function raycast(){
-    console.log(mouse.x,mouse.y);
     raycaster.setFromCamera(mouse, camera);
     canvas = $('#location_renderer canvas');
-    if (scene.children.length == 2) {
-        intersects = raycaster.intersectObjects(objs, true);
-        if (intersects.length > 0) {
-            if (INTERSECTED != intersects[0].object) {
-                canvas.css('cursor','pointer');
-                if (INTERSECTED && clicked != INTERSECTED){
-                    INTERSECTED.material = INTERSECTED.currentHex;
-                }
-                INTERSECTED = intersects[0].object;
-                if (INTERSECTED.currentHex != matG){
-                    INTERSECTED.currentHex = INTERSECTED.material;
-                }
-                INTERSECTED.material = matG;
-            }
-        } else {
-            if (INTERSECTED && clicked != INTERSECTED){
-                INTERSECTED.material = INTERSECTED.currentHex;
-            }
-            INTERSECTED = null;
-            canvas.css('cursor','grab');
-        }
-    }
+    var Plane = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0);
+    var target = new THREE.Vector3();
+    intersects = raycaster.ray.intersectPlane(Plane, target);
+    objs[0].position.set(target.x, 0, target.z);
 }
 
 function onDocumentMouseMove(event) {
     event.preventDefault();
+    mouse.x =  (event.offsetX / renderer.domElement.clientWidth ) * 2 - 1;
+    mouse.y = -(event.offsetY / renderer.domElement.clientHeight) * 2 + 1;
+    raycast();
 }
 
 function onDocumentTouch(event) {
     event.preventDefault();
     event.offsetX = event.touches[0].pageX - document.getElementById('location_renderer').offsetLeft;
     event.offsetY = event.touches[0].pageY - document.getElementById('location_renderer').offsetTop;
-    onDocumentMouseUp(event);
+    onDocumentMouseMove(event);
 }
 
 function onDocumentMouseUp(event) {
     event.preventDefault();
-    mouse.x =  (event.offsetX / renderer.domElement.clientWidth ) * 2 - 1;
-    mouse.y = -(event.offsetY / renderer.domElement.clientHeight) * 2 + 1;
-    raycast();
-    for (var obj of objs) {
-        if (obj != clicked) {
-            obj.material = matY;
-        }
-    }
-    if (intersects.length > 0 && intersects[0].object != clicked) {
-        clicked = intersects[0].object;
-        for (var obj of objs) {    
-            if (obj != clicked) {
-                obj.material = matY;
-            }
-        }
-        clicked.material = matG;
-    }
 }
