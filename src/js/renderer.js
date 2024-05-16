@@ -118,9 +118,16 @@ function onDocumentMouseUp(event) {
 
 function onDocumentMouseMove(event) {
     event.preventDefault();
-    mouse.x =  (event.offsetX / renderer.domElement.clientWidth ) * 2 - 1;
-    mouse.y = -(event.offsetY / renderer.domElement.clientHeight) * 2 + 1;
-    raycast();
+    if (event.touches.length == 1){
+        mouse.x =  (event.offsetX / renderer.domElement.clientWidth ) * 2 - 1;
+        mouse.y = -(event.offsetY / renderer.domElement.clientHeight) * 2 + 1;
+        raycast();
+        controls.enableRotate = false;
+    }
+    else{
+        controls.enableRotate = true;
+    }
+    controls.update();
 }
 
 function onDocumentTouchMove(event) {
@@ -153,4 +160,5 @@ function setTouches(event){
         controls.enableRotate = true;
         //dispatchEvent(new Event('touchstart'));
     }
+    controls.update();
 }
