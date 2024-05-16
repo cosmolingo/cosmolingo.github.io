@@ -1,4 +1,4 @@
-var mouse, INTERSECTED, intersects, clicked, scene, camera, renderer, raycaster, controls, canvas, matY, matB, matG, matT, objs;
+var mouse, INTERSECTED, intersects, clicked, scene, camera, renderer, raycaster, controls, canvas, matY, matB, matG, matT, objs, n_touches;
 
 function setup_renderer(){
     mouse = new THREE.Vector2();
@@ -22,6 +22,9 @@ function setup_renderer(){
     controls.minPolarAngle = 0;
     controls.maxPolarAngle = Math.PI / 2;
     controls.update();
+
+    n_touches = 0;
+
     renderer.setSize(700, 500);
     renderer.domElement.addEventListener("click", onclick, true);
     window.addEventListener('resize', onWindowResize, false);
@@ -118,16 +121,11 @@ function onDocumentMouseUp(event) {
 
 function onDocumentMouseMove(event) {
     event.preventDefault();
-    if (event.touches.length == 1){
+    if (n_touches == 1){
         mouse.x =  (event.offsetX / renderer.domElement.clientWidth ) * 2 - 1;
         mouse.y = -(event.offsetY / renderer.domElement.clientHeight) * 2 + 1;
         raycast();
-        controls.enableRotate = false;
     }
-    else{
-        controls.enableRotate = true;
-    }
-    controls.update();
 }
 
 function onDocumentTouchMove(event) {
@@ -143,6 +141,7 @@ function onDocumentTouchStart(event) {
     event.offsetX = event.touches[0].pageX - document.getElementById('location_renderer').offsetLeft;
     event.offsetY = event.touches[0].pageY - document.getElementById('location_renderer').offsetTop;
     onDocumentMouseMove(event);
+    n_touches = event.touches.length;
 }
 
 function onDocumentTouchEnd(event) {
@@ -153,7 +152,7 @@ function onDocumentTouchEnd(event) {
 function setTouches(event){
     event.preventDefault();
     $('.locations h2').text(event.touches.length);
-    if (event.touches.length == 1){
+    if (n_touches == 1){
         controls.enableRotate = false;
     }
     else{
