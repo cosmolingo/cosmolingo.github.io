@@ -29,9 +29,9 @@ function setup_renderer(){
     canvas = $('#location_renderer').append(renderer.domElement);
     renderer.domElement.addEventListener('mousemove', onDocumentMouseMove, false);
     renderer.domElement.addEventListener('click', onDocumentMouseUp, false);
-    renderer.domElement.addEventListener("touchstart", onDocumentTouch, false);
-    renderer.domElement.addEventListener("touchmove", onDocumentTouch, false);
-    //renderer.domElement.addEventListener("touchend", onDocumentTouch, false);
+    renderer.domElement.addEventListener("touchstart", onDocumentTouchStart, false);
+    renderer.domElement.addEventListener("touchmove", onDocumentTouchMove, false);
+    renderer.domElement.addEventListener("touchend", onDocumentTouchEnd, false);
     canvas.id = "render";
 
     matY = new THREE.MeshBasicMaterial({
@@ -56,17 +56,6 @@ function setup_renderer(){
     SpawnCar();
     render();
     onWindowResize();
-}
-
-function setTouches(event){
-    event.preventDefault();
-    $('.locations h2').text(event.touches.length);
-    if (event.touches.length == 1){
-        controls.enableRotate = false;
-    }
-    else{
-        controls.enableRotate = true;
-    }
 }
 
 function SpawnCar() {
@@ -122,6 +111,11 @@ function raycast(){
     objs[0].position.set(target.x, 0, target.z);
 }
 
+function onDocumentMouseUp(event) {
+    event.preventDefault();
+    raycast();
+}
+
 function onDocumentMouseMove(event) {
     event.preventDefault();
     mouse.x =  (event.offsetX / renderer.domElement.clientWidth ) * 2 - 1;
@@ -129,15 +123,34 @@ function onDocumentMouseMove(event) {
     raycast();
 }
 
-function onDocumentTouch(event) {
+function onDocumentTouchMove(event) {
     event.preventDefault();
-    setTouches(event);
-    console.log(event);
     event.offsetX = event.touches[0].pageX - document.getElementById('location_renderer').offsetLeft;
     event.offsetY = event.touches[0].pageY - document.getElementById('location_renderer').offsetTop;
     onDocumentMouseMove(event);
 }
 
-function onDocumentMouseUp(event) {
+function onDocumentTouchStart(event) {
     event.preventDefault();
+    event.offsetX = event.touches[0].pageX - document.getElementById('location_renderer').offsetLeft;
+    event.offsetY = event.touches[0].pageY - document.getElementById('location_renderer').offsetTop;
+    setTouches(event);
+    onDocumentMouseMove(event);
+}
+
+function onDocumentTouchEnd(event) {
+    event.preventDefault();
+    setTouches(event);
+}
+
+function setTouches(event){
+    event.preventDefault();
+    $('.locations h2').text(event.touches.length);
+    if (event.touches.length == 1){
+        controls.enableRotate = false;
+    }
+    else{
+        controls.enableRotate = true;
+        //dispatchEvent(new Event('touchstart'));
+    }
 }
