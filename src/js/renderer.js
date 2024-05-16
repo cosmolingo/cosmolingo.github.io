@@ -18,6 +18,7 @@ function setup_renderer(){
     controls.dampingFactor = 0.1;
     controls.rotateSpeed = 0.05;
     controls.enableZoom = false;
+    controls.enableRotate = true;
     controls.minPolarAngle = 0;
     controls.maxPolarAngle = Math.PI / 2;
     controls.update();
@@ -28,8 +29,8 @@ function setup_renderer(){
     canvas = $('#location_renderer').append(renderer.domElement);
     renderer.domElement.addEventListener('mousemove', onDocumentMouseMove, false);
     renderer.domElement.addEventListener('click', onDocumentMouseUp, false);
-    //renderer.domElement.addEventListener("touchstart", onDocumentTouch, false);
-    //renderer.domElement.addEventListener("touchmove", onDocumentTouch, false);
+    renderer.domElement.addEventListener("touchstart", setTouches, false);
+    renderer.domElement.addEventListener("touchmove", onDocumentTouch, false);
     renderer.domElement.addEventListener("touchend", onDocumentTouch, false);
     canvas.id = "render";
 
@@ -55,6 +56,13 @@ function setup_renderer(){
     SpawnCar();
     render();
     onWindowResize();
+}
+
+function setTouches(event){
+    event.preventDefault();
+    if (event.touches.length == 1){
+        controls.enableRotate = false;
+    }
 }
 
 function SpawnCar() {
@@ -119,6 +127,7 @@ function onDocumentMouseMove(event) {
 
 function onDocumentTouch(event) {
     event.preventDefault();
+    setTouches(event);
     event.offsetX = event.touches[0].pageX - document.getElementById('location_renderer').offsetLeft;
     event.offsetY = event.touches[0].pageY - document.getElementById('location_renderer').offsetTop;
     onDocumentMouseMove(event);
