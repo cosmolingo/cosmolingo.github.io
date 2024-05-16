@@ -60,6 +60,7 @@ function setup_renderer(){
 
 function setTouches(event){
     event.preventDefault();
+    $('.locations h2').text(event.touches.length);
     if (event.touches.length == 1){
         controls.enableRotate = false;
     }
