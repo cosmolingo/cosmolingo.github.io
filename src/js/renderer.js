@@ -63,6 +63,9 @@ function setTouches(event){
     if (event.touches.length == 1){
         controls.enableRotate = false;
     }
+    else{
+        controls.enableRotate = true;
+    }
 }
 
 function SpawnCar() {
