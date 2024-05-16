@@ -29,9 +29,9 @@ function setup_renderer(){
     canvas = $('#location_renderer').append(renderer.domElement);
     renderer.domElement.addEventListener('mousemove', onDocumentMouseMove, false);
     renderer.domElement.addEventListener('click', onDocumentMouseUp, false);
-    renderer.domElement.addEventListener("touchstart", setTouches, false);
+    renderer.domElement.addEventListener("touchstart", onDocumentTouch, false);
     renderer.domElement.addEventListener("touchmove", onDocumentTouch, false);
-    renderer.domElement.addEventListener("touchend", onDocumentTouch, false);
+    //renderer.domElement.addEventListener("touchend", onDocumentTouch, false);
     canvas.id = "render";
 
     matY = new THREE.MeshBasicMaterial({
@@ -132,6 +132,7 @@ function onDocumentMouseMove(event) {
 function onDocumentTouch(event) {
     event.preventDefault();
     setTouches(event);
+    console.log(event);
     event.offsetX = event.touches[0].pageX - document.getElementById('location_renderer').offsetLeft;
     event.offsetY = event.touches[0].pageY - document.getElementById('location_renderer').offsetTop;
     onDocumentMouseMove(event);
