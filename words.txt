@@ -185,3 +185,6 @@ a;color:жасыл:green:vert(v_è_r):зелёный:
 a;color:сары:yellow:jaune(j_o_n):жёлтый:
 a;color:ақ:white:blanc(b_l_an):белый:
 a;color:қара:black:noir(n_o_a_r):чёрный:
+a;color:қоңыр:brown:marron(ma_r_on):коричневый:
+n;family:апа:grandmother:grand-mère(g_r_an_ _m_è_r):бабушка:
+n;family:ата:grandfather:grand-père(g_r_an_ _p_è_r):дедушка:
