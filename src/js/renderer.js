@@ -219,7 +219,11 @@ function onDocumentMouseMove(event) {
 
 function onDocumentTouchMove(event) {
     event.preventDefault();
-    
+    event.offsetX = event.touches[0].pageX - document.getElementById('location_renderer').offsetLeft;
+    event.offsetY = event.touches[0].pageY - document.getElementById('location_renderer').offsetTop;
+    mouse.x =  (event.offsetX / renderer.domElement.clientWidth ) * 2 - 1;
+    mouse.y = -(event.offsetY / renderer.domElement.clientHeight) * 2 + 1;
+    raycast();
     //setTouches(event);
     //onDocumentMouseMove(event);
 }
