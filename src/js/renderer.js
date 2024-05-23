@@ -218,7 +218,7 @@ function onDocumentMouseMove(event) {
 }
 
 function onDocumentTouchMove(event) {
-    //event.preventDefault();
+    event.preventDefault();
     event.offsetX = event.touches[0].pageX - document.getElementById('location_renderer').offsetLeft;
     event.offsetY = event.touches[0].pageY - document.getElementById('location_renderer').offsetTop;
     //setTouches(event);
@@ -226,23 +226,24 @@ function onDocumentTouchMove(event) {
 }
 
 function onDocumentTouchStart(event) {
-    //event.preventDefault();
+    event.preventDefault();
+    controls.enableRotate = false;
     event.offsetX = event.touches[0].pageX - document.getElementById('location_renderer').offsetLeft;
     event.offsetY = event.touches[0].pageY - document.getElementById('location_renderer').offsetTop;
-    onDocumentMouseMove(event);
+    //onDocumentMouseMove(event);
     n_touches = event.touches.length;
 }
 
 function onDocumentTouchEnd(event) {
-    //event.preventDefault();
-    setTouches(event);
+    event.preventDefault();
+    //setTouches(event);
     onDocumentMouseUp(event);
 }
 
 function setTouches(event){
     event.preventDefault();
     n_touches = event.touches.length;
-    $('.locations h2').text(n_touches);
+    //$('.locations h2').text(n_touches);
     if (n_touches == 1){
         controls.enableRotate = false;
     }
