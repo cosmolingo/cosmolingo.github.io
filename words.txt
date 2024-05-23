@@ -190,3 +190,4 @@ n;family:апа:grandmother:grand-mère(g_r_an_ _m_è_r):бабушка:
 n;family:ата:grandfather:grand-père(g_r_an_ _p_è_r):дедушка:
 n;color:күлгін:purple:violet(v_i_o_l_è):фиолетовый:
 n;color:сарғыш:orange:orange(o_r_an_j):оранжевый:
+n;color:қызғылт:pink:rose(r_o_z):розовый:
