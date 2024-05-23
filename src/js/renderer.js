@@ -13,7 +13,6 @@ function setup_renderer(){
         alpha: true
     });
     raycaster = new THREE.Raycaster();
-    renderer.setSize(window.innerWidth, window.innerHeight);
     controls = new THREE.OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
     controls.enablePan = false;
@@ -28,7 +27,7 @@ function setup_renderer(){
     n_touches = 0;
 
     renderer.setSize(700, 500);
-    renderer.domElement.addEventListener("click", onclick, true);
+    renderer.setPixelRatio(1.0);
     window.addEventListener('resize', onWindowResize, false);
 
     canvas = $('#location_renderer').append(renderer.domElement);
@@ -121,11 +120,14 @@ function SpawnCar() {
 function onWindowResize() {
     if (window.innerWidth < 700/.9){
         camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth*.9, window.innerWidth*.9*5/7);
+        renderer.setSize(window.innerWidth*.9*2, window.innerWidth*.9*5/7*2);
+        $('#location_renderer canvas').css('transform', 'scale(0.5)');
+        renderer.setPixelRatio(window.devicePixelRatio);
     }
     else{
         camera.updateProjectionMatrix();
         renderer.setSize(700, 500);
+        renderer.setPixelRatio(window.devicePixelRatio);
     }
 }
 
@@ -218,8 +220,7 @@ function onDocumentMouseMove(event) {
 
 function onDocumentTouchMove(event) {
     event.preventDefault();
-    event.offsetX = event.touches[0].pageX - document.getElementById('location_renderer').offsetLeft;
-    event.offsetY = event.touches[0].pageY - document.getElementById('location_renderer').offsetTop;
+    
     //setTouches(event);
     //onDocumentMouseMove(event);
 }
@@ -229,17 +230,15 @@ function onDocumentTouchStart(event) {
     controls.enableRotate = false;
     event.offsetX = event.touches[0].pageX - document.getElementById('location_renderer').offsetLeft;
     event.offsetY = event.touches[0].pageY - document.getElementById('location_renderer').offsetTop;
+    mouse.x =  (event.offsetX / renderer.domElement.clientWidth ) * 2 - 1;
+    mouse.y = -(event.offsetY / renderer.domElement.clientHeight) * 2 + 1;
+    raycast();
     //onDocumentMouseMove(event);
     //n_touches = event.touches.length;
 }
 
 function onDocumentTouchEnd(event) {
     event.preventDefault();
-    event.offsetX = event.touches[0].pageX - document.getElementById('location_renderer').offsetLeft;
-    event.offsetY = event.touches[0].pageY - document.getElementById('location_renderer').offsetTop;
-    mouse.x =  (event.offsetX / renderer.domElement.clientWidth ) * 2 - 1;
-    mouse.y = -(event.offsetY / renderer.domElement.clientHeight) * 2 + 1;
-    raycast();
     //setTouches(event);
     onDocumentMouseUp(event);
 }
