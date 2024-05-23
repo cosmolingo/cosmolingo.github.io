@@ -120,8 +120,7 @@ function SpawnCar() {
 function onWindowResize() {
     if (window.innerWidth < 700/.9){
         camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth*.9*2, window.innerWidth*.9*5/7*2);
-        $('#location_renderer canvas').css('transform', 'scale(0.5)');
+        renderer.setSize(window.innerWidth*.9, window.innerWidth*.9*5/7);
         renderer.setPixelRatio(window.devicePixelRatio);
     }
     else{
