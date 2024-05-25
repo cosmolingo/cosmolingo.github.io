@@ -67,8 +67,26 @@ $(document).ready(function(){
         populate_numbers();
         $('#number_output p').text(special_numbers[lang_i][0]);
         setup_renderer();
+        populate_color_picker();
     });
 });
+
+function populate_color_picker(){
+    if ($('#color_picker').length == 0){
+        return;
+    }
+    jscolor.presets.default = {
+        position: 'right',
+        palette: [
+            '#000000', '#7d7d7d', '#870014', '#ec1c23', '#ff7e26',
+            '#fef100', '#22b14b', '#00a1e7', '#3f47cc', '#a349a4',
+            '#ffffff', '#c3c3c3', '#b87957', '#feaec9', '#ffc80d',
+            '#eee3af', '#b5e61d', '#99d9ea', '#7092be', '#c8bfe7',
+        ],
+        //paletteCols: 12,
+        //hideOnPaletteClick: true,
+    };
+}
 
 function populate_numbers(){
     for (const [index, [key, value]] of Object.entries(Object.entries(special_numbers[lang_i]))) {
