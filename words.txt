@@ -193,4 +193,4 @@ n;color:сарғыш:orange:orange(o_r_an_j):оранжевый:
 n;color:қызғылт:pink:rose(r_o_z):розовый:
 n;color:сұр:gray:gris(g_r_i):серый:
 n;color:түс:color:couleur(c_ou_l_eu_r):цвет:
-n;color:кемпірқосақ:rainbow:arc-en-ciel(a_r_c_an_s_i_è_l):радуга
+n;color:кемпірқосақ:rainbow:arc-en-ciel(a_r_c_an_s_i_è_l):радуга:
