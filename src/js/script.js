@@ -21,6 +21,18 @@ var pron_alphabets = [
     ["a","an","b","ch","d","e","é","è","eu","f","g","i","in","j","k","l","m","n","o","oa","on","ou","p","r","s","t","u","v","x","y","z"],
     []
 ];
+var palette = [
+    ['red',0,100,100],
+    ['orange',33,100,100],
+    ['brown',40,100,60],
+    ['yellow',55,100,100],
+    ['green',115,100,100],
+    ['cyan',175,100,100],
+    ['blue',230,100,100],
+    ['purple',300,100,100],
+    ['pink',320,55,100],
+    ['red',360,100,100]
+]
 
 var special_numbers = [
     {0:'нөл',1:'бір',2:'екі',3:'үш',4:'төрт',5:'бес',6:'алты',7:'жеті',8:'сегіз',9:'тоғыз',10:'он',
@@ -77,15 +89,40 @@ function populate_color_picker(){
     }
     jscolor.presets.default = {
         position: 'right',
-        palette: [
-            '#000000', '#7d7d7d', '#870014', '#ec1c23', '#ff7e26',
-            '#fef100', '#22b14b', '#00a1e7', '#3f47cc', '#a349a4',
-            '#ffffff', '#c3c3c3', '#b87957', '#feaec9', '#ffc80d',
-            '#eee3af', '#b5e61d', '#99d9ea', '#7092be', '#c8bfe7',
-        ],
-        //paletteCols: 12,
-        //hideOnPaletteClick: true,
+        //palette: palette,
+        onInput: change_color,
     };
+    jscolor.install();
+}
+
+function get_closest_color(h,s,v){
+    if (v < 25){
+        return 'black';
+    }
+    if (s < 25){
+        if (v > 75){
+            return 'white';
+        }
+        return 'gray';
+    }
+    var closest_idx = 0;
+    var closest_dist = 1000;
+    for (var i = 0; i < palette.length; i++){
+        var dist = Math.sqrt(Math.pow(h - palette[i][1],2) + Math.pow(s - palette[i][2],2) + Math.pow(v - palette[i][3],2));
+        if (dist < closest_dist){
+            closest_idx = i;
+            closest_dist = dist;
+        }
+    }
+    return palette[closest_idx][0];
+}
+
+function change_color(){
+    var h = document.querySelector('#color_picker').jscolor.channel('H');
+    var s = document.querySelector('#color_picker').jscolor.channel('S');
+    var v = document.querySelector('#color_picker').jscolor.channel('V');
+    var col = get_closest_color(h,s,v);
+    console.log(col);
 }
 
 function populate_numbers(){
