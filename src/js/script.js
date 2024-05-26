@@ -304,6 +304,30 @@ function get_words(){
         $('#search_bar').attr('placeholder', 'Search in ' + total_words + ' words');
         $('#search_bar').val('');
         shuffled_list = shuffleArray(words_list);
+        var new_shuffled_list = [];
+        for (var i = 0; i < shuffled_list.length; i++){
+            if (lang_i == 0){
+                if (shuffled_list[i].ka_words != ''){
+                    new_shuffled_list.push(shuffled_list[i]);
+                }
+            }
+            else if (lang_i == 1){
+                if (shuffled_list[i].ru_words != ''){
+                    new_shuffled_list.push(shuffled_list[i]);
+                }
+            }
+            else if (lang_i == 2){
+                if (shuffled_list[i].fr_words != ''){
+                    new_shuffled_list.push(shuffled_list[i]);
+                }
+            }
+            else if (lang_i == 3){
+                if (shuffled_list[i].ko_words != ''){
+                    new_shuffled_list.push(shuffled_list[i]);
+                }
+            }
+        }
+        shuffled_list = new_shuffled_list;
         
         update_tag_filter();
         update_game_guess();
