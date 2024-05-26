@@ -110,7 +110,7 @@ function populate_color_picker(){
                 translated_name = $(this).attr(attr);
             }
         });
-        if (translated_name == ''){
+        if (translated_name != ''){
             palette[i] = [en_name + ' : ' + translated_name,palette[i][1],palette[i][2],palette[i][3]];
         }
     }
