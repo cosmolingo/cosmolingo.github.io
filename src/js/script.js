@@ -29,7 +29,7 @@ var palette = [
     ['green',115,100,100],
     ['cyan',175,100,100],
     ['blue',230,100,100],
-    ['purple',300,100,100],
+    ['purple',285,100,75],
     ['pink',320,55,100],
     ['red',360,100,100]
 ]
@@ -87,11 +87,19 @@ function populate_color_picker(){
     if ($('#color_picker').length == 0){
         return;
     }
+    var jspalette = ['rgb(0,0,0)','rgb(255,255,255)','rgb(128,128,128)'];
+    for (var i = 0; i < palette.length-1; i++){
+        var rgb = HSVtoRGB(palette[i][1]/360,palette[i][2]/100,palette[i][3]/100);
+        jspalette.push('rgb(' + rgb.r + ',' + rgb.g + ',' + rgb.b + ')');
+    }
+    console.log(jspalette);
     jscolor.presets.default = {
         position: 'right',
-        //palette: palette,
+        palette: jspalette,
         onInput: change_color,
     };
+    $('.colors .content').append('<p id="color_name">');
+    $('.colors .content').append('<input id="color_picker" data-jscolor="" value="#3399FF">');
     jscolor.install();
 }
 
@@ -122,7 +130,7 @@ function change_color(){
     var s = document.querySelector('#color_picker').jscolor.channel('S');
     var v = document.querySelector('#color_picker').jscolor.channel('V');
     var col = get_closest_color(h,s,v);
-    console.log(col);
+    $('#color_name').text(col);
 }
 
 function populate_numbers(){
@@ -701,3 +709,28 @@ function getUrlParameter(sParam) {
     }
     return false;
 };
+
+function HSVtoRGB(h, s, v) {
+    var r, g, b, i, f, p, q, t;
+    if (arguments.length === 1) {
+        s = h.s, v = h.v, h = h.h;
+    }
+    i = Math.floor(h * 6);
+    f = h * 6 - i;
+    p = v * (1 - s);
+    q = v * (1 - f * s);
+    t = v * (1 - (1 - f) * s);
+    switch (i % 6) {
+        case 0: r = v, g = t, b = p; break;
+        case 1: r = q, g = v, b = p; break;
+        case 2: r = p, g = v, b = t; break;
+        case 3: r = p, g = q, b = v; break;
+        case 4: r = t, g = p, b = v; break;
+        case 5: r = v, g = p, b = q; break;
+    }
+    return {
+        r: Math.round(r * 255),
+        g: Math.round(g * 255),
+        b: Math.round(b * 255)
+    };
+}
