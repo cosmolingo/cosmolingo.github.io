@@ -110,7 +110,9 @@ function populate_color_picker(){
                 translated_name = $(this).attr(attr);
             }
         });
-        palette[i] = [en_name + ' : ' + translated_name,palette[i][1],palette[i][2],palette[i][3]];
+        if (translated_name == ''){
+            palette[i] = [en_name + ' : ' + translated_name,palette[i][1],palette[i][2],palette[i][3]];
+        }
     }
 
     var jspalette = ['rgb(0,0,0)','rgb(255,255,255)','rgb(128,128,128)'];
@@ -124,7 +126,7 @@ function populate_color_picker(){
         onInput: change_color,
         position:'top',
         smartPosition:false,
-        width:300,
+        width:275,
         height:200,
         shadowColor:'rgba(0,0,0,0.1)',
         backgroundColor:'#ded5ac',
