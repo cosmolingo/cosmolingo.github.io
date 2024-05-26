@@ -31,7 +31,10 @@ var palette = [
     ['blue',230,100,100],
     ['purple',285,100,75],
     ['pink',320,55,100],
-    ['red',360,100,100]
+    ['red',360,100,100],
+    ['white',0,0,100],
+    ['gray',0,0,50],
+    ['black',0,0,0]
 ]
 
 var special_numbers = [
@@ -79,39 +82,68 @@ $(document).ready(function(){
         populate_numbers();
         $('#number_output p').text(special_numbers[lang_i][0]);
         setup_renderer();
-        populate_color_picker();
     });
 });
 
 function populate_color_picker(){
-    if ($('#color_picker').length == 0){
+    if ($('.colors').length == 0){
         return;
     }
+
+    for (var i = 0; i < palette.length; i++){
+        var en_name = palette[i][0];
+        var translated_name = '';
+        $('.word').each(function(){
+            var attr = 'ka_words';
+            if (lang_i == 1){
+                attr = 'ru_words';
+            }
+            else if (lang_i == 2){
+                attr = 'fr_words';
+            }
+            else if (lang_i == 3){
+                attr = 'ko_words';
+            }
+            var en_words = $(this).attr('en_words').split(', ');
+            
+            if (en_words.includes(en_name)){
+                translated_name = $(this).attr(attr);
+            }
+        });
+        palette[i] = [en_name + ' : ' + translated_name,palette[i][1],palette[i][2],palette[i][3]];
+    }
+
     var jspalette = ['rgb(0,0,0)','rgb(255,255,255)','rgb(128,128,128)'];
-    for (var i = 0; i < palette.length-1; i++){
+    for (var i = 0; i < palette.length-4; i++){
         var rgb = HSVtoRGB(palette[i][1]/360,palette[i][2]/100,palette[i][3]/100);
         jspalette.push('rgb(' + rgb.r + ',' + rgb.g + ',' + rgb.b + ')');
     }
-    console.log(jspalette);
     jscolor.presets.default = {
         position: 'right',
         palette: jspalette,
         onInput: change_color,
+        position:'top',
+        smartPosition:false,
+        width:300,
+        height:200,
+        shadowColor:'rgba(0,0,0,0.1)',
+        backgroundColor:'#ded5ac',
+        borderColor:'rgba(0,0,0,0)',
+        borderRadius:'10'
     };
-    $('.colors .content').append('<p id="color_name">');
-    $('.colors .content').append('<input id="color_picker" data-jscolor="" value="#3399FF">');
+    $('.colors .content').append('<div id="color_picker" data-jscolor="" value="#3399FF"><p>Pick a color</p></div><br/>');
     jscolor.install();
 }
 
 function get_closest_color(h,s,v){
     if (v < 25){
-        return 'black';
+        return palette[palette.length - 1][0];
     }
     if (s < 25){
         if (v > 75){
-            return 'white';
+            return palette[palette.length - 3][0];
         }
-        return 'gray';
+        return palette[palette.length - 2][0];
     }
     var closest_idx = 0;
     var closest_dist = 1000;
@@ -130,7 +162,13 @@ function change_color(){
     var s = document.querySelector('#color_picker').jscolor.channel('S');
     var v = document.querySelector('#color_picker').jscolor.channel('V');
     var col = get_closest_color(h,s,v);
-    $('#color_name').text(col);
+    if (document.querySelector('#color_picker').jscolor.isLight()){
+        $('#color_picker p').css('color','rgb(90, 72, 19)');
+    }
+    else{
+        $('#color_picker p').css('color','#f9f8e2');
+    }
+    $('#color_picker p').text(col);
 }
 
 function populate_numbers(){
@@ -268,6 +306,7 @@ function get_words(){
         update_tag_filter();
         update_game_guess();
         create_body_diagram();
+        populate_color_picker();
     });
 
     if ($('#alphabet').length > 0){

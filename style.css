@@ -853,6 +853,58 @@ border-right: 1px solid black;
     margin:0 auto;
 }
 
+.colors{
+    max-width: 750px;
+    text-align: center;
+}
+
+#color_picker{
+    height:61px;
+    width:358px;
+    display: inline-table;
+    margin:0 auto;
+    border:1.5px solid #5a4813;
+    border-bottom: 3px solid #5a4813;
+    border-radius:10px;
+    text-align:center;
+    font-size:20px;
+    font-weight: 400;
+    font-style: normal;
+    cursor: pointer;
+    text-transform: lowercase;
+    box-shadow:0 2px 2px rgba(0,0,0,0.1);
+    position: relative;
+    z-index:20;
+    vertical-align: middle;
+    line-height: 65px;
+    margin-bottom: 25px;
+    background-color: #efe273;
+    transform: translateY(25px);
+}
+
+#color_picker p{
+    line-height: 20px;
+    pointer-events: none;
+}
+
+.jscolor-wrap{
+    transform: translateY(-25px) !important;
+}
+
+.jscolor-border{
+    background:#f4eb84 !important;
+    border:1.5px solid #5a4813 !important;
+    border-bottom: 3px solid #5a4813 !important;
+}
+
+.jscolor-shadow{
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 5px 10px 0px !important;
+}
+
+.jscolor-picker > div:first-child, .jscolor-picker > div:nth-child(3), .jscolor-palette > div{
+    border:1px solid rgb(0, 0, 0) !important;
+}
+
 @media only screen and (max-width: 700px) {
     #logo_div{
         width: 285px;

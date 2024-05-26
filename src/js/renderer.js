@@ -2,6 +2,9 @@ var mouse, INTERSECTED, intersects, clicked, scene, camera, renderer, raycaster,
 Ball, raycasterBall, ShadowBall, targetBall, simulate_physics = false,base_cam_pos;
 
 function setup_renderer(){
+    if ($('.locations').length == 0){
+        return;
+    }
     mouse = new THREE.Vector2();
     scene = new THREE.Scene();
     camera = new THREE.PerspectiveCamera(1, 7/5, 1, 10000);
