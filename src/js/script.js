@@ -47,6 +47,9 @@ var special_numbers = [
     {}
 ]
 
+var days = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
+var months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+
 var lang_i = 0;
 var url_lang = getUrlParameter('lang');
 if (url_lang == 'ru'){
@@ -84,6 +87,67 @@ $(document).ready(function(){
         setup_renderer();
     });
 });
+
+function populate_time(){
+    if ($('.time').length == 0){
+        return;
+    }
+    var tr = $('<tr>');
+    for (var i = 0; i < days.length; i++){
+        var en_name = days[i];
+        var translated_name = '';
+        $('.word').each(function(){
+            var attr = 'ka_words';
+            if (lang_i == 1){
+                attr = 'ru_words';
+            }
+            else if (lang_i == 2){
+                attr = 'fr_words';
+            }
+            else if (lang_i == 3){
+                attr = 'ko_words';
+            }
+            var en_words = $(this).attr('en_words').split(', ');
+            
+            if (en_words.includes(en_name)){
+                translated_name = $(this).attr(attr);
+            }
+        });
+        if (translated_name != ''){
+            en_name = en_name + ' : ' + translated_name;
+        }
+        tr.append('<td>' + en_name + '</td>');
+    }
+    $('.table_week').append(tr);
+
+    var tr = $('<tr>');
+    for (var i = 0; i < months.length; i++){
+        var en_name = months[i];
+        var translated_name = '';
+        $('.word').each(function(){
+            var attr = 'ka_words';
+            if (lang_i == 1){
+                attr = 'ru_words';
+            }
+            else if (lang_i == 2){
+                attr = 'fr_words';
+            }
+            else if (lang_i == 3){
+                attr = 'ko_words';
+            }
+            var en_words = $(this).attr('en_words').split(', ');
+            
+            if (en_words.includes(en_name)){
+                translated_name = $(this).attr(attr);
+            }
+        });
+        if (translated_name != ''){
+            en_name = en_name + ' : ' + translated_name;
+        }
+        tr.append('<td>' + en_name + '</td>');
+    }
+    $('.table_year').append(tr);
+}
 
 function populate_color_picker(){
     if ($('.colors').length == 0){
@@ -335,6 +399,7 @@ function get_words(){
         update_game_guess();
         create_body_diagram();
         populate_color_picker();
+        populate_time();
     });
 
     if ($('#alphabet').length > 0){
