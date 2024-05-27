@@ -93,6 +93,32 @@ function populate_time(){
         return;
     }
     var tr = $('<tr>');
+    var en_name = "week";
+    var translated_name = '';
+    var display_name = '<p>Week</p>';
+    $('.word').each(function(){
+        var attr = 'ka_words';
+        if (lang_i == 1){
+            attr = 'ru_words';
+        }
+        else if (lang_i == 2){
+            attr = 'fr_words';
+        }
+        else if (lang_i == 3){
+            attr = 'ko_words';
+        }
+        var en_words = $(this).attr('en_words').split(', ');
+        
+        if (en_words.includes(en_name)){
+            translated_name = $(this).attr(attr);
+        }
+    });
+    if (translated_name != ''){
+        display_name += '<p>' + translated_name + '</p>';
+    }
+    tr.append('<th colspan="7">' + display_name + '</th>');
+    $('.table_week').append(tr);
+    var tr = $('<tr>');
     for (var i = 0; i < days.length; i++){
         var display_name = '<p>' + days[i] + '</p>';
         var en_name = days[i].toLowerCase();
@@ -121,6 +147,32 @@ function populate_time(){
     }
     $('.table_week').append(tr);
 
+    var tr = $('<tr>');
+    var en_name = "month";
+    var translated_name = '';
+    var display_name = '<p>Month</p>';
+    $('.word').each(function(){
+        var attr = 'ka_words';
+        if (lang_i == 1){
+            attr = 'ru_words';
+        }
+        else if (lang_i == 2){
+            attr = 'fr_words';
+        }
+        else if (lang_i == 3){
+            attr = 'ko_words';
+        }
+        var en_words = $(this).attr('en_words').split(', ');
+        
+        if (en_words.includes(en_name)){
+            translated_name = $(this).attr(attr);
+        }
+    });
+    if (translated_name != ''){
+        display_name += '<p>' + translated_name + '</p>';
+    }
+    tr.append('<th colspan="12">' + display_name + '</th>');
+    $('.table_year').append(tr);
     var tr = $('<tr>');
     for (var i = 0; i < months.length; i++){
         var display_name = '<p>' + months[i] + '</p>';
