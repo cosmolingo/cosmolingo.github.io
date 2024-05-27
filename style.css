@@ -901,8 +901,23 @@ border-right: 1px solid black;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 5px 10px 0px !important;
 }
 
-.jscolor-picker > div:first-child, .jscolor-picker > div:nth-child(3), .jscolor-palette > div{
-    border:1px solid rgb(0, 0, 0) !important;
+.jscolor-picker > div:first-child, .jscolor-picker > div:nth-child(3), .jscolor-palette-sw{
+    border:1px solid #5a4813 !important;
+}
+
+.jscolor-palette-sw{
+    border-bottom: 2px solid #5a4813 !important;
+    border-radius: 5px !important;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 5px 0px !important;
+}
+
+.jscolor-palette-sw div{
+    border-radius: 4px !important;
+    height:25px !important;
+}
+
+.jscolor-picker > div:first-child, .jscolor-picker > div:first-child > div > canvas{
+    border-radius: 10px !important;
 }
 
 @media only screen and (max-width: 700px) {

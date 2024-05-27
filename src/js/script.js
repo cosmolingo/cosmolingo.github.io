@@ -131,17 +131,19 @@ function populate_color_picker(){
         shadowColor:'rgba(0,0,0,0.1)',
         backgroundColor:'#ded5ac',
         borderColor:'rgba(0,0,0,0)',
-        borderRadius:'10'
+        borderRadius:'10',
+        paletteHeight:'30'
     };
     $('.colors .content').append('<div id="color_picker" data-jscolor="" value="#3399FF"><p>Pick a color</p></div><br/>');
     jscolor.install();
 }
 
 function get_closest_color(h,s,v){
+    //console.log(h,s,v);
     if (v < 25){
         return palette[palette.length - 1][0];
     }
-    if (s < 25){
+    if (s < 15){
         if (v > 75){
             return palette[palette.length - 3][0];
         }
@@ -149,7 +151,7 @@ function get_closest_color(h,s,v){
     }
     var closest_idx = 0;
     var closest_dist = 1000;
-    for (var i = 0; i < palette.length; i++){
+    for (var i = 0; i < palette.length - 3; i++){
         var dist = Math.sqrt(Math.pow(h - palette[i][1],2) + Math.pow(s - palette[i][2],2) + Math.pow(v - palette[i][3],2));
         if (dist < closest_dist){
             closest_idx = i;
