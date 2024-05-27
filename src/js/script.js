@@ -95,7 +95,7 @@ function populate_time(){
     var tr = $('<tr>');
     var en_name = "week";
     var translated_name = '';
-    var display_name = '<p>Week</p>';
+    var display_name = 'Week';
     $('.word').each(function(){
         var attr = 'ka_words';
         if (lang_i == 1){
@@ -114,7 +114,7 @@ function populate_time(){
         }
     });
     if (translated_name != ''){
-        display_name += '<p>' + translated_name + '</p>';
+        display_name += ' : ' + translated_name;
     }
     tr.append('<th colspan="7">' + display_name + '</th>');
     $('.table_week').append(tr);
@@ -148,9 +148,9 @@ function populate_time(){
     $('.table_week').append(tr);
 
     var tr = $('<tr>');
-    var en_name = "month";
+    var en_name = "year";
     var translated_name = '';
-    var display_name = '<p>Month</p>';
+    var display_name = 'Year';
     $('.word').each(function(){
         var attr = 'ka_words';
         if (lang_i == 1){
@@ -169,7 +169,7 @@ function populate_time(){
         }
     });
     if (translated_name != ''){
-        display_name += '<p>' + translated_name + '</p>';
+        display_name += ' : ' + translated_name;
     }
     tr.append('<th colspan="12">' + display_name + '</th>');
     $('.table_year').append(tr);
