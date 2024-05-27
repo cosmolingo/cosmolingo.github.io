@@ -94,7 +94,8 @@ function populate_time(){
     }
     var tr = $('<tr>');
     for (var i = 0; i < days.length; i++){
-        var en_name = days[i];
+        var display_name = '<p>' + days[i] + '</p>';
+        var en_name = days[i].toLowerCase();
         var translated_name = '';
         $('.word').each(function(){
             var attr = 'ka_words';
@@ -114,15 +115,16 @@ function populate_time(){
             }
         });
         if (translated_name != ''){
-            en_name = en_name + ' : ' + translated_name;
+            display_name += '<p>' + translated_name + '</p>';
         }
-        tr.append('<td>' + en_name + '</td>');
+        tr.append('<td>' + display_name + '</td>');
     }
     $('.table_week').append(tr);
 
     var tr = $('<tr>');
     for (var i = 0; i < months.length; i++){
-        var en_name = months[i];
+        var display_name = '<p>' + months[i] + '</p>';
+        var en_name = months[i].toLowerCase();
         var translated_name = '';
         $('.word').each(function(){
             var attr = 'ka_words';
@@ -142,9 +144,9 @@ function populate_time(){
             }
         });
         if (translated_name != ''){
-            en_name = en_name + ' : ' + translated_name;
+            display_name += '<p>' + translated_name + '</p>';
         }
-        tr.append('<td>' + en_name + '</td>');
+        tr.append('<td>' + display_name + '</td>');
     }
     $('.table_year').append(tr);
 }

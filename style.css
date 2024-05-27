@@ -920,6 +920,106 @@ border-right: 1px solid black;
     border-radius: 10px !important;
 }
 
+.table_week,.table_year{
+    font-size:15px;
+    min-width:500px;
+    border:1px solid #5a4813;
+    border-collapse:collapse;
+    width:90%;
+    margin:0 auto;
+    border-radius:5px;
+    border-spacing: 0;
+    border-collapse: separate;
+    border-radius: 10px;
+    border:1.5px solid #5a4813;
+    border-bottom: 3px solid #5a4813;
+    box-shadow:0 5px 10px rgba(0,0,0,0.1);
+    line-height: 10px;
+    table-layout: fixed;
+}
+
+.table_year{
+    max-width:1000px;
+}
+
+.table_week{
+    max-width:750px;
+}
+
+.table_year th,.table_week th{
+    font-size: 20px;
+}
+
+.table_year td p:nth-child(2),.table_week td p:nth-child(2){
+    font-weight: bold;
+}
+
+/* Apply a border to the right of all but the last column */
+.table_week th:not(:last-child),
+.table_week td:not(:last-child),
+.table_year th:not(:last-child),
+.table_year td:not(:last-child){
+    border-right: 1px solid black;
+}
+
+.table_week th,.table_year th{
+    background-color: var(--primary-color);
+    height:45px;
+    text-align:center;
+}
+
+.table_week td,.table_year td{
+    text-align:center;
+    height:35px;
+    background-color:#e7e0c4;
+}
+
+/* Apply a border to the bottom of all but the last row */
+.table_year>thead>tr:not(:last-child)>th,
+.table_year>thead>tr:not(:last-child)>td,
+.table_year>tbody>tr:not(:last-child)>th,
+.table_year>tbody>tr:not(:last-child)>td,
+.table_year>tfoot>tr:not(:last-child)>th,
+.table_year>tfoot>tr:not(:last-child)>td,
+.table_year>tr:not(:last-child)>td,
+.table_year>tr:not(:last-child)>th,
+.table_year>thead:not(:last-child),
+.table_year>tbody:not(:last-child),
+.table_year>tfoot:not(:last-child),
+.table_week>thead>tr:not(:last-child)>th,
+.table_week>thead>tr:not(:last-child)>td,
+.table_week>tbody>tr:not(:last-child)>th,
+.table_week>tbody>tr:not(:last-child)>td,
+.table_week>tfoot>tr:not(:last-child)>th,
+.table_week>tfoot>tr:not(:last-child)>td,
+.table_week>tr:not(:last-child)>td,
+.table_week>tr:not(:last-child)>th,
+.table_week>thead:not(:last-child),
+.table_week>tbody:not(:last-child),
+.table_week>tfoot:not(:last-child) {
+    border-bottom: 1px solid black;
+}
+
+.table_year tr:first-child th:first-child,.table_week tr:first-child th:first-child{
+    border-top-left-radius: 9px;
+}
+
+.table_year tr:first-child th:last-child,.table_week tr:first-child th:last-child{
+    border-top-right-radius: 9px;
+}
+
+.table_year tr:last-child td:first-child,.table_week tr:last-child td:first-child{
+    border-bottom-left-radius: 9px;
+}
+
+.table_year tr:last-child td:last-child,.table_week tr:last-child td:last-child{
+    border-bottom-right-radius: 9px;
+}
+
+.table_week{
+    margin-bottom: 25px;
+}
+
 @media only screen and (max-width: 700px) {
     #logo_div{
         width: 285px;
