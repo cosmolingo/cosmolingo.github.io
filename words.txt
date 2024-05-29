@@ -195,6 +195,7 @@ n;color:сұр:gray:gris(g_r_i):серый:
 n;color:түс:color:couleur(c_ou_l_eu_r):цвет:
 n;color:кемпірқосақ:rainbow:arc-en-ciel(a_r_c_an_s_i_è_l):радуга:
 n;color:көгілдір:cyan:cyan(s_i_an):голубой:
-n;time:дүйсенбі:monday:lundi(l_in_d_i):понедельник:
 n;time:апта:week:semaine(s_eu_m_è_n):неделя:
+n;time:дүйсенбі:monday:lundi(l_in_d_i):понедельник:
 n;time:сейсенбі:tuesday:mardi(m_a_r_d_i):вторник:
+n;time:сәрсенбі:wednesday:mercredi(m_è_r_c_r_eu_d_i):среда:

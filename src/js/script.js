@@ -1,3 +1,13 @@
+//Wordle
+//Spatial preposition
+//Past tense table
+//To be table
+//Clock
+//Seasons in the time section
+//Weather
+//Clothes where you chose each clothing with arrows
+//Fruits & Vegetables
+
 var base_url = 'https://cosmolingo.studio';
 var words_list = [];
 var shuffled_list = [];
