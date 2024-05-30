@@ -532,7 +532,8 @@ function populate_wordle_alphabet(){
     var alphabet = alphabets[lang_i];
     for (var i = 0; i < alphabet.length; i++) {
         var letter = $("<p>").text(alphabet[i]);
-        letter.addClass("letter");
+        letter.addClass("wordle_letter");
+        letter.attr('type',-1);
         letter.on("click", add_wordle_letter);
         alphabet_el.append(letter);
     }
@@ -554,7 +555,6 @@ function wordle_enter_word(){
     for (var i = 0; i < wordle_word.length; i++){
         word += row.children('td').eq(i).text();
     }
-    console.log(word,word.length,wordle_word,wordle_word.length);
     if (word.length < wordle_word.length){
         $('#wordle_output').css('cursor','auto');
         $('#wordle_output').text('Not enough letters !');
@@ -571,9 +571,9 @@ function wordle_enter_word(){
         if (word[i] == ""){
             continue;
         }
-        var col = '#f39f95';
+        var type = 0;
         if (word[i] == wordle_word[i]){
-            col = '#a9e3bb';
+            type = 2;
             for (var j = 0; j < word_copy.length; j++){
                 if (word_copy[j] == word[i]){
                     word_copy = word_copy.slice(0,j) + word_copy.slice(j+1);
@@ -581,22 +581,22 @@ function wordle_enter_word(){
                 }
             }
         }
-        wordle_update_td(wordle_active_row,i,col,i*250);
+        wordle_update_td(wordle_active_row,i,type,i*250);
     }
 
     for (var i = 0; i < word.length; i++){
         if (word[i] == "" || word[i] == wordle_word[i]){
             continue;
         }
-        var col = '#f39f95';
+        var type = 0;
         for (var j = 0; j < word_copy.length; j++){
             if (word_copy[j] == word[i]){
-                col = '#fbc59f';
+                type = 1;
                 word_copy = word_copy.slice(0,j) + word_copy.slice(j+1);
                 break;
             }
         }
-        wordle_update_td(wordle_active_row,i,col,i*250);
+        wordle_update_td(wordle_active_row,i,type,i*250);
     }
 
     wordle_active_row++;
@@ -619,10 +619,19 @@ function wordle_enter_word(){
     }
 }
 
-function wordle_update_td(row_i,col_i,col,t){
+function wordle_update_td(row_i,col_i,type,t){
+    var types = ['#f39f95','#fbc59f','#a9e3bb'];
     setTimeout(function() {
         var row = $('#wordle').children('table').children('tr').eq(row_i);
-        row.children('td').eq(col_i).css('background-color',col);
+        row.children('td').eq(col_i).css('background-color',types[type]);
+        for (var i = 0; i < $('#wordle_alphabet').children('.wordle_letter').length; i++){
+            var letter = $('#wordle_alphabet').children('.wordle_letter').eq(i);
+            if (letter.text() == row.children('td').eq(col_i).text() && type > letter.attr('type')){
+                letter.css('background-color',types[type]);
+                letter.attr('type',type);
+                break;
+            }
+        }
     },t);
 }
 
