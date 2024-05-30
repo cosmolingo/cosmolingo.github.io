@@ -643,8 +643,10 @@ function body_info(){
         bodyInfo.css('height','0px');
         bodyInfo.css('width','0px');
         bodyInfo.css('opacity','0');
+        $('polygon').css('cursor', 'pointer');
     }
     else {
+        $('polygon').css('cursor', 'pointer');
         bodyInfo.css('opacity','1');
         bodyInfo.css('height','50px');
         bodyInfo.css('width','100px');
