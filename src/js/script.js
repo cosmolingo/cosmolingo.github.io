@@ -16,7 +16,9 @@ var guess_index = 0;
 var correct_guesses = 0;
 var total_guesses = 0;
 var wordle_word = '';
+var worlde_word_en = '';
 var wordle_active_row = 0;
+var wordle_last_word_idx = 0;
 var letter_duration = new Array(100).fill(0);
 
 var languages = ['kazakh','russian','french','korean'];
@@ -486,7 +488,8 @@ function get_words(){
 
 function populate_wordle(){    
     var word = "";
-    for (var i = 0; i < words_list.length; i++){
+    var word_en = "";
+    for (var i = wordle_last_word_idx; i < words_list.length; i++){
         if (lang_i == 0){
             var rand_word = shuffled_list[i].ka_words;
         }
@@ -499,15 +502,18 @@ function populate_wordle(){
         else if (lang_i == 3){
             var rand_word = shuffled_list[i].ko_words;
         }
-        if ((rand_word.length == 0) || (rand_word == '-') || (rand_word.length < 4) || (rand_word.length > 7) || (rand_word.includes(','))){
+        if ((rand_word.length == 0) || (rand_word == '-') || (rand_word.length < 4) || (rand_word.length > 7) || (rand_word.includes(',')) || (rand_word.includes(' ')) ||(rand_word.includes('?'))){
             continue;
         }
         word = rand_word;
+        word_en = shuffled_list[i].en_words;
+        wordle_last_word_idx = i + 1;
         break;
     }
     var wordle = $('#wordle');
     wordle.html('');
-    wordle_word = word;
+    wordle_word = word.toLowerCase();
+    worlde_word_en = word_en.toLowerCase();
     wordle_active_row = 0;
     var table = $('<table>');
     for (var i = 0; i < 5; i++){
@@ -530,6 +536,106 @@ function populate_wordle_alphabet(){
         letter.on("click", add_wordle_letter);
         alphabet_el.append(letter);
     }
+    alphabet_el.append('<br/><div class="letter wordle_enter">ENTER</div>');
+    alphabet_el.append('<div class="letter wordle_return"></div>');
+}
+
+$(document).on('click','.wordle_enter',function(e){
+    wordle_enter_word();
+});
+
+$(document).on('click','.wordle_return',function(e){
+    wordle_remove_letter();
+});
+
+function wordle_enter_word(){
+    var row = $('#wordle').children('table').children('tr').eq(wordle_active_row);
+    var word = '';
+    for (var i = 0; i < wordle_word.length; i++){
+        word += row.children('td').eq(i).text();
+    }
+    console.log(word,word.length,wordle_word,wordle_word.length);
+    if (word.length < wordle_word.length){
+        $('#wordle_output').css('cursor','auto');
+        $('#wordle_output').text('Not enough letters !');
+        $('#wordle_output').animate({ opacity: 1 });
+        setTimeout(function() {
+            $('#wordle_output').animate({ opacity: 0 });
+        }, 2500);
+        return;
+    }
+
+    var word_copy = wordle_word;
+
+    for (var i = 0; i < word.length; i++){
+        if (word[i] == ""){
+            continue;
+        }
+        var col = '#f39f95';
+        if (word[i] == wordle_word[i]){
+            col = '#a9e3bb';
+            for (var j = 0; j < word_copy.length; j++){
+                if (word_copy[j] == word[i]){
+                    word_copy = word_copy.slice(0,j) + word_copy.slice(j+1);
+                    break;
+                }
+            }
+        }
+        wordle_update_td(wordle_active_row,i,col,i*250);
+    }
+
+    for (var i = 0; i < word.length; i++){
+        if (word[i] == "" || word[i] == wordle_word[i]){
+            continue;
+        }
+        var col = '#f39f95';
+        for (var j = 0; j < word_copy.length; j++){
+            if (word_copy[j] == word[i]){
+                col = '#fbc59f';
+                word_copy = word_copy.slice(0,j) + word_copy.slice(j+1);
+                break;
+            }
+        }
+        wordle_update_td(wordle_active_row,i,col,i*250);
+    }
+
+    wordle_active_row++;
+    if (wordle_active_row == 5){
+        setTimeout(function() {
+            if (word == wordle_word){
+                $('#wordle_output').text('well done, ' + wordle_word + ' - ' + worlde_word_en + '. click to replay');
+            }
+            else{
+                $('#wordle_output').text('the word was ' + wordle_word + ' - ' + worlde_word_en + '. click to replay');
+            }
+            $('#wordle_output').css('cursor','pointer');
+            $('#wordle_output').animate({ opacity: 1 });
+            $('#wordle_output').off('click');
+            $('#wordle_output').on('click',function(e){
+                $('#wordle_output').animate({ opacity: 0 });
+                populate_wordle();
+            });
+        },word.length*250);
+    }
+}
+
+function wordle_update_td(row_i,col_i,col,t){
+    setTimeout(function() {
+        var row = $('#wordle').children('table').children('tr').eq(row_i);
+        row.children('td').eq(col_i).css('background-color',col);
+    },t);
+}
+
+function wordle_remove_letter(){
+    var row = $('#wordle').children('table').children('tr').eq(wordle_active_row);
+    for (var i = wordle_word.length-1; i >= 0; i--){
+        var td = row.children('td').eq(i);
+        if (td.text().length > 0){
+            td.text('');
+            td.removeClass('filled');
+            break;
+        }
+    }
 }
 
 function add_wordle_letter(){
@@ -541,6 +647,7 @@ function add_wordle_letter(){
         var td = tr.children('td').eq(i);
         if (td.text().length == 0){
             td.text(letter);
+            td.addClass('filled');
             break;
         }
     }

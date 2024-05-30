@@ -321,37 +321,37 @@ h1 .fa-sun{
 }
 
 .word:nth-child(7n):active,.letter:nth-child(7n):active,.number:nth-child(7n):active,.col1:active{
-    background-color:#e0ab85;
+    background-color:#e0ab85 !important;
     border-bottom: 1.5px solid #5a4813 !important;
     box-shadow: 0 2px 2px rgba(0,0,0,0.25) inset !important;
 }
 .word:nth-child(7n+1):active,.letter:nth-child(7n+1):active,.number:nth-child(7n+1):active,.col2:active{
-    background-color:#c7b056;
+    background-color:#c7b056 !important;
     border-bottom: 1.5px solid #5a4813 !important;
     box-shadow: 0 2px 2px rgba(0,0,0,0.25) inset !important;
 }
 .word:nth-child(7n+2):active,.letter:nth-child(7n+2):active,.number:nth-child(7n+2):active,.col3:active{
-    background-color:#ae82ca;
+    background-color:#ae82ca !important;
     border-bottom: 1.5px solid #5a4813 !important;
     box-shadow: 0 2px 2px rgba(0,0,0,0.25) inset !important;
 }
 .word:nth-child(7n+3):active,.letter:nth-child(7n+3):active,.number:nth-child(7n+3):active,.col4:active{
-    background-color:#d8837a;
+    background-color:#d8837a !important;
     border-bottom: 1.5px solid #5a4813 !important;
     box-shadow: 0 2px 2px rgba(0,0,0,0.25) inset !important;
 }
 .word:nth-child(7n+4):active,.letter:nth-child(7n+4):active,.number:nth-child(7n+4):active,.col5:active{
-    background-color:#8ac59d;
+    background-color:#8ac59d !important;
     border-bottom: 1.5px solid #5a4813 !important;
     box-shadow: 0 2px 2px rgba(0,0,0,0.25) inset !important;
 }
 .word:nth-child(7n+5):active,.letter:nth-child(7n+5):active,.number:nth-child(7n+5):active,.col6:active{
-    background-color:#ca9797;
+    background-color:#ca9797 !important;
     border-bottom: 1.5px solid #5a4813 !important;
     box-shadow: 0 2px 2px rgba(0,0,0,0.25) inset !important;
 }
 .word:nth-child(7n+6):active,.letter:nth-child(7n+6):active,.number:nth-child(7n+6):active,.col7:active{
-    background-color:#80a9d1;
+    background-color:#80a9d1 !important;
     border-bottom: 1.5px solid #5a4813 !important;
     box-shadow: 0 2px 2px rgba(0,0,0,0.25) inset !important;
 }
@@ -374,7 +374,7 @@ h2{
     margin-top:50px;
 }
 
-#guess_result{
+#guess_result,#wordle_output{
     font-size:20px;
     color:#f9f8e2;
     background-color:#5a4813;
@@ -455,6 +455,7 @@ h2{
 }
 
 .letter,.number{
+    user-select: none;
     height:50px;
     width:50px;
     display:inline-block;
@@ -1024,7 +1025,7 @@ border-right: 1px solid black;
 }
 
 #wordle{
-    width:90%;
+    width:400px;
     max-width:750px;
     margin:0 auto;
     margin-top:50px;
@@ -1034,20 +1035,51 @@ border-right: 1px solid black;
 
 #wordle table{
     margin:0 auto;
-    margin-bottom:50px;
+    margin-bottom:25px;
+    border-spacing:5px;
 }
 
 #wordle table td{
     width:50px;
     height:50px;
-    border-spacing: 10px;
-    border:1px solid black;
-    font-size: 25px;
+    font-size: 30px;
+    background-color: #e7e0c4;
+    border-radius:10px;
+    box-shadow: 0 0px 2px rgba(0,0,0,0.2);
+    border:1px solid rgba(0,0,0,0);
+    border-bottom: 3px solid rgba(0,0,0,0);
+}
+
+#wordle table td.filled{
+    border:1px solid #5a4813 !important;
+    border-bottom: 3px solid #5a4813 !important;
+    background-color: #a6cdf4;
 }
 
 #wordle_alphabet{
     margin: 0 auto;
     width:400px;
+}
+
+#wordle_output{
+    opacity:0;
+    margin-bottom:25px;
+}
+
+.wordle_return,.wordle_enter{
+    width:190px;
+}
+
+.wordle_return{
+    background-image:url('src/symbols/return.png');
+    background-repeat: no-repeat;
+    background-size:20%;
+    background-position: center;
+}
+
+.wordle_enter{
+    text-transform: capitalize;
+    font-weight: bold;
 }
 
 @media only screen and (max-width: 700px) {
