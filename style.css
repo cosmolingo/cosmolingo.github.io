@@ -261,62 +261,95 @@ h1 .fa-sun{
     box-shadow:0 2px 2px rgba(0,0,0,0.1);
 }
 
-.word:nth-child(7n),.letter:nth-child(7n),.number:nth-child(7n){
-    background-color:#fbc59f;
-}
-.word:nth-child(7n+1),.letter:nth-child(7n+1),.number:nth-child(7n+1){
-    background-color:#f4eb84;
-}
-.word:nth-child(7n+2),.letter:nth-child(7n+2),.number:nth-child(7n+2){
-    background-color:#c499e0;
-}
-.word:nth-child(7n+3),.letter:nth-child(7n+3),.number:nth-child(7n+3){
-    background-color:#f39f95;
-}
-.word:nth-child(7n+4),.letter:nth-child(7n+4),.number:nth-child(7n+4){
-    background-color:#a9e3bb;
-}
-.word:nth-child(7n+5),.letter:nth-child(7n+5),.number:nth-child(7n+5){
-    background-color:#e6b8b8;
-}
-.word:nth-child(7n+6),.letter:nth-child(7n+6),.number:nth-child(7n+6){
-    background-color:#a6cdf4;
+#guess_word, #number_output{
+    height:61px;
+    width:260px;
+    display: inline-table;
+    margin:0 auto;
+    border:1.5px solid #5a4813;
+    border-bottom: 3px solid #5a4813;
+    border-radius:10px;
+    text-align:center;
+    font-size:20px;
+    font-weight: 400;
+    font-style: normal;
+    cursor: pointer;
+    text-transform: lowercase;
+    box-shadow:0 2px 2px rgba(0,0,0,0.1);
+    position: relative;
+    z-index:20;
+    vertical-align: middle;
+    line-height: 65px;
+    margin-top:-3px;
 }
 
-.word:nth-child(7n):active,.letter:nth-child(7n):active,.number:nth-child(7n):active{
+#guess_word p{
+    line-height: 20px;
+}
+
+#number_output p, #guess_word p{
+    margin:0 auto;
+    display:table-cell;
+    vertical-align: middle;
+    line-height: 30px;
+}
+
+.word:nth-child(7n),.letter:nth-child(7n),.number:nth-child(7n),.col1{
+    background-color:#fbc59f !important;
+}
+.word:nth-child(7n+1),.letter:nth-child(7n+1),.number:nth-child(7n+1),.col2{
+    background-color:#f4eb84 !important;
+}
+.word:nth-child(7n+2),.letter:nth-child(7n+2),.number:nth-child(7n+2),.col3{
+    background-color:#c499e0 !important;
+}
+.word:nth-child(7n+3),.letter:nth-child(7n+3),.number:nth-child(7n+3),.col4{
+    background-color:#f39f95 !important;
+}
+.word:nth-child(7n+4),.letter:nth-child(7n+4),.number:nth-child(7n+4),.col5{
+    background-color:#a9e3bb !important;
+}
+.word:nth-child(7n+5),.letter:nth-child(7n+5),.number:nth-child(7n+5),.col6{
+    background-color:#e6b8b8 !important;
+}
+.word:nth-child(7n+6),.letter:nth-child(7n+6),.number:nth-child(7n+6),.col7{
+    background-color:#a6cdf4 !important;
+}
+
+.word:nth-child(7n):active,.letter:nth-child(7n):active,.number:nth-child(7n):active,.col1:active{
     background-color:#e0ab85;
-    border-bottom: 1.5px solid #5a4813;
-    box-shadow: 0 2px 2px rgba(0,0,0,0.25) inset;
+    border-bottom: 1.5px solid #5a4813 !important;
+    box-shadow: 0 2px 2px rgba(0,0,0,0.25) inset !important;
 }
-.word:nth-child(7n+1):active,.letter:nth-child(7n+1):active,.number:nth-child(7n+1):active{
+.word:nth-child(7n+1):active,.letter:nth-child(7n+1):active,.number:nth-child(7n+1):active,.col2:active{
     background-color:#c7b056;
-    border-bottom: 1.5px solid #5a4813;
-    box-shadow: 0 2px 2px rgba(0,0,0,0.25) inset;
+    border-bottom: 1.5px solid #5a4813 !important;
+    box-shadow: 0 2px 2px rgba(0,0,0,0.25) inset !important;
 }
-.word:nth-child(7n+2):active,.letter:nth-child(7n+2):active,.number:nth-child(7n+2):active{
+.word:nth-child(7n+2):active,.letter:nth-child(7n+2):active,.number:nth-child(7n+2):active,.col3:active{
     background-color:#ae82ca;
-    border-bottom: 1.5px solid #5a4813;
-    box-shadow: 0 2px 2px rgba(0,0,0,0.25) inset;
+    border-bottom: 1.5px solid #5a4813 !important;
+    box-shadow: 0 2px 2px rgba(0,0,0,0.25) inset !important;
 }
-.word:nth-child(7n+3):active,.letter:nth-child(7n+3):active,.number:nth-child(7n+3):active{
+.word:nth-child(7n+3):active,.letter:nth-child(7n+3):active,.number:nth-child(7n+3):active,.col4:active{
     background-color:#d8837a;
-    border-bottom: 1.5px solid #5a4813;
-    box-shadow: 0 2px 2px rgba(0,0,0,0.25) inset;
+    border-bottom: 1.5px solid #5a4813 !important;
+    box-shadow: 0 2px 2px rgba(0,0,0,0.25) inset !important;
 }
-.word:nth-child(7n+4):active,.letter:nth-child(7n+4):active,.number:nth-child(7n+4):active{
+.word:nth-child(7n+4):active,.letter:nth-child(7n+4):active,.number:nth-child(7n+4):active,.col5:active{
     background-color:#8ac59d;
-    border-bottom: 1.5px solid #5a4813;
-    box-shadow: 0 2px 2px rgba(0,0,0,0.25) inset;
+    border-bottom: 1.5px solid #5a4813 !important;
+    box-shadow: 0 2px 2px rgba(0,0,0,0.25) inset !important;
 }
-.word:nth-child(7n+5):active,.letter:nth-child(7n+5):active,.number:nth-child(7n+5):active{
+.word:nth-child(7n+5):active,.letter:nth-child(7n+5):active,.number:nth-child(7n+5):active,.col6:active{
     background-color:#ca9797;
-    border-bottom: 1.5px solid #5a4813;
-    box-shadow: 0 2px 2px rgba(0,0,0,0.25) inset;
+    border-bottom: 1.5px solid #5a4813 !important;
+    box-shadow: 0 2px 2px rgba(0,0,0,0.25) inset !important;
 }
-.word:nth-child(7n+6):active,.letter:nth-child(7n+6):active,.number:nth-child(7n+6):active{
+.word:nth-child(7n+6):active,.letter:nth-child(7n+6):active,.number:nth-child(7n+6):active,.col7:active{
     background-color:#80a9d1;
-    border-bottom: 1.5px solid #5a4813;
-    box-shadow: 0 2px 2px rgba(0,0,0,0.25) inset;
+    border-bottom: 1.5px solid #5a4813 !important;
+    box-shadow: 0 2px 2px rgba(0,0,0,0.25) inset !important;
 }
 
 #guess_game{
@@ -349,32 +382,6 @@ h2{
     margin-top:25px;
     height:25px;
     opacity:0;
-}
-
-#guess_word, #number_output{
-    height:61px;
-    width:260px;
-    display: inline-table;
-    margin:0 auto;
-    border:1.5px solid #5a4813;
-    border-bottom: 3px solid #5a4813;
-    border-radius:10px;
-    text-align:center;
-    font-size:20px;
-    font-weight: 400;
-    font-style: normal;
-    cursor: pointer;
-    text-transform: lowercase;
-    box-shadow:0 2px 2px rgba(0,0,0,0.1);
-    position: relative;
-    z-index:20;
-    vertical-align: middle;
-    line-height: 65px;
-    margin-top:-3px;
-}
-
-#guess_word p{
-    line-height: 20px;
 }
 
 #guess_input, #number_input{
@@ -410,13 +417,6 @@ h2{
 
 #number_output{
     background-color:#fbc59f;
-}
-
-#number_output p, #guess_word p{
-    margin:0 auto;
-    display:table-cell;
-    vertical-align: middle;
-    line-height: 30px;
 }
 
 .section{
@@ -1018,6 +1018,37 @@ border-right: 1px solid black;
 
 .table_week{
     margin-bottom: 25px;
+}
+
+.wordle{
+    text-align: center;
+}
+
+#wordle{
+    width:90%;
+    max-width:750px;
+    margin:0 auto;
+    margin-top:50px;
+    display:block;
+    text-align:center;
+}
+
+#wordle table{
+    margin:0 auto;
+    margin-bottom:50px;
+}
+
+#wordle table td{
+    width:50px;
+    height:50px;
+    border-spacing: 10px;
+    border:1px solid black;
+    font-size: 25px;
+}
+
+#wordle_alphabet{
+    margin: 0 auto;
+    width:400px;
 }
 
 @media only screen and (max-width: 700px) {

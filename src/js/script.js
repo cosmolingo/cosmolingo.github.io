@@ -15,6 +15,8 @@ var tag_list = [];
 var guess_index = 0;
 var correct_guesses = 0;
 var total_guesses = 0;
+var wordle_word = '';
+var wordle_active_row = 0;
 var letter_duration = new Array(100).fill(0);
 
 var languages = ['kazakh','russian','french','korean'];
@@ -78,7 +80,7 @@ $(document).ready(function(){
     document.documentElement.style.setProperty("--secondary-color", colors[lang_i][1]);
     $('#wave_top path').attr('style','stroke: none;fill: '+colors[lang_i][0]+';');
     $('#wave_bottom path').attr('style','stroke: none;fill: '+colors[lang_i][0]+';');
-    $('#title h1').html('<i class="' + languages[lang_i] + '" ></i>   My ' + languages[lang_i] + ' words   <i class="' + languages[lang_i] + '" ></i>');
+    $('#title h1').html('<i class="' + languages[lang_i] + '" ></i>   my ' + languages[lang_i] + ' words   <i class="' + languages[lang_i] + '" ></i>');
     $('link[rel="icon"]').attr('href', base_url + '/src/symbols/' + languages[lang_i] + '.ico');
     //Populate grammar section based on language
     var url = base_url + "/sections/" + languages[lang_i] + ".html";	
@@ -311,6 +313,7 @@ function populate_numbers(){
         number.append(number_p);
         var number_p = $("<p>").text(value);
         number.append(number_p);
+        number.click({letter:value},play_word_sound);
         number.insertBefore('#number_translate');
     }
 }
@@ -464,6 +467,8 @@ function get_words(){
         create_body_diagram();
         populate_color_picker();
         populate_time();
+        populate_wordle();
+        populate_wordle_alphabet();
     });
 
     if ($('#alphabet').length > 0){
@@ -476,6 +481,68 @@ function get_words(){
         var audio = new Audio(url);
         get_audio_duration(audio,i);
         audio.src = url;
+    }
+}
+
+function populate_wordle(){    
+    var word = "";
+    for (var i = 0; i < words_list.length; i++){
+        if (lang_i == 0){
+            var rand_word = shuffled_list[i].ka_words;
+        }
+        else if (lang_i == 1){
+            var rand_word = shuffled_list[i].ru_words;
+        }
+        else if (lang_i == 2){
+            var rand_word = shuffled_list[i].fr_words;
+        }
+        else if (lang_i == 3){
+            var rand_word = shuffled_list[i].ko_words;
+        }
+        if ((rand_word.length == 0) || (rand_word == '-') || (rand_word.length < 4) || (rand_word.length > 7) || (rand_word.includes(','))){
+            continue;
+        }
+        word = rand_word;
+        break;
+    }
+    var wordle = $('#wordle');
+    wordle.html('');
+    wordle_word = word;
+    wordle_active_row = 0;
+    var table = $('<table>');
+    for (var i = 0; i < 5; i++){
+        var tr = $('<tr>');
+        for (var j = 0; j < word.length; j++){
+            var td = $('<td>');
+            tr.append(td);
+        }
+        table.append(tr);
+    }
+    wordle.append(table);
+}
+
+function populate_wordle_alphabet(){
+    var alphabet_el = $('#wordle_alphabet');
+    var alphabet = alphabets[lang_i];
+    for (var i = 0; i < alphabet.length; i++) {
+        var letter = $("<p>").text(alphabet[i]);
+        letter.addClass("letter");
+        letter.on("click", add_wordle_letter);
+        alphabet_el.append(letter);
+    }
+}
+
+function add_wordle_letter(){
+    var letter = $(this).text();
+    var wordle = $('#wordle');
+    var table = wordle.children('table');
+    var tr = table.children('tr').eq(wordle_active_row);
+    for (var i = 0; i < wordle_word.length; i++){
+        var td = tr.children('td').eq(i);
+        if (td.text().length == 0){
+            td.text(letter);
+            break;
+        }
     }
 }
 
@@ -513,9 +580,11 @@ function populate_alphabet(){
 $(document).on('input','#number_input',function(e){
     var number = $(this).val();
     var translated_number = get_spelled_out_number(number);
+    if (translated_number == ''){
+        translated_number = 'not a number !';
+    }
     $('#number_output p').text(translated_number);
-    var bg_colors = ["#fbc59f","#f4eb84","#c499e0","#f39f95","#a9e3bb","#a6cdf4","#e6b8b8"];
-    $('#number_output').css('background-color',bg_colors[Math.floor(Math.random() * bg_colors.length)]);
+    $('#number_output').attr('class','col' + Math.floor(Math.random() * 7 + 1));
 });
 
 function get_spelled_out_number(number){
@@ -811,8 +880,15 @@ function update_game_guess() {
     $('#guess_word').attr('ru_words', word.ru_words);
     $('#guess_word').attr('ko_words', word.ko_words);
     var col = $('.word[ka_words="' + word.ka_words + '"]').css('background-color');
-    $("#guess_word").css("background-color", col);
+    var col_r = col.split(',')[0].split('(')[1];
+    var col_g = col.split(',')[1];
+    var col_b = col.split(',')[2].split(')')[0];
+    var col_idx = ['#fbc59f','#f4eb84','#c499e0','#f39f95','#a9e3bb','#a6cdf4','#e6b8b8'].indexOf(rgbToHex(col_r,col_g,col_b));
+    $('#guess_word').attr('class','col' + (col_idx+1));
     $("#guess_input").val("");
+    var word_to_say = words[lang_i].replace(',',' ');
+    $('#guess_word').off("click");
+    $('#guess_word').click({letter:word_to_say},play_word_sound);
 }
 
 function update_progress_bar() {
@@ -838,20 +914,25 @@ function play_audio_index(url,time){
 }
 
 function play_word_sound(){
-    if (lang_i == 0){
-        var letters = $(this).attr('ka_words').split("");
-    }
-    else if (lang_i == 1){
-        var letters = $(this).attr('ru_words').split("");
-    }
-    else if (lang_i == 2){
-        if ($(this).attr('fr_pron') == '-'){
-            return;
+    if (arguments[0].data == undefined){
+        if (lang_i == 0){
+            var letters = $(this).attr('ka_words').split("");
         }
-        var letters = JSON.parse($(this).attr('fr_pron'));
+        else if (lang_i == 1){
+            var letters = $(this).attr('ru_words').split("");
+        }
+        else if (lang_i == 2){
+            if ($(this).attr('fr_pron') == '-'){
+                return;
+            }
+            var letters = JSON.parse($(this).attr('fr_pron'));
+        }
+        else if (lang_i == 3){
+            var letters = $(this).attr('ko_words').split("");
+        }
     }
-    else if (lang_i == 3){
-        var letters = $(this).attr('ko_words').split("");
+    else{
+        letters = arguments[0].data.letter.split('');
     }
     var total_duration = 0;
     var alphabet = pron_alphabets[lang_i];
@@ -932,3 +1013,7 @@ function HSVtoRGB(h, s, v) {
         b: Math.round(b * 255)
     };
 }
+
+function rgbToHex(r, g, b) {
+    return "#" + (1 << 24 | r << 16 | g << 8 | b).toString(16).slice(1);
+  }
