@@ -1025,7 +1025,7 @@ border-right: 1px solid black;
 }
 
 #wordle{
-    width:400px;
+    width:350px;
     max-width:750px;
     margin:0 auto;
     margin-top:50px;
@@ -1058,7 +1058,7 @@ border-right: 1px solid black;
 
 #wordle_alphabet{
     margin: 0 auto;
-    width:400px;
+    width:350px;
 }
 
 #wordle_output{
@@ -1067,7 +1067,7 @@ border-right: 1px solid black;
 }
 
 .wordle_return,.wordle_enter{
-    width:190px;
+    width:165px;
 }
 
 .wordle_return{

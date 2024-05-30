@@ -502,7 +502,7 @@ function populate_wordle(){
         else if (lang_i == 3){
             var rand_word = shuffled_list[i].ko_words;
         }
-        if ((rand_word.length == 0) || (rand_word == '-') || (rand_word.length < 4) || (rand_word.length > 7) || (rand_word.includes(',')) || (rand_word.includes(' ')) ||(rand_word.includes('?'))){
+        if ((rand_word.length == 0) || (rand_word == '-') || (rand_word.length < 4) || (rand_word.length > 6) || (rand_word.includes(',')) || (rand_word.includes(' ')) ||(rand_word.includes('?'))){
             continue;
         }
         word = rand_word;
