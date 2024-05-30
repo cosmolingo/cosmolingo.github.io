@@ -434,7 +434,7 @@ function get_words(){
 
             wordsDiv.append(wordElement);
         });
-        $('#search_bar').attr('placeholder', 'Search in ' + total_words + ' words');
+        $('#search_bar').attr('placeholder', 'search in ' + total_words + ' words');
         $('#search_bar').val('');
         shuffled_list = shuffleArray(words_list);
         var new_shuffled_list = [];
