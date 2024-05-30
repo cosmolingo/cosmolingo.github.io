@@ -603,10 +603,10 @@ function wordle_enter_word(){
     if (wordle_active_row == 5){
         setTimeout(function() {
             if (word == wordle_word){
-                $('#wordle_output').text('well done, ' + wordle_word + ' - ' + worlde_word_en + '. click to replay');
+                $('#wordle_output').html('well done, ' + wordle_word + ' - ' + worlde_word_en + '<br/>click to replay');
             }
             else{
-                $('#wordle_output').text('the word was ' + wordle_word + ' - ' + worlde_word_en + '. click to replay');
+                $('#wordle_output').html('the word was ' + wordle_word + ' - ' + worlde_word_en + '<br/>click to replay');
             }
             $('#wordle_output').css('cursor','pointer');
             $('#wordle_output').animate({ opacity: 1 });

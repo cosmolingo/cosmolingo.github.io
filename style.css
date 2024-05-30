@@ -1064,6 +1064,7 @@ border-right: 1px solid black;
 #wordle_output{
     opacity:0;
     margin-bottom:25px;
+    height: auto;
 }
 
 .wordle_return,.wordle_enter{
