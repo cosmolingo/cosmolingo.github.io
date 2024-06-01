@@ -120,11 +120,11 @@ h1{
     transition: max-height .5s ease-in-out;
 }
 
-.section h2{
+h2{
     cursor: pointer;
 }
 
-.section h2::after{
+h2::after{
     transition: all 0.25s ease-in-out;
     display: inline-block;
     content: "\25be";
@@ -132,7 +132,7 @@ h1{
     margin-top: -5px;
 }
 
-.section h2[active="true"]::after{
+h2[active="true"]::after{
     transform: scale(1.5) translateX(7.5px);
 }
 
@@ -367,7 +367,7 @@ h1 .fa-sun{
 }
 
 h2{
-    font-size:30px;
+    font-size:40px;
     font-weight:700;
     margin:0 auto;
     margin-bottom:10px;
@@ -375,8 +375,8 @@ h2{
     margin-top:50px;
 }
 
-h1{
-    font-size:40px;
+h2{
+    font-size:30px;
     font-weight:700;
     margin:0 auto;
     margin-bottom:10px;

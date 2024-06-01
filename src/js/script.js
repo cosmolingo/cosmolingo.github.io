@@ -94,7 +94,7 @@ $(document).ready(function(){
         data = lines.join('\n');
 
         $('#grammar').html(data);
-        $('#grammar').prepend('<h1>Grammar</h1>');
+        $('#grammar').prepend('<h2>Grammar</h2>');
         $('.game_section').detach().appendTo('#games');
         $('.main_section').detach().appendTo('#main');
         //Get word list and populate words section
@@ -767,7 +767,7 @@ function get_spelled_out_number(number){
     return translated_number;
 }
 
-$(document).on('click','.section h2',function(e){
+$(document).on('click','h2',function(e){
     $(this).attr('active',$(this).attr('active') == 'true' ? 'false' : 'true');
     if ($(this).attr('active') == 'true'){
         $(this).siblings('.content').css('max-height','2000px');
