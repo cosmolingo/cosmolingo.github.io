@@ -200,3 +200,4 @@ n;time:дүйсенбі:monday:lundi(l_in_d_i):понедельник:
 n;time:сейсенбі:tuesday:mardi(m_a_r_d_i):вторник:
 n;time:сәрсенбі:wednesday:mercredi(m_è_r_c_r_eu_d_i):среда:
 n;time:бейсенбі:thursday:jeudi(j_eu_d_i):четверг:
+n;time:жұма:friday:vendredi(v_an_d_r_eu_d_i):пятница:

@@ -116,7 +116,8 @@ h1{
 
 .section .content{
     overflow-y: hidden;
-    height:0px;
+    max-height:0px;
+    transition: max-height .5s ease-in-out;
 }
 
 .section h2{
@@ -486,7 +487,7 @@ h2{
     padding-top:10px;
 }
 
-.cases,#tenses{
+.cases,.tenses{
     width:100%;
     overflow-x: auto;
 }
@@ -1028,7 +1029,6 @@ border-right: 1px solid black;
     width:350px;
     max-width:750px;
     margin:0 auto;
-    margin-top:50px;
     display:block;
     text-align:center;
 }
@@ -1065,6 +1065,7 @@ border-right: 1px solid black;
     opacity:0;
     margin-bottom:25px;
     height: auto;
+    min-height: 25px;
 }
 
 .wordle_return,.wordle_enter{

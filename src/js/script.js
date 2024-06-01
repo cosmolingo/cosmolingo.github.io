@@ -94,6 +94,7 @@ $(document).ready(function(){
         data = lines.join('\n');
 
         $('#grammar').html(data);
+        $('.game_section').detach().appendTo('#games');
         //Get word list and populate words section
         get_words();
         populate_numbers();
@@ -525,6 +526,7 @@ function populate_wordle(){
         table.append(tr);
     }
     wordle.append(table);
+    $('#wordle_output').text('');
 }
 
 function populate_wordle_alphabet(){
@@ -766,10 +768,10 @@ function get_spelled_out_number(number){
 $(document).on('click','.section h2',function(e){
     $(this).attr('active',$(this).attr('active') == 'true' ? 'false' : 'true');
     if ($(this).attr('active') == 'true'){
-        $(this).siblings('.content').css('height','auto');
+        $(this).siblings('.content').css('max-height','2000px');
     }
     else{
-        $(this).siblings('.content').css('height','0px');
+        $(this).siblings('.content').css('max-height','0px');
     }
 });
 
