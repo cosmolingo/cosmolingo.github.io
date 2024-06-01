@@ -94,7 +94,9 @@ $(document).ready(function(){
         data = lines.join('\n');
 
         $('#grammar').html(data);
+        $('#grammar').prepend('<h1>Grammar</h1>');
         $('.game_section').detach().appendTo('#games');
+        $('.main_section').detach().appendTo('#main');
         //Get word list and populate words section
         get_words();
         populate_numbers();
