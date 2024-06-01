@@ -93,10 +93,13 @@ $(document).ready(function(){
         lines.splice(-2,2);
         data = lines.join('\n');
 
-        $('#grammar').html(data);
-        $('#grammar').prepend('<h2>Grammar</h2>');
-        $('.game_section').detach().appendTo('#games');
+        $('#grammar .section_content').html(data);
+        $('.game_section').detach().appendTo('#games .section_content');
         $('.main_section').detach().appendTo('#main');
+        if ($('.grammar_section').length == 0){
+            $('#grammar').remove();
+            $('#games h2').click();
+        }
         //Get word list and populate words section
         get_words();
         populate_numbers();
@@ -770,10 +773,10 @@ function get_spelled_out_number(number){
 $(document).on('click','h2',function(e){
     $(this).attr('active',$(this).attr('active') == 'true' ? 'false' : 'true');
     if ($(this).attr('active') == 'true'){
-        $(this).siblings('.content').css('max-height','2000px');
+        $(this).siblings('.section_content').css('max-height','5000px');
     }
     else{
-        $(this).siblings('.content').css('max-height','0px');
+        $(this).siblings('.section_content').css('max-height','0px');
     }
 });
 

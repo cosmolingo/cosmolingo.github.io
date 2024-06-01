@@ -114,7 +114,7 @@ h1{
     box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.1);
 }
 
-.section .content{
+#games .section_content,#grammar .section_content{
     overflow-y: hidden;
     max-height:0px;
     transition: max-height .5s ease-in-out;
@@ -375,7 +375,7 @@ h2{
     margin-top:50px;
 }
 
-h2{
+h3{
     font-size:30px;
     font-weight:700;
     margin:0 auto;
