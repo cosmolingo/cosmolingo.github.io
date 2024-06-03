@@ -477,6 +477,7 @@ function get_words(){
         populate_time();
         populate_wordle();
         populate_wordle_alphabet();
+        populate_clock();
     });
 
     if ($('#alphabet').length > 0){
@@ -490,6 +491,36 @@ function get_words(){
         get_audio_duration(audio,i);
         audio.src = url;
     }
+}
+
+function populate_clock(){
+    if ($('.clock').length == 0){
+        return;
+    }
+    $('.clock').clockTimePicker({
+        colors: {
+            popupBackgroundColor: 'rgba(0,0,0,0)',
+            clockFaceColor: '#efe273',
+            selectorColor: '#f39f95'
+        },
+        fonts: {
+            fontFamily: "Balsamiq Sans"
+        },
+        onChange: clock_translate,
+        onAdjust: clock_translate
+    });
+    var clock_div = $('.clock-timepicker-popup div');
+    var clock_shadow = $('<div>');
+    clock_shadow.addClass('clock-shadow');
+    clock_shadow.css('width',clock_div.width());
+    clock_shadow.css('height',clock_div.height());
+    clock_shadow.css('border-radius',clock_div.width());
+    clock_div.append(clock_shadow);
+}
+
+function clock_translate(){
+    var clock_input = $('input.clock').get(0);
+    console.log(clock_input.value);
 }
 
 function populate_wordle(){    

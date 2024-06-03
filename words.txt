@@ -201,3 +201,6 @@ n;time:сейсенбі:tuesday:mardi(m_a_r_d_i):вторник:
 n;time:сәрсенбі:wednesday:mercredi(m_è_r_c_r_eu_d_i):среда:
 n;time:бейсенбі:thursday:jeudi(j_eu_d_i):четверг:
 n;time:жұма:friday:vendredi(v_an_d_r_eu_d_i):пятница:
+n;time:сенбі:saturday:samedi(s_a_m_eu_d_i):суббота:
+n;time:жексенбі:sunday:dimanche(d_i_m_an_ch):воскресенье:
+n;time:қаңтар:january:janvier(j_an_v_i_é):январь:
