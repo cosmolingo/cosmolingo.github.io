@@ -824,7 +824,7 @@ $(document).on('click','#filter_tags',function(e){
 
 $(document).on('click','.tag',function(e){
     var filter = 'tags';
-    if ($(this).html() != 'All'){
+    if ($(this).html() != 'all'){
         filter = $(this).html();
     }
     else{
