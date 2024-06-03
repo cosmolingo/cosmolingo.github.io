@@ -928,7 +928,7 @@ function update_word_list(){
         if (lang_words[lang_i].includes(searchValue) || en_words.includes(searchValue)) {
             var type_i = ['n','v','a','o'].indexOf(type);
             if ((filters[type_i]) || (filters.includes(true) == false)){
-                if ($('.tag-filter p').html() != 'Tags'){
+                if ($('.tag-filter p').html() != 'tags'){
                     if ($(this).attr('tags').split(',').includes($('.tag-filter p').html())){
                         $(this).show();
                     }
