@@ -205,3 +205,5 @@ n;time:сенбі:saturday:samedi(s_a_m_eu_d_i):суббота:
 n;time:жексенбі:sunday:dimanche(d_i_m_an_ch):воскресенье:
 n;time:қаңтар:january:janvier(j_an_v_i_é):январь:
 n;time:ақпан:february:février(f_é_v_r_i_é):февраль:
+n;time:наурыз:march:mars(m_a_r_s):март:
+n;time:сағат:hour:heure(e_r):час:

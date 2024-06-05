@@ -64,6 +64,14 @@ var special_numbers = [
 var days = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
 var months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 
+var clock_intro = ['Сағат','Время','Il est','시간'];
+var hour_suffixes_1 = {
+    0:'',1:'ден',2:'ден',3:'тен',4:'тен',5:'тен',6:'дан',7:'ден',8:'ден',9:'дан',10:'нан',11:'ден',12:'ден'
+};
+var hour_suffixes_2 = {
+    0:'',1:'ге',2:'ге',3:'ке',4:'ке',5:'ке',6:'ға',7:'ге',8:'ге',9:'ға',10:'ға',11:'ге',12:'ге'
+}
+
 var lang_i = 0;
 var url_lang = getUrlParameter('lang');
 if (url_lang == 'ru'){
@@ -272,7 +280,7 @@ function populate_color_picker(){
         borderRadius:'10',
         paletteHeight:'30'
     };
-    $('.colors .content').append('<div id="color_picker" data-jscolor="" value="#3399FF"><p>Pick a color</p></div><br/>');
+    $('.colors .content').append('<div id="color_picker" data-jscolor="" value="#3399FF"><p>pick a color</p></div><br/>');
     jscolor.install();
 }
 
@@ -504,10 +512,14 @@ function populate_clock(){
             selectorColor: '#f39f95'
         },
         fonts: {
-            fontFamily: "Balsamiq Sans"
+            fontFamily: "Balsamiq Sans",
+            clockInnerCircleFontSize:20,
+            clockOuterCircleFontSize:20,
         },
         onChange: clock_translate,
-        onAdjust: clock_translate
+        onAdjust: clock_translate,
+        popupWidthOnDesktop:300,
+
     });
     var clock_div = $('.clock-timepicker-popup div');
     var clock_shadow = $('<div>');
@@ -516,11 +528,102 @@ function populate_clock(){
     clock_shadow.css('height',clock_div.height());
     clock_shadow.css('border-radius',clock_div.width());
     clock_div.append(clock_shadow);
+    $('<div id="clock_output">pick a time</div>').insertAfter($('.clock-timepicker'));
 }
 
 function clock_translate(){
     var clock_input = $('input.clock').get(0);
-    console.log(clock_input.value);
+    var time = clock_input.value;
+    var hours = parseInt(time.split(':')[0]);
+    var minutes = parseInt(time.split(':')[1]);
+    //console.log(hours,minutes);
+    var str = clock_intro[lang_i] + ' ';
+    if (lang_i == 0){
+        if (minutes > 30 && minutes % 5 == 0){
+            hours += 1
+        }
+        if (hours > 12){
+            hours -= 12;
+            str += 'кешкі ' + get_spelled_out_number(hours) + ' ';
+        }
+        else if (hours < 12){
+            str += 'таңғы ' + get_spelled_out_number(hours) + ' ';
+        }
+        else{
+            str += get_spelled_out_number(hours) + ' ';
+        }
+        if (minutes == 0){
+            
+        }
+        else if (minutes == 30){
+            str += 'жарым';
+        }
+        else if (minutes % 5 == 0){
+            str = str.slice(0,-1);
+            if (minutes < 30){
+                str += hour_suffixes_1[hours] + ' ' + get_spelled_out_number(minutes) + ' кетті';
+            }
+            else{
+                str += hour_suffixes_2[hours] + ' ' + get_spelled_out_number(60 - minutes) + ' минут қалды';
+            }
+        }
+        else{
+            str += get_spelled_out_number(minutes);
+        }
+        $('#clock_output').text(str);
+    }
+    else if (lang_i == 2){
+        if (minutes > 30 && minutes % 5 == 0 && (hours < 12 || hours == 23)){
+            hours += 1
+        }
+        if (hours == 0 || hours == 24){
+            str += 'minuit ';
+        }
+        else if (hours == 12){
+            str += 'midi ';
+        }
+        else{
+            var hour_str = get_spelled_out_number(hours);
+            if (hour_str.slice(-2) == 'un'){
+                hour_str += 'e';
+            }
+            if (hour == 1){
+                str += hour_str + ' heure';
+            }
+            else{
+                str += hour_str + ' heures ';
+            }
+        }
+        if (minutes == 0){
+            
+        }
+        else if (minutes == 30){
+            if (hours <= 12){
+                str += 'et demi';
+            }
+            else{
+                str += ' trente';
+            }
+        }
+        else if (minutes == 15){
+            if (hours <= 12){
+                str += 'et quart';
+            }
+            else{
+                str += 'quinze';
+            }
+        }
+        else if (minutes == 45){
+            str += 'moins le quart';
+        }
+        else if (minutes > 30 && minutes % 5 == 0){
+            str += ' moins ' + get_spelled_out_number(60 - minutes);
+        }
+        else{
+            str += get_spelled_out_number(minutes);
+        }
+        $('#clock_output').text(str);
+    }
 }
 
 function populate_wordle(){    
