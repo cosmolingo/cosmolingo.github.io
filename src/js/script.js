@@ -561,14 +561,24 @@ function clock_translate(){
         else if (minutes % 5 == 0){
             str = str.slice(0,-1);
             if (minutes < 30){
-                str += hour_suffixes_1[hours] + ' ' + get_spelled_out_number(minutes) + ' кетті';
+                if (minutes < 10){
+                    str += hour_suffixes_1[hours] + ' ' + get_spelled_out_number(0) + ' ' + get_spelled_out_number(minutes) + ' кетті';
+                }
+                else{
+                    str += hour_suffixes_1[hours] + ' ' + get_spelled_out_number(minutes) + ' кетті';
+                }
             }
             else{
                 str += hour_suffixes_2[hours] + ' ' + get_spelled_out_number(60 - minutes) + ' минут қалды';
             }
         }
         else{
-            str += get_spelled_out_number(minutes);
+            if (minutes < 10){
+                str += get_spelled_out_number(0) + ' ' + get_spelled_out_number(minutes);
+            }
+            else{
+                str += get_spelled_out_number(minutes);
+            }
         }
         $('#clock_output').text(str);
     }
