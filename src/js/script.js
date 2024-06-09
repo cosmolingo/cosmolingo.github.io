@@ -1,8 +1,6 @@
-//Wordle
 //Spatial preposition
 //Past tense table
 //To be table
-//Clock
 //Seasons in the time section
 //Weather
 //Clothes where you chose each clothing with arrows
@@ -115,6 +113,19 @@ $(document).ready(function(){
         setup_renderer();
     });
 });
+
+function populate_weather(){
+    if ($('.weather').length == 0){
+        return;
+    }
+    $.get( "https://www.7timer.info/bin/civillight.php?lon=2.4&lat=48.9&ac=0&unit=metric&output=json&tzshift=0", function( data ) {
+        var weather = JSON.parse(data)['dataseries'];
+    });
+
+    for (var i = 0; i < 6; i++){
+        console.log(weather[i]);
+    }
+}
 
 function populate_time(){
     if ($('.time').length == 0){
@@ -486,6 +497,7 @@ function get_words(){
         populate_wordle();
         populate_wordle_alphabet();
         populate_clock();
+        populate_weather();
     });
 
     if ($('#alphabet').length > 0){

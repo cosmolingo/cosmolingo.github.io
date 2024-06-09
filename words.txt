@@ -208,3 +208,5 @@ n;time:ақпан:february:février(f_é_v_r_i_é):февраль:
 n;time:наурыз:march:mars(m_a_r_s):март:
 n;time:сағат:hour:heure(e_r):час:
 n;time:сауір:april:avril(a_v_r_i_l):апрель:
+n;time:мамыр:may:mai(m_è):май:
+n;time:маусым:june:juin(j_u_in):июнь:
