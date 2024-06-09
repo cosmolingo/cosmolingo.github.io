@@ -1232,6 +1232,15 @@ border-right: 1px solid black;
 
 .clock:focus{
     outline:none;
+    background-color:#80a9d1 !important;
+    border-bottom: 1.5px solid #5a4813 !important;
+    box-shadow: 0 2px 2px rgba(0,0,0,0.25) inset !important;
+}
+
+.clock:active{
+    background-color:#80a9d1 !important;
+    border-bottom: 1.5px solid #5a4813 !important;
+    box-shadow: 0 2px 2px rgba(0,0,0,0.25) inset !important;
 }
 
 .weather h3{

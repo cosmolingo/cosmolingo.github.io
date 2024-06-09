@@ -2,7 +2,6 @@
 //Past tense table
 //To be table
 //Seasons in the time section
-//Weather
 //Clothes where you chose each clothing with arrows
 //Fruits & Vegetables
 
@@ -121,7 +120,6 @@ $(document).ready(function(){
         $('.main_section').detach().appendTo('#main');
         if ($('.grammar_section').length == 0){
             $('#grammar').remove();
-            $('#games h2').click();
         }
         //Get word list and populate words section
         get_words();
@@ -139,14 +137,12 @@ function setup_toys(){
         var div = $('<div>');
         div.addClass('games_button');
         div.attr('active',false);
-        var cols = ['#fbc59f','#f4eb84','#c499e0','#f39f95','#a9e3bb','#a6cdf4','#e6b8b8'];
-        //div.css('background-color',cols[index % cols.length]);
         div.text(name);
         div.click(function(){
             $('.game_section').hide();
             if ($(this).attr('active') == 'true'){
                 $('.games_button').attr('active',false);
-                $t(this).attr('active',false);
+                $(this).attr('active',false);
             }
             else{
                 $('.game_section h3:contains("' + name + '")').parent().show();   
@@ -615,6 +611,9 @@ function populate_clock(){
         popupWidthOnDesktop:300,
 
     });
+    $('.clock').on('touchstart',function(e){
+        $('.clock').click();
+    });
     var clock_div = $('.clock-timepicker-popup div');
     var clock_shadow = $('<div>');
     clock_shadow.addClass('clock-shadow');
@@ -1008,7 +1007,7 @@ function get_spelled_out_number(number){
     return translated_number;
 }
 
-$(document).on('click','h2',function(e){
+$(document).on('click','#grammar h2',function(e){
     $(this).attr('active',$(this).attr('active') == 'true' ? 'false' : 'true');
     if ($(this).attr('active') == 'true'){
         $(this).siblings('.section_content').css('max-height','5000px');
