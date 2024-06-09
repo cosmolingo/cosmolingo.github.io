@@ -99,6 +99,9 @@ else if (url_lang == 'kr'){
 }
 
 $(document).ready(function(){
+    $('.test_clock').clockTimePicker();
+
+
     //Change theme color depending on the language
     document.documentElement.style.setProperty("--primary-color", colors[lang_i][0]);
     document.documentElement.style.setProperty("--secondary-color", colors[lang_i][1]);
@@ -595,7 +598,7 @@ function populate_clock(){
     if ($('.clock').length == 0){
         return;
     }
-    $('.clock').clockTimePicker({
+    $('.clock').clockTimePicker(/*{
         colors: {
             popupBackgroundColor: 'rgba(0,0,0,0)',
             clockFaceColor: '#efe273',
@@ -610,7 +613,7 @@ function populate_clock(){
         onAdjust: clock_translate,
         popupWidthOnDesktop:300,
 
-    });
+    }*/);
     $('.clock').on('touchstart',function(e){
         if ($('.clock-timepicker-popup').css('display') == 'none'){
             $('.clock').clockTimePicker('show');
