@@ -614,14 +614,6 @@ function populate_clock(){
         popupWidthOnDesktop:300,
 
     });
-    $('.clock').on('touchstart',function(e){
-        if ($('.clock-timepicker-popup').css('display') == 'none'){
-            $('.clock').clockTimePicker('show');
-        }
-        else{
-            $('.clock').clockTimePicker('hide');
-        }
-    });
     var clock_div = $('.clock-timepicker-popup div');
     var clock_shadow = $('<div>');
     clock_shadow.addClass('clock-shadow');
