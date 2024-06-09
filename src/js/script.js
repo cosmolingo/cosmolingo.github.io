@@ -118,13 +118,49 @@ function populate_weather(){
     if ($('.weather').length == 0){
         return;
     }
+    var weather_types = {
+        clear:'clear-day',
+        pcloudy:'partly-cloudy-day',
+        mcloudy:'overcast-day',
+        cloudy:'cloudy',
+        humid:'fog',
+        lightrain:'overcast-drizzle',
+        oshower:'overcast-day-rain',
+        ishower:'overcast-rain',
+        lighsnow:'overcast-day-snow',
+        rain:'rain',
+        snow:'snow',
+        rainsnow:'sleet',
+        ts:'thunderstorms',
+        tsrain:'thunderstorms-rain'
+    };
     $.get( "https://www.7timer.info/bin/civillight.php?lon=2.4&lat=48.9&ac=0&unit=metric&output=json&tzshift=0", function( data ) {
         var weather = JSON.parse(data)['dataseries'];
+        for (var i = 0; i < 7; i++){
+            var weather_type = weather[i]['weather'];
+            var weather_type = weather_types[weather_type];
+            var weather_temp_min = weather[i]['temp2m']['min'];
+            var weather_temp_max = weather[i]['temp2m']['max'];
+            var div = $('<div>');
+            div.addClass('weather_day');
+            var p = $('<p>');
+            if (i == 0){
+                p.text('Today');
+            }
+            else{
+                p.text('D+' + (i+2));
+            }
+            div.append(p);
+            var img = $('<img>');
+            var url = base_url + '/src/weather/' + weather_type + '.svg';
+            img.attr('src',url);
+            div.append(img);
+            var p = $('<p>');
+            p.text(weather_temp_min + '°C - ' + weather_temp_max + '°C');
+            div.append(p);
+            $('.weather').append(div);
+        }
     });
-
-    for (var i = 0; i < 6; i++){
-        console.log(weather[i]);
-    }
 }
 
 function populate_time(){

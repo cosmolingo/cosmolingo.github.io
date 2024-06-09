@@ -1188,7 +1188,18 @@ border-right: 1px solid black;
     outline:none;
 }
 
-
+.weather_day{
+    display:inline-block;
+    width:100px;
+    height:100px;
+    margin:0 auto;
+    border:1.5px solid #5a4813;
+    border-bottom: 3px solid #5a4813;
+    border-radius:10px;
+    text-align:center;
+    margin-left: 15px;
+    margin-right: 15px;
+}
 
 
 
