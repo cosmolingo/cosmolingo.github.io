@@ -996,10 +996,8 @@ border-right: 1px solid black;
 
 .table_week,.table_year{
     font-size:15px;
-    min-width:500px;
     border:1px solid #5a4813;
     border-collapse:collapse;
-    width:90%;
     margin:0 auto;
     border-radius:5px;
     border-spacing: 0;
@@ -1013,11 +1011,11 @@ border-right: 1px solid black;
 }
 
 .table_year{
-    max-width:1000px;
+    width:1000px;
 }
 
 .table_week{
-    max-width:750px;
+    width:750px;
 }
 
 .table_year th,.table_week th{
