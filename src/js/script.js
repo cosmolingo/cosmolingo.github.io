@@ -598,7 +598,7 @@ function populate_clock(){
     if ($('.clock').length == 0){
         return;
     }
-    $('.clock').clockTimePicker(/*{
+    $('.clock').clockTimePicker({
         colors: {
             popupBackgroundColor: 'rgba(0,0,0,0)',
             clockFaceColor: '#efe273',
@@ -613,7 +613,7 @@ function populate_clock(){
         onAdjust: clock_translate,
         popupWidthOnDesktop:300,
 
-    }*/);
+    });
     $('.clock').on('touchstart',function(e){
         if ($('.clock-timepicker-popup').css('display') == 'none'){
             $('.clock').clockTimePicker('show');
