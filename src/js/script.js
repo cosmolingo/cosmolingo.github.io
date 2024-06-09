@@ -62,6 +62,23 @@ var special_numbers = [
 var days = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
 var months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 
+var weather_types = {
+    clear:{src:'clear-day',en_name:'Clear'},
+    pcloudy:{src:'partly-cloudy-day',en_name:'Partly cloudy'},
+    mcloudy:{src:'overcast-day',en_name:'Mostly cloudy'},
+    cloudy:{src:'cloudy',en_name:'Cloudy'},
+    humid:{src:'fog',en_name:'Humid'},
+    lightrain:{src:'overcast-drizzle',en_name:'Light rain'},
+    oshower:{src:'overcast-day-rain',en_name:'Occasional showers'},
+    ishower:{src:'overcast-rain',en_name:'Isolated showers'},
+    lighsnow:{src:'overcast-day-snow',en_name:'Light snow'},
+    rain:{src:'rain',en_name:'Rain'},
+    snow:{src:'snow',en_name:'Snow'},
+    rainsnow:{src:'sleet',en_name:'Rain & snow'},
+    ts:{src:'thunderstorms',en_name:'Thunderstorms'},
+    tsrain:{src:'thunderstorms-rain',en_name:'Thunderstorms & rain'},
+};
+
 var clock_intro = ['Сағат','Время','Il est','시간'];
 var hour_suffixes_1 = {
     0:'',1:'ден',2:'ден',3:'тен',4:'тен',5:'тен',6:'дан',7:'ден',8:'ден',9:'дан',10:'нан',11:'ден',12:'ден'
@@ -111,66 +128,85 @@ $(document).ready(function(){
         populate_numbers();
         $('#number_output p').text(special_numbers[lang_i][0]);
         setup_renderer();
+        setup_toys();
     });
 });
+
+function setup_toys(){
+    $('.game_section').hide();
+    $('.game_section').each(function(index){
+        var name = $(this).children('h3').text();
+        var div = $('<div>');
+        div.addClass('games_button');
+        div.attr('active',false);
+        var cols = ['#fbc59f','#f4eb84','#c499e0','#f39f95','#a9e3bb','#a6cdf4','#e6b8b8'];
+        //div.css('background-color',cols[index % cols.length]);
+        div.text(name);
+        div.click(function(){
+            $('.game_section').hide();
+            if ($(this).attr('active') == 'true'){
+                $('.games_button').attr('active',false);
+                $t(this).attr('active',false);
+            }
+            else{
+                $('.game_section h3:contains("' + name + '")').parent().show();   
+                $('.games_button').attr('active',false);
+                $(this).attr('active',true);
+            }
+        });
+        $('#games .section_content').prepend(div);
+    });
+}
 
 function populate_weather(){
     if ($('.weather').length == 0){
         return;
     }
-    var weather_types = {
-        clear:'clear-day',
-        pcloudy:'partly-cloudy-day',
-        mcloudy:'overcast-day',
-        cloudy:'cloudy',
-        humid:'fog',
-        lightrain:'overcast-drizzle',
-        oshower:'overcast-day-rain',
-        ishower:'overcast-rain',
-        lighsnow:'overcast-day-snow',
-        rain:'rain',
-        snow:'snow',
-        rainsnow:'sleet',
-        ts:'thunderstorms',
-        tsrain:'thunderstorms-rain'
-    };
     $.get( "https://www.7timer.info/bin/civillight.php?lon=2.4&lat=48.9&ac=0&unit=metric&output=json&tzshift=0", function( data ) {
         var weather = JSON.parse(data)['dataseries'];
         for (var i = 0; i < 7; i++){
             var weather_type = weather[i]['weather'];
-            var weather_type = weather_types[weather_type];
+            var weather_type = weather_types[weather_type]['src'];
+            var weather_name = weather_types[weather[i]['weather']]['en_name'];
+            var translated_name = translate_word(weather_name);
             var weather_temp_min = weather[i]['temp2m']['min'];
             var weather_temp_max = weather[i]['temp2m']['max'];
             var div = $('<div>');
             div.addClass('weather_day');
-            var p = $('<p>');
+            var p = $('<p class="weather_n_day">');
             if (i == 0){
                 p.text('Today');
             }
+            else if (i == 1){
+                p.text('Tomorrow');
+            }
             else{
-                p.text('D+' + (i+2));
+                p.text('D+' + (i));
             }
             div.append(p);
             var img = $('<img>');
             var url = base_url + '/src/weather/' + weather_type + '.svg';
             img.attr('src',url);
             div.append(img);
-            var p = $('<p>');
-            p.text(weather_temp_min + '°C - ' + weather_temp_max + '°C');
+            var p = $('<p class="weather_name">');
+            if (translated_name != '') {
+                p.text(translated_name);
+            }
+            else{
+                p.text(weather_name);
+            }
             div.append(p);
-            $('.weather').append(div);
+            var p = $('<p class="weather_temp">');
+            p.html('<span class="tmin">' + weather_temp_min + '°C</span> - <span class="tmax">' + weather_temp_max + '°C</span>');
+            div.append(p);
+            $('.weather .content').append(div);
         }
     });
 }
 
-function populate_time(){
-    if ($('.time').length == 0){
-        return;
-    }
-    var tr = $('<tr>');
-    var en_name = "week";
+function translate_word(word){
     var translated_name = '';
-    var display_name = 'Week';
+    
     $('.word').each(function(){
         var attr = 'ka_words';
         if (lang_i == 1){
@@ -184,10 +220,20 @@ function populate_time(){
         }
         var en_words = $(this).attr('en_words').split(', ');
         
-        if (en_words.includes(en_name)){
+        if (en_words.includes(word)){
             translated_name = $(this).attr(attr);
         }
     });
+    return translated_name;
+}
+
+function populate_time(){
+    if ($('.time').length == 0){
+        return;
+    }
+    var tr = $('<tr>');
+    var display_name = 'Week';
+    var translated_name = translate_word('week');
     if (translated_name != ''){
         display_name += ' : ' + translated_name;
     }
