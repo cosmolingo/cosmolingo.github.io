@@ -132,6 +132,7 @@ h2{
     transition: all 0.25s ease-in-out;
     display: inline-block;
     content: "\25be";
+    font-size:30px;
     transform: scale(1.5) translateX(7.5px) rotate(180deg);
     margin-top: -5px;
 }
