@@ -612,7 +612,12 @@ function populate_clock(){
 
     });
     $('.clock').on('touchstart',function(e){
-        $('.clock').click();
+        if ($('.clock-timepicker-popup').css('display') == 'none'){
+            $('.clock').clockTimePicker('show');
+        }
+        else{
+            $('.clock').clockTimePicker('hide');
+        }
     });
     var clock_div = $('.clock-timepicker-popup div');
     var clock_shadow = $('<div>');
