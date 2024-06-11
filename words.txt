@@ -210,3 +210,5 @@ n;time:сағат:hour:heure(e_r):час:
 n;time:сауір:april:avril(a_v_r_i_l):апрель:
 n;time:мамыр:may:mai(m_è):май:
 n;time:маусым:june:juin(j_u_in):июнь:
+n;time:шілде:july:juillet(j_u_i_y_è):июль:
+n;time:тамыз:august:août(ou_t):август:
