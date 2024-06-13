@@ -124,6 +124,10 @@ h1{
     text-align: center;
 }
 
+#games h2{
+    cursor:auto;
+}
+
 h2{
     cursor: pointer;
 }

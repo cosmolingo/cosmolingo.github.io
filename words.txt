@@ -46,7 +46,7 @@ n-f;family:әпке:sister:soeur(s_e_r):сестра:누나,언니,여동생
 o:иә:yes:oui(ou_i):да:예,네,어,응
 o:Жоқ:no:non(n_on):нет:아니요
 o:айтпа:exactly,right:exactement(é_x_a_k_t_eu_m_an):точно:정확히
-o:Тағы да:again,more:encore,plus(an_k_o_r_ _p_l_u_s):ещё:다시,더
+o:Тағы да:again,more:encore,plus(an_k_oa_r_ _p_l_u_s):ещё:다시,더
 o:өтінемін:please:s'il-te-plaît,s'il-vous-plait,svp,stp(s_i_l_t_eu_p_l_è_ _s_i_l_v_ou_p_l_è_ _è_s_t_é_p_é_ _è_s_v_é_p_é):пожалуйста:주시기 바랍니다,주세요,줘,제발
 v:Болу:be:être(è_t_r):быть:이다
 o:сау:healthy:en bonne santé(an_ _b_oa_n_ _s_an_t_é):здоровье:건강하다
@@ -212,3 +212,5 @@ n;time:мамыр:may:mai(m_è):май:
 n;time:маусым:june:juin(j_u_in):июнь:
 n;time:шілде:july:juillet(j_u_i_y_è):июль:
 n;time:тамыз:august:août(ou_t):август:
+n;time:қазан:october:octobre(o_c_t_oa_b_r):октябрь:
+n;time:қараша:november:novembre(n_o_v_an_b_r):ноябрь:

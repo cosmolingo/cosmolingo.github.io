@@ -100,8 +100,6 @@ else if (url_lang == 'kr'){
 
 $(document).ready(function(){
     $('.test_clock').clockTimePicker();
-
-
     //Change theme color depending on the language
     document.documentElement.style.setProperty("--primary-color", colors[lang_i][0]);
     document.documentElement.style.setProperty("--secondary-color", colors[lang_i][1]);
@@ -112,7 +110,6 @@ $(document).ready(function(){
     //Populate grammar section based on language
     var url = base_url + "/sections/" + languages[lang_i] + ".html";	
     $.get({url: url,cache: false}).then(function(data) {
-        
         var lines = data.split('\n');
         lines.splice(0,16);
         lines.splice(-2,2);
@@ -916,7 +913,6 @@ function update_tag_filter(){
     position_tag_list();
 }
 
-//Create body parts diagram
 function create_body_diagram(){
     if ($('.body_parts').length == 0){
         return;
@@ -926,7 +922,6 @@ function create_body_diagram(){
     $('#diagrams').load(url);
 }
 
-//Populate alphabet section
 function populate_alphabet(){
     var alphabet = alphabets[lang_i];
     for (var i = 0; i < alphabet.length; i++) {
@@ -1155,12 +1150,10 @@ function update_word_list(){
     });
 }
 
-//Search bar behaviour
 $("#search_bar").on("input", function() {
     update_word_list();
 });
 
-//Guess input behaviour
 $('#guess_input').on('keypress', function(e) {
     if(e.which != 13) {//Only listen to enter key
         return;
