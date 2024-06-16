@@ -166,16 +166,13 @@ function setup_tenses(){
 }
 
 function show_hide_tense_tables(){
-    if ($(this).attr('active') == 'true'){
-        return;
-    }
     $('.tense_buttons .button').each(function(){
         $(this).attr('active','false');
     });
     $(this).attr('active','true');
     var tense = $(this).attr('tense');
+    $('.tenses .content h3').text($(this).text());
     $('.tense_table').each(function(){
-        console.log($(this),tense);
         if ($(this).hasClass(tense)){
             $(this).show();
         }
