@@ -60,6 +60,7 @@ var special_numbers = [
 
 var days = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
 var months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+var seasons = ["Winter","Spring","Summer","Autumn"];
 
 var weather_types = {
     clear:{src:'clear-day',en_name:'Clear'},
@@ -318,6 +319,61 @@ function populate_time(){
         tr.append('<td>' + display_name + '</td>');
     }
     $('.table_year').append(tr);
+
+    var tr = $('<tr>');
+    var en_name = "Seasons";
+    var translated_name = '';
+    var display_name = 'Seasons';
+    $('.word').each(function(){
+        var attr = 'ka_words';
+        if (lang_i == 1){
+            attr = 'ru_words';
+        }
+        else if (lang_i == 2){
+            attr = 'fr_words';
+        }
+        else if (lang_i == 3){
+            attr = 'ko_words';
+        }
+        var en_words = $(this).attr('en_words').split(', ');
+        
+        if (en_words.includes(en_name)){
+            translated_name = $(this).attr(attr);
+        }
+    });
+    if (translated_name != ''){
+        display_name += ' : ' + translated_name;
+    }
+    tr.append('<th colspan="12">' + display_name + '</th>');
+    $('.table_season').append(tr);
+    var tr = $('<tr>');
+    for (var i = 0; i < months.length; i++){
+        var display_name = '<p>' + months[i] + '</p>';
+        var en_name = months[i].toLowerCase();
+        var translated_name = '';
+        $('.word').each(function(){
+            var attr = 'ka_words';
+            if (lang_i == 1){
+                attr = 'ru_words';
+            }
+            else if (lang_i == 2){
+                attr = 'fr_words';
+            }
+            else if (lang_i == 3){
+                attr = 'ko_words';
+            }
+            var en_words = $(this).attr('en_words').split(', ');
+            
+            if (en_words.includes(en_name)){
+                translated_name = $(this).attr(attr);
+            }
+        });
+        if (translated_name != ''){
+            display_name += '<p>' + translated_name + '</p>';
+        }
+        tr.append('<td>' + display_name + '</td>');
+    }
+    $('.table_season').append(tr);
 }
 
 function populate_color_picker(){
