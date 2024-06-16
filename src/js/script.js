@@ -136,18 +136,18 @@ function setup_toys(){
     $('.game_section').each(function(index){
         var name = $(this).children('h3').text();
         var div = $('<div>');
-        div.addClass('games_button');
+        div.addClass('button');
         div.attr('active',false);
         div.text(name);
         div.click(function(){
             $('.game_section').hide();
             if ($(this).attr('active') == 'true'){
-                $('.games_button').attr('active',false);
+                $('.button').attr('active',false);
                 $(this).attr('active',false);
             }
             else{
                 $('.game_section h3:contains("' + name + '")').parent().show();   
-                $('.games_button').attr('active',false);
+                $('.button').attr('active',false);
                 $(this).attr('active',true);
             }
         });
