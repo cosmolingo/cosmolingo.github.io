@@ -155,6 +155,36 @@ function setup_toys(){
     });
 }
 
+function setup_tenses(){
+    if ($('.tense_buttons').length == 0){
+        return;
+    }
+    $('.tense_buttons .button').each(function(){
+       $(this).click(show_hide_tense_tables); 
+    });
+    $('.tense_buttons .button[tense="present"]').each(show_hide_tense_tables);
+}
+
+function show_hide_tense_tables(){
+    if ($(this).attr('active') == 'true'){
+        return;
+    }
+    $('.tense_buttons .button').each(function(){
+        $(this).attr('active','false');
+    });
+    $(this).attr('active','true');
+    var tense = $(this).attr('tense');
+    $('.tense_table').each(function(){
+        console.log($(this),tense);
+        if ($(this).hasClass(tense)){
+            $(this).show();
+        }
+        else{
+            $(this).hide();
+        }
+    });
+}
+
 function populate_weather(){
     if ($('.weather').length == 0){
         return;
@@ -632,6 +662,7 @@ function get_words(){
         populate_wordle_alphabet();
         populate_clock();
         populate_weather();
+        setup_tenses();
     });
 
     if ($('#alphabet').length > 0){
