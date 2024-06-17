@@ -218,3 +218,4 @@ n;time:қараша:november:novembre(n_o_v_an_b_r):ноябрь:
 n;time:желтоқсан:december:décembre(d_é_c_an_b_r):декабрь:
 n;time:жыл:year:année(a_n_é):год:
 n;time:қыс:winter:hiver(i_v_è_r):зима:
+n;time:көктем:spring:printemps(p_r_in_t_an):весна:
