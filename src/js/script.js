@@ -1,7 +1,6 @@
 //Spatial preposition
 //Past tense table
 //To be table
-//Seasons in the time section
 //Clothes where you chose each clothing with arrows
 //Fruits & Vegetables
 
@@ -58,25 +57,25 @@ var special_numbers = [
     {}
 ]
 
-var days = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
-var months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-var seasons = ["Winter","Spring","Summer","Autumn"];
+var days = ["monday","tuesday","wednesday","thursday","friday","saturday","sunday"];
+var months = ["january","february","march","april","may","june","july","august","september","october","november","december"];
+var seasons = ["winter","spring","summer","autumn"];
 
 var weather_types = {
-    clear:{src:'clear-day',en_name:'Clear'},
-    pcloudy:{src:'partly-cloudy-day',en_name:'Partly cloudy'},
-    mcloudy:{src:'overcast-day',en_name:'Mostly cloudy'},
-    cloudy:{src:'cloudy',en_name:'Cloudy'},
-    humid:{src:'fog',en_name:'Humid'},
-    lightrain:{src:'overcast-drizzle',en_name:'Light rain'},
-    oshower:{src:'overcast-day-rain',en_name:'Occasional showers'},
-    ishower:{src:'overcast-rain',en_name:'Isolated showers'},
-    lighsnow:{src:'overcast-day-snow',en_name:'Light snow'},
-    rain:{src:'rain',en_name:'Rain'},
-    snow:{src:'snow',en_name:'Snow'},
-    rainsnow:{src:'sleet',en_name:'Rain & snow'},
-    ts:{src:'thunderstorms',en_name:'Thunderstorms'},
-    tsrain:{src:'thunderstorms-rain',en_name:'Thunderstorms & rain'},
+    clear:{src:'clear-day',en_name:'clear'},
+    pcloudy:{src:'partly-cloudy-day',en_name:'partly cloudy'},
+    mcloudy:{src:'overcast-day',en_name:'mostly cloudy'},
+    cloudy:{src:'cloudy',en_name:'cloudy'},
+    humid:{src:'fog',en_name:'humid'},
+    lightrain:{src:'overcast-drizzle',en_name:'light rain'},
+    oshower:{src:'overcast-day-rain',en_name:'occasional showers'},
+    ishower:{src:'overcast-rain',en_name:'isolated showers'},
+    lighsnow:{src:'overcast-day-snow',en_name:'light snow'},
+    rain:{src:'rain',en_name:'rain'},
+    snow:{src:'snow',en_name:'snow'},
+    rainsnow:{src:'sleet',en_name:'rain & snow'},
+    ts:{src:'thunderstorms',en_name:'thunderstorms'},
+    tsrain:{src:'thunderstorms-rain',en_name:'thunderstorms & rain'},
 };
 
 var clock_intro = ['Сағат','Время','Il est','시간'];
