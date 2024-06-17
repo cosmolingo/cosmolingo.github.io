@@ -854,6 +854,7 @@ function populate_wordle(){
 
 function populate_wordle_alphabet(){
     var alphabet_el = $('#wordle_alphabet');
+    alphabet_el.html('');
     var alphabet = alphabets[lang_i];
     for (var i = 0; i < alphabet.length; i++) {
         var letter = $("<p>").text(alphabet[i]);
@@ -925,27 +926,29 @@ function wordle_enter_word(){
     }
 
     wordle_active_row++;
-    if (wordle_active_row == 5){
-        setTimeout(function() {
-            if (word == wordle_word){
-                $('#wordle_output').html('well done, ' + wordle_word + ' - ' + worlde_word_en + '<br/>click to replay');
-            }
-            else{
-                $('#wordle_output').html('the word was ' + wordle_word + ' - ' + worlde_word_en + '<br/>click to replay');
-            }
-            $('#wordle_output').css('cursor','pointer');
-            $('#wordle_output').animate({ opacity: 1 });
-            $('#wordle_output').off('click');
-            $('#wordle_output').on('click',function(e){
-                $('#wordle_output').animate({ opacity: 0 });
-                populate_wordle();
-            });
-        },word.length*250);
-    }
+    setTimeout(function() {
+        if (word == wordle_word){
+            $('#wordle_output').html('well done, ' + wordle_word + ' - ' + worlde_word_en + '<br/>click to replay');
+        }
+        else if (wordle_active_row == 5){
+            $('#wordle_output').html('the word was ' + wordle_word + ' - ' + worlde_word_en + '<br/>click to replay');
+        }
+        else{
+            return;
+        }
+        $('#wordle_output').css('cursor','pointer');
+        $('#wordle_output').animate({ opacity: 1 });
+        $('#wordle_output').off('click');
+        $('#wordle_output').on('click',function(e){
+            $('#wordle_output').animate({ opacity: 0 });
+            populate_wordle_alphabet();
+            populate_wordle();
+        });
+    },word.length*250);
 }
 
 function wordle_update_td(row_i,col_i,type,t){
-    var types = ['#f39f95','#fbc59f','#a9e3bb'];
+    var types = ['#f39f95','#c499e0','#a9e3bb'];
     setTimeout(function() {
         var row = $('#wordle').children('table').children('tr').eq(row_i);
         row.children('td').eq(col_i).css('background-color',types[type]);

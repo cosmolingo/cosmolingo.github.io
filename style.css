@@ -1207,7 +1207,7 @@ border-right: 1px solid black;
     border-bottom-right-radius: 9px;
 }
 
-.table_week{
+.table_week,.table_year{
     margin-bottom: 25px;
 }
 
