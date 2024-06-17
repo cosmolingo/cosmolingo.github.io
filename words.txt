@@ -111,7 +111,7 @@ v:өлтіру:kill:tuer(t_u_é):убить:죽이다
 o:осы:this:ce(s_e):это,эта,этот:이것
 n-m;body part:көтен:booty:petit cul(p_eu_t_i_ _k_u):попа:전리품
 v:білу:know:savoir(s_a_v_o_a_r):знать:알다
-a:Әдемі:beautiful,pretty:beau(b_o):красивый:아름다운,예쁜
+a:әдемі:beautiful,pretty:beau(b_o):красивый:아름다운,예쁜
 n-f:Қотақбас:dickhead:tête de bite(t_è_t_ _d_e_ _b_i_t):придурок:
 n-f;body part:Қотақ:dick:bite(b_i_t):член:음경
 v:көру:see:voir(v_o_a_r):видеть:보다
@@ -207,11 +207,12 @@ n;time:қаңтар:january:janvier(j_an_v_i_é):январь:
 n;time:ақпан:february:février(f_é_v_r_i_é):февраль:
 n;time:наурыз:march:mars(m_a_r_s):март:
 n;time:сағат:hour:heure(e_r):час:
-n;time:сауір:april:avril(a_v_r_i_l):апрель:
+n;time:сауәр:april:avril(a_v_r_i_l):апрель:
 n;time:мамыр:may:mai(m_è):май:
 n;time:маусым:june:juin(j_u_in):июнь:
 n;time:шілде:july:juillet(j_u_i_y_è):июль:
 n;time:тамыз:august:août(ou_t):август:
+n;time:қыркүйек:september:septembre(s_è_p_t_an_b_r):сентябрь:
 n;time:қазан:october:octobre(o_c_t_oa_b_r):октябрь:
 n;time:қараша:november:novembre(n_o_v_an_b_r):ноябрь:
 n;time:желтоқсан:december:décembre(d_é_c_an_b_r):декабрь:

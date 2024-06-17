@@ -1100,7 +1100,7 @@ border-right: 1px solid black;
     border-radius: 10px !important;
 }
 
-.table_week,.table_year{
+.table_week,.table_year,.table_season{
     font-size:15px;
     border:1px solid #5a4813;
     border-collapse:collapse;
@@ -1124,11 +1124,11 @@ border-right: 1px solid black;
     width:750px;
 }
 
-.table_year th,.table_week th{
+.table_year th,.table_week th, .table_season th{
     font-size: 20px;
 }
 
-.table_year td p:nth-child(2),.table_week td p:nth-child(2){
+.table_year td p:nth-child(2),.table_week td p:nth-child(2),.table_season td p:nth-child(2){
     font-weight: bold;
 }
 
@@ -1136,17 +1136,19 @@ border-right: 1px solid black;
 .table_week th:not(:last-child),
 .table_week td:not(:last-child),
 .table_year th:not(:last-child),
-.table_year td:not(:last-child){
+.table_year td:not(:last-child),
+.table_season th:not(:last-child),
+.table_season td:not(:last-child){
     border-right: 1px solid black;
 }
 
-.table_week th,.table_year th{
+.table_week th,.table_year th, .table_season th{
     background-color: var(--primary-color);
     height:45px;
     text-align:center;
 }
 
-.table_week td,.table_year td{
+.table_week td,.table_year td, .table_season td{
     text-align:center;
     height:35px;
     background-color:#e7e0c4;
@@ -1174,23 +1176,34 @@ border-right: 1px solid black;
 .table_week>tr:not(:last-child)>th,
 .table_week>thead:not(:last-child),
 .table_week>tbody:not(:last-child),
-.table_week>tfoot:not(:last-child) {
+.table_week>tfoot:not(:last-child),
+.table_season>thead>tr:not(:last-child)>th,
+.table_season>thead>tr:not(:last-child)>td,
+.table_season>tbody>tr:not(:last-child)>th,
+.table_season>tbody>tr:not(:last-child)>td,
+.table_season>tfoot>tr:not(:last-child)>th,
+.table_season>tfoot>tr:not(:last-child)>td,
+.table_season>tr:not(:last-child)>td,
+.table_season>tr:not(:last-child)>th,
+.table_season>thead:not(:last-child),
+.table_season>tbody:not(:last-child),
+.table_season>tfoot:not(:last-child) {
     border-bottom: 1px solid black;
 }
 
-.table_year tr:first-child th:first-child,.table_week tr:first-child th:first-child{
+.table_year tr:first-child th:first-child,.table_week tr:first-child th:first-child,.table_season tr:first-child th:first-child{
     border-top-left-radius: 9px;
 }
 
-.table_year tr:first-child th:last-child,.table_week tr:first-child th:last-child{
+.table_year tr:first-child th:last-child,.table_week tr:first-child th:last-child,.table_season tr:first-child th:last-child{
     border-top-right-radius: 9px;
 }
 
-.table_year tr:last-child td:first-child,.table_week tr:last-child td:first-child{
+.table_year tr:last-child td:first-child,.table_week tr:last-child td:first-child,.table_season tr:last-child td:first-child{
     border-bottom-left-radius: 9px;
 }
 
-.table_year tr:last-child td:last-child,.table_week tr:last-child td:last-child{
+.table_year tr:last-child td:last-child,.table_week tr:last-child td:last-child,.table_season tr:last-child td:last-child{
     border-bottom-right-radius: 9px;
 }
 

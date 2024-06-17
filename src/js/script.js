@@ -374,9 +374,9 @@ function populate_time(){
     tr.append('<th colspan="12">' + display_name + '</th>');
     $('.table_season').append(tr);
     var tr = $('<tr>');
-    for (var i = 0; i < months.length; i++){
-        var display_name = '<p>' + months[i] + '</p>';
-        var en_name = months[i].toLowerCase();
+    for (var i = 0; i < seasons.length; i++){
+        var display_name = '<p>' + seasons[i] + '</p>';
+        var en_name = seasons[i].toLowerCase();
         var translated_name = '';
         $('.word').each(function(){
             var attr = 'ka_words';
