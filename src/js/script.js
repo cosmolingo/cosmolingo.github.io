@@ -141,12 +141,12 @@ function setup_toys(){
         div.click(function(){
             $('.game_section').hide();
             if ($(this).attr('active') == 'true'){
-                $('.button').attr('active',false);
+                $('#games .section_content ').attr('active',false);
                 $(this).attr('active',false);
             }
             else{
                 $('.game_section h3:contains("' + name + '")').parent().show();   
-                $('.button').attr('active',false);
+                $('#games .section_content .button').attr('active',false);
                 $(this).attr('active',true);
             }
         });
