@@ -220,3 +220,5 @@ n;time:жыл:year:année(a_n_é):год:
 n;time:қыс:winter:hiver(i_v_è_r):зима:
 n;time:көктем:spring:printemps(p_r_in_t_an):весна:
 n;food:су:water:eau(o):вода:
+n;time:жаз:summer:été(é_t_é):лето:
+n;time:күз:autumn:automne(o_t_oa_n):осень:
