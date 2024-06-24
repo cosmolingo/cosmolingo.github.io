@@ -226,4 +226,4 @@ n;food:шай:tea:thé(t_é):
 n;weather:ауа-райы:weather:météo(m_é_t_é_o):погода:
 n;weather:жаңбыр:rain:pluie(p_l_u_i):дождь:
 n;weather:бұлтты:cloudy:nuageux(n_u_a_j_eu):облачно:
-n;weather:ашық:clear:ensoleillé(an_s_o_l_è_i_é):ясно:
+n;weather:ашық:clear:clair(c_l_è_r):ясно:
