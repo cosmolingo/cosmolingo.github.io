@@ -1393,6 +1393,7 @@ function play_word_sound(){
 }
 
 function play_letter_sound(){
+    navigator.clipboard.writeText($(this).html());
     var audio = new Audio(base_url + '/src/sounds/' + languages[lang_i] + '/letter_sounds/' + $(this).html() + '.mp3');
     audio.play();
 }
