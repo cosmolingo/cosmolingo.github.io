@@ -222,7 +222,7 @@ n;time:көктем:spring:printemps(p_r_in_t_an):весна:
 n;food:су:water:eau(o):вода:
 n;time:жаз:summer:été(é_t_é):лето:
 n;time:күз:autumn:automne(o_t_oa_n):осень:
-n;food:шай:tea:thé(t_é):
+n;food:шай:tea:thé(t_é):чай:
 n;weather:ауа-райы:weather:météo(m_é_t_é_o):погода:
 n;weather:жаңбыр:rain:pluie(p_l_u_i):дождь:
 n;weather:бұлтты:cloudy:nuageux(n_u_a_j_eu):облачно:
