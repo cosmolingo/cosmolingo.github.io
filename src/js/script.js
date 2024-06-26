@@ -200,10 +200,22 @@ function populate_weather(){
             div.addClass('weather_day');
             var p = $('<p class="weather_n_day">');
             if (i == 0){
-                p.text('Today');
+                var trans_today = translate_word('today');
+                if (trans_today != ''){
+                    p.text(trans_today);
+                }
+                else{
+                    p.text('Today');
+                }
             }
             else if (i == 1){
-                p.text('Tomorrow');
+                var trans_tomorrow = translate_word('tomorrow');
+                if (trans_tomorrow != ''){
+                    p.text(trans_tomorrow);
+                }
+                else{
+                    p.text('Tomorrow');
+                }
             }
             else{
                 p.text('D+' + (i));
