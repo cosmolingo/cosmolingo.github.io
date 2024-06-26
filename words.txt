@@ -207,7 +207,7 @@ n-m;time:қаңтар:january:janvier(j_an_v_i_é):январь:일월
 n-m;time:ақпан:february:février(f_é_v_r_i_é):февраль:이월
 n-m;time:наурыз:march:mars(m_a_r_s):март:삼월
 n-f;time:сағат:hour:heure(e_r):час:시
-n-m;time:сауәр:april:avril(a_v_r_i_l):апрель:사월
+n-m;time:сәуір:april:avril(a_v_r_i_l):апрель:사월
 n-m;time:мамыр:may:mai(m_è):май:오월
 n-m;time:маусым:june:juin(j_u_in):июнь:유월
 n-m;time:шілде:july:juillet(j_u_i_y_è):июль:칠월
