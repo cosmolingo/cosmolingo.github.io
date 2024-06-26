@@ -7,6 +7,8 @@
 var base_url = 'https://cosmolingo.studio';
 var words_list = [];
 var shuffled_list = [];
+var game_done = false;
+var game_timeout = 0;
 var tag_list = [];
 var guess_index = 0;
 var correct_guesses = 0;
@@ -1244,9 +1246,7 @@ $('#guess_input').on('keypress', function(e) {
     if(e.which != 13) {//Only listen to enter key
         return;
     }
-    if (guess_index >= words_list.length) {
-        return;
-    }
+
     var guess = $(this).val().toLowerCase();
     var en_words = $('#guess_word').attr('en_words').toLowerCase().split(",");
     var en_words_possible = en_words.slice();
@@ -1262,51 +1262,56 @@ $('#guess_input').on('keypress', function(e) {
     guess = guess.replace("?", "");
     en_words_possible = en_words_possible.map(word => word.replace("?", ""));
 
-    $('#guess_result').css('opacity',1);
-    var time = 500;
-    if ((en_words_possible.includes(guess))){
-        $("#guess_result").text("Correct!");
-        correct_guesses++;
-    } else {
-        if (guess.length == 0) {
-            $("#guess_result").text("It was " + en_words);
+    if (guess_index == shuffled_list.length){
+        if (game_done == false){
+            game_done = true;
+            $("#guess_result").text("Game finished! Click to restart.");
+            $('#guess_result').css('cursor','pointer');
+            $('#guess_result').animate({ opacity: 1 },{queue:false});
+            $("#guess_result").on("click", function() {
+                guess_index = 0;
+                correct_guesses = 0;
+                total_guesses = 0;
+                game_done = false;
+                shuffled_list = shuffleArray(words_list);
+                update_progress_bar();
+                update_game_guess();
+                $('#guess_result').css('cursor','default');
+                $('#guess_result').animate({ opacity: 0},{queue:false});
+                $('#guess_result').off("click");
+                $('#guess_input').focus();
+            });
         }
-        else{
-            $("#guess_result").text("Nope, it was " + en_words);
-        }
-        time = 2500;
-    }
-
-    guess_index++;
-    total_guesses++;
-    update_progress_bar();
-    update_game_guess();
-    if (guess_index >= words_list.length) {
-        $("#guess_result").text("Game finished! Click to restart.");
-        $('#guess_result').css('cursor','pointer');
-        $('#guess_result').animate({ opacity: 1 });
-        $("#guess_result").on("click", function() {
-            guess_index = 0;
-            correct_guesses = 0;
-            total_guesses = 0;
-            shuffled_list = shuffleArray(words_list);
-            update_progress_bar();
-            update_game_guess();
-            $('#guess_result').css('cursor','default');
-            $('#guess_result').animate({ opacity: 0 });
-            $('#guess_result').off("click");
-            $('#guess_input').focus();
-        });
     }
     else{
-        setTimeout(function() {
-            $('#guess_result').animate({ opacity: 0 });
+        $('#guess_result').animate({'opacity':1},{queue:false},{duration:5});
+        clearTimeout(game_timeout);
+        var time = 500;
+        if ((en_words_possible.includes(guess))){
+            $("#guess_result").text("Correct!");
+            correct_guesses++;
+        } else {
+            if (guess.length == 0) {
+                $("#guess_result").text("It was " + en_words);
+            }
+            else{
+                $("#guess_result").text("Nope, it was " + en_words);
+            }
+            time = 2500;
+        }
+
+        guess_index++;
+        total_guesses++;
+        update_progress_bar();
+        update_game_guess();
+        game_timeout = setTimeout(function() {
+            $('#guess_result').delay(time).animate({ opacity: 0 },{queue:false});
         }, time);
     }
 });
 
 function update_game_guess() {
-    if (guess_index >= words_list.length) {
+    if (guess_index >= shuffled_list.length) {
         return;
     }
     var word = shuffled_list[guess_index];
@@ -1318,7 +1323,8 @@ function update_game_guess() {
     $('#guess_word').attr('fr_words', word.fr_words);
     $('#guess_word').attr('ru_words', word.ru_words);
     $('#guess_word').attr('ko_words', word.ko_words);
-    var col = $('.word[ka_words="' + word.ka_words + '"]').css('background-color');
+    var ka_word = word.ka_words.replace(/,/g,", ");
+    var col = $('.word[ka_words="' + ka_word + '"]').css('background-color');
     var col_r = col.split(',')[0].split('(')[1];
     var col_g = col.split(',')[1];
     var col_b = col.split(',')[2].split(')')[0];
@@ -1331,8 +1337,8 @@ function update_game_guess() {
 }
 
 function update_progress_bar() {
-    var progress = correct_guesses / words_list.length * 100;
-    var progress_total = total_guesses / words_list.length * 100;
+    var progress = correct_guesses / shuffled_list.length * 100;
+    var progress_total = total_guesses / shuffled_list.length * 100;
     var good_guesses = correct_guesses / total_guesses * 100;
     if (total_guesses == 0) {
         good_guesses = 0;
