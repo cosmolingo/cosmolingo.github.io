@@ -271,6 +271,9 @@ function populate_time(){
     var tr = $('<tr>');
     var display_name = 'Week';
     var translated_name = translate_word('week');
+    if (translated_name.includes(' ')){
+        translated_name = translated_name.split(' ')[1];
+    }
     if (translated_name != ''){
         display_name += ' : ' + translated_name;
     }
@@ -280,24 +283,10 @@ function populate_time(){
     for (var i = 0; i < days.length; i++){
         var display_name = '<p>' + days[i] + '</p>';
         var en_name = days[i].toLowerCase();
-        var translated_name = '';
-        $('.word').each(function(){
-            var attr = 'ka_words';
-            if (lang_i == 1){
-                attr = 'ru_words';
-            }
-            else if (lang_i == 2){
-                attr = 'fr_words';
-            }
-            else if (lang_i == 3){
-                attr = 'ko_words';
-            }
-            var en_words = $(this).attr('en_words').split(', ');
-            
-            if (en_words.includes(en_name)){
-                translated_name = $(this).attr(attr);
-            }
-        });
+        var translated_name = translate_word(en_name);
+        if (translated_name.includes(' ')){
+            translated_name = translated_name.split(' ')[1];
+        }
         if (translated_name != ''){
             display_name += '<p>' + translated_name + '</p>';
         }
@@ -307,25 +296,11 @@ function populate_time(){
 
     var tr = $('<tr>');
     var en_name = "year";
-    var translated_name = '';
     var display_name = 'Year';
-    $('.word').each(function(){
-        var attr = 'ka_words';
-        if (lang_i == 1){
-            attr = 'ru_words';
-        }
-        else if (lang_i == 2){
-            attr = 'fr_words';
-        }
-        else if (lang_i == 3){
-            attr = 'ko_words';
-        }
-        var en_words = $(this).attr('en_words').split(', ');
-        
-        if (en_words.includes(en_name)){
-            translated_name = $(this).attr(attr);
-        }
-    });
+    var translated_name = translate_word(en_name);
+    if (translated_name.includes(' ')){
+        translated_name = translated_name.split(' ')[1];
+    }
     if (translated_name != ''){
         display_name += ' : ' + translated_name;
     }
@@ -335,24 +310,10 @@ function populate_time(){
     for (var i = 0; i < months.length; i++){
         var display_name = '<p>' + months[i] + '</p>';
         var en_name = months[i].toLowerCase();
-        var translated_name = '';
-        $('.word').each(function(){
-            var attr = 'ka_words';
-            if (lang_i == 1){
-                attr = 'ru_words';
-            }
-            else if (lang_i == 2){
-                attr = 'fr_words';
-            }
-            else if (lang_i == 3){
-                attr = 'ko_words';
-            }
-            var en_words = $(this).attr('en_words').split(', ');
-            
-            if (en_words.includes(en_name)){
-                translated_name = $(this).attr(attr);
-            }
-        });
+        var translated_name = translate_word(en_name);
+        if (translated_name.includes(' ')){
+            translated_name = translated_name.split(' ')[1];
+        }
         if (translated_name != ''){
             display_name += '<p>' + translated_name + '</p>';
         }
@@ -361,26 +322,13 @@ function populate_time(){
     $('.table_year').append(tr);
 
     var tr = $('<tr>');
-    var en_name = "Seasons";
+    var en_name = "season";
     var translated_name = '';
     var display_name = 'Seasons';
-    $('.word').each(function(){
-        var attr = 'ka_words';
-        if (lang_i == 1){
-            attr = 'ru_words';
-        }
-        else if (lang_i == 2){
-            attr = 'fr_words';
-        }
-        else if (lang_i == 3){
-            attr = 'ko_words';
-        }
-        var en_words = $(this).attr('en_words').split(', ');
-        
-        if (en_words.includes(en_name)){
-            translated_name = $(this).attr(attr);
-        }
-    });
+    var translated_name = translate_word(en_name);
+    if (translated_name.includes(' ')){
+        translated_name = translated_name.split(' ')[1];
+    }
     if (translated_name != ''){
         display_name += ' : ' + translated_name;
     }
@@ -391,23 +339,10 @@ function populate_time(){
         var display_name = '<p>' + seasons[i] + '</p>';
         var en_name = seasons[i].toLowerCase();
         var translated_name = '';
-        $('.word').each(function(){
-            var attr = 'ka_words';
-            if (lang_i == 1){
-                attr = 'ru_words';
-            }
-            else if (lang_i == 2){
-                attr = 'fr_words';
-            }
-            else if (lang_i == 3){
-                attr = 'ko_words';
-            }
-            var en_words = $(this).attr('en_words').split(', ');
-            
-            if (en_words.includes(en_name)){
-                translated_name = $(this).attr(attr);
-            }
-        });
+        var translated_name = translate_word(en_name);
+        if (translated_name.includes(' ')){
+            translated_name = translated_name.split(' ')[1];
+        }
         if (translated_name != ''){
             display_name += '<p>' + translated_name + '</p>';
         }

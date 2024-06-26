@@ -228,3 +228,5 @@ n-f;weather:жаңбыр:rain:pluie(p_l_u_i):дождь:비
 a;weather:бұлтты:cloudy:nuageux(n_u_a_j_eu):облачно:구름
 a;weather:ашық:clear:clair(c_l_è_r):ясно:맑은
 n-f;weather:қар:snow:neige(n_è_j):снег:
+a;weather:желді:windy:venteux(v_an_t_eu):ветрено:
+n-f;time:мезгіл:season:saison(s_è_z_on):время года:
