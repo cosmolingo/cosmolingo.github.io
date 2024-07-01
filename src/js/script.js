@@ -582,6 +582,9 @@ function get_words(){
         shuffled_list = shuffleArray(words_list);
         var new_shuffled_list = [];
         for (var i = 0; i < shuffled_list.length; i++){
+            if (shuffled_list[i].hidden == true){
+                continue;
+            }
             if (lang_i == 0){
                 if (shuffled_list[i].ka_words != ''){
                     new_shuffled_list.push(shuffled_list[i]);
