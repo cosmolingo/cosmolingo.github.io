@@ -466,6 +466,7 @@ function get_words(){
             if (line.length == 0) {
                 return;
             }
+            var is_hidden = false;
             var parts = line.split(":");
             var type    = parts[0].trim();
             var tags = [];
@@ -496,6 +497,10 @@ function get_words(){
                     genders = [genders];
                 }
             }
+            if (parts[1].trim() == "-"){
+                parts.slice(1);
+                is_hidden = true;
+            }
             var ka_words = parts[1].trim();
             var en_words = parts[2].trim();
             var fr_words = parts[3].trim();
@@ -520,7 +525,7 @@ function get_words(){
             else{
                 var new_fr_words = fr_words;
             }
-            words_list.push({type:type, tags:tags, genders:genders, ka_words: ka_words, en_words: en_words, fr_words: new_fr_words, ru_words: ru_words, ko_words: ko_words});
+            words_list.push({type:type, hidden:is_hidden, tags:tags, genders:genders, ka_words: ka_words, en_words: en_words, fr_words: new_fr_words, ru_words: ru_words, ko_words: ko_words});
             ka_words = ka_words.replace(/,/g,", ");
             en_words = en_words.replace(/,/g,", ");
             new_fr_words = new_fr_words.replace(/,/g,", ");
@@ -547,28 +552,30 @@ function get_words(){
                 new_fr_words = fr_words.join(', ');
             }
             
-            display_words = [ka_words,ru_words,new_fr_words,ko_words];
+            if (is_hidden == false){
+                display_words = [ka_words,ru_words,new_fr_words,ko_words];
 
-            var wordElement = $("<p>").text(display_words[lang_i] + ' : ' + en_words_display);
-            wordElement.attr('type'    , type   );
-            wordElement.attr('tags'    , tags);
-            wordElement.attr('genders' , genders);
-            wordElement.attr('ka_words', ka_words);
-            wordElement.attr('en_words', en_words);
-            wordElement.attr('fr_words', new_fr_words);
-            wordElement.attr('ru_words', ru_words);
-            wordElement.attr('ko_words', ko_words);
-            if (fr_words != '-' && fr_words.includes('(')){
-                var fr_pron = fr_words.split('(')[1].slice(0,-1).split('_');
-                wordElement.attr('fr_pron' , JSON.stringify(fr_pron));
-            }
-            else{
-                wordElement.attr('fr_pron' , '-');
-            }
-            wordElement.addClass("word");
-            wordElement.on("click", play_word_sound);
+                var wordElement = $("<p>").text(display_words[lang_i] + ' : ' + en_words_display);
+                wordElement.attr('type'    , type   );
+                wordElement.attr('tags'    , tags);
+                wordElement.attr('genders' , genders);
+                wordElement.attr('ka_words', ka_words);
+                wordElement.attr('en_words', en_words);
+                wordElement.attr('fr_words', new_fr_words);
+                wordElement.attr('ru_words', ru_words);
+                wordElement.attr('ko_words', ko_words);
+                if (fr_words != '-' && fr_words.includes('(')){
+                    var fr_pron = fr_words.split('(')[1].slice(0,-1).split('_');
+                    wordElement.attr('fr_pron' , JSON.stringify(fr_pron));
+                }
+                else{
+                    wordElement.attr('fr_pron' , '-');
+                }
+                wordElement.addClass("word");
+                wordElement.on("click", play_word_sound);
 
-            wordsDiv.append(wordElement);
+                wordsDiv.append(wordElement);
+            }
         });
         $('#search_bar').attr('placeholder', 'search in ' + total_words + ' words');
         $('#search_bar').val('');
@@ -876,6 +883,7 @@ function wordle_enter_word(){
     wordle_active_row++;
     setTimeout(function() {
         if (word == wordle_word){
+            create_confettis();
             $('#wordle_output').html('well done, ' + wordle_word + ' - ' + worlde_word_en + '<br/>click to replay');
         }
         else if (wordle_active_row == 5){
@@ -893,6 +901,34 @@ function wordle_enter_word(){
             populate_wordle();
         });
     },word.length*250);
+}
+
+function create_confettis(){
+    const end = Date.now() + 5 * 1000;
+
+    const colors = ["#fbc59f","#f4eb84","#f4eb84","#f39f95","#a9e3bb","#e6b8b8","#a6cdf4"];
+
+    (function frame() {
+    confetti({
+        particleCount: 2,
+        angle: 60,
+        spread: 55,
+        origin: { x: 0 },
+        colors: colors,
+    });
+
+    confetti({
+        particleCount: 2,
+        angle: 120,
+        spread: 55,
+        origin: { x: 1 },
+        colors: colors,
+    });
+
+    if (Date.now() < end) {
+        requestAnimationFrame(frame);
+    }
+    })();
 }
 
 function wordle_update_td(row_i,col_i,type,t){

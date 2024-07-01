@@ -225,8 +225,11 @@ n-m;time:күз:autumn:automne(o_t_oa_n):осень:가을
 n-m;food:шай:tea:thé(t_é):чай:차
 n-f;weather:ауа-райы:weather:météo(m_é_t_é_o):погода:날씨
 n-f;weather:жаңбыр:rain:pluie(p_l_u_i):дождь:비
-a;weather:бұлтты:cloudy:nuageux(n_u_a_j_eu):облачно:구름
-a;weather:ашық:clear:clair(c_l_è_r):ясно:맑은
+a;weather:-:бұлтты:cloudy:nuageux(n_u_a_j_eu):облачно:구름
+a;weather:-:ашық:clear:clair(c_l_è_r):ясно:맑은
 n-f;weather:қар:snow:neige(n_è_j):снег:
-a;weather:желді:windy:venteux(v_an_t_eu):ветрено:
+a;weather:-:желді:windy:venteux(v_an_t_eu):ветрено:
 n-f;time:мезгіл:season:saison(s_è_z_on):время года:
+a;weather:-:күн шуақты:sunny:ensoleillé(an_s_o_l_è_i_y_é):солнечно:
+n-m;weather:найзағай:thunderstorms:orage(o_r_a_j):грозы:
+a;weather:-:көшпелі бұлт:partially cloudy:partiellement nuageux(p_a_r_t_i_è_l_m_an_ _n_u_a_j_eu):переменная облачность:
