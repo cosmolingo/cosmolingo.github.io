@@ -893,13 +893,13 @@ border-right: 1px solid black;
     pointer-events: none;
 }
 
-#Layer_2 polygon, #Layer_2 path{
+#Layer_2 polygon, #Layer_2 path, #SELECT polygon, #SELECT path{
     fill:none;
-    stroke-width: 5px;
+    stroke-width: 0px;
     pointer-events: fill;
 }
 
-#Layer_2 polygon:hover, #Layer_2 path:hover{
+#Layer_2 polygon:hover, #Layer_2 path:hover, #SELECT polygon:hover, #SELECT path:hover{
     fill:var(--primary-color);
 }
 

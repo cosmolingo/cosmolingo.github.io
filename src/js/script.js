@@ -1128,7 +1128,6 @@ $(document).on('mousemove','.clothes',function(e){
     clothes_info();
 });
 
-
 $(document).on('click','.body_parts',function(e){
     body_info();
 });
