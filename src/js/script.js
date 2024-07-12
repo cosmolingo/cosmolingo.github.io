@@ -611,6 +611,7 @@ function get_words(){
         update_tag_filter();
         update_game_guess();
         create_body_diagram();
+        create_clothes_diagram();
         populate_color_picker();
         populate_time();
         populate_wordle();
@@ -993,7 +994,16 @@ function create_body_diagram(){
     }
     var url = base_url + "/src/body/body_parts.svg";
     
-    $('#diagrams').load(url);
+    $('#body_diagrams').load(url);
+}
+
+function create_clothes_diagram(){
+    if ($('.clothes').length == 0){
+        return;
+    }
+    var url = base_url + "/src/clothes/outfit1.svg";
+    
+    $('#clothes_diagrams').load(url);
 }
 
 function populate_alphabet(){
@@ -1114,6 +1124,11 @@ $(document).on('mousemove','.body_parts',function(e){
     body_info();
 });
 
+$(document).on('mousemove','.clothes',function(e){
+    clothes_info();
+});
+
+
 $(document).on('click','.body_parts',function(e){
     body_info();
 });
@@ -1172,6 +1187,51 @@ function body_info(){
         }
         else{
             $('#body_info p').html($('polygon:hover').attr('name') + ' : ' + translated_name);
+        }
+    }
+    var mouseX = event.pageX - 50;
+    var mouseY = event.pageY + 30;
+    bodyInfo.css({top: mouseY, left: mouseX});
+}
+
+function clothes_info(){
+    var bodyInfo = $('#clothes_info');
+    var nbhovered = $('g[name="SELECT"] g:hover').length;
+    if (nbhovered == 0) {
+        bodyInfo.css('height','0px');
+        bodyInfo.css('width','0px');
+        bodyInfo.css('opacity','0');
+        $('polygon').css('cursor', 'pointer');
+    }
+    else {
+        $('polygon').css('cursor', 'pointer');
+        bodyInfo.css('opacity','1');
+        bodyInfo.css('height','50px');
+        bodyInfo.css('width','100px');
+        var en_name = $('g[name="SELECT"] g:hover').attr('name');
+        var translated_name = '';
+        $('.word').each(function(){
+            var attr = 'ka_words';
+            if (lang_i == 1){
+                attr = 'ru_words';
+            }
+            else if (lang_i == 2){
+                attr = 'fr_words';
+            }
+            else if (lang_i == 3){
+                attr = 'ko_words';
+            }
+            var en_words = $(this).attr('en_words').split(', ');
+            
+            if (en_words.includes(en_name)){
+                translated_name = $(this).attr(attr);
+            }
+        });
+        if (translated_name == ''){
+            $('#body_info p').html($('g[name="SELECT"] g:hover').attr('name'));
+        }
+        else{
+            $('#body_info p').html($('g[name="SELECT"] g:hover').attr('name') + ' : ' + translated_name);
         }
     }
     var mouseX = event.pageX - 50;
