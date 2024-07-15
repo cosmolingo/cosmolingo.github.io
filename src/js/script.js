@@ -497,10 +497,7 @@ function get_words(){
                     genders = [genders];
                 }
             }
-            if (parts[1].trim() == "_"){
-                console.log(parts);
-                parts.splice(1,1);
-                console.log(parts);
+            if (tags.includes('hidden')){
                 is_hidden = true;
             }
             var ka_words = parts[1].trim();
