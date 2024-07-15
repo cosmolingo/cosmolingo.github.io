@@ -882,7 +882,7 @@ border-right: 1px solid black;
     z-index:0;
 }
 
-.body_part,#clothes_diagrams{
+.body_part,.cloth_part{
     width: 90%;
     max-width: 700px;;
     margin:0 auto;
