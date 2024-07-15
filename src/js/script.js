@@ -1195,7 +1195,7 @@ function body_info(){
 
 function clothes_info(){
     var bodyInfo = $('#clothes_info');
-    var nbhovered = $('g[name="SELECT"] g:hover').length;
+    var nbhovered = $('g#SELECT g:hover').length;
     if (nbhovered == 0) {
         bodyInfo.css('height','0px');
         bodyInfo.css('width','0px');
@@ -1207,30 +1207,13 @@ function clothes_info(){
         bodyInfo.css('opacity','1');
         bodyInfo.css('height','50px');
         bodyInfo.css('width','100px');
-        var en_name = $('g[name="SELECT"] g:hover').attr('name');
-        var translated_name = '';
-        $('.word').each(function(){
-            var attr = 'ka_words';
-            if (lang_i == 1){
-                attr = 'ru_words';
-            }
-            else if (lang_i == 2){
-                attr = 'fr_words';
-            }
-            else if (lang_i == 3){
-                attr = 'ko_words';
-            }
-            var en_words = $(this).attr('en_words').split(', ');
-            
-            if (en_words.includes(en_name)){
-                translated_name = $(this).attr(attr);
-            }
-        });
+        var en_name = $('g#SELECT g:hover').attr('name');
+        var translated_name = translate_word(en_name);
         if (translated_name == ''){
-            $('#body_info p').html($('g[name="SELECT"] g:hover').attr('name'));
+            $('#clothes_info p').html(en_name);
         }
         else{
-            $('#body_info p').html($('g[name="SELECT"] g:hover').attr('name') + ' : ' + translated_name);
+            $('#clothes_info p').html(en_name + ' : ' + translated_name);
         }
     }
     var mouseX = event.pageX - 50;

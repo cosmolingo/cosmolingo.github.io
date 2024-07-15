@@ -882,7 +882,7 @@ border-right: 1px solid black;
     z-index:0;
 }
 
-.body_part{
+.body_part,#clothes_diagrams{
     width: 90%;
     max-width: 700px;;
     margin:0 auto;
@@ -893,17 +893,17 @@ border-right: 1px solid black;
     pointer-events: none;
 }
 
-#Layer_2 polygon, #Layer_2 path, #SELECT polygon, #SELECT path{
+#Layer_2 polygon, #Layer_2 path, #SELECT polygon, #SELECT path, #SELECT g{
     fill:none;
     stroke-width: 0px;
     pointer-events: fill;
 }
 
-#Layer_2 polygon:hover, #Layer_2 path:hover, #SELECT polygon:hover, #SELECT path:hover{
+#Layer_2 polygon:hover, #Layer_2 path:hover, #SELECT g:hover polygon, #SELECT g:hover path{
     fill:var(--primary-color);
 }
 
-#body_info{
+#body_info,#clothes_info{
     display: table;
     width:fit-content;
     padding-left: 15px;
@@ -923,7 +923,7 @@ border-right: 1px solid black;
     text-align: center;
 }
 
-#body_info p{
+#body_info p,#clothes_info p{
     transition: opacity 0.1s ease-in-out;
 }
 
