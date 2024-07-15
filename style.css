@@ -889,6 +889,10 @@ border-right: 1px solid black;
     display:block;
 }
 
+.st0{fill:none;}
+.st1{fill:none;stroke:#5A4813;stroke-width:2.25;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+.st2{fill:none;stroke:#5A4813;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+
 #Layer_1{
     pointer-events: none;
 }

@@ -1001,7 +1001,7 @@ function create_clothes_diagram(){
     if ($('.clothes').length == 0){
         return;
     }
-    var url = base_url + "/src/clothes/outfit1.svg";
+    var url = base_url + "/src/clothes/outfit2.svg";
     
     $('#clothes_diagrams').load(url);
 }
