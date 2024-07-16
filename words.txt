@@ -59,9 +59,9 @@ a:Қайырлы:gracious,good:gracieux,bon(g_r_a_s_i_eu_ _b_on):милости�
 n-m:таң:morning:matin(m_a_t_in):утро:오전,아침 
 o:жақында:soon:bientôt(b_i_in_t_o):скоро:곧,당장
 o:жақын:close:proche(p_r_oa_ch):близко:가깝다
-o:Бүгін:today:aujourd'hui(o_j_ou_r_d_u_i):сегодня:오늘
-o:Ертең:tomorrow:demain(d_eu_m_in):завтра:내일
-o:Бірақ:but:mais(m_è):но:하지만
+o:бүгін:today:aujourd'hui(o_j_ou_r_d_u_i):сегодня:오늘
+o:ертең:tomorrow:demain(d_eu_m_in):завтра:내일
+o:бірақ:but:mais(m_è):но:하지만
 o:Өте:very:très(t_r_è):очень:매우,아주,너무
 o:Не?:what?:quoi?(k_o_a):что?:무엇,뭐
 o:Неге?:why?:pourquoi?(p_ou_r_k_o_a):почему?:왜?
@@ -232,4 +232,4 @@ n-f;time:мезгіл:season:saison(s_è_z_on):время года:
 a;hidden:күн шуақты:sunny:ensoleillé(an_s_o_l_è_i_y_é):солнечно:
 n-m;weather:найзағай:thunderstorms:orage(o_r_a_j):грозы:
 n;hidden:жаңбыр & қар:rain & snow:pluie & neige:дождь & снег:
-a::humid:humide::
+a:ылғал:humid:humide:влажно:

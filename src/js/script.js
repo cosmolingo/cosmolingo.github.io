@@ -80,7 +80,7 @@ var weather_types = {
     tsrain:{src:'thunderstorms-rain',en_name:'thunderstorms'},
 };
 
-var clock_intro = ['Сағат','Время','Il est','시간'];
+var clock_intro = ['сағат','время','il est','시간'];
 var hour_suffixes_1 = {
     0:'',1:'ден',2:'ден',3:'тен',4:'тен',5:'тен',6:'дан',7:'ден',8:'ден',9:'дан',10:'нан',11:'ден',12:'ден'
 };
@@ -205,7 +205,7 @@ function populate_weather(){
                     p.text(trans_today);
                 }
                 else{
-                    p.text('Today');
+                    p.text('today');
                 }
             }
             else if (i == 1){
@@ -214,7 +214,7 @@ function populate_weather(){
                     p.text(trans_tomorrow);
                 }
                 else{
-                    p.text('Tomorrow');
+                    p.text('tomorrow');
                 }
             }
             else{
