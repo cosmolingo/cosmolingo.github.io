@@ -65,19 +65,19 @@ var seasons = ["winter","spring","summer","autumn"];
 
 var weather_types = {
     clear:{src:'clear-day',en_name:'clear'},
-    pcloudy:{src:'partly-cloudy-day',en_name:'partly cloudy'},
-    mcloudy:{src:'overcast-day',en_name:'mostly cloudy'},
+    pcloudy:{src:'partly-cloudy-day',en_name:'cloudy'},
+    mcloudy:{src:'overcast-day',en_name:'cloudy'},
     cloudy:{src:'cloudy',en_name:'cloudy'},
     humid:{src:'fog',en_name:'humid'},
-    lightrain:{src:'overcast-drizzle',en_name:'light rain'},
-    oshower:{src:'overcast-day-rain',en_name:'occasional showers'},
-    ishower:{src:'overcast-rain',en_name:'isolated showers'},
-    lighsnow:{src:'overcast-day-snow',en_name:'light snow'},
+    lightrain:{src:'overcast-drizzle',en_name:'rain'},
+    oshower:{src:'overcast-day-rain',en_name:'rain'},
+    ishower:{src:'overcast-rain',en_name:'rain'},
+    lighsnow:{src:'overcast-day-snow',en_name:'snow'},
     rain:{src:'rain',en_name:'rain'},
     snow:{src:'snow',en_name:'snow'},
     rainsnow:{src:'sleet',en_name:'rain & snow'},
     ts:{src:'thunderstorms',en_name:'thunderstorms'},
-    tsrain:{src:'thunderstorms-rain',en_name:'thunderstorms & rain'},
+    tsrain:{src:'thunderstorms-rain',en_name:'thunderstorms'},
 };
 
 var clock_intro = ['Сағат','Время','Il est','시간'];
