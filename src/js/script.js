@@ -244,7 +244,7 @@ function populate_weather(){
 function translate_word(word){
     var translated_name = '';
     
-    $('.word').each(function(){
+    for (var i = 0; i < words_list.length; i++){
         var attr = 'ka_words';
         if (lang_i == 1){
             attr = 'ru_words';
@@ -255,12 +255,10 @@ function translate_word(word){
         else if (lang_i == 3){
             attr = 'ko_words';
         }
-        var en_words = $(this).attr('en_words').split(', ');
-        
-        if (en_words.includes(word)){
-            translated_name = $(this).attr(attr);
+        if (words_list[i].en_words.includes(word)){
+            translated_name = words_list[i][attr];
         }
-    });
+    }
     return translated_name;
 }
 
