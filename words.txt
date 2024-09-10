@@ -233,3 +233,5 @@ a;hidden:күн шуақты:sunny:ensoleillé(an_s_o_l_è_i_y_é):солнеч�
 n-m;weather:найзағай:thunderstorms:orage(o_r_a_j):грозы:
 n;hidden:жаңбыр & қар:rain & snow:pluie & neige:дождь & снег:
 a:ылғал:humid:humide:влажно:
+n-f:сұрақ:question:question:вопрос:
+v:Кездесу:meet:rencontrer:встретиться:

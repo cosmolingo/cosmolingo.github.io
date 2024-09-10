@@ -255,8 +255,9 @@ function translate_word(word){
         else if (lang_i == 3){
             attr = 'ko_words';
         }
-        if (words_list[i].en_words.includes(word)){
+        if (words_list[i].en_words.split(',').includes(word)){
             translated_name = words_list[i][attr];
+            break;
         }
     }
     return translated_name;
