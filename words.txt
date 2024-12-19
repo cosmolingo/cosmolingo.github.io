@@ -207,6 +207,7 @@ n-m;time:қаңтар:january:janvier(j_an_v_i_é):январь:일월
 n-m;time:ақпан:february:février(f_é_v_r_i_é):февраль:이월
 n-m;time:наурыз:march:mars(m_a_r_s):март:삼월
 n-f;time:сағат:hour:heure(e_r):час:시
+n-f:минут:minute:minute(m_i_n_u_t):минут:
 n-m;time:сәуір:april:avril(a_v_r_i_l):апрель:사월
 n-m;time:мамыр:may:mai(m_è):май:오월
 n-m;time:маусым:june:juin(j_u_in):июнь:유월
@@ -235,3 +236,6 @@ n;hidden:жаңбыр & қар:rain & snow:pluie & neige:дождь & снег:
 a:ылғал:humid:humide:влажно:
 n-f:сұрақ:question:question:вопрос:
 v:Кездесу:meet:rencontrer:встретиться:
+n-f:хат:letter:lettre(l_è_t_r):письмо:
+o:сол үшін:therefore:donc(d_on_c):поэтому:
+n-f:тау:mountain:montagne(m_on_t_a_n_i):гора:
