@@ -480,7 +480,7 @@ function get_words(){
                     var tags_in_word = [tags];
                 }
                 for (var i = 0; i < tags_in_word.length; i++){
-                    if (tag_list.includes(tags_in_word[i]) == false){
+                    if (tag_list.includes(tags_in_word[i]) == false && tags_in_word[i] != 'hidden'){
                         tag_list.push(tags_in_word[i]);
                     }
                 }

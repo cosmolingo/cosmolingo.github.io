@@ -30,7 +30,7 @@ n-f,f;body part,food:тамақ:food,throat:nourriture,gorge(n_ou_r_i_t_u_r_ _g_
 n-m,m;family:ұл:boy,son:garçon,fils(g_a_r_s_on_ _f_i_s):мальчик:소년,남자 아이,아들
 n-f,f;family:қыз:girl,daughter:fille(f_i_y):девочка:소녀,여자 아이,딸
 n-,m;body part:жүз:hundred,face:cent,visage(s_an_ _v_i_z_a_j):сто,лицо:백,얼굴
-v:жүз:swim:nager(n_a_j_é):плавать:수영하다
+v:жүзу:swim:nager(n_a_j_é):плавать:수영하다
 n-m;food:кофе:coffee:café(k_a_f_é):кофе:커피
 o:кешір:sorry:désolé(d_é_z_o_l_é):извини,прости:죄송합니다
 a:кір:dirty:sale(s_a_l):грязный:더럽다
@@ -239,20 +239,21 @@ v:Кездесу:meet:rencontrer:встретиться:
 n-f:хат:letter:lettre(l_è_t_r):письмо:
 o:сол үшін:therefore:donc(d_on_c):поэтому:
 n-f:тау:mountain:montagne(m_on_t_a_n_i):гора:
-n-m:жейде:t-shirt:t-shirt(t_i_ _ch_e_r_t):футболка:
-n-f:жейде:shirt:chemise(ch_eu_m_i_z):рубашка:
-n-m:пенжек:blazer:blazer(b_l_a_z_eu_r):пиджак:
-n-f:сырт киім:jacket:veste(v_è_s_t):куртка:
-n-m:пәлте:coat:manteau(m_an_t_o):пальто:
-n-m:шалбар:pants:pantalon(p_an_t_a_l_on):штаны:
-n-m:джинс:jeans:jeans(d_j_i_n_s):джинсы:
-n-m:қысқа шалбар:shorts:short(ch_oa_r_t):шорты:
-n-f:белдемше:skirt:jupe(j_u_p):юбка:
-n-f:көйлек:dress:robe(r_oa_b):платье:
-n-m:свитер:sweater:sweat(s_ou_i_t):свитер:
-n-m:бас киім:hat:chapeau(ch_a_p_o):шапка:
-n-f:шарф:scarf:écharpe(é_ch_a_r_p):шарф:
-n-p:қолғап:gloves:gants(g_an):перчатки:
-n-p:аяқ киім:shoes:chaussures(ch_o_s_u_r):обувь:
-n-p:нәски:socks:chaussettes(ch_o_s_è_t):носки:
-n-f:кепке:cap:casquette(c_a_s_c_è_t):кепка:
+n-m;clothes:жейде:t-shirt:t-shirt(t_i_ _ch_e_r_t):футболка:
+n-f;clothes:жейде:shirt:chemise(ch_eu_m_i_z):рубашка:
+n-m;clothes:пенжек:blazer:blazer(b_l_a_z_eu_r):пиджак:
+n-f;clothes:сырт киім:jacket:veste(v_è_s_t):куртка:
+n-m;clothes:пәлте:coat:manteau(m_an_t_o):пальто:
+n-m;clothes:шалбар:pants:pantalon(p_an_t_a_l_on):штаны:
+n-m;clothes:джинс:jeans:jeans(d_j_i_n_s):джинсы:
+n-m;clothes:қысқа шалбар:shorts:short(ch_oa_r_t):шорты:
+n-f;clothes:белдемше:skirt:jupe(j_u_p):юбка:
+n-f;clothes:көйлек:dress:robe(r_oa_b):платье:
+n-m;clothes:свитер:sweater:sweat(s_ou_i_t):свитер:
+n-m;clothes:бас киім:hat:chapeau(ch_a_p_o):шапка:
+n-f;clothes:шарф:scarf:écharpe(é_ch_a_r_p):шарф:
+n-p;clothes:қолғап:gloves:gants(g_an):перчатки:
+n-p;clothes:аяқ киім:shoes:chaussures(ch_o_s_u_r):обувь:
+n-p;clothes:нәски:socks:chaussettes(ch_o_s_è_t):носки:
+n-f;clothes:кепке:cap:casquette(c_a_s_c_è_t):кепка:
+n-m;clothes:көбелек-галстук:bow tie:noeud papillon(n_eu_ _p_a_p_i_y_on):галстук-бабочка:
