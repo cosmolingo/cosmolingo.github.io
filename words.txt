@@ -239,3 +239,20 @@ v:Кездесу:meet:rencontrer:встретиться:
 n-f:хат:letter:lettre(l_è_t_r):письмо:
 o:сол үшін:therefore:donc(d_on_c):поэтому:
 n-f:тау:mountain:montagne(m_on_t_a_n_i):гора:
+n-m:жейде:t-shirt:t-shirt(t_i_ _ch_e_r_t):футболка:
+n-f:жейде:shirt:chemise(ch_eu_m_i_z):рубашка:
+n-m:пенжек:blazer:blazer(b_l_a_z_eu_r):пиджак:
+n-f:сырт киім:jacket:veste(v_è_s_t):куртка:
+n-m:пәлте:coat:manteau(m_an_t_o):пальто:
+n-m:шалбар:pants:pantalon(p_an_t_a_l_on):штаны:
+n-m:джинс:jeans:jeans(d_j_i_n_s):джинсы:
+n-m:қысқа шалбар:shorts:short(ch_oa_r_t):шорты:
+n-f:белдемше:skirt:jupe(j_u_p):юбка:
+n-f:көйлек:dress:robe(r_oa_b):платье:
+n-m:свитер:sweater:sweat(s_ou_i_t):свитер:
+n-m:бас киім:hat:chapeau(ch_a_p_o):шапка:
+n-f:шарф:scarf:écharpe(é_ch_a_r_p):шарф:
+n-p:қолғап:gloves:gants(g_an):перчатки:
+n-p:аяқ киім:shoes:chaussures(ch_o_s_u_r):обувь:
+n-p:нәски:socks:chaussettes(ch_o_s_è_t):носки:
+n-f:кепке:cap:casquette(c_a_s_c_è_t):кепка:
