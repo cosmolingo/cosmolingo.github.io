@@ -623,6 +623,19 @@ h3{
     margin:0 auto;
 }
 
+.letter p{
+    font-size: 20px;
+    margin:0 auto;
+    height:25px;
+    line-height: 25px;
+}
+
+.letter p:nth-child(2){
+    font-size: 13px;
+    height:13px;
+    line-height: 13px;
+}
+
 .number p{
     font-size: 30px;
     margin:0 auto;
