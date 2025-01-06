@@ -72,7 +72,7 @@ var weather_types = {
     lightrain:{src:'overcast-drizzle',en_name:'rain'},
     oshower:{src:'overcast-day-rain',en_name:'rain'},
     ishower:{src:'overcast-rain',en_name:'rain'},
-    lighsnow:{src:'overcast-day-snow',en_name:'snow'},
+    lightsnow:{src:'overcast-day-snow',en_name:'snow'},
     rain:{src:'rain',en_name:'rain'},
     snow:{src:'snow',en_name:'snow'},
     rainsnow:{src:'sleet',en_name:'rain & snow'},
@@ -181,6 +181,48 @@ function show_hide_tense_tables(){
             $(this).hide();
         }
     });
+}
+
+function populate_frequencies(){
+    var frequencies_dict = {};
+    for (var i = 0; i < alphabets[lang_i].length; i++) {
+        frequencies_dict[alphabets[lang_i][i]] = 0;
+    }
+    for (var i = 0; i < words_list.length; i++){
+        var attr = 'ka_words';
+        if (lang_i == 1){
+            attr = 'ru_words';
+        }
+        else if (lang_i == 2){
+            attr = 'fr_words';
+        }
+        else if (lang_i == 3){
+            attr = 'ko_words';
+        }
+        var words = words_list[i][attr];
+        for (var j = 0; j < words.length; j++){
+            var letter = words.split('')[j];
+            if (frequencies_dict[letter] != undefined){
+                frequencies_dict[letter]++;
+            }
+        }
+    }
+
+    var max_freq = 0;
+    for (var i = 0; i < frequencies_dict.length; i++) {
+        if (frequencies_dict[alphabets[lang_i][i]] > max_freq){
+            max_freq = frequencies_dict[alphabets[lang_i][i]];
+        }
+    }
+
+    for (var i = 0; i < frequencies_dict.length; i++) {
+        var ltr = alphabets[lang_i][i];
+        var freq = frequencies_dict[letter];
+        var letter = $("<p>").text(ltr + ' ' + freq/max_freq*100 + '%');
+        letter.addClass("letter");
+        letter.on("click", play_letter_sound);
+        $("#frequencies").append(letter);
+    }
 }
 
 function populate_weather(){
@@ -621,6 +663,10 @@ function get_words(){
 
     if ($('#alphabet').length > 0){
         populate_alphabet();
+    }
+
+    if ($('#frequencies').length > 0){
+        populate_frequencies();
     }
 
     var alphabet = pron_alphabets[lang_i];
