@@ -47,7 +47,7 @@ table{
     z-index: 90;
     position: absolute;
     width:320px;
-    left:calc(50% - 320px / 2);
+    left:calc(50% - 340px / 2);
     top:0px;
     padding-left:10px;
     padding-right:10px;
@@ -1554,7 +1554,17 @@ border-right: 1px solid black;
     }
 
     #flags_div{
-        top: 35px;
+        width: 270px;
+        left: calc(50% - 290px / 2);
+    }
+
+    #clothes_arrow_left,#clothes_arrow_right{
+        margin-left: 25px;
+        margin-right: 25px;
+    }
+
+    #flags_div a img{
+        width:40px;
     }
 
     .kazakh,.french,.korean{
