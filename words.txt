@@ -257,3 +257,6 @@ n-p;clothes:аяқ киім:shoes:chaussures(ch_o_s_u_r):обувь::
 n-p;clothes:нәски:socks:chaussettes(ch_o_s_è_t):носки::
 n-f;clothes:кепке:cap:casquette(c_a_s_c_è_t):кепка::
 n-m;clothes:көбелек-галстук:bow tie:noeud papillon(n_eu_ _p_a_p_i_y_on):галстук-бабочка::
+n-f;clothes:галстук:tie:cravate(c_r_a_v_a_t):галстук::
+n-m;clothes:шомылу киімі (F):купальник:maillot de bain (F):swimsuit (F)::
+n-m;clothes:шомылу киімі (M):плавки:maillot de bain(M):swimsuit (M)::

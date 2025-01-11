@@ -6,6 +6,8 @@
 //Animals
 //German
 //Add chin to body diagram
+//Missing words for clothes : tie
+//Missing cloth diagrams : cap, hat, socks BUT no diagrams available for them
 
 
 //TIPS:
