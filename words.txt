@@ -1,259 +1,259 @@
-n-m;animal:мысық:cat:chat(ch_a):кот:고양이
-n-m;animal:ит:dog:chien(ch_i_in):собака:개,강아지
-n:дос:friend:ami(a_m_i):друг,подруга:친구
-n-f:түн:night:nuit(n_u_i):ночь:밤
-n-m,m:күн:day,sun:jour,soleil(j_ou_r_ _s_o_l_è_i):день,солнце:일,날,해,태양
-n-f,m,:ай:moon,month,ouch:lune,mois,aie(l_u_n_ _m_o_a_ _a_i):луна,месяц:달,월
-v:сігу:fuck:baiser(b_è_z_é):ебаться:섹스하다
-a:үлкен:big:grand(g_r_an):большой:큰
-a:кішкентай:small,little:petit(p_eu_t_i):маленький:작은
-o:рахмет:thank you,thanks:merci(m_è_r_s_i):спасибо:감사합니다
-n-m:ми:brain:cerveau(s_è_r_v_o):мозг:뇌
-o:сау бол:bye,goodbye:au revoir(o_ _r_eu_v_oa_a_r):до свидания,пока:안녕히 가세요
-o:сәлем:hello,hi:bonjour,salut(b_on_j_ou_r_ _s_a_l_u):здравствуйте,привет:안녕하세요
-o:қош бол:farewell:adieu(a_d_i_eu):прощай:잘 지내세요
-a:қазақ:kazakh:kazakh(k_a_z_a_k):казахский:카자흐어
-n-m:ағаш:tree:arbre(a_r_b_r):дерево:나무
-n-f;animal:ара:bee:abeille(a_b_è_i_y):пчела:벌
-n-m:ғарыш:space:espace(é_s_p_a_s):космос:우주
-o:емес:not:pas(p_a):не:아니다
-o:мен,және:and:et(é):и:그리고
-n-f:доп:ball:balle(b_a_l):мячь:공
-o:мен:I,me:je,moi(j_eu_ _m_o_a):я:저는,제가,나는,내가
-o:сен:you:tu,toi(t_u_ _m_o_a):ты:너는,네가
-a:жаман:bad:mauvais(m_o_v_è):плохой:나쁜
-a:жақсы:good:bon(b_on):хороший:좋은
-n-m,m;animal:ат:name,horse:nom,cheval(n_on_ _ch_eu_v_a_l):имя,лошадь:말
-a:қуасың:crazy:fou(f_ou):сумасшедший:미친
-o:қуасың ба?:are you crazy?:tu es fou?(t_u_ _è_ _f_ou):ты сумасшедший?:미쳤어요?
-n-f,f;body part,food:тамақ:food,throat:nourriture,gorge(n_ou_r_i_t_u_r_ _g_oa_r_j):еда,горло:음식,목
-n-m,m;family:ұл:boy,son:garçon,fils(g_a_r_s_on_ _f_i_s):мальчик:소년,남자 아이,아들
-n-f,f;family:қыз:girl,daughter:fille(f_i_y):девочка:소녀,여자 아이,딸
-n-,m;body part:жүз:hundred,face:cent,visage(s_an_ _v_i_z_a_j):сто,лицо:백,얼굴
-v:жүзу:swim:nager(n_a_j_é):плавать:수영하다
-n-m;food:кофе:coffee:café(k_a_f_é):кофе:커피
-o:кешір:sorry:désolé(d_é_z_o_l_é):извини,прости:죄송합니다
-a:кір:dirty:sale(s_a_l):грязный:더럽다
-o:бәрі бір:whatever:n'importe quoi(n_in_p_oa_r_t_eu_ _k_o_a):без разницы,всё равно:아무것
-o:маған бәрі бір:I don't care,idc:je m'en fiche,balek,osef(j_eu_ _m_an_ _f_i_ch_ _b_a_l_è_k_ _o_z_è_f):мне всё равно:난 상관없어
-n-m;food:нан:bread:pain(p_in):хлеб:빵
-v:жеу:eat:manger(m_an_j_é):есть,кушать:먹다
-v:ішу:drink:boire(b_o_a_r):пить:마시다
-a:қара:black:noir(n_o_a_r):чёрный:검정색,검은색,까만색
-o:оқасы жоқ:you're welcome:de rien(d_eu_ _r_i_in):не за что, пожалуйста:천만에요,아니에요,괜찮아요
-n-m;family:аға:brother:frère(f_r_è_r):брат:형,오빠,남동생
-n-f;family:әпке:sister:soeur(s_e_r):сестра:누나,언니,여동생
-o:иә:yes:oui(ou_i):да:예,네,어,응
-o:Жоқ:no:non(n_on):нет:아니요
-o:айтпа:exactly,right:exactement(é_x_a_k_t_eu_m_an):точно:정확히
-o:Тағы да:again,more:encore,plus(an_k_oa_r_ _p_l_u_s):ещё:다시,더
-o:өтінемін:please:s'il-te-plaît,s'il-vous-plait,svp,stp(s_i_l_t_eu_p_l_è_ _s_i_l_v_ou_p_l_è_ _è_s_t_é_p_é_ _è_s_v_é_p_é):пожалуйста:주시기 바랍니다,주세요,줘,제발
-v:Болу:be:être(è_t_r):быть:이다
-o:сау:healthy:en bonne santé(an_ _b_oa_n_ _s_an_t_é):здоровье:건강하다
-o:ғой:though:par contre(p_a_r_ _k_on_t_r):же:그렇지만,R+지만
-o:тек:only:seulement(s_e_l_eu_m_an):только:N+만,뿐이다,R+ㄹ/을 뿐이다
-o:әр:each:chacun,chaque,chacune(ch_a_k_in_ _ch_a_k_ _ch_a_k_u_n):каждый:각자,각 사람,각각,N+마다
-n-f:адам:person:personne(p_è_r_s_oa_n):человек:사람
-o:Қалайсың:how are you?:comment vas-tu?(k_o_m_an_ _v_a_ _t_u):как дела?:어떻게 지내세요?
-a:Қайырлы:gracious,good:gracieux,bon(g_r_a_s_i_eu_ _b_on):милостивый:은혜롭다,공손하다
-n-m:таң:morning:matin(m_a_t_in):утро:오전,아침 
-o:жақында:soon:bientôt(b_i_in_t_o):скоро:곧,당장
-o:жақын:close:proche(p_r_oa_ch):близко:가깝다
-o:бүгін:today:aujourd'hui(o_j_ou_r_d_u_i):сегодня:오늘
-o:ертең:tomorrow:demain(d_eu_m_in):завтра:내일
-o:бірақ:but:mais(m_è):но:하지만
-o:Өте:very:très(t_r_è):очень:매우,아주,너무
-o:Не?:what?:quoi?(k_o_a):что?:무엇,뭐
-o:Неге?:why?:pourquoi?(p_ou_r_k_o_a):почему?:왜?
-o:Қашан?:when?:quand?(k_an):когда?:언제
-o:Қайда?:where?:où?(ou):где?:어디
-n-f:гүл:flower:fleur(f_l_e_r):цветок:꽃
-n-f:үй:house:maison(m_è_z_on):дом:댁,집
-o:ше:and,...?:et,...?(é):а,...?:그리고?
-a:смешно:funny:drôle(d_r_o_l):смешно:재미있는
-a:Дұрыс:correct:correct(k_o_r_è_k_t):правильно:정확하다,옳다,맞다
-o:басқаны:another,someone/thing else:quelqu'un/quelque chose d'autre(k_è_l_k_in_ _k_è_l_k_eu_ _ch_o_z_ _d_o_t_r):другой:또 다른,다른 사람
-o:Ол:it,she,he:chose,il,elle(ch_o_z_ _i_l_ _è_l):это,она,он:그 사람
-o:көп:a lot,many:plein,beaucoup(p_l_in_ _b_o_k_ou):много:많다
-o:аз:few:peu(p_eu):мало:몇 개
-o:ештеңе:nothing:rien(r_i_in):ничего:아무것도 없다
-a:жалқау:lazy:paresseux(p_a_r_è_c_eu):ленивый:게으르다
-n-m:кітап:book:livre(l_i_v_r):книга:책
-o:что за фигня:what the fuck,wtf:what the fuck,wtf(ou_a_t_ _z_e_ _f_e_k):что за фигня:뭐야 씨발
-o:Бәрі:everything:tout(t_ou):всё:모든 것
-v:Түсіну:understand:comprendre(k_on_p_r_an_d_r):понимать:이해하다
-o:миымды жеме:don't eat my brain:ne mange pas mon cerveau(n_e_ _m_an_j_ _p_a_ _m_on_ _s_è_r_v_o):запарил:귀찮게 하지마
-o:неше?:how many?:combien?(k_on_b_i_in):сколько?:얼마나
-n-m:кесе:bowl:bol(b_oa_l):чаша:그릇
-o:кеше:yersterday:hier(i_è_r):вчера:어제
-o:әлде:or:ou(ou):или:혹은,또는,N+(이)나,R+거나,아니면
-n-m;family:әке:father:père(p_è_r):папа:아버지
-n-f;family:ана:mother:mère(m_è_r):мама:어머니
-n-f,m:Сағат:hour,time:heure,temps(e_r_ _t_an):час,время:시간
-o:Қалай?:how?:comment?(k_o_m_an):как?:어떻게?
-n-m;family:Бөпе:baby:bébé(b_é_b_é):ребёнок:아기
-o:мүмкін:maybe:peut-être(p_eu_t_è_t_r):может быть:아마도,아마,어쩌면
-o:әрине:of course:bien sûr(b_i_in_s_u_r):конечно:그럼요,물론(이다),당연하다
-v:бару:go:aller(a_l_é):идти:가다
-o:істеу:do,make:faire(f_è_r):делать:하다,만들다
-n-f;animal:кәмшат:otter:loutre(l_ou_t_r):выдра:수달
-v:кету:go,leave:aller,partir(a_l_é_ _p_a_r_t_i_r):уходить:떠나다
-o:кетш:get out:n'importe quoi(n_in_p_oa_r_t_eu_k_o_a):уйди:나가다
-n-f;body part:бас:head:tête(t_è_t):голова:머리
-v:жазу:write:écrire(é_k_r_i_r):писать:쓰다
-o:жиі:often:souvent(s_ou_v_an):часто:자주
-n-f,m;body part:қол:hand,arm:main,bras(m_in_ _b_r_a):рука:손,팔
-v:ойлану:reflect:réflechir(r_é_f_l_é_ch_i_r):размышлять,думать:반사하다,반영하다
-v:ойлау:think:penser(p_an_s_é):думать:생각하다
-n-f:ой:thought:pensée(p_an_s_é):мысль:생각
-n-f:кісі:person:personne(p_è_r_s_oa_n):человек:사람
-v:өлтіру:kill:tuer(t_u_é):убить:죽이다
-o:осы:this:ce(s_e):это,эта,этот:이것
-n-m;body part:көтен:booty:petit cul(p_eu_t_i_ _k_u):попа:전리품
-v:білу:know:savoir(s_a_v_o_a_r):знать:알다
-a:әдемі:beautiful,pretty:beau(b_o):красивый:아름다운,예쁜
-n-f:Қотақбас:dickhead:tête de bite(t_è_t_ _d_e_ _b_i_t):придурок:
-n-f;body part:Қотақ:dick:bite(b_i_t):член:음경
-v:көру:see:voir(v_o_a_r):видеть:보다
-v:келу:come:venir(v_eu_n_i_r):приходить:오다
-v:жақсы көру:love:aimer(è_m_é):любить:사랑하다
-n-m:қолшатыр:umbrella:parapluie(p_a_r_a_p_l_u_i):зонт:우산
-n-m:шатыр:roof:toit(t_o_a):крыша:지붕
-o:ерте:early:tôt(t_o):рано:일찍
-o:кеш:late:tard(t_a_r):поздно:늦은
-p:тым:too:aussi(o_s_i):тоже:N+도,또한,게다가
-v:ұйықтау:sleep:dormir(d_oa_r_m_i_r):спать:자다
-v:айту:tell,say:dire(d_i_r):рассказать,сказать:이야기하다,말하다
-a:Оңай:easy:facile(f_a_s_i_l):легко:쉬워지다,쉽다
-a:Қиын:difficult:difficile(d_i_f_i_s_i_l):сложно:어렵다
-n-m:Сүт:milk:lait(l_è):молоко:우유
-v:сөйлеу:speak:parler(p_a_r_l_é):разговаривать:말하다,대화하다
-n-m,p;body part:көз:eye,eyes:oeil,yeux(e_i_ _i_eu):глаз,глаза:눈
-n-f;body part:Құлақ:ear:oreille(o_r_è_i_y):ухо:귀
-n-p;body part:шаш:hair:cheveux(ch_eu_v_eu):волосы:머리
-n-f,p,m,p;body part:аяқ:leg,legs,foot,feet:jambe,jambes,pied,pieds(j_an_b_ _p_i_é):нога,ноги:다리,발
-n-f,p;body part:ерін:lips:lèvre,lèvres(l_è_v_r):губа:입술
-a:ақылды:smart,intelligent:intelligent(in_t_é_l_i_j_an):умный:똑똑한
-n-f;body part:Ауыз:mouth:bouche(b_ou_ch):рот:입
-n-f:Ақыл:intelligence:intelligence(in_t_é_l_i_j_an_s):ум:지능
-n-m;body part:іш:belly:ventre(v_an_t_r):живот:배
-v:-:enter a school:-:-:학교에 입학하다
-v:-:graduate:-:-:대학교를 졸업하다
-v:-:take a break from school:-:-:대학교를 휴학하다
-n:-:entrance:-:-:입구
-v:-:restart school:-:-:대학교에 북학하다
-v:-:get a job:-:-:회사에 취직하다
-v:-:take a leave of absence:-:-:회사를 휴직하다
-v:-:restart working:-:-:회사에 북직하다
-v:-:leave the company:-:-:회사를 그만두다
-v:-:have a part-time job:-:-:아르바이트를 하다
-v:-:move to N:-:-:N+로 이사하다
-v:-:get enganged:-:-:약혼하다
-v:-:get married:-:-:결혼하다
-v:-:make friends of the opposite gender:-:-:이성 친구가 생기다
-v:-:do one's hobby:-:-:취미 생활을 하다
-n:-:life,activity:-:-:생활
-n-m;body part:мұрын:nose:nez(n_é):нос:코
-n-m;body part:арқа:back:dos(d_o):спина:등
-o:Де:lol,jk,just kidding:lol,je rigole(l_oa_l_ _j_e_ _r_i_g_oa_l)::그냥 농담이야
-n-m;body part:саусақ:finger:doigt(d_o_a):палец:손가락
-n-f;body part:сақал:beard:barbe(b_a_r_b):борода:수염
-n-f;body part:мұрт:moustache:moustache(m_ou_s_t_a_ch):усы:수염
-n-f;body part:иық:shoulder:épaule(é_p_o_l):плечо:어깨
-n-m;body part:тізе:knee:genou(j_eu_n_ou):колено:무릎
-n-m;body part:шынтақ:elbow:coude(k_ou_d):локоть:팔꿈치
-n-m;animal:аю:bear:ours(ou_r_s):медведь:곰
-n-m;body part:мойын:neck:cou(k_ou):шея:목
-n-f;body part:кеуде:chest:poitrine(p_o_a_t_r_i_n):грудная клетка:가슴
-n-m;body part:маңдай:forehead:front(f_r_on):лоб:이마
-n-m;body part:қас:eyebrow:sourcil(s_ou_r_s_i_l):бровь:눈썹
-n-m,f,f;body part:бет:face,cheek,cheeks:visage,joue,joues(v_i_z_a_j_ _j_ou):лицо,щека:얼굴,볼,뺨
-n-m;animal:құс:bird:oiseau(o_a_z_o):птица:새
-n-m;animal:Панда:panda:panda(p_en_d_a):Панда:판다
-n-m;animal:шошқа:pig:cochon(k_o_ch_on):свинья:돼지
-n-m;animal:жануар:animal:animal(a_n_i_m_a_l):животное:동물
-n-f;animal:сиыр:cow:vache(v_a_ch):корова:소
-n-m:сурет:painting:tableau(t_a_b_l_o):картина:그림
-n-m:Туған күн:birthday:anniversaire(a_n_i_v_è_r_s_è_r):день рождения:생신,생일
-n-m;animal:қой:sheep:mouton(m_ou_t_on):овца:양
-n-m;animal:қоян:rabbit:lapin(l_a_p_in):заяц:토끼
-n-f;animal:тауық:chicken:poule(p_ou_l):курица:닭
-n-f;animal:бақа:frog:grenouille(g_r_e_n_ou_i_y):лягушка:개구리
-a;color:көк:blue:bleu(b_l_eu):синий:파란색
-a;color:қызыл:red:rouge(r_ou_j):красный:빨간색
-a;color:жасыл:green:vert(v_è_r):зелёный:녹색,초록색
-a;color:сары:yellow:jaune(j_o_n):жёлтый:노란색
-a;color:ақ:white:blanc(b_l_an):белый:흰색,하얀색,백색
-a;color:қара:black:noir(n_o_a_r):чёрный:검은색,검정,까만색
-a;color:қоңыр:brown:marron(ma_r_on):коричневый:갈색
-n-f;family:апа:grandmother:grand-mère(g_r_an_ _m_è_r):бабушка:할머니
-n-m;family:ата:grandfather:grand-père(g_r_an_ _p_è_r):дедушка:할아버지
-a;color:күлгін:purple:violet(v_i_o_l_è):фиолетовый:보라색,자주색
-a;color:сарғыш:orange:orange(o_r_an_j):оранжевый:오렌지색
-a;color:қызғылт:pink:rose(r_o_z):розовый:분홍색,핑크
-a;color:сұр:gray:gris(g_r_i):серый:회색
-a;color:түс:color:couleur(c_ou_l_eu_r):цвет:색상,색깔
-a;color:кемпірқосақ:rainbow:arc-en-ciel(a_r_c_an_s_i_è_l):радуга:무지개
-a;color:көгілдір:cyan:cyan(s_i_an):голубой:청록색
-n-f;time:апта:week:semaine(s_eu_m_è_n):неделя:주
-n-m;time:дүйсенбі:monday:lundi(l_in_d_i):понедельник:월요일
-n-m;time:сейсенбі:tuesday:mardi(m_a_r_d_i):вторник:화요일
-n-m;time:сәрсенбі:wednesday:mercredi(m_è_r_c_r_eu_d_i):среда:수요일
-n-m;time:бейсенбі:thursday:jeudi(j_eu_d_i):четверг:목요일
-n-m;time:жұма:friday:vendredi(v_an_d_r_eu_d_i):пятница:금요일
-n-m;time:сенбі:saturday:samedi(s_a_m_eu_d_i):суббота:토요일
-n-m;time:жексенбі:sunday:dimanche(d_i_m_an_ch):воскресенье:일요일
-n-m;time:қаңтар:january:janvier(j_an_v_i_é):январь:일월
-n-m;time:ақпан:february:février(f_é_v_r_i_é):февраль:이월
-n-m;time:наурыз:march:mars(m_a_r_s):март:삼월
-n-f;time:сағат:hour:heure(e_r):час:시
-n-f:минут:minute:minute(m_i_n_u_t):минут:
-n-m;time:сәуір:april:avril(a_v_r_i_l):апрель:사월
-n-m;time:мамыр:may:mai(m_è):май:오월
-n-m;time:маусым:june:juin(j_u_in):июнь:유월
-n-m;time:шілде:july:juillet(j_u_i_y_è):июль:칠월
-n-m;time:тамыз:august:août(ou_t):август:팔월
-n-m;time:қыркүйек:september:septembre(s_è_p_t_an_b_r):сентябрь:구월
-n-m;time:қазан:october:octobre(o_c_t_oa_b_r):октябрь:시월
-n-m;time:қараша:november:novembre(n_o_v_an_b_r):ноябрь:십일월
-n-m;time:желтоқсан:december:décembre(d_é_c_an_b_r):декабрь:십이월
-n-f;time:жыл:year:année(a_n_é):год:년
-n-m;time:қыс:winter:hiver(i_v_è_r):зима:겨울
-n-m;time:көктем:spring:printemps(p_r_in_t_an):весна:봄
-n-f;food:су:water:eau(o):вода:물
-n-m;time:жаз:summer:été(é_t_é):лето:여름
-n-m;time:күз:autumn:automne(o_t_oa_n):осень:가을
-n-m;food:шай:tea:thé(t_é):чай:차
-n-f;weather:ауа-райы:weather:météo(m_é_t_é_o):погода:날씨
-n-f;weather:жаңбыр:rain:pluie(p_l_u_i):дождь:비
-a;hidden:бұлтты:cloudy:nuageux(n_u_a_j_eu):облачно:구름
-a;hidden:ашық:clear:clair(c_l_è_r):ясно:맑은
-n-f;weather:қар:snow:neige(n_è_j):снег:
-n-f;time:мезгіл:season:saison(s_è_z_on):время года:
-a;hidden:күн шуақты:sunny:ensoleillé(an_s_o_l_è_i_y_é):солнечно:
-n-m;weather:найзағай:thunderstorms:orage(o_r_a_j):грозы:
-n;hidden:жаңбыр & қар:rain & snow:pluie & neige:дождь & снег:
-a:ылғал:humid:humide:влажно:
-n-f:сұрақ:question:question:вопрос:
-v:Кездесу:meet:rencontrer:встретиться:
-n-f:хат:letter:lettre(l_è_t_r):письмо:
-o:сол үшін:therefore:donc(d_on_c):поэтому:
-n-f:тау:mountain:montagne(m_on_t_a_n_i):гора:
-n-m;clothes:жейде:t-shirt:t-shirt(t_i_ _ch_e_r_t):футболка:
-n-f;clothes:жейде:shirt:chemise(ch_eu_m_i_z):рубашка:
-n-m;clothes:пенжек:blazer:blazer(b_l_a_z_eu_r):пиджак:
-n-f;clothes:сырт киім:jacket:veste(v_è_s_t):куртка:
-n-m;clothes:пәлте:coat:manteau(m_an_t_o):пальто:
-n-m;clothes:шалбар:pants:pantalon(p_an_t_a_l_on):штаны:
-n-m;clothes:джинс:jeans:jeans(d_j_i_n_s):джинсы:
-n-m;clothes:қысқа шалбар:shorts:short(ch_oa_r_t):шорты:
-n-f;clothes:белдемше:skirt:jupe(j_u_p):юбка:
-n-f;clothes:көйлек:dress:robe(r_oa_b):платье:
-n-m;clothes:свитер:sweater:sweat(s_ou_i_t):свитер:
-n-m;clothes:бас киім:hat:chapeau(ch_a_p_o):шапка:
-n-f;clothes:шарф:scarf:écharpe(é_ch_a_r_p):шарф:
-n-p;clothes:қолғап:gloves:gants(g_an):перчатки:
-n-p;clothes:аяқ киім:shoes:chaussures(ch_o_s_u_r):обувь:
-n-p;clothes:нәски:socks:chaussettes(ch_o_s_è_t):носки:
-n-f;clothes:кепке:cap:casquette(c_a_s_c_è_t):кепка:
-n-m;clothes:көбелек-галстук:bow tie:noeud papillon(n_eu_ _p_a_p_i_y_on):галстук-бабочка:
+n-m;animal:мысық:cat:chat(ch_a):кот:고양이:
+n-m;animal:ит:dog:chien(ch_i_in):собака:개,강아지:
+n:дос:friend:ami(a_m_i):друг,подруга:친구:
+n-f:түн:night:nuit(n_u_i):ночь:밤:
+n-m,m:күн:day,sun:jour,soleil(j_ou_r_ _s_o_l_è_i):день,солнце:일,날,해,태양:
+n-f,m,:ай:moon,month,ouch:lune,mois,aie(l_u_n_ _m_o_a_ _a_i):луна,месяц:달,월:
+v:сігу:fuck:baiser(b_è_z_é):ебаться:섹스하다:
+a:үлкен:big:grand(g_r_an):большой:큰:
+a:кішкентай:small,little:petit(p_eu_t_i):маленький:작은:
+o:рахмет:thank you,thanks:merci(m_è_r_s_i):спасибо:감사합니다:
+n-m:ми:brain:cerveau(s_è_r_v_o):мозг:뇌:
+o:сау бол:bye,goodbye:au revoir(o_ _r_eu_v_oa_a_r):до свидания,пока:안녕히 가세요:
+o:сәлем:hello,hi:bonjour,salut(b_on_j_ou_r_ _s_a_l_u):здравствуйте,привет:안녕하세요:
+o:қош бол:farewell:adieu(a_d_i_eu):прощай:잘 지내세요:
+a:қазақ:kazakh:kazakh(k_a_z_a_k):казахский:카자흐어:
+n-m:ағаш:tree:arbre(a_r_b_r):дерево:나무:
+n-f;animal:ара:bee:abeille(a_b_è_i_y):пчела:벌:
+n-m:ғарыш:space:espace(é_s_p_a_s):космос:우주:
+o:емес:not:pas(p_a):не:아니다:
+o:мен,және:and:et(é):и:그리고:
+n-f:доп:ball:balle(b_a_l):мячь:공:
+o:мен:I,me:je,moi(j_eu_ _m_o_a):я:저는,제가,나는,내가:
+o:сен:you:tu,toi(t_u_ _m_o_a):ты:너는,네가:
+a:жаман:bad:mauvais(m_o_v_è):плохой:나쁜:
+a:жақсы:good:bon(b_on):хороший:좋은:
+n-m,m;animal:ат:name,horse:nom,cheval(n_on_ _ch_eu_v_a_l):имя,лошадь:말:
+a:қуасың:crazy:fou(f_ou):сумасшедший:미친:
+o:қуасың ба?:are you crazy?:tu es fou?(t_u_ _è_ _f_ou):ты сумасшедший?:미쳤어요?:
+n-f,f;body part,food:тамақ:food,throat:nourriture,gorge(n_ou_r_i_t_u_r_ _g_oa_r_j):еда,горло:음식,목:
+n-m,m;family:ұл:boy,son:garçon,fils(g_a_r_s_on_ _f_i_s):мальчик:소년,남자 아이,아들:
+n-f,f;family:қыз:girl,daughter:fille(f_i_y):девочка:소녀,여자 아이,딸:
+n-,m;body part:жүз:hundred,face:cent,visage(s_an_ _v_i_z_a_j):сто,лицо:백,얼굴:
+v:жүзу:swim:nager(n_a_j_é):плавать:수영하다:
+n-m;food:кофе:coffee:café(k_a_f_é):кофе:커피:
+o:кешір:sorry:désolé(d_é_z_o_l_é):извини,прости:죄송합니다:
+a:кір:dirty:sale(s_a_l):грязный:더럽다:
+o:бәрі бір:whatever:n'importe quoi(n_in_p_oa_r_t_eu_ _k_o_a):без разницы,всё равно:아무것:
+o:маған бәрі бір:I don't care,idc:je m'en fiche,balek,osef(j_eu_ _m_an_ _f_i_ch_ _b_a_l_è_k_ _o_z_è_f):мне всё равно:난 상관없어:
+n-m;food:нан:bread:pain(p_in):хлеб:빵:
+v:жеу:eat:manger(m_an_j_é):есть,кушать:먹다:
+v:ішу:drink:boire(b_o_a_r):пить:마시다:
+a:қара:black:noir(n_o_a_r):чёрный:검정색,검은색,까만색:
+o:оқасы жоқ:you're welcome:de rien(d_eu_ _r_i_in):не за что, пожалуйста:천만에요,아니에요,괜찮아요:
+n-m;family:аға:brother:frère(f_r_è_r):брат:형,오빠,남동생:
+n-f;family:әпке:sister:soeur(s_e_r):сестра:누나,언니,여동생:
+o:иә:yes:oui(ou_i):да:예,네,어,응:
+o:Жоқ:no:non(n_on):нет:아니요:
+o:айтпа:exactly,right:exactement(é_x_a_k_t_eu_m_an):точно:정확히:
+o:Тағы да:again,more:encore,plus(an_k_oa_r_ _p_l_u_s):ещё:다시,더:
+o:өтінемін:please:s'il-te-plaît,s'il-vous-plait,svp,stp(s_i_l_t_eu_p_l_è_ _s_i_l_v_ou_p_l_è_ _è_s_t_é_p_é_ _è_s_v_é_p_é):пожалуйста:주시기 바랍니다,주세요,줘,제발:
+v:Болу:be:être(è_t_r):быть:이다:
+o:сау:healthy:en bonne santé(an_ _b_oa_n_ _s_an_t_é):здоровье:건강하다:
+o:ғой:though:par contre(p_a_r_ _k_on_t_r):же:그렇지만,R+지만:
+o:тек:only:seulement(s_e_l_eu_m_an):только:N+만,뿐이다,R+ㄹ/을 뿐이다:
+o:әр:each:chacun,chaque,chacune(ch_a_k_in_ _ch_a_k_ _ch_a_k_u_n):каждый:각자,각 사람,각각,N+마다:
+n-f:адам:person:personne(p_è_r_s_oa_n):человек:사람:
+o:Қалайсың:how are you?:comment vas-tu?(k_o_m_an_ _v_a_ _t_u):как дела?:어떻게 지내세요?:
+a:Қайырлы:gracious,good:gracieux,bon(g_r_a_s_i_eu_ _b_on):милостивый:은혜롭다,공손하다:
+n-m:таң:morning:matin(m_a_t_in):утро:오전,아침 :
+o:жақында:soon:bientôt(b_i_in_t_o):скоро:곧,당장:
+o:жақын:close:proche(p_r_oa_ch):близко:가깝다:
+o:бүгін:today:aujourd'hui(o_j_ou_r_d_u_i):сегодня:오늘:
+o:ертең:tomorrow:demain(d_eu_m_in):завтра:내일:
+o:бірақ:but:mais(m_è):но:하지만:
+o:Өте:very:très(t_r_è):очень:매우,아주,너무:
+o:Не?:what?:quoi?(k_o_a):что?:무엇,뭐:
+o:Неге?:why?:pourquoi?(p_ou_r_k_o_a):почему?:왜?:
+o:Қашан?:when?:quand?(k_an):когда?:언제:
+o:Қайда?:where?:où?(ou):где?:어디:
+n-f:гүл:flower:fleur(f_l_e_r):цветок:꽃:
+n-f:үй:house:maison(m_è_z_on):дом:댁,집:
+o:ше:and,...?:et,...?(é):а,...?:그리고?:
+a:смешно:funny:drôle(d_r_o_l):смешно:재미있는:
+a:Дұрыс:correct:correct(k_o_r_è_k_t):правильно:정확하다,옳다,맞다:
+o:басқаны:another,someone/thing else:quelqu'un/quelque chose d'autre(k_è_l_k_in_ _k_è_l_k_eu_ _ch_o_z_ _d_o_t_r):другой:또 다른,다른 사람:
+o:Ол:it,she,he:chose,il,elle(ch_o_z_ _i_l_ _è_l):это,она,он:그 사람:
+o:көп:a lot,many:plein,beaucoup(p_l_in_ _b_o_k_ou):много:많다:
+o:аз:few:peu(p_eu):мало:몇 개:
+o:ештеңе:nothing:rien(r_i_in):ничего:아무것도 없다:
+a:жалқау:lazy:paresseux(p_a_r_è_c_eu):ленивый:게으르다:
+n-m:кітап:book:livre(l_i_v_r):книга:책:
+o:что за фигня:what the fuck,wtf:what the fuck,wtf(ou_a_t_ _z_e_ _f_e_k):что за фигня:뭐야 씨발:
+o:Бәрі:everything:tout(t_ou):всё:모든 것:
+v:Түсіну:understand:comprendre(k_on_p_r_an_d_r):понимать:이해하다:
+o:миымды жеме:don't eat my brain:ne mange pas mon cerveau(n_e_ _m_an_j_ _p_a_ _m_on_ _s_è_r_v_o):запарил:귀찮게 하지마:
+o:неше?:how many?:combien?(k_on_b_i_in):сколько?:얼마나:
+n-m:кесе:bowl:bol(b_oa_l):чаша:그릇:
+o:кеше:yersterday:hier(i_è_r):вчера:어제:
+o:әлде:or:ou(ou):или:혹은,또는,N+(이)나,R+거나,아니면:
+n-m;family:әке:father:père(p_è_r):папа:아버지:
+n-f;family:ана:mother:mère(m_è_r):мама:어머니:
+n-f,m:Сағат:hour,time:heure,temps(e_r_ _t_an):час,время:시간:
+o:Қалай?:how?:comment?(k_o_m_an):как?:어떻게?:
+n-m;family:Бөпе:baby:bébé(b_é_b_é):ребёнок:아기:
+o:мүмкін:maybe:peut-être(p_eu_t_è_t_r):может быть:아마도,아마,어쩌면:
+o:әрине:of course:bien sûr(b_i_in_s_u_r):конечно:그럼요,물론(이다),당연하다:
+v:бару:go:aller(a_l_é):идти:가다:
+o:істеу:do,make:faire(f_è_r):делать:하다,만들다:
+n-f;animal:кәмшат:otter:loutre(l_ou_t_r):выдра:수달:
+v:кету:go,leave:aller,partir(a_l_é_ _p_a_r_t_i_r):уходить:떠나다:
+o:кетш:get out:n'importe quoi(n_in_p_oa_r_t_eu_k_o_a):уйди:나가다:
+n-f;body part:бас:head:tête(t_è_t):голова:머리:
+v:жазу:write:écrire(é_k_r_i_r):писать:쓰다:
+o:жиі:often:souvent(s_ou_v_an):часто:자주:
+n-f,m;body part:қол:hand,arm:main,bras(m_in_ _b_r_a):рука:손,팔:
+v:ойлану:reflect:réflechir(r_é_f_l_é_ch_i_r):размышлять,думать:반사하다,반영하다:
+v:ойлау:think:penser(p_an_s_é):думать:생각하다:
+n-f:ой:thought:pensée(p_an_s_é):мысль:생각:
+n-f:кісі:person:personne(p_è_r_s_oa_n):человек:사람:
+v:өлтіру:kill:tuer(t_u_é):убить:죽이다:
+o:осы:this:ce(s_e):это,эта,этот:이것:
+n-m;body part:көтен:booty:petit cul(p_eu_t_i_ _k_u):попа:전리품:
+v:білу:know:savoir(s_a_v_o_a_r):знать:알다:
+a:әдемі:beautiful,pretty:beau(b_o):красивый:아름다운,예쁜:
+n-f:Қотақбас:dickhead:tête de bite(t_è_t_ _d_e_ _b_i_t):придурок::
+n-f;body part:Қотақ:dick:bite(b_i_t):член:음경:
+v:көру:see:voir(v_o_a_r):видеть:보다:
+v:келу:come:venir(v_eu_n_i_r):приходить:오다:
+v:жақсы көру:love:aimer(è_m_é):любить:사랑하다:
+n-m:қолшатыр:umbrella:parapluie(p_a_r_a_p_l_u_i):зонт:우산:
+n-m:шатыр:roof:toit(t_o_a):крыша:지붕:
+o:ерте:early:tôt(t_o):рано:일찍:
+o:кеш:late:tard(t_a_r):поздно:늦은:
+p:тым:too:aussi(o_s_i):тоже:N+도,또한,게다가:
+v:ұйықтау:sleep:dormir(d_oa_r_m_i_r):спать:자다:
+v:айту:tell,say:dire(d_i_r):рассказать,сказать:이야기하다,말하다:
+a:Оңай:easy:facile(f_a_s_i_l):легко:쉬워지다,쉽다:
+a:Қиын:difficult:difficile(d_i_f_i_s_i_l):сложно:어렵다:
+n-m:Сүт:milk:lait(l_è):молоко:우유:
+v:сөйлеу:speak:parler(p_a_r_l_é):разговаривать:말하다,대화하다:
+n-m,p;body part:көз:eye,eyes:oeil,yeux(e_i_ _i_eu):глаз,глаза:눈:
+n-f;body part:Құлақ:ear:oreille(o_r_è_i_y):ухо:귀:
+n-p;body part:шаш:hair:cheveux(ch_eu_v_eu):волосы:머리:
+n-f,p,m,p;body part:аяқ:leg,legs,foot,feet:jambe,jambes,pied,pieds(j_an_b_ _p_i_é):нога,ноги:다리,발:
+n-f,p;body part:ерін:lips:lèvre,lèvres(l_è_v_r):губа:입술:
+a:ақылды:smart,intelligent:intelligent(in_t_é_l_i_j_an):умный:똑똑한:
+n-f;body part:Ауыз:mouth:bouche(b_ou_ch):рот:입:
+n-f:Ақыл:intelligence:intelligence(in_t_é_l_i_j_an_s):ум:지능:
+n-m;body part:іш:belly:ventre(v_an_t_r):живот:배:
+v:-:enter a school:-:-:학교에 입학하다:
+v:-:graduate:-:-:대학교를 졸업하다:
+v:-:take a break from school:-:-:대학교를 휴학하다:
+n:-:entrance:-:-:입구:
+v:-:restart school:-:-:대학교에 북학하다:
+v:-:get a job:-:-:회사에 취직하다:
+v:-:take a leave of absence:-:-:회사를 휴직하다:
+v:-:restart working:-:-:회사에 북직하다:
+v:-:leave the company:-:-:회사를 그만두다:
+v:-:have a part-time job:-:-:아르바이트를 하다:
+v:-:move to N:-:-:N+로 이사하다:
+v:-:get enganged:-:-:약혼하다:
+v:-:get married:-:-:결혼하다:
+v:-:make friends of the opposite gender:-:-:이성 친구가 생기다:
+v:-:do one's hobby:-:-:취미 생활을 하다:
+n:-:life,activity:-:-:생활:
+n-m;body part:мұрын:nose:nez(n_é):нос:코:
+n-m;body part:арқа:back:dos(d_o):спина:등:
+o:Де:lol,jk,just kidding:lol,je rigole(l_oa_l_ _j_e_ _r_i_g_oa_l)::그냥 농담이야:
+n-m;body part:саусақ:finger:doigt(d_o_a):палец:손가락:
+n-f;body part:сақал:beard:barbe(b_a_r_b):борода:수염:
+n-f;body part:мұрт:moustache:moustache(m_ou_s_t_a_ch):усы:수염:
+n-f;body part:иық:shoulder:épaule(é_p_o_l):плечо:어깨:
+n-m;body part:тізе:knee:genou(j_eu_n_ou):колено:무릎:
+n-m;body part:шынтақ:elbow:coude(k_ou_d):локоть:팔꿈치:
+n-m;animal:аю:bear:ours(ou_r_s):медведь:곰:
+n-m;body part:мойын:neck:cou(k_ou):шея:목:
+n-f;body part:кеуде:chest:poitrine(p_o_a_t_r_i_n):грудная клетка:가슴:
+n-m;body part:маңдай:forehead:front(f_r_on):лоб:이마:
+n-m;body part:қас:eyebrow:sourcil(s_ou_r_s_i_l):бровь:눈썹:
+n-m,f,f;body part:бет:face,cheek,cheeks:visage,joue,joues(v_i_z_a_j_ _j_ou):лицо,щека:얼굴,볼,뺨:
+n-m;animal:құс:bird:oiseau(o_a_z_o):птица:새:
+n-m;animal:Панда:panda:panda(p_en_d_a):Панда:판다:
+n-m;animal:шошқа:pig:cochon(k_o_ch_on):свинья:돼지:
+n-m;animal:жануар:animal:animal(a_n_i_m_a_l):животное:동물:
+n-f;animal:сиыр:cow:vache(v_a_ch):корова:소:
+n-m:сурет:painting:tableau(t_a_b_l_o):картина:그림:
+n-m:Туған күн:birthday:anniversaire(a_n_i_v_è_r_s_è_r):день рождения:생신,생일:
+n-m;animal:қой:sheep:mouton(m_ou_t_on):овца:양:
+n-m;animal:қоян:rabbit:lapin(l_a_p_in):заяц:토끼:
+n-f;animal:тауық:chicken:poule(p_ou_l):курица:닭:
+n-f;animal:бақа:frog:grenouille(g_r_e_n_ou_i_y):лягушка:개구리:
+a;color:көк:blue:bleu(b_l_eu):синий:파란색:
+a;color:қызыл:red:rouge(r_ou_j):красный:빨간색:
+a;color:жасыл:green:vert(v_è_r):зелёный:녹색,초록색:
+a;color:сары:yellow:jaune(j_o_n):жёлтый:노란색:
+a;color:ақ:white:blanc(b_l_an):белый:흰색,하얀색,백색:
+a;color:қара:black:noir(n_o_a_r):чёрный:검은색,검정,까만색:
+a;color:қоңыр:brown:marron(ma_r_on):коричневый:갈색:
+n-f;family:апа:grandmother:grand-mère(g_r_an_ _m_è_r):бабушка:할머니:
+n-m;family:ата:grandfather:grand-père(g_r_an_ _p_è_r):дедушка:할아버지:
+a;color:күлгін:purple:violet(v_i_o_l_è):фиолетовый:보라색,자주색:
+a;color:сарғыш:orange:orange(o_r_an_j):оранжевый:오렌지색:
+a;color:қызғылт:pink:rose(r_o_z):розовый:분홍색,핑크:
+a;color:сұр:gray:gris(g_r_i):серый:회색:
+a;color:түс:color:couleur(c_ou_l_eu_r):цвет:색상,색깔:
+a;color:кемпірқосақ:rainbow:arc-en-ciel(a_r_c_an_s_i_è_l):радуга:무지개:
+a;color:көгілдір:cyan:cyan(s_i_an):голубой:청록색:
+n-f;time:апта:week:semaine(s_eu_m_è_n):неделя:주:
+n-m;time:дүйсенбі:monday:lundi(l_in_d_i):понедельник:월요일:
+n-m;time:сейсенбі:tuesday:mardi(m_a_r_d_i):вторник:화요일:
+n-m;time:сәрсенбі:wednesday:mercredi(m_è_r_c_r_eu_d_i):среда:수요일:
+n-m;time:бейсенбі:thursday:jeudi(j_eu_d_i):четверг:목요일:
+n-m;time:жұма:friday:vendredi(v_an_d_r_eu_d_i):пятница:금요일:
+n-m;time:сенбі:saturday:samedi(s_a_m_eu_d_i):суббота:토요일:
+n-m;time:жексенбі:sunday:dimanche(d_i_m_an_ch):воскресенье:일요일:
+n-m;time:қаңтар:january:janvier(j_an_v_i_é):январь:일월:
+n-m;time:ақпан:february:février(f_é_v_r_i_é):февраль:이월:
+n-m;time:наурыз:march:mars(m_a_r_s):март:삼월:
+n-f;time:сағат:hour:heure(e_r):час:시:
+n-f:минут:minute:minute(m_i_n_u_t):минут::
+n-m;time:сәуір:april:avril(a_v_r_i_l):апрель:사월:
+n-m;time:мамыр:may:mai(m_è):май:오월:
+n-m;time:маусым:june:juin(j_u_in):июнь:유월:
+n-m;time:шілде:july:juillet(j_u_i_y_è):июль:칠월:
+n-m;time:тамыз:august:août(ou_t):август:팔월:
+n-m;time:қыркүйек:september:septembre(s_è_p_t_an_b_r):сентябрь:구월:
+n-m;time:қазан:october:octobre(o_c_t_oa_b_r):октябрь:시월:
+n-m;time:қараша:november:novembre(n_o_v_an_b_r):ноябрь:십일월:
+n-m;time:желтоқсан:december:décembre(d_é_c_an_b_r):декабрь:십이월:
+n-f;time:жыл:year:année(a_n_é):год:년:
+n-m;time:қыс:winter:hiver(i_v_è_r):зима:겨울:
+n-m;time:көктем:spring:printemps(p_r_in_t_an):весна:봄:
+n-f;food:су:water:eau(o):вода:물:
+n-m;time:жаз:summer:été(é_t_é):лето:여름:
+n-m;time:күз:autumn:automne(o_t_oa_n):осень:가을:
+n-m;food:шай:tea:thé(t_é):чай:차:
+n-f;weather:ауа-райы:weather:météo(m_é_t_é_o):погода:날씨:
+n-f;weather:жаңбыр:rain:pluie(p_l_u_i):дождь:비:
+a;hidden:бұлтты:cloudy:nuageux(n_u_a_j_eu):облачно:구름:
+a;hidden:ашық:clear:clair(c_l_è_r):ясно:맑은:
+n-f;weather:қар:snow:neige(n_è_j):снег::
+n-f;time:мезгіл:season:saison(s_è_z_on):время года::
+a;hidden:күн шуақты:sunny:ensoleillé(an_s_o_l_è_i_y_é):солнечно::
+n-m;weather:найзағай:thunderstorms:orage(o_r_a_j):грозы::
+n;hidden:жаңбыр & қар:rain & snow:pluie & neige:дождь & снег::
+a:ылғал:humid:humide:влажно::
+n-f:сұрақ:question:question:вопрос::
+v:Кездесу:meet:rencontrer:встретиться::
+n-f:хат:letter:lettre(l_è_t_r):письмо::
+o:сол үшін:therefore:donc(d_on_c):поэтому::
+n-f:тау:mountain:montagne(m_on_t_a_n_i):гора::
+n-m;clothes:жейде:t-shirt:t-shirt(t_i_ _ch_e_r_t):футболка::
+n-f;clothes:жейде:shirt:chemise(ch_eu_m_i_z):рубашка::
+n-m;clothes:пенжек:blazer:blazer(b_l_a_z_eu_r):пиджак::
+n-f;clothes:сырт киім:jacket:veste(v_è_s_t):куртка::
+n-m;clothes:пәлте:coat:manteau(m_an_t_o):пальто::
+n-m;clothes:шалбар:pants:pantalon(p_an_t_a_l_on):штаны::
+n-m;clothes:джинс:jeans:jeans(d_j_i_n_s):джинсы::
+n-m;clothes:қысқа шалбар:shorts:short(ch_oa_r_t):шорты::
+n-f;clothes:белдемше:skirt:jupe(j_u_p):юбка::
+n-f;clothes:көйлек:dress:robe(r_oa_b):платье::
+n-m;clothes:свитер:sweater:sweat(s_ou_i_t):свитер::
+n-m;clothes:бас киім:hat:chapeau(ch_a_p_o):шапка::
+n-f;clothes:шарф:scarf:écharpe(é_ch_a_r_p):шарф::
+n-p;clothes:қолғап:gloves:gants(g_an):перчатки::
+n-p;clothes:аяқ киім:shoes:chaussures(ch_o_s_u_r):обувь::
+n-p;clothes:нәски:socks:chaussettes(ch_o_s_è_t):носки::
+n-f;clothes:кепке:cap:casquette(c_a_s_c_è_t):кепка::
+n-m;clothes:көбелек-галстук:bow tie:noeud papillon(n_eu_ _p_a_p_i_y_on):галстук-бабочка::
