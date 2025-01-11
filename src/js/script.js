@@ -124,7 +124,7 @@ $(document).ready(function(){
     document.documentElement.style.setProperty("--secondary-color", colors[lang_i][1]);
     $('#wave_top path').attr('style','stroke: none;fill: '+colors[lang_i][0]+';');
     $('#wave_bottom path').attr('style','stroke: none;fill: '+colors[lang_i][0]+';');
-    $('#title h1').html('<i class="' + languages[lang_i] + '" ></i>   my ' + languages[lang_i] + ' words   <i class="' + languages[lang_i] + '" ></i>');
+    $('#title h1').html('<i class="' + languages[lang_i] + '" ></i>   my <div id=title_dropdown active="false">' + languages[lang_i] + '<i class="fa-solid fa-sort-down"></i></div> words   <i class="' + languages[lang_i] + '" ></i>');
     $('link[rel="icon"]').attr('href', base_url + '/src/symbols/' + languages[lang_i] + '.ico');//TODO : add japanese icon (ask ziyu)
     //Populate grammar section based on language
     var url = base_url + "/sections/" + languages[lang_i] + ".html";	
@@ -146,6 +146,17 @@ $(document).ready(function(){
         $('#number_output p').text(special_numbers[lang_i][0]);
         setup_renderer();
         setup_toys();
+        $('#title_dropdown').click(function(){
+            var is_toggle_active = $('#title_dropdown').attr('active');
+            if (is_toggle_active == 'false'){
+                $('#flags_div').animate({top: '70px'}, 200);
+                $('#title_dropdown').attr('active','true');
+            }
+            else{
+                $('#flags_div').animate({top: '0px'}, 200);
+                $('#title_dropdown').attr('active','false');
+            }
+        });
     });
 });
 
