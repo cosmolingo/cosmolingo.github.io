@@ -934,7 +934,12 @@ border-right: 1px solid black;
     fill:var(--primary-color);
 }
 
+#clothes_diagrams{
+    position: relative;
+}
+
 #body_info,#clothes_info{
+    z-index: 100;
     display: table;
     width:fit-content;
     padding-left: 15px;

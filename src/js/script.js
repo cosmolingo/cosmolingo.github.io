@@ -1006,8 +1006,13 @@ function create_clothes_diagram(){
         if (rand_outfit_i > nb_outfits){
             rand_outfit_i = 1;
         }
-        var url = base_url + "/src/clothes/outfit" + rand_outfit_i + ".svg";
-        $('#clothes_diagrams').load(url);
+        $('#clothes_diagrams').animate({left: '-100%'}, 500, function() {
+            var url = base_url + "/src/clothes/outfit" + rand_outfit_i + ".svg";
+            $('#clothes_diagrams').load(url, function() {
+                $('#clothes_diagrams').css('left', '100%');
+                $('#clothes_diagrams').animate({left: '0%'}, 500);
+            });
+        });
     });
 
     $('#clothes_arrow_left').on('click',function(e){
@@ -1015,8 +1020,13 @@ function create_clothes_diagram(){
         if (rand_outfit_i == 0){
             rand_outfit_i = nb_outfits;
         }
-        var url = base_url + "/src/clothes/outfit" + rand_outfit_i + ".svg";
-        $('#clothes_diagrams').load(url);
+        $('#clothes_diagrams').animate({left: '100%'}, 500, function() {
+            var url = base_url + "/src/clothes/outfit" + rand_outfit_i + ".svg";
+            $('#clothes_diagrams').load(url, function() {
+                $('#clothes_diagrams').css('left', '-100%');
+                $('#clothes_diagrams').animate({left: '0%'}, 500);
+            });
+        });
     });
 
 }
