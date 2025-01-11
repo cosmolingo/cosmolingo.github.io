@@ -908,6 +908,17 @@ border-right: 1px solid black;
 .st1{fill:none;stroke:#5A4813;stroke-width:2.25;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
 .st2{fill:none;stroke:#5A4813;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
 
+#clothes_arrow_left,#clothes_arrow_right{
+    width:50px;
+    height:50px;
+    cursor:pointer;
+    z-index: 100;
+    font-size: 50px;
+    margin-left: 100px;
+    margin-right: 100px;
+    display: inline-block;
+}
+
 #Layer_1{
     pointer-events: none;
 }

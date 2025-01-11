@@ -25,6 +25,8 @@ var worlde_word_en = '';
 var wordle_active_row = 0;
 var wordle_last_word_idx = 0;
 var letter_duration = new Array(100).fill(0);
+var nb_outfits = 5;
+var rand_outfit_i = Math.floor(Math.random() * nb_outfits) + 1;
 
 var languages = ['kazakh','russian','french','korean','japanese'];
 var colors = [['#7db1db','#5092c8'],['#ffb361','#ff9829'],['#c499e0','#a463ce'],['#f2e269','#e3b713'],['#e8766d','#d7544a']];
@@ -993,9 +995,28 @@ function create_clothes_diagram(){
     if ($('.clothes').length == 0){
         return;
     }
-    var url = base_url + "/src/clothes/outfit4.svg";
+    var url = base_url + "/src/clothes/outfit" + rand_outfit_i + ".svg";
     
     $('#clothes_diagrams').load(url);
+
+    $('#clothes_arrow_right').on('click',function(e){
+        rand_outfit_i = rand_outfit_i + 1;
+        if (rand_outfit_i > nb_outfits){
+            rand_outfit_i = 1;
+        }
+        var url = base_url + "/src/clothes/outfit" + rand_outfit_i + ".svg";
+        $('#clothes_diagrams').load(url);
+    });
+
+    $('#clothes_arrow_left').on('click',function(e){
+        rand_outfit_i = rand_outfit_i - 1;
+        if (rand_outfit_i == 0){
+            rand_outfit_i = nb_outfits;
+        }
+        var url = base_url + "/src/clothes/outfit" + rand_outfit_i + ".svg";
+        $('#clothes_diagrams').load(url);
+    });
+
 }
 
 function populate_alphabet(){
