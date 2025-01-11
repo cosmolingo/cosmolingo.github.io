@@ -2,7 +2,14 @@
 //Past tense table
 //To be table
 //Clothes where you chose each clothing with arrows
-//Fruits & Vegetables
+//Food (Fruits & Vegetables)
+//Animals
+//German
+//Add chin to body diagram
+
+
+//TIPS:
+//for diagrams, include a line at 0,0 and copy it with each part so that you copy the absolute position and not relative like illustrator does
 
 var base_url = 'https://cosmolingo.studio';
 var words_list = [];
@@ -19,18 +26,20 @@ var wordle_active_row = 0;
 var wordle_last_word_idx = 0;
 var letter_duration = new Array(100).fill(0);
 
-var languages = ['kazakh','russian','french','korean'];
+var languages = ['kazakh','russian','french','korean','japanese'];
 var colors = [['#7db1db','#5092c8'],['#ffb361','#ff9829'],['#c499e0','#a463ce'],['#f2e269','#e3b713'],['#e8766d','#d7544a']];
 var alphabets = [
     ["а","ә","б","в","г","ғ","д","е","ж","з","и","й","к","қ","л","м","н","ң","о","ө","п","р","с","т","у","ұ","ү","ф","х","һ","ц","ч","ш","щ","ы","і","э","ю","я"],
     ["а","б","в","г","д","е","ё","ж","з","и","й","к","л","м","н","о","п","р","с","т","у","ф","х","ц","ч","ш","щ","ъ","ы","ь","э","ю","я"],
     ["a","b","c","d","e","é","è","ê","ë","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"],
+    [],
     []
 ];
 var pron_alphabets = [
     ["а","ә","б","в","г","ғ","д","е","ж","з","и","й","к","қ","л","м","н","ң","о","ө","п","р","с","т","у","ұ","ү","ф","х","һ","ц","ч","ш","щ","ы","і","э","ю","я"],
     ["а","б","в","г","д","е","ё","ж","з","и","й","к","л","м","н","о","п","р","с","т","у","ф","х","ц","ч","ш","щ","ъ","ы","ь","э","ю","я"],
     ["a","an","b","ch","d","e","é","è","eu","f","g","i","in","j","k","l","m","n","o","oa","on","ou","p","r","s","t","u","v","x","y","z"],
+    [],
     []
 ];
 var palette = [
@@ -56,6 +65,7 @@ var special_numbers = [
     {0:'zéro',1:'un',2:'deux',3:'trois',4:'quatre',5:'cinq',6:'six',7:'sept',8:'huit',9:'neuf',10:'dix',
     11:'onze',12:'douze',13:'treize',14:'quatorze',15:'quinze',16:'seize',17:'dix-sept',18:'dix-huit',19:'dix-neuf',
     20:'vingt',30:'trente',40:'quarante',50:'cinquante',60:'soixante',70:'soixante-dix',80:'quatre-vingts',90:'quatre-vingt-dix',100:'cent',1000:'mille'},
+    {},
     {}
 ]
 
@@ -80,7 +90,7 @@ var weather_types = {
     tsrain:{src:'thunderstorms-rain',en_name:'thunderstorms'},
 };
 
-var clock_intro = ['сағат','время','il est','시간'];
+var clock_intro = ['сағат','время','il est','시간','japanese "il est"'];
 var hour_suffixes_1 = {
     0:'',1:'ден',2:'ден',3:'тен',4:'тен',5:'тен',6:'дан',7:'ден',8:'ден',9:'дан',10:'нан',11:'ден',12:'ден'
 };
@@ -99,6 +109,9 @@ else if (url_lang == 'fr'){
 else if (url_lang == 'kr'){
     lang_i = 3;
 }
+else if (url_lang == 'jp'){
+    lang_i = 4;
+}
 
 $(document).ready(function(){
     $('.test_clock').clockTimePicker();
@@ -108,7 +121,7 @@ $(document).ready(function(){
     $('#wave_top path').attr('style','stroke: none;fill: '+colors[lang_i][0]+';');
     $('#wave_bottom path').attr('style','stroke: none;fill: '+colors[lang_i][0]+';');
     $('#title h1').html('<i class="' + languages[lang_i] + '" ></i>   my ' + languages[lang_i] + ' words   <i class="' + languages[lang_i] + '" ></i>');
-    $('link[rel="icon"]').attr('href', base_url + '/src/symbols/' + languages[lang_i] + '.ico');
+    $('link[rel="icon"]').attr('href', base_url + '/src/symbols/' + languages[lang_i] + '.ico');//TODO : add japanese icon (ask ziyu)
     //Populate grammar section based on language
     var url = base_url + "/sections/" + languages[lang_i] + ".html";	
     $.get({url: url,cache: false}).then(function(data) {
@@ -245,16 +258,7 @@ function translate_word(word){
     var translated_name = '';
     
     for (var i = 0; i < words_list.length; i++){
-        var attr = 'ka_words';
-        if (lang_i == 1){
-            attr = 'ru_words';
-        }
-        else if (lang_i == 2){
-            attr = 'fr_words';
-        }
-        else if (lang_i == 3){
-            attr = 'ko_words';
-        }
+        var attr = get_lang_attr(lang_i);
         if (words_list[i].en_words.split(',').includes(word)){
             translated_name = words_list[i][attr];
             break;
@@ -356,25 +360,10 @@ function populate_color_picker(){
     }
 
     for (var i = 0; i < palette.length; i++){
+        
         var en_name = palette[i][0];
-        var translated_name = '';
-        $('.word').each(function(){
-            var attr = 'ka_words';
-            if (lang_i == 1){
-                attr = 'ru_words';
-            }
-            else if (lang_i == 2){
-                attr = 'fr_words';
-            }
-            else if (lang_i == 3){
-                attr = 'ko_words';
-            }
-            var en_words = $(this).attr('en_words').split(', ');
-            
-            if (en_words.includes(en_name)){
-                translated_name = $(this).attr(attr);
-            }
-        });
+        var translated_name = translate_word(en_name);
+        
         if (translated_name != ''){
             palette[i] = [en_name + ' : ' + translated_name,palette[i][1],palette[i][2],palette[i][3]];
         }
@@ -504,7 +493,8 @@ function get_words(){
             var fr_words = parts[3].trim();
             var ru_words = parts[4].trim();
             var ko_words = parts[5].trim();
-            if ([ka_words,ru_words,fr_words,ko_words][lang_i] == "-") {
+            var jp_words = parts[6].trim();
+            if ([ka_words,ru_words,fr_words,ko_words,jp_words][lang_i] == "-") {
                 return;
             }
             total_words++;
@@ -523,12 +513,13 @@ function get_words(){
             else{
                 var new_fr_words = fr_words;
             }
-            words_list.push({type:type, hidden:is_hidden, tags:tags, genders:genders, ka_words: ka_words, en_words: en_words, fr_words: new_fr_words, ru_words: ru_words, ko_words: ko_words});
+            words_list.push({type:type, hidden:is_hidden, tags:tags, genders:genders, ka_words: ka_words, en_words: en_words, fr_words: new_fr_words, ru_words: ru_words, ko_words: ko_words, jp_words: jp_words});
             ka_words = ka_words.replace(/,/g,", ");
             en_words = en_words.replace(/,/g,", ");
             new_fr_words = new_fr_words.replace(/,/g,", ");
             ru_words = ru_words.replace(/,/g,", ");
             ko_words = ko_words.replace(/,/g,", ");
+            jp_words = jp_words.replace(/,/g,", ");
 
             if (genders.length > 0 && lang_i == 2){
                 if (new_fr_words.includes(', ')){
@@ -551,7 +542,7 @@ function get_words(){
             }
             
             if (is_hidden == false){
-                display_words = [ka_words,ru_words,new_fr_words,ko_words];
+                display_words = [ka_words,ru_words,new_fr_words,ko_words,jp_words];
 
                 var wordElement = $("<p>").text(display_words[lang_i] + ' : ' + en_words_display);
                 wordElement.attr('type'    , type   );
@@ -562,6 +553,7 @@ function get_words(){
                 wordElement.attr('fr_words', new_fr_words);
                 wordElement.attr('ru_words', ru_words);
                 wordElement.attr('ko_words', ko_words);
+                wordElement.attr('jp_words', jp_words);
                 if (fr_words != '-' && fr_words.includes('(')){
                     var fr_pron = fr_words.split('(')[1].slice(0,-1).split('_');
                     wordElement.attr('fr_pron' , JSON.stringify(fr_pron));
@@ -782,6 +774,9 @@ function populate_wordle(){
         else if (lang_i == 3){
             var rand_word = shuffled_list[i].ko_words;
         }
+        else if (lang_i == 4){
+            var rand_word = shuffled_list[i].jp_words;
+        }
         if ((rand_word.length == 0) || (rand_word == '-') || (rand_word.length < 4) || (rand_word.length > 6) || (rand_word.includes(',')) || (rand_word.includes(' ')) ||(rand_word.includes('?'))){
             continue;
         }
@@ -998,7 +993,7 @@ function create_clothes_diagram(){
     if ($('.clothes').length == 0){
         return;
     }
-    var url = base_url + "/src/clothes/outfit2.svg";
+    var url = base_url + "/src/clothes/outfit4.svg";
     
     $('#clothes_diagrams').load(url);
 }
@@ -1011,16 +1006,7 @@ function populate_alphabet(){
     }
 
     for (var i = 0; i < words_list.length; i++){
-        var attr = 'ka_words';
-        if (lang_i == 1){
-            attr = 'ru_words';
-        }
-        else if (lang_i == 2){
-            attr = 'fr_words';
-        }
-        else if (lang_i == 3){
-            attr = 'ko_words';
-        }
+        var attr = get_lang_attr(lang_i);
         var words = words_list[i][attr];
         for (var j = 0; j < words.length; j++){
             var letter = words.split('')[j];
@@ -1068,7 +1054,10 @@ function get_spelled_out_number(number){
             return 'Trop grand !';
         }
         else if (lang_i == 3){
-            return '';
+            return '';//TODO : ask paloma about this
+        }
+        else if (lang_i == 4){
+            return '';//TODO : ask ziyu about this
         }
     }
     if (number == 0){
@@ -1195,16 +1184,7 @@ function body_info(){
         var en_name = $('polygon:hover').attr('name');
         var translated_name = '';
         $('.word').each(function(){
-            var attr = 'ka_words';
-            if (lang_i == 1){
-                attr = 'ru_words';
-            }
-            else if (lang_i == 2){
-                attr = 'fr_words';
-            }
-            else if (lang_i == 3){
-                attr = 'ko_words';
-            }
+            var attr = get_lang_attr(lang_i);
             var en_words = $(this).attr('en_words').split(', ');
             
             if (en_words.includes(en_name)){
@@ -1222,6 +1202,24 @@ function body_info(){
     var mouseY = event.pageY + 30;
     bodyInfo.css({top: mouseY, left: mouseX});
 }
+
+function get_lang_attr(lang_i){
+    var attr = 'ka_words';
+    if (lang_i == 1){
+        attr = 'ru_words';
+    }
+    else if (lang_i == 2){
+        attr = 'fr_words';
+    }
+    else if (lang_i == 3){
+        attr = 'ko_words';
+    }
+    else if (lang_i == 4){
+        attr = 'jp_words';
+    }
+    return attr;
+}
+    
 
 function clothes_info(){
     var bodyInfo = $('#clothes_info');
@@ -1264,7 +1262,8 @@ function update_word_list(){
         var fr_words = $(this).attr("fr_words").toLowerCase();
         var ru_words = $(this).attr("ru_words").toLowerCase();
         var ko_words = $(this).attr("ko_words").toLowerCase();
-        lang_words = [ka_words,ru_words,fr_words,ko_words];
+        var jp_words = $(this).attr("jp_words").toLowerCase();
+        lang_words = [ka_words,ru_words,fr_words,ko_words,jp_words];
         if (type == 'v'){
             var len = en_words.split(",").length;
             for (var i = 0; i < len; i++){
@@ -1381,6 +1380,7 @@ function update_game_guess() {
     $('#guess_word').attr('fr_words', word.fr_words);
     $('#guess_word').attr('ru_words', word.ru_words);
     $('#guess_word').attr('ko_words', word.ko_words);
+    $('#guess_word').attr('jp_words', word.jp_words);
     var ka_word = word.ka_words.replace(/,/g,", ");
     var col = $('.word[ka_words="' + ka_word + '"]').css('background-color');
     var col_r = col.split(',')[0].split('(')[1];

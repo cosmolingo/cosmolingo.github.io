@@ -46,8 +46,8 @@ table{
 #flags_div{
     z-index: 110;
     position: absolute;
-    width:255px;
-    left:calc(50% - 275px / 2);
+    width:320px;
+    left:calc(50% - 320px / 2);
     top:60px;
     padding-left:10px;
     padding-right:10px;
