@@ -25,7 +25,7 @@ var worlde_word_en = '';
 var wordle_active_row = 0;
 var wordle_last_word_idx = 0;
 var letter_duration = new Array(100).fill(0);
-var nb_outfits = 5;
+var nb_outfits = 6;
 var rand_outfit_i = Math.floor(Math.random() * nb_outfits) + 1;
 
 var languages = ['kazakh','russian','french','korean','japanese'];
