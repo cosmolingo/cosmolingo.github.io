@@ -1389,8 +1389,8 @@ function update_association_game(){
         var en_word_display = "";
         if (word.type == 'v'){
             var len = en_word.split(",").length;
-            for (var i = 0; i < len; i++){
-                var en = en_word.split(",")[i];
+            for (var j = 0; j < len; j++){
+                var en = en_word.split(",")[j];
                 en_word_display = "to " + en;
             }
         }
@@ -1421,6 +1421,7 @@ $('.association_word').on('click',function(e){
             $('#association_right_column').children().attr('active','false');
         }
         $(this).attr('active','true');
+        console.log('avant verify');
         verify_association();
     }
 
