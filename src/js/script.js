@@ -1,3 +1,4 @@
+//TODO:
 //Spatial preposition
 //Past tense table
 //To be table
@@ -5,6 +6,8 @@
 //Animals
 //German
 //Missing words for clothes : sunglasses
+//Guessing game but with multiple choices answer
+//Way to do the guessing game on a subset of all words
 
 //TIPS:
 //for diagrams, include a line at 0,0 and copy it with each part so that you copy the absolute position and not relative like illustrator does
@@ -12,12 +15,16 @@
 var base_url = 'https://cosmolingo.studio';
 var words_list = [];
 var shuffled_list = [];
+var shuffled_list2 = [];
 var game_done = false;
 var game_timeout = 0;
 var tag_list = [];
 var guess_index = 0;
 var correct_guesses = 0;
 var total_guesses = 0;
+var association_index = 0;
+var correct_associations = 0;
+var total_associations = 0;
 var wordle_word = '';
 var worlde_word_en = '';
 var wordle_active_row = 0;
@@ -101,6 +108,9 @@ var hour_suffixes_2 = {
 var url_lang = getUrlParameter('lang');
 var lang_params = ['ka','ru','fr','kr','jp'];
 var lang_i = lang_params.indexOf(url_lang);
+if (lang_i == -1){
+    lang_i = 0;
+}
 
 $(document).ready(function(){
     $('.test_clock').clockTimePicker();
@@ -581,6 +591,7 @@ function get_words(){
         $('#search_bar').attr('placeholder', 'search in ' + total_words + ' words');
         $('#search_bar').val('');
         shuffled_list = shuffleArray(words_list);
+        shuffled_list2 = shuffleArray(words_list);
         var new_shuffled_list = [];
         for (var i = 0; i < shuffled_list.length; i++){
             if (shuffled_list[i].hidden == true){
@@ -594,6 +605,7 @@ function get_words(){
         
         update_tag_filter();
         update_game_guess();
+        update_association_game();
         create_body_diagram();
         create_clothes_diagram();
         populate_color_picker();
@@ -1329,7 +1341,7 @@ $('#guess_input').on('keypress', function(e) {
                 total_guesses = 0;
                 game_done = false;
                 shuffled_list = shuffleArray(words_list);
-                update_progress_bar();
+                update_progress_bar('#guess_game',correct_guesses,total_guesses,true);
                 update_game_guess();
                 $('#guess_result').css('cursor','default');
                 $('#guess_result').animate({ opacity: 0},{queue:false});
@@ -1357,13 +1369,87 @@ $('#guess_input').on('keypress', function(e) {
 
         guess_index++;
         total_guesses++;
-        update_progress_bar();
+        update_progress_bar('#guess_game',correct_guesses,total_guesses,true);
         update_game_guess();
         game_timeout = setTimeout(function() {
             $('#guess_result').delay(time).animate({ opacity: 0 },{queue:false});
         }, time);
     }
 });
+
+function update_association_game(){
+    //association_index = 0;
+    //var correct_associations = 0;
+    //var total_associations = 0;
+    if (shuffled_list2.length-1 < association_index + 4){
+        //DONE
+        return
+    }
+    var rand_order = shuffleArray([0,1,2,3]);
+    for (var i = 0; i < 4; i++){
+        var word = shuffled_list2[association_index + i];
+        $("<p>").text(word['en_words']);
+        $("<p>").text(word[lang_params[lang_i] + '_words']);
+        $('#association_left_column').children().eq(rand_order[i]).html(word[lang_params[lang_i] + '_words']);
+        $('#association_left_column').children().eq(rand_order[i]).attr('en_word',word['en_words']);
+        $('#association_right_column').children().eq(i).html(word['en_words']);
+    }
+}
+
+$('.association_word').on('click',function(e){
+    var is_active = $(this).attr('active') == 'true';
+    var is_done = $(this).attr('done') == 'true';
+    if (is_done){
+        return;
+    }
+    var is_left = $(this).parent().attr('id') == 'association_left_column';
+    if (is_active){
+        $(this).attr('active','false');
+    }
+    else{
+        if (is_left){
+            $('#association_left_column').children().attr('active','false');
+        }
+        else{
+            $('#association_right_column').children().attr('active','false');
+        }
+        $(this).attr('active','true');
+        verify_association();
+    }
+
+});
+
+function verify_association(){
+    var left_active = $('#association_left_column').children('[active="true"]');
+    var right_active = $('#association_right_column').children('[active="true"]');
+    if (left_active.length == 0 || right_active.length == 0){
+        return
+    }
+    var left_word_en = left_active.attr('en_word');
+    var right_word_en = right_active.text();
+    if (left_word_en == right_word_en){
+        $('#association_result').text('Correct!');
+        left_active.attr('done','true');
+        right_active.attr('done','true');
+    }
+    else{
+        $('#association_result').text('Wrong!');
+    }
+    left_active.attr('active','false');
+    right_active.attr('active','false');
+    if ($('#association_left_column').children('[done="true"]').length == 4){
+        association_index += 4;
+        update_progress_bar('#association_game',association_index,association_index,false);
+        $('.association_word').attr('done','false');
+        $('.association_word').attr('active','false');
+        update_association_game();
+    }
+    $('#association_result').animate({ opacity: 1 });
+    setTimeout(function() {
+        $('#association_result').animate({ opacity: 0 });
+    }, 2500);
+
+}
 
 function update_game_guess() {
     if (guess_index >= shuffled_list.length) {
@@ -1392,19 +1478,24 @@ function update_game_guess() {
     $('#guess_word').click({letter:word_to_say},play_word_sound);
 }
 
-function update_progress_bar() {
-    var progress = correct_guesses / shuffled_list.length * 100;
-    var progress_total = total_guesses / shuffled_list.length * 100;
-    var good_guesses = correct_guesses / total_guesses * 100;
-    if (total_guesses == 0) {
+function update_progress_bar(game_id,cg,tg,percent) {
+    var progress = cg / shuffled_list.length * 100;
+    var progress_total = tg / shuffled_list.length * 100;
+    var good_guesses = cg / tg * 100;
+    if (tg == 0) {
         good_guesses = 0;
     }
-    $("#progress_div .progress").css("width", progress + "%");
-    $("#progress_div .progress_total").css("width", progress_total + "%");
-    $("#progress_div p").text(correct_guesses + " / " + total_guesses + " (" + good_guesses.toFixed(0) + "%)");
-    $('#progress_div p').css('left', progress + '%');
-    $('#progress_div p').css('opacity', 1);
-    $('#progress_div').css('opacity', 1);
+    $(game_id + " .progress_div .progress").css("width", progress + "%");
+    $(game_id + " .progress_div .progress_total").css("width", progress_total + "%");
+    if (percent){
+        $(game_id + " .progress_div p").text(cg + " / " + tg + " (" + good_guesses.toFixed(0) + "%)");
+    }
+    else{
+        $(game_id + " .progress_div p").text(cg + " / " + tg);
+    }
+    $(game_id + ' .progress_div p').css('left', progress + '%');
+    $(game_id + ' .progress_div p').css('opacity', 1);
+    $(game_id + ' .progress_div').css('opacity', 1);
 }
 
 function play_audio_index(url,time){

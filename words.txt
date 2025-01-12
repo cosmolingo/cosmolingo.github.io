@@ -260,5 +260,6 @@ n-m;clothes:көбелек-галстук:bow tie:noeud papillon(n_eu_ _p_a_p_i_
 n-f;clothes:галстук:tie:cravate(c_r_a_v_a_t):галстук::
 n-m;clothes:шомылу киімі - F:swimsuit - F:maillot de bain - F(m_a_i_y_o_ _d_eu_ _b_in):купальник::
 n-m;clothes:шомылу киімі - M:swimsuit - M:maillot de bain - M(m_a_i_y_o_ _d_eu_ _b_in):плавки::
-n-p;clothes::sunglasses:lunettes de soleil(l_u_n_è_t_ _d_e_ _s_o_l_è_i_y):::
-n-m;body part::chin:menton(m_an_t_on):::
+n-p;clothes:көзілдірік:sunglasses:lunettes de soleil(l_u_n_è_t_ _d_e_ _s_o_l_è_i_y):солнцезащитные очки::
+n-m;body part:иек:chin:menton(m_an_t_on):подбородок::
+n-p;clothes:көзілдірік:glasses:lunettes(l_u_n_è_t):очки::
