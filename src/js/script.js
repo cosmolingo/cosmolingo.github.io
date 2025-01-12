@@ -1398,7 +1398,7 @@ function update_association_game(){
             en_word_display = en_word;
         }
         $('#association_left_column').children().eq(rand_order[i]).html(lang_word);
-        $('#association_left_column').children().eq(rand_order[i]).attr('en_word',en_word);
+        $('#association_left_column').children().eq(rand_order[i]).attr('en_word',en_word_display);
         $('#association_right_column').children().eq(i).html(en_word_display);
     }
 }
