@@ -578,6 +578,10 @@ h1 .fa-sun{
     padding-top: 1.5px;
 }
 
+.association_word[done="true"]{
+    opacity: 0.5;
+}
+
 h2{
     font-size:40px;
     font-weight:700;
@@ -596,7 +600,7 @@ h3{
     margin-top:50px;
 }
 
-#guess_result,#wordle_output{
+#guess_result,#wordle_output,#association_result{
     font-size:20px;
     color:#f9f8e2;
     background-color:#5a4813;

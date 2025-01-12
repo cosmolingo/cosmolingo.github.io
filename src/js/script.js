@@ -6,7 +6,6 @@
 //Animals
 //German
 //Missing words for clothes : sunglasses
-//Guessing game but with multiple choices answer
 //Way to do the guessing game on a subset of all words
 
 //TIPS:
@@ -1378,9 +1377,6 @@ $('#guess_input').on('keypress', function(e) {
 });
 
 function update_association_game(){
-    //association_index = 0;
-    //var correct_associations = 0;
-    //var total_associations = 0;
     if (shuffled_list2.length-1 < association_index + 4){
         //DONE
         return
@@ -1388,11 +1384,22 @@ function update_association_game(){
     var rand_order = shuffleArray([0,1,2,3]);
     for (var i = 0; i < 4; i++){
         var word = shuffled_list2[association_index + i];
-        $("<p>").text(word['en_words']);
-        $("<p>").text(word[lang_params[lang_i] + '_words']);
-        $('#association_left_column').children().eq(rand_order[i]).html(word[lang_params[lang_i] + '_words']);
-        $('#association_left_column').children().eq(rand_order[i]).attr('en_word',word['en_words']);
-        $('#association_right_column').children().eq(i).html(word['en_words']);
+        var en_word = word['en_words'];
+        var lang_word = word[lang_params[lang_i] + '_words'];
+        var en_word_display = "";
+        if (word.type == 'v'){
+            var len = en_word.split(",").length;
+            for (var i = 0; i < len; i++){
+                var en = en_word.split(",")[i];
+                en_word_display = "to " + en;
+            }
+        }
+        else{
+            en_word_display = en_word;
+        }
+        $('#association_left_column').children().eq(rand_order[i]).html(lang_word);
+        $('#association_left_column').children().eq(rand_order[i]).attr('en_word',en_word);
+        $('#association_right_column').children().eq(i).html(en_word_display);
     }
 }
 
