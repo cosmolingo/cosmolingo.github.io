@@ -1,12 +1,11 @@
 //Spatial preposition
 //Past tense table
 //To be table
-//Clothes where you chose each clothing with arrows
 //Food (Fruits & Vegetables)
 //Animals
 //German
 //Add chin to body diagram
-//Missing words for clothes : tie
+//Missing words for clothes : sunglasses
 //Missing cloth diagrams : cap, hat, socks BUT no diagrams available for them
 
 
