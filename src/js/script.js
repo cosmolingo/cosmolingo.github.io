@@ -4,10 +4,7 @@
 //Food (Fruits & Vegetables)
 //Animals
 //German
-//Add chin to body diagram
 //Missing words for clothes : sunglasses
-//Missing cloth diagrams : cap, hat, socks BUT no diagrams available for them
-
 
 //TIPS:
 //for diagrams, include a line at 0,0 and copy it with each part so that you copy the absolute position and not relative like illustrator does
@@ -101,20 +98,9 @@ var hour_suffixes_2 = {
     0:'',1:'ге',2:'ге',3:'ке',4:'ке',5:'ке',6:'ға',7:'ге',8:'ге',9:'ға',10:'ға',11:'ге',12:'ге'
 }
 
-var lang_i = 0;
 var url_lang = getUrlParameter('lang');
-if (url_lang == 'ru'){
-    lang_i = 1;
-}
-else if (url_lang == 'fr'){
-    lang_i = 2;
-}
-else if (url_lang == 'kr'){
-    lang_i = 3;
-}
-else if (url_lang == 'jp'){
-    lang_i = 4;
-}
+var lang_params = ['ka','ru','fr','kr','jp'];
+var lang_i = lang_params.indexOf(url_lang);
 
 $(document).ready(function(){
     $('.test_clock').clockTimePicker();
@@ -508,7 +494,7 @@ function get_words(){
             var ru_words = parts[4].trim();
             var ko_words = parts[5].trim();
             var jp_words = parts[6].trim();
-            if ([ka_words,ru_words,fr_words,ko_words,jp_words][lang_i] == "-") {
+            if (parts[lang_i + 1].trim() == "-") {
                 return;
             }
             total_words++;
@@ -527,7 +513,18 @@ function get_words(){
             else{
                 var new_fr_words = fr_words;
             }
-            words_list.push({type:type, hidden:is_hidden, tags:tags, genders:genders, ka_words: ka_words, en_words: en_words, fr_words: new_fr_words, ru_words: ru_words, ko_words: ko_words, jp_words: jp_words});
+            words_list.push({
+                type:type,
+                hidden:is_hidden,
+                tags:tags,
+                genders:genders,
+                ka_words: ka_words,
+                en_words: en_words,
+                fr_words: new_fr_words,
+                ru_words: ru_words,
+                ko_words: ko_words,
+                jp_words: jp_words
+            });
             ka_words = ka_words.replace(/,/g,", ");
             en_words = en_words.replace(/,/g,", ");
             new_fr_words = new_fr_words.replace(/,/g,", ");
@@ -589,25 +586,8 @@ function get_words(){
             if (shuffled_list[i].hidden == true){
                 continue;
             }
-            if (lang_i == 0){
-                if (shuffled_list[i].ka_words != ''){
-                    new_shuffled_list.push(shuffled_list[i]);
-                }
-            }
-            else if (lang_i == 1){
-                if (shuffled_list[i].ru_words != ''){
-                    new_shuffled_list.push(shuffled_list[i]);
-                }
-            }
-            else if (lang_i == 2){
-                if (shuffled_list[i].fr_words != ''){
-                    new_shuffled_list.push(shuffled_list[i]);
-                }
-            }
-            else if (lang_i == 3){
-                if (shuffled_list[i].ko_words != ''){
-                    new_shuffled_list.push(shuffled_list[i]);
-                }
+            if (shuffled_list[i][lang_params[lang_i] + '_words'] != ''){
+                new_shuffled_list.push(shuffled_list[i]);
             }
         }
         shuffled_list = new_shuffled_list;
@@ -776,21 +756,7 @@ function populate_wordle(){
     var word = "";
     var word_en = "";
     for (var i = wordle_last_word_idx; i < words_list.length; i++){
-        if (lang_i == 0){
-            var rand_word = shuffled_list[i].ka_words;
-        }
-        else if (lang_i == 1){
-            var rand_word = shuffled_list[i].ru_words;
-        }
-        else if (lang_i == 2){
-            var rand_word = shuffled_list[i].fr_words;
-        }
-        else if (lang_i == 3){
-            var rand_word = shuffled_list[i].ko_words;
-        }
-        else if (lang_i == 4){
-            var rand_word = shuffled_list[i].jp_words;
-        }
+        var rand_word = shuffled_list[i][lang_params[lang_i] + '_words'];
         if ((rand_word.length == 0) || (rand_word == '-') || (rand_word.length < 4) || (rand_word.length > 6) || (rand_word.includes(',')) || (rand_word.includes(' ')) ||(rand_word.includes('?'))){
             continue;
         }
@@ -1069,6 +1035,7 @@ function populate_alphabet(){
         var ltr = alphabet[i];
         var freq = frequencies_dict[ltr];
         var letter = $("<div>").html('<p>' + ltr + '</p><p>' + (freq/total_freq*100).toFixed(2) + '%</p>');
+        letter.attr('sound',ltr)
         letter.addClass("letter");
         letter.on("click", play_letter_sound);
         $("#alphabet").append(letter);
@@ -1247,19 +1214,7 @@ function body_info(){
 }
 
 function get_lang_attr(lang_i){
-    var attr = 'ka_words';
-    if (lang_i == 1){
-        attr = 'ru_words';
-    }
-    else if (lang_i == 2){
-        attr = 'fr_words';
-    }
-    else if (lang_i == 3){
-        attr = 'ko_words';
-    }
-    else if (lang_i == 4){
-        attr = 'jp_words';
-    }
+    var attr = lang_params[lang_i] + '_words';
     return attr;
 }
     
@@ -1461,20 +1416,14 @@ function play_audio_index(url,time){
 
 function play_word_sound(){
     if (arguments[0].data == undefined){
-        if (lang_i == 0){
-            var letters = $(this).attr('ka_words').split("");
-        }
-        else if (lang_i == 1){
-            var letters = $(this).attr('ru_words').split("");
-        }
-        else if (lang_i == 2){
+        if (lang_i == 2){
             if ($(this).attr('fr_pron') == '-'){
                 return;
             }
             var letters = JSON.parse($(this).attr('fr_pron'));
         }
-        else if (lang_i == 3){
-            var letters = $(this).attr('ko_words').split("");
+        else{
+            var letters = $(this).attr(lang_params[lang_i] + '_words').split("");
         }
     }
     else{
@@ -1500,8 +1449,8 @@ function play_word_sound(){
 }
 
 function play_letter_sound(){
-    navigator.clipboard.writeText($(this).html());
-    var audio = new Audio(base_url + '/src/sounds/' + languages[lang_i] + '/letter_sounds/' + $(this).html() + '.mp3');
+    navigator.clipboard.writeText($(this).attr('sound'));
+    var audio = new Audio(base_url + '/src/sounds/' + languages[lang_i] + '/letter_sounds/' + $(this).attr('sound') + '.mp3');
     audio.play();
 }
 

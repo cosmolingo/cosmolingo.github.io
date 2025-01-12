@@ -233,9 +233,9 @@ n-f;time:мезгіл:season:saison(s_è_z_on):время года::
 a;hidden:күн шуақты:sunny:ensoleillé(an_s_o_l_è_i_y_é):солнечно::
 n-m;weather:найзағай:thunderstorms:orage(o_r_a_j):грозы::
 n;hidden:жаңбыр & қар:rain & snow:pluie & neige:дождь & снег::
-a:ылғал:humid:humide:влажно::
-n-f:сұрақ:question:question:вопрос::
-v:Кездесу:meet:rencontrer:встретиться::
+a:ылғал:humid:humide(u_m_i_d):влажно::
+n-f:сұрақ:question:question(k_è_s_t_i_on):вопрос::
+v:Кездесу:meet:rencontrer(r_an_c_on_t_r_é):встретиться::
 n-f:хат:letter:lettre(l_è_t_r):письмо::
 o:сол үшін:therefore:donc(d_on_c):поэтому::
 n-f:тау:mountain:montagne(m_on_t_a_n_i):гора::
@@ -261,3 +261,4 @@ n-f;clothes:галстук:tie:cravate(c_r_a_v_a_t):галстук::
 n-m;clothes:шомылу киімі - F:swimsuit - F:maillot de bain - F(m_a_i_y_o_ _d_eu_ _b_in):купальник::
 n-m;clothes:шомылу киімі - M:swimsuit - M:maillot de bain - M(m_a_i_y_o_ _d_eu_ _b_in):плавки::
 n-p;clothes::sunglasses:lunettes de soleil(l_u_n_è_t_ _d_e_ _s_o_l_è_i_y):::
+n-m;body part::chin:menton(m_an_t_on):::
