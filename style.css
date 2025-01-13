@@ -180,6 +180,10 @@ h2{
     width: 50px;
 }
 
+.french:nth-of-type(2){
+    transform: scaleX(-1);
+}
+
 .russian{
     background: url('src/symbols/russian.svg');
     vertical-align: -7px;
