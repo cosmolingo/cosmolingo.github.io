@@ -5,7 +5,6 @@
 //Food (Fruits & Vegetables)
 //Animals
 //German
-//Missing words for clothes : sunglasses
 //Way to do the guessing game on a subset of all words
 
 //TIPS:
