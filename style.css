@@ -96,7 +96,7 @@ table{
     position:relative;
     margin:0 auto;
     margin-top:-225px;
-    margin-bottom: 175px;
+    margin-bottom: 125px;
     width:fit-content;
 }
 
@@ -135,6 +135,39 @@ h1{
 
 #title_dropdown[active="true"] .fa-sort-down{
     transform:rotate(180deg) TranslateY(-5px);
+}
+
+#mascot_div{
+    position: absolute;
+    left: 25px;
+    width:200px;
+    fill: var(--primary-color);
+    filter: drop-shadow( 0px 3px 5px rgba(0, 0, 0, .15));
+    animation: 4s ease-in-out infinite alternate hover;
+    cursor: pointer;
+}
+
+#planet{
+    animation: 10s ease-in-out infinite alternate spin;
+    transform-origin: 303px 144px;
+}
+
+@keyframes hover {
+    from {
+        top: calc(500px - 125px);
+    }
+    to {
+        top: calc(500px - 75px);
+    }
+}
+
+@keyframes spin {
+    from {
+      transform: rotate(-25deg);
+    }
+    to {
+      transform: rotate(25deg);
+    }
 }
 
 #grammar .section_content{

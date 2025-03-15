@@ -151,6 +151,9 @@ $(document).ready(function(){
             }
         });
     });
+    
+    var url = base_url + "/src/symbols/mascot.svg";
+    $('#mascot_div').load(url);
 });
 
 function setup_toys(){
