@@ -120,7 +120,7 @@ $(document).ready(function(){
     $('#title h1').html('<i class="' + languages[lang_i] + '" ></i>   my <div id=title_dropdown active="false">' + languages[lang_i] + '<i class="fa-solid fa-sort-down"></i></div> words   <i class="' + languages[lang_i] + '" ></i>');
     $('link[rel="icon"]').attr('href', base_url + '/src/symbols/' + languages[lang_i] + '.ico');//TODO : add japanese icon (ask ziyu)
     //Populate grammar section based on language
-    var url = base_url + "/sections/" + languages[lang_i] + ".html";	
+    var url = "/sections/" + languages[lang_i] + ".html";	
     $.get({url: url,cache: false}).then(function(data) {
         var lines = data.split('\n');
         lines.splice(0,16);
