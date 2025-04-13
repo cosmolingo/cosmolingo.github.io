@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1">
+    <link rel="icon" href="" type="image/x-icon">
+    <title>cosmolingo</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.0.3/tsparticles.confetti.bundle.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cherry+Bomb+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sniglet:wght@800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Single+Day&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/1c5060d9dc.js" crossorigin="anonymous"></script>
+    <script src="src/js/three.min.js"></script>
+    <script src="src/js/OrbitControls.js"></script>
+    <script src="src/js/OBJLoader.js"></script>
+    <script src="src/js/jscolor.min.js"></script>
+    <script src="src/js/jquery-clock-timepicker.js"></script>
+</head>
+<body>
+    <div id="user_form">
+        <form id="username_form">
+            <input type="text" id="username" name="username" placeholder="Enter username" required>
+            <button type="submit">Submit</button>
+        </form>
+        <p id="form_result"></p>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $('#username_form').submit(function(event) {
+                event.preventDefault();
+                var username = $('#username').val();
+                $.ajax({
+                    type: 'POST',
+                    url: 'add_score.php',
+                    data: { username: username },
+                    success: function(response) {
+                        console.log(response);
+                        $('#form_result').html(response);
+                    }
+                });
+            });
+        });
+    </script>
+    
+    <!--
+    <div id="logo_div">
+        <img id="logo" src="src/logo.svg" alt="logo">
+    </div>
+    -->
+    
+    <div id="wave_top">
+        <svg viewBox="0 0 1000 150" preserveAspectRatio="none" style="height: 100%; width: 100%;">
+          <path d="M1000,101.71c0,0-106.81-108.65-238.66,0s-261.34,0-261.34,0s-106.81-108.65-238.66,0S0,101.71,0,101.71V0h1000 V101.71z" style="stroke: none;fill: #f2e269;"></path>
+        </svg>
+    </div>
+
+    <div id="title">
+        <h1></h1>
+        <div id="flags_div">
+            <a  href="?lang=ka"><img class="flag" src="src/flags/ka.png" alt="ka"/></a>
+            <a  href="?lang=ru"><img class="flag" src="src/flags/ru.png" alt="ru"/></a>
+            <a  href="?lang=fr"><img class="flag" src="src/flags/fr.png" alt="fr"/></a>
+            <a  href="?lang=kr"><img class="flag" src="src/flags/kr.png" alt="kr"/></a>
+            <a  href="?lang=jp"><img class="flag" src="src/flags/jp.png" alt="jp"/></a>
+        </div>
+    </div>
+
+    <div id="mascot_div">
+        
+    </div>
+
+    <div id="search_bar_div">
+        <input id="search_bar" type="text" id="search_input" placeholder="" autofocus>
+    </div>
+    
+    <div id="words_outer">
+        <div id="words">
+            <div id="search_filters">
+                <div class="filter" active='false'     id="filter_nouns"     ><p>nouns</p></div>
+                <div class="filter" active='false'     id="filter_verbs"     ><p>verbs</p></div>
+                <div class="filter" active='false'     id="filter_adjectives"><p>adjectives</p></div>
+                <div class="filter" active='false'     id="filter_other"     ><p>other</p></div>
+                <div class="tag-filter" active='false' id="filter_tags"      ><p>tags</p><i class="fa-solid fa-sort-down"></i></div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="tags_list">
+        <div class="tag">all</div>
+    </div>
+    
+    <div id="guess_game">
+        <h3>guess the word</h3>
+        <div class="progress_div">
+            <p>0 / 0 (0%)</p>
+            <div class="total"></div>
+            <div class="progress"></div>
+            <div class="progress_total"></div>
+        </div>
+        <div id="guess_word"><p></p></div>
+        <input id="guess_input" type="text" placeholder="enter a guess" autofocus>
+        <p id="guess_result"></p>
+    </div>
+
+    <div id="association_game">
+        <h3>association game</h3>
+        <div class="progress_div">
+            <p>0 / 0 (0%)</p>
+            <div class="total"></div>
+            <div class="progress"></div>
+            <div class="progress_total"></div>
+        </div>
+        <div id="association_columns">
+            <div id="association_left_column">
+                <div class="association_word"></div>
+                <div class="association_word"></div>
+                <div class="association_word"></div>
+                <div class="association_word"></div>
+            </div>
+            <div id="association_right_column">
+                <div class="association_word"></div>
+                <div class="association_word"></div>
+                <div class="association_word"></div>
+                <div class="association_word"></div>
+            </div>
+        </div>
+        <p id="association_result"></p>
+    </div>
+
+    <div id="main">
+    </div>
+
+    <div id="games">
+        <h2>toys</h2>
+        <div class="section_content"></div>
+    </div>
+
+    <div id="grammar">
+        <h2>grammar <i class="fa-solid fa-sort-down"></i></h2>
+        <div class="section_content"></div>
+    </div>
+
+    <div id="wave_bottom">
+        <svg viewBox="0 0 1000 150" preserveAspectRatio="none" style="height: 100%; width: 100%;">
+          <path d="M1000,48.29c0,0-106.81,108.65-238.66,0s-261.34,0-261.34,0s-106.81,108.65-238.66,0S0,48.29,0,48.29V150h1000 V48.29z" style="stroke: none;fill: #f2e269;"></path>
+        </svg>
+    </div>
+    <script src="src/js/renderer.js"></script>
+    <script src="src/js/script.js"></script>
+</body>
+</html>

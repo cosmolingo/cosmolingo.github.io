@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1">
+    <link rel="icon" href="" type="image/x-icon">
+    <title>words list</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cherry+Bomb+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sniglet:wght@800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Single+Day&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/1c5060d9dc.js" crossorigin="anonymous"></script>
+    <style>
+        #title{
+            margin-bottom:200px;
+        }
+
+        table {
+            width: 90%;
+            border-collapse: collapse;
+            margin: 0 auto;
+            border-collapse: collapse;
+            font-size:20px;
+            border:1px solid #5a4813;
+            border-collapse:collapse;
+            margin:0 auto;
+            margin-bottom:75px;
+            border-radius:5px;
+            border-spacing: 0;
+            border-collapse: separate;
+            border-radius: 10px;
+            border:1.5px solid #5a4813;
+            border-bottom: 3px solid #5a4813;
+            box-shadow:0 5px 10px rgba(0,0,0,0.1);
+        }
+
+        table th:not(:last-child),
+        table td:not(:last-child){
+            border-right: 1px solid black;
+        }
+
+        table th{
+            background-color: var(--primary-color);
+            height:45px;
+            text-align:center;
+        }
+
+        table>thead>tr:not(:last-child)>th,
+        table>thead>tr:not(:last-child)>td,
+        table>tbody>tr:not(:last-child)>th,
+        table>tbody>tr:not(:last-child)>td,
+        table>tfoot>tr:not(:last-child)>th,
+        table>tfoot>tr:not(:last-child)>td,
+        table>tr:not(:last-child)>td,
+        table>tr:not(:last-child)>th,
+        table>thead:not(:last-child),
+        table>tbody:not(:last-child),
+        table>tfoot:not(:last-child) {
+            border-bottom: 1px solid black;
+        }
+
+        th, td {
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        td{
+            background-color: #e7e0c4;
+        }
+
+        textarea {
+            resize: none;
+            border: none;
+            background-color: transparent;
+            font-family: 'Balsamiq Sans', cursive;
+            width:100%;
+            color:rgb(90, 72, 19);
+        }
+
+        td:nth-child(1) textarea,th:nth-child(1),td:nth-child(2) textarea,th:nth-child(2) {
+            width: 60px;
+        }
+
+        td:nth-child(3) textarea,th:nth-child(3) {
+            width: 100px;
+        }
+               
+        table tr:last-child td {
+            border-bottom: 0;
+        }
+        table tr td:first-child,table tr td:nth-child(2){
+            border-left: 0;
+        }
+        table tr td:last-child{
+            border-right: 0;
+        }
+
+        table td:first-child{
+            text-align: right;
+        }
+
+        #add_word{
+            margin: 0 auto;
+            display: block;
+            background-color: #f4eb84;
+        }
+
+        #new_word{
+            margin-bottom: 25px;
+        }
+
+        #title i{
+            font-size:40px;
+            transform: translateY(-3px);
+        }
+
+        #title i:nth-child(1){
+            margin-right: 10px;
+            transform: scaleX(-1) translateY(-3px);
+        }
+
+        #title i:nth-child(2){
+            margin-left: 10px;
+        }
+
+        h2{
+            cursor: auto;
+        }
+    </style>
+</head>
+<body>
+<div id="wave_top">
+    <svg viewBox="0 0 1000 150" preserveAspectRatio="none" style="height: 100%; width: 100%;">
+        <path d="M1000,101.71c0,0-106.81-108.65-238.66,0s-261.34,0-261.34,0s-106.81-108.65-238.66,0S0,101.71,0,101.71V0h1000 V101.71z" style="stroke: none;fill: #f2e269;"></path>
+    </svg>
+</div>
+<div id="title">
+    <h1><i class="fa-solid fa-pen-nib"></i>Words List<i class="fa-solid fa-pen-nib"></i></h1>
+</div>
+<h2>add a word</h2>
+<table id='new_word'>
+    <tr>
+        <th>Type</th>
+        <th>Gender</th>
+        <th>Tag</th>
+        <th>English</th>
+        <th>Kazakh</th>
+        <th>Russian</th>
+        <th>French</th>
+        <th>Korean</th>
+        <th>Japanese</th>
+        <th>Pronunciation</th>
+    </tr>
+    <tr>
+        <td><textarea></textarea></td>
+        <td><textarea></textarea></td>
+        <td><textarea></textarea></td>
+        <td><textarea></textarea></td>
+        <td><textarea></textarea></td>
+        <td><textarea></textarea></td>
+        <td><textarea></textarea></td>
+        <td><textarea></textarea></td>
+        <td><textarea></textarea></td>
+        <td><textarea></textarea></td>
+    </tr>
+</table>
+<button class="button" onclick="submit_word()" id="add_word">Add new word</button>
+
+<h2>words list</h2>
+<table id='word_list'>
+<tr>
+    <th>Type</th>
+    <th>Gender</th>
+    <th>Tag</th>
+    <th>English</th>
+    <th>Kazakh</th>
+    <th>Russian</th>
+    <th>French</th>
+    <th>Korean</th>
+    <th>Japanese</th>
+    <th>Pronunciation</th>
+</tr>
+<?php
+    $servername = "localhost";
+    $username = "root";
+    $password = "RandoDumbai18";
+    $dbname = "cosmolingo";
+
+    // Create connection
+    $conn = new mysqli($servername, $username, $password, $dbname);
+
+    // Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+    $sql = "SELECT * FROM words";
+    $result = $conn->query($sql);
+
+    $items = array();
+
+    while($row = $result->fetch_assoc()) {
+        $items[] = $row;
+    }
+
+    $items = array_reverse($items ,true);
+
+    foreach($items as $row){
+        $id = $row['id'];
+        $word = $row['word'];
+        $word_ka = $row['word_ka'];
+        $word_ru = $row['word_ru'];
+        $word_fr = $row['word_fr'];
+        $word_kr = $row['word_kr'];
+        $word_jp = $row['word_jp'];
+        $word_pronunciation = $row['word_pronunciation'];
+        $word_type = $row['word_type'];
+        $word_tag = $row['word_tag'];
+        $word_gender = $row['word_gender'];
+
+        echo "<tr id='" . $id . "'>
+            <td><textarea>" . $word_type . "</textarea></td>
+            <td><textarea>" . $word_gender . "</textarea></td>
+            <td><textarea>" . $word_tag . "</textarea></td>
+            <td><textarea>" . $word .    "</textarea></td>
+            <td><textarea>" . $word_ka . "</textarea></td>
+            <td><textarea>" . $word_ru . "</textarea></td>
+            <td><textarea>" . $word_fr . "</textarea></td>
+            <td><textarea>" . $word_kr . "</textarea></td>
+            <td><textarea>" . $word_jp . "</textarea></td>
+            <td><textarea>" . $word_pronunciation . "</textarea></td>
+        </tr>";
+    }
+?>
+</table>
+<div id="wave_bottom">
+    <svg viewBox="0 0 1000 150" preserveAspectRatio="none" style="height: 100%; width: 100%;">
+        <path d="M1000,48.29c0,0-106.81,108.65-238.66,0s-261.34,0-261.34,0s-106.81,108.65-238.66,0S0,48.29,0,48.29V150h1000 V48.29z" style="stroke: none;fill: #f2e269;"></path>
+    </svg>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $('#word_list textarea').on('keypress', function(e) {
+            if (e.which == 13) {
+                e.preventDefault();
+                var row = $(this).closest('tr');
+                edit_word(row);
+            }
+        });
+    });
+    function submit_word(){
+        $.ajax({
+            type: 'POST',
+            url: 'add_word.php',
+            data: { 
+                type: $('#new_word tr:nth-child(2) td:nth-child(1) textarea').val(),
+                gender: $('#new_word tr:nth-child(2) td:nth-child(2) textarea').val(),
+                tag: $('#new_word tr:nth-child(2) td:nth-child(3) textarea').val(),
+                english: $('#new_word tr:nth-child(2) td:nth-child(4) textarea').val(),
+                kazakh: $('#new_word tr:nth-child(2) td:nth-child(5) textarea').val(),
+                russian: $('#new_word tr:nth-child(2) td:nth-child(6) textarea').val(),
+                french: $('#new_word tr:nth-child(2) td:nth-child(7) textarea').val(),
+                korean: $('#new_word tr:nth-child(2) td:nth-child(8) textarea').val(),
+                japanese: $('#new_word tr:nth-child(2) td:nth-child(9) textarea').val(),
+                pronunciation: $('#new_word tr:nth-child(2) td:nth-child(10) textarea').val()
+            },
+            success: function(response) {
+                location.reload();
+            }
+        });
+    }
+
+    function edit_word(row){
+        console.log({
+            id: row.attr('id'),
+            type: row.children('td:nth-child(1)').children('textarea').val(),
+            gender: row.children('td:nth-child(2)').children('textarea').val(),
+            tag: row.children('td:nth-child(3)').children('textarea').val(),
+            english: row.children('td:nth-child(4)').children('textarea').val(),
+            kazakh: row.children('td:nth-child(5)').children('textarea').val(),
+            russian: row.children('td:nth-child(6)').children('textarea').val(),
+            french: row.children('td:nth-child(7)').children('textarea').val(),
+            korean: row.children('td:nth-child(8)').children('textarea').val(),
+            japanese: row.children('td:nth-child(9)').children('textarea').val(),
+            pronunciation: row.children('td:nth-child(10)').children('textarea').val()});
+        $.ajax({
+            type: 'POST',
+            url: 'edit_word.php',
+            data: {
+                id: row.attr('id'),
+                type: row.children('td:nth-child(1)').children('textarea').val(),
+                gender: row.children('td:nth-child(2)').children('textarea').val(),
+                tag: row.children('td:nth-child(3)').children('textarea').val(),
+                english: row.children('td:nth-child(4)').children('textarea').val(),
+                kazakh: row.children('td:nth-child(5)').children('textarea').val(),
+                russian: row.children('td:nth-child(6)').children('textarea').val(),
+                french: row.children('td:nth-child(7)').children('textarea').val(),
+                korean: row.children('td:nth-child(8)').children('textarea').val(),
+                japanese: row.children('td:nth-child(9)').children('textarea').val(),
+                pronunciation: row.children('td:nth-child(10)').children('textarea').val()
+            },
+            success: function(response) {
+                console.log(response);
+            }
+        });
+    }
+</script>
+</body>
+</html>
