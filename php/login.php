@@ -1,5 +1,5 @@
 <?php
-include('creds.php');
+include('/var/www/creds.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 

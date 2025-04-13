@@ -296,7 +296,7 @@
     <th>Remove</th>
 </tr>
 <?php
-    include('creds.php');
+    include('/var/www/creds.php');
     
     // Create connection
     $conn = new mysqli($servername, $username, $password, $dbname);
