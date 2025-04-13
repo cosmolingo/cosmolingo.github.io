@@ -20,7 +20,6 @@ var tag_list = [];
 var guess_index = 0;
 var correct_guesses = 0;
 var total_guesses = 0;
-var association_index = 0;
 var correct_associations = 0;
 var total_associations = 0;
 var wordle_word = '';
@@ -30,6 +29,7 @@ var wordle_last_word_idx = 0;
 var letter_duration = new Array(100).fill(0);
 var nb_outfits = 6;
 var rand_outfit_i = Math.floor(Math.random() * nb_outfits) + 1;
+
 
 var languages = ['kazakh','russian','french','korean','japanese'];
 var colors = [['#7db1db','#5092c8'],['#ffb361','#ff9829'],['#c499e0','#a463ce'],['#f2e269','#e3b713'],['#e8766d','#d7544a']];
@@ -109,6 +109,13 @@ var lang_i = lang_params.indexOf(url_lang);
 if (lang_i == -1){
     lang_i = 0;
 }
+var section = getUrlParameter('section');
+
+if (window.location.pathname.endsWith("index.html")) {
+    const newPath = window.location.pathname.replace("index.html", "");
+    const newUrl = window.location.origin + newPath + window.location.search + window.location.hash;
+    window.history.replaceState({}, document.title, newUrl);
+}
 
 $(document).ready(function(){
     $('.test_clock').clockTimePicker();
@@ -120,7 +127,7 @@ $(document).ready(function(){
     $('#title h1').html('<i class="' + languages[lang_i] + '" ></i>   my <div id=title_dropdown active="false">' + languages[lang_i] + '<i class="fa-solid fa-sort-down"></i></div> words   <i class="' + languages[lang_i] + '" ></i>');
     $('link[rel="icon"]').attr('href', base_url + '/src/symbols/' + languages[lang_i] + '.ico');//TODO : add japanese icon (ask ziyu)
     //Populate grammar section based on language
-    var url = base_url + "/sections/" + languages[lang_i] + ".html";	
+    var url = "/sections/" + languages[lang_i] + ".html";	
     $.get({url: url,cache: false}).then(function(data) {
         var lines = data.split('\n');
         lines.splice(0,16);
@@ -129,7 +136,7 @@ $(document).ready(function(){
 
         $('#grammar .section_content').html(data);
         $('.game_section').detach().appendTo('#games .section_content');
-        $('.main_section').detach().appendTo('#main');
+        //$('.main_section').detach().appendTo('#main');
         if ($('.grammar_section').length == 0){
             $('#grammar').remove();
         }
@@ -150,11 +157,62 @@ $(document).ready(function(){
                 $('#title_dropdown').attr('active','false');
             }
         });
+        $('#nav_words').click(function(){
+            $('html, body').animate({
+                scrollTop: $("#search_bar_div").offset().top
+            }, 1000);
+        });
+        $('#nav_grammar').click(function(){
+            $('html, body').animate({
+                scrollTop: $("#grammar").offset().top
+            }, 1000);
+        });
+        $('#nav_games').click(function(){
+            $('html, body').animate({
+                scrollTop: $("#games").offset().top
+            }, 1000);
+        });
     });
     
     var url = base_url + "/src/symbols/mascot.svg";
     $('#mascot_div').load(url);
 });
+
+function get_most_mistakes_word_list(){
+    var sorted_list = [...words_list].map(word => {
+        let ratio;
+        if (word.occs === 0 && word.occs_ok === 0) {
+            ratio = 0.0;
+        }
+        else if (word.occs === -1 && word.occs_ok === -1) {
+            ratio = 0.0;
+        }
+        else {
+            ratio = (1.0 + word.occs_ok) / (1.0 + word.occs);
+        }
+        return { ...word, ratio: ratio };
+    }).sort((a, b) => a.ratio - b.ratio);
+    
+    let grouped = sorted_list.reduce((acc, word) => {
+        acc[word.ratio] = acc[word.ratio] || [];
+        acc[word.ratio].push(word);
+        return acc;
+    }, {});
+
+    let final_list = Object.entries(grouped)
+    .sort((a, b) => parseFloat(a[0]) - parseFloat(b[0]))
+    .flatMap(([_, group]) => shuffleArray(group)); 
+    return final_list;
+}
+
+function add_xp_word(word,is_ok){
+    var url = "/php/add_occurence.php";
+    $.post(url, {
+        word:word,
+        is_ok:is_ok
+    });
+    set_xp_nav();
+}
 
 function setup_toys(){
     $('.game_section').hide();
@@ -176,8 +234,9 @@ function setup_toys(){
                 $(this).attr('active',true);
             }
         });
-        $('#games .section_content').prepend(div);
+        $('#games .section_content .section_buttons').prepend(div);
     });
+    $('#games .section_content .section_buttons .button:last').click();
 }
 
 function setup_tenses(){
@@ -453,10 +512,28 @@ function populate_numbers(){
     }
 }
 
+function getCookie(cname) {
+    let name = cname + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(';');
+    for(let i = 0; i <ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
 function get_words(){
-    var url = base_url + "/words.txt";
-    $.get({url: url,cache: false}).then(function(data) {
-        var lines = data.split("\n").reverse();
+    var url = "/php/get_words.php";
+    $.get(url).then(function(data) {
+        var lines = data.split("<br/>").reverse();
+        lines.shift();
+
         var wordsDiv = $("#words");
 
         var total_words = 0;
@@ -505,7 +582,25 @@ function get_words(){
             var ru_words = parts[4].trim();
             var ko_words = parts[5].trim();
             var jp_words = parts[6].trim();
-            if (parts[lang_i + 1].trim() == "-") {
+            var occs = parts[7].trim();
+            var occs_ok = parts[8].trim();
+            if (occs == ''){
+                occs = -1;
+            }
+            else{
+                occs = parseInt(occs);
+            }
+            if (occs_ok == ''){
+                occs_ok = -1;
+            }
+            else{
+                occs_ok = parseInt(occs_ok);
+            }
+            var lang_i_with_en = lang_i;
+            if (lang_i > 0){
+                lang_i_with_en += 1;
+            }
+            if (parts[lang_i_with_en + 1].trim() == "-") {
                 return;
             }
             total_words++;
@@ -520,9 +615,11 @@ function get_words(){
             }
             if (fr_words.includes('(')){
                 var new_fr_words = fr_words.split('(')[0];
+                var fr_pron = fr_words.split('(')[1].slice(0,-1).split('_');
             }
             else{
                 var new_fr_words = fr_words;
+                var fr_pron = [];
             }
             words_list.push({
                 type:type,
@@ -534,7 +631,9 @@ function get_words(){
                 fr_words: new_fr_words,
                 ru_words: ru_words,
                 ko_words: ko_words,
-                jp_words: jp_words
+                jp_words: jp_words,
+                occs: occs,
+                occs_ok: occs_ok,
             });
             ka_words = ka_words.replace(/,/g,", ");
             en_words = en_words.replace(/,/g,", ");
@@ -576,8 +675,9 @@ function get_words(){
                 wordElement.attr('ru_words', ru_words);
                 wordElement.attr('ko_words', ko_words);
                 wordElement.attr('jp_words', jp_words);
-                if (fr_words != '-' && fr_words.includes('(')){
-                    var fr_pron = fr_words.split('(')[1].slice(0,-1).split('_');
+                wordElement.attr('occs'    , occs    );
+                wordElement.attr('occs_ok' , occs_ok );
+                if (fr_words != '-' && fr_pron.length > 0){
                     wordElement.attr('fr_pron' , JSON.stringify(fr_pron));
                 }
                 else{
@@ -591,8 +691,10 @@ function get_words(){
         });
         $('#search_bar').attr('placeholder', 'search in ' + total_words + ' words');
         $('#search_bar').val('');
-        shuffled_list = shuffleArray(words_list);
-        shuffled_list2 = shuffleArray(words_list);
+        //shuffled_list = shuffleArray(words_list);
+        //shuffled_list2 = shuffleArray(words_list);
+        shuffled_list = get_most_mistakes_word_list();
+        shuffled_list2 = get_most_mistakes_word_list();
         var new_shuffled_list = [];
         for (var i = 0; i < shuffled_list.length; i++){
             if (shuffled_list[i].hidden == true){
@@ -618,6 +720,12 @@ function get_words(){
         setup_tenses();
         if ($('#alphabet').length > 0){
             populate_alphabet();
+        }
+        if (section == 'toys'){
+            $('#nav_games').click();
+        }
+        else if (section == 'grammar'){
+            $('#nav_grammar').click();
         }
     });
 
@@ -874,9 +982,11 @@ function wordle_enter_word(){
         if (word == wordle_word){
             create_confettis();
             $('#wordle_output').html('well done, ' + wordle_word + ' - ' + worlde_word_en + '<br/>click to replay');
+            add_xp_word(worlde_word_en,true);
         }
         else if (wordle_active_row == 5){
             $('#wordle_output').html('the word was ' + wordle_word + ' - ' + worlde_word_en + '<br/>click to replay');
+            add_xp_word(worlde_word_en,false);
         }
         else{
             return;
@@ -1357,13 +1467,16 @@ $('#guess_input').on('keypress', function(e) {
         var time = 500;
         if ((en_words_possible.includes(guess))){
             $("#guess_result").text("Correct!");
+            add_xp_word($('#guess_word').attr('en_words'),true);
             correct_guesses++;
         } else {
             if (guess.length == 0) {
                 $("#guess_result").text("It was " + en_words);
+                add_xp_word($('#guess_word').attr('en_words'),false);
             }
             else{
                 $("#guess_result").text("Nope, it was " + en_words);
+                add_xp_word($('#guess_word').attr('en_words'),false);
             }
             time = 2500;
         }
@@ -1379,13 +1492,13 @@ $('#guess_input').on('keypress', function(e) {
 });
 
 function update_association_game(){
-    if (shuffled_list2.length-1 < association_index + 4){
+    if (shuffled_list2.length-1 < total_associations + 4){
         //DONE
         return
     }
     var rand_order = shuffleArray([0,1,2,3]);
     for (var i = 0; i < 4; i++){
-        var word = shuffled_list2[association_index + i];
+        var word = shuffled_list2[total_associations + i];
         var en_word = word['en_words'];
         var lang_word = word[lang_params[lang_i] + '_words'];
         var en_word_display = "";
@@ -1401,6 +1514,7 @@ function update_association_game(){
         }
         $('#association_left_column').children().eq(rand_order[i]).html(lang_word);
         $('#association_left_column').children().eq(rand_order[i]).attr('en_word',en_word_display);
+        $('#association_left_column').children().eq(rand_order[i]).attr('failed',false);
         $('#association_right_column').children().eq(i).html(en_word_display);
     }
 }
@@ -1423,7 +1537,6 @@ $('.association_word').on('click',function(e){
             $('#association_right_column').children().attr('active','false');
         }
         $(this).attr('active','true');
-        console.log('avant verify');
         verify_association();
     }
 
@@ -1441,15 +1554,27 @@ function verify_association(){
         $('#association_result').text('Correct!');
         left_active.attr('done','true');
         right_active.attr('done','true');
+        if (left_active.attr('failed') == 'true'){
+            add_xp_word(left_word_en,false);
+        }
+        else{
+            add_xp_word(left_word_en,true);
+        }
     }
     else{
+        left_active.attr('failed','true');
         $('#association_result').text('Wrong!');
     }
     left_active.attr('active','false');
     right_active.attr('active','false');
     if ($('#association_left_column').children('[done="true"]').length == 4){
-        association_index += 4;
-        update_progress_bar('#association_game',association_index,association_index,false);
+        $('#association_left_column').children('[done="true"]').each(function(){
+            if ($(this).attr('failed') == 'false'){
+                correct_associations++;
+            }
+        });
+        total_associations += 4;
+        update_progress_bar('#association_game',correct_associations,total_associations,false);
         $('.association_word').attr('done','false');
         $('.association_word').attr('active','false');
         update_association_game();
@@ -1467,7 +1592,7 @@ function update_game_guess() {
     }
     var word = shuffled_list[guess_index];
     var words = [word.ka_words,word.ru_words,word.fr_words,word.ko_words];
-    $("#guess_word p").text(words[lang_i]);
+    $("#guess_word p").text(words[lang_i]);// + ' ' + word.occs_ok + '/' + word.occs + ',' + word.ratio);
     $('#guess_word').attr('type', word.type);
     $('#guess_word').attr('ka_words', word.ka_words);
     $('#guess_word').attr('en_words', word.en_words);
@@ -1495,6 +1620,8 @@ function update_progress_bar(game_id,cg,tg,percent) {
     if (tg == 0) {
         good_guesses = 0;
     }
+    $(game_id + " .progress_div").css("height", 'fit-content');
+    $(game_id + " .progress_div").css("margin-bottom", '35px');
     $(game_id + " .progress_div .progress").css("width", progress + "%");
     $(game_id + " .progress_div .progress_total").css("width", progress_total + "%");
     if (percent){
@@ -1530,6 +1657,7 @@ function play_word_sound(){
     else{
         letters = arguments[0].data.letter.split('');
     }
+    console.log(letters);
     var total_duration = 0;
     var alphabet = pron_alphabets[lang_i];
     for (var i = 0; i < letters.length; i++) {

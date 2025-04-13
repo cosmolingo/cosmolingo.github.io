@@ -70,7 +70,8 @@ table{
     min-height:25px;
     overflow: hidden;
     z-index:50;
-    animation: 3s linear infinite running slidein;
+    animation: slidein 3s linear infinite;
+    transform: translateX(-50%);
 }
 
 #wave_top{
@@ -84,12 +85,93 @@ table{
 }
 
 @keyframes slidein {
-    from {
-      transform: translateX(0);
+    0%{
+      transform: translateX(0%);
     }
-    to {
-      transform: translateX(-100vw);
+    100%{
+      transform: translateX(-50%);
     }
+}
+
+#navigation{
+    position: fixed;
+    bottom:10px;
+    left:50%;
+    transform: translateX(-50%);
+    width: 500px;
+    height: 75px;
+    background-color: rgba(249, 248, 226,0.5);
+    backdrop-filter: blur(10px);
+    z-index: 100;
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    font-size: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+
+#navigation i,#navigation p,#navigation a{
+    color: #5a4813;
+    text-decoration: none;
+}
+
+#navigation .nav_item{
+    display: inline-block;
+    text-align: center;
+    width: 20%;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
+
+#navigation .nav_item:hover{
+    transform: translateY(-5px) !important;
+}
+
+#navigation .nav_item i{
+    display: block;
+    font-size: 30px;
+}
+
+#navigation .nav_item p{
+    margin: 0;
+    font-size: 14px;
+}
+
+#user_xp{
+    display: block;
+    font-size: 10px;
+    line-height: 0px;
+    transform: translateY(4px);
+}
+
+#login{
+    margin:0 auto;
+    width: fit-content;
+    text-align: center;
+}
+
+#login_username,#login_password{
+    padding:0;
+    height:45px;
+    width:150px;
+    display:inline-block;
+    margin:0 auto;
+    margin-top: 50px;
+    border-radius:10px;
+    border:none;
+    background-color:#e7e0c4;
+    padding-left:10px;
+    font-size:20px;
+    font-family: "Balsamiq Sans", "Single Day", "Cherry Bomb One", sans-serif !important;
+    box-shadow: inset 0 5px 10px 0 rgba(0, 0, 0, 0.05);
+    position: relative;
+    z-index:20;
+    text-align:center;
+}
+
+#login_button{
+    margin-top: 25px;
 }
 
 #title{
@@ -170,14 +252,27 @@ h1{
     }
 }
 
+.avatar{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin: 0 auto;
+    box-shadow: 0px 10px 10px rgba(0,0,0,0.1);
+}
+
 #grammar .section_content{
     overflow-y: hidden;
-    max-height:0px;
+    max-height:5000px;
     transition: max-height .5s ease-in-out;
 }
 
 #games .section_content{
     text-align: center;
+}
+
+#games .section_content .section_buttons{
+    width:50%;
+    margin:0 auto;
 }
 
 #games h2{
@@ -928,10 +1023,12 @@ border-right: 1px solid black;
     width:90%;
     max-width:750px;
     margin:0 auto;
-    margin-bottom:35px;
+    margin-bottom:0px;
     display:block;
     text-align:center;
     opacity:0;
+    height:0px;
+    transition: margin-bottom 0.5s ease-in-out, height 0.5s ease-in-out, opacity 0.5s ease-in-out;
 }
 
 #progress_div p{
@@ -1627,6 +1724,12 @@ border-right: 1px solid black;
         top: 10px;
     }
 
+    #navigation{
+        width: 100%;
+        border-radius: 0px;
+        bottom: 0px;
+    }
+
     #title{
         margin-top:-175px;
         margin-bottom:100px;
@@ -1655,13 +1758,21 @@ border-right: 1px solid black;
     }
 
     .kazakh,.french,.korean,.japanese{
-        height:20px;
-        width:20px;
+        height:30px;
+        width:30px;
+    }
+
+    .french{
+        transform: translateY(-5px);
+    }
+
+    .french:nth-of-type(2){
+        transform: translateY(-5px) scaleX(-1);
     }
 
     .russian{
-        height:25px;
-        width:25px;
+        height:35px;
+        width:35px;
         margin-top: 2px;
     }
 

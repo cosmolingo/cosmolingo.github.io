@@ -4,7 +4,6 @@ n:дос:friend:ami(a_m_i):друг,подруга:친구:
 n-f:түн:night:nuit(n_u_i):ночь:밤:
 n-m,m:күн:day,sun:jour,soleil(j_ou_r_ _s_o_l_è_i):день,солнце:일,날,해,태양:
 n-f,m,:ай:moon,month,ouch:lune,mois,aie(l_u_n_ _m_o_a_ _a_i):луна,месяц:달,월:
-v:сігу:fuck:baiser(b_è_z_é):ебаться:섹스하다:
 a:үлкен:big:grand(g_r_an):большой:큰:
 a:кішкентай:small,little:petit(p_eu_t_i):маленький:작은:
 o:рахмет:thank you,thanks:merci(m_è_r_s_i):спасибо:감사합니다:
@@ -39,7 +38,7 @@ o:маған бәрі бір:I don't care,idc:je m'en fiche,balek,osef(j_eu_ _m_
 n-m;food:нан:bread:pain(p_in):хлеб:빵:
 v:жеу:eat:manger(m_an_j_é):есть,кушать:먹다:
 v:ішу:drink:boire(b_o_a_r):пить:마시다:
-a:қара:black:noir(n_o_a_r):чёрный:검정색,검은색,까만색:
+a;color:қара:black:noir(n_o_a_r):чёрный:검정색,검은색,까만색,검정:
 o:оқасы жоқ:you're welcome:de rien(d_eu_ _r_i_in):не за что, пожалуйста:천만에요,아니에요,괜찮아요:
 n-m;family:аға:brother:frère(f_r_è_r):брат:형,오빠,남동생:
 n-f;family:әпке:sister:soeur(s_e_r):сестра:누나,언니,여동생:
@@ -53,7 +52,7 @@ o:сау:healthy:en bonne santé(an_ _b_oa_n_ _s_an_t_é):здоровье:건�
 o:ғой:though:par contre(p_a_r_ _k_on_t_r):же:그렇지만,R+지만:
 o:тек:only:seulement(s_e_l_eu_m_an):только:N+만,뿐이다,R+ㄹ/을 뿐이다:
 o:әр:each:chacun,chaque,chacune(ch_a_k_in_ _ch_a_k_ _ch_a_k_u_n):каждый:각자,각 사람,각각,N+마다:
-n-f:адам:person:personne(p_è_r_s_oa_n):человек:사람:
+n-f:адам,кісі:person:personne(p_è_r_s_oa_n):человек:사람:
 o:Қалайсың:how are you?:comment vas-tu?(k_o_m_an_ _v_a_ _t_u):как дела?:어떻게 지내세요?:
 a:Қайырлы:gracious,good:gracieux,bon(g_r_a_s_i_eu_ _b_on):милостивый:은혜롭다,공손하다:
 n-m:таң:morning:matin(m_a_t_in):утро:오전,아침 :
@@ -106,7 +105,6 @@ n-f,m;body part:қол:hand,arm:main,bras(m_in_ _b_r_a):рука:손,팔:
 v:ойлану:reflect:réflechir(r_é_f_l_é_ch_i_r):размышлять,думать:반사하다,반영하다:
 v:ойлау:think:penser(p_an_s_é):думать:생각하다:
 n-f:ой:thought:pensée(p_an_s_é):мысль:생각:
-n-f:кісі:person:personne(p_è_r_s_oa_n):человек:사람:
 v:өлтіру:kill:tuer(t_u_é):убить:죽이다:
 o:осы:this:ce(s_e):это,эта,этот:이것:
 n-m;body part:көтен:booty:petit cul(p_eu_t_i_ _k_u):попа:전리품:
@@ -148,7 +146,7 @@ v:-:restart working:-:-:회사에 북직하다:
 v:-:leave the company:-:-:회사를 그만두다:
 v:-:have a part-time job:-:-:아르바이트를 하다:
 v:-:move to N:-:-:N+로 이사하다:
-v:-:get enganged:-:-:약혼하다:
+v:-:get engaged:-:-:약혼하다:
 v:-:get married:-:-:결혼하다:
 v:-:make friends of the opposite gender:-:-:이성 친구가 생기다:
 v:-:do one's hobby:-:-:취미 생활을 하다:
@@ -184,7 +182,6 @@ a;color:қызыл:red:rouge(r_ou_j):красный:빨간색:
 a;color:жасыл:green:vert(v_è_r):зелёный:녹색,초록색:
 a;color:сары:yellow:jaune(j_o_n):жёлтый:노란색:
 a;color:ақ:white:blanc(b_l_an):белый:흰색,하얀색,백색:
-a;color:қара:black:noir(n_o_a_r):чёрный:검은색,검정,까만색:
 a;color:қоңыр:brown:marron(ma_r_on):коричневый:갈색:
 n-f;family:апа:grandmother:grand-mère(g_r_an_ _m_è_r):бабушка:할머니:
 n-m;family:ата:grandfather:grand-père(g_r_an_ _p_è_r):дедушка:할아버지:
@@ -207,7 +204,7 @@ n-m;time:қаңтар:january:janvier(j_an_v_i_é):январь:일월:
 n-m;time:ақпан:february:février(f_é_v_r_i_é):февраль:이월:
 n-m;time:наурыз:march:mars(m_a_r_s):март:삼월:
 n-f;time:сағат:hour:heure(e_r):час:시:
-n-f:минут:minute:minute(m_i_n_u_t):минут::
+n-f;time:минут:minute:minute(m_i_n_u_t):минут::
 n-m;time:сәуір:april:avril(a_v_r_i_l):апрель:사월:
 n-m;time:мамыр:may:mai(m_è):май:오월:
 n-m;time:маусым:june:juin(j_u_in):июнь:유월:
@@ -263,3 +260,14 @@ n-m;clothes:шомылу киімі - M:swimsuit - M:maillot de bain - M(m_a_i_y
 n-p;clothes:көзілдірік:sunglasses:lunettes de soleil(l_u_n_è_t_ _d_e_ _s_o_l_è_i_y):солнцезащитные очки::
 n-m;body part:иек:chin:menton(m_an_t_on):подбородок::
 n-p;clothes:көзілдірік:glasses:lunettes(l_u_n_è_t):очки::
+
+n-m;food,drink:шырын:juice:jus(j_u):сок::
+n-m;food,drink:газдалған сусын:soda:soda(s_o_d_a):газированный напиток::
+n-m;food,drink:ішімдік:alcohol:alcool(a_l_c_oa_l):алкоголь::
+n-f;food,drink:сыра:beer:bière(b_i_è_r):пиво::
+n-m;food,drink:шарап:wine:vin(v_in):вино::
+n-m;food,drink:коктейль:cocktail:cocktail(c_oa_c_t_è_i_l):коктейль::
+n-m;food,drink:сидр:cider:cidre(c_i_d_r):сидр::
+n-m;food,drink:шәрбат:syrup:sirop(s_i_r_o):сироп::
+n-f;food,drink:лимонад:lemonade:limonade(l_i_m_o_n_a_d):лимонад::
+n-f;food,drink:газдалған су:sparkling water:eau gazeuse(o_ _g_a_z_eu_z):газированная вода::

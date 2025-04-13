@@ -1,17 +1,7 @@
 <?php
-
-function test_input($data) {
-$data = trim($data);
-$data = stripslashes($data);
-$data = htmlspecialchars($data);
-return $data;
-}
+include('creds.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $servername = "localhost";
-    $username = "root";
-    $password = "RandoDumbai18";
-    $dbname = "cosmolingo";
 
     // Create connection
     $conn = new mysqli($servername, $username, $password, $dbname);
@@ -19,6 +9,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Check connection
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
+    }
+
+    $sessionID = test_input($_COOKIE['sessionID']);
+    $username = test_input($_COOKIE['username']);
+    $sql = "SELECT sessionID FROM users WHERE username = '$username'";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $db_sessionID = $row['sessionID'];
+        if ($sessionID != $db_sessionID) {
+            die("Session ID does not match");
+        }
+    } else {
+        die("User not found");
     }
 
     $type = test_input($_POST['type']);

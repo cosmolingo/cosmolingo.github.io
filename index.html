@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1">
     <link rel="icon" href="" type="image/x-icon">
-    <title>cosmolingo</title>
+    <title>cosmolingoo</title>
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,13 +15,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Sniglet:wght@800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Single+Day&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/1c5060d9dc.js" crossorigin="anonymous"></script>
-    <script src="src/js/three.min.js"></script>
-    <script src="src/js/OrbitControls.js"></script>
-    <script src="src/js/OBJLoader.js"></script>
     <script src="src/js/jscolor.min.js"></script>
     <script src="src/js/jquery-clock-timepicker.js"></script>
+    <script src="src/js/navigation.js"></script>
 </head>
-<body>
+<body>    
     <!--
     <div id="logo_div">
         <img id="logo" src="src/logo.svg" alt="logo">
@@ -45,9 +43,9 @@
         </div>
     </div>
 
-    <div id="mascot_div">
-        
-    </div>
+    <!--<div id="mascot_div">-->
+
+    <div id="navigation"></div>
 
     <div id="search_bar_div">
         <input id="search_bar" type="text" id="search_input" placeholder="" autofocus>
@@ -68,55 +66,56 @@
     <div id="tags_list">
         <div class="tag">all</div>
     </div>
-    
-    <div id="guess_game">
-        <h3>guess the word</h3>
-        <div class="progress_div">
-            <p>0 / 0 (0%)</p>
-            <div class="total"></div>
-            <div class="progress"></div>
-            <div class="progress_total"></div>
-        </div>
-        <div id="guess_word"><p></p></div>
-        <input id="guess_input" type="text" placeholder="enter a guess" autofocus>
-        <p id="guess_result"></p>
-    </div>
-
-    <div id="association_game">
-        <h3>association game</h3>
-        <div class="progress_div">
-            <p>0 / 0 (0%)</p>
-            <div class="total"></div>
-            <div class="progress"></div>
-            <div class="progress_total"></div>
-        </div>
-        <div id="association_columns">
-            <div id="association_left_column">
-                <div class="association_word"></div>
-                <div class="association_word"></div>
-                <div class="association_word"></div>
-                <div class="association_word"></div>
-            </div>
-            <div id="association_right_column">
-                <div class="association_word"></div>
-                <div class="association_word"></div>
-                <div class="association_word"></div>
-                <div class="association_word"></div>
-            </div>
-        </div>
-        <p id="association_result"></p>
-    </div>
 
     <div id="main">
     </div>
 
     <div id="games">
         <h2>toys</h2>
-        <div class="section_content"></div>
+        <div class="section_content">
+            <div class="section_buttons"></div>
+            <div id="guess_game" class="game_section">
+                <h3>guess the word</h3>
+                <div class="progress_div">
+                    <p>0 / 0 (0%)</p>
+                    <div class="total"></div>
+                    <div class="progress"></div>
+                    <div class="progress_total"></div>
+                </div>
+                <div id="guess_word"><p></p></div>
+                <input id="guess_input" type="text" placeholder="enter a guess" autofocus>
+                <p id="guess_result"></p>
+            </div>
+        
+            <div id="association_game" class="game_section">
+                <h3>association game</h3>
+                <div class="progress_div">
+                    <p>0 / 0 (0%)</p>
+                    <div class="total"></div>
+                    <div class="progress"></div>
+                    <div class="progress_total"></div>
+                </div>
+                <div id="association_columns">
+                    <div id="association_left_column">
+                        <div class="association_word"></div>
+                        <div class="association_word"></div>
+                        <div class="association_word"></div>
+                        <div class="association_word"></div>
+                    </div>
+                    <div id="association_right_column">
+                        <div class="association_word"></div>
+                        <div class="association_word"></div>
+                        <div class="association_word"></div>
+                        <div class="association_word"></div>
+                    </div>
+                </div>
+                <p id="association_result"></p>
+            </div>
+        </div>
     </div>
 
     <div id="grammar">
-        <h2>grammar <i class="fa-solid fa-sort-down"></i></h2>
+        <h2 active="true">grammar <i class="fa-solid fa-sort-down"></i></h2>
         <div class="section_content"></div>
     </div>
 

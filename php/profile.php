@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1">
     <link rel="icon" href="" type="image/x-icon">
-    <title>leaderboards</title>
+    <title>profile</title>
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <link rel="stylesheet" href="../style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -37,6 +37,7 @@
         #leaderboard_container{
             margin:0 auto;
             width:fit-content;
+            text-align: center;
         }
 
         .leaderboard{
@@ -65,7 +66,7 @@
     </svg>
 </div>
 <div id="title">
-    <h1><i class="fa-solid fa-ranking-star"></i>leaderboard<i class="fa-solid fa-ranking-star"></i></h1>
+    <h1><i class="fa-solid fa-user"></i>profile<i class="fa-solid fa-user"></i></h1>
 </div>
 <div id="navigation"></div>
 <div id="leaderboard_container">
@@ -79,36 +80,58 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-$sql = "SELECT * FROM scores";
+
+$sessionID = test_input($_COOKIE['sessionID']);
+$username = test_input($_COOKIE['username']);
+$sql = "SELECT sessionID FROM users WHERE username = '$username'";
+$result = $conn->query($sql);
+if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    $db_sessionID = $row['sessionID'];
+    if ($sessionID != $db_sessionID) {
+        die("Session ID does not match");
+    }
+} else {
+    die("User not found");
+}
+
+$sql = "SELECT id FROM users WHERE username = '$username'";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
-    $pairs = array();
-    while($row = $result->fetch_assoc()) {
-        $user_id = $row['user_id'];
+    $row = $result->fetch_assoc();
+    $id = $row['id'];
+
+    $sql = "SELECT score FROM scores WHERE user_id = $id";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        $pairs = array();
+        $row = $result->fetch_assoc();
         $score = $row['score'];
-
-        $user_sql = "SELECT username FROM users WHERE id = $user_id";
-        $user_result = $conn->query($user_sql);
-
-        if ($user_result->num_rows > 0) {
-            $user_row = $user_result->fetch_assoc();
-            $username = $user_row['username'];
-            #$pairs[] = array("username" => $username, "score" => $score);
-            echo '<div class="leaderboard"><img class="avatar" src="../src/avatars/' . $username . '.png"><h3>' . $username . '</h3><p>' . $score . ' xp</p></div>';
-        }
+        echo '<div class="leaderboard"><img class="avatar" src="../src/avatars/' . $username . '.png"><h3>' . $username . '</h3><p>' . $score . ' xp</p></div>';
     }
-    #echo json_encode($pairs);
+    else{
+        echo "0 results";
+    }
 } else {
     echo "0 results";
 }
 $conn->close();
 ?>
+<br/>
+<button id="logout_button" class='button'>Logout</button>
 </div>
 <div id="wave_bottom">
     <svg viewBox="0 0 1000 150" preserveAspectRatio="none" style="height: 100%; width: 100%;">
         <path d="M1000,48.29c0,0-106.81,108.65-238.66,0s-261.34,0-261.34,0s-106.81,108.65-238.66,0S0,48.29,0,48.29V150h1000 V48.29z" style="stroke: none;fill: #f2e269;"></path>
     </svg>
 </div>
+<script>
+    $('#logout_button').click(function(){
+        document.cookie = "sessionID=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        window.location.href = "../index.html";
+    });
+</script>
 </body>
 </html>
