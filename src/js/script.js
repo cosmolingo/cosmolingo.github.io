@@ -10,7 +10,7 @@
 //TIPS:
 //for diagrams, include a line at 0,0 and copy it with each part so that you copy the absolute position and not relative like illustrator does
 
-var base_url = 'https://cosmolingo.studio';
+var base_url = 'https://cosmolingo.social';
 var words_list = [];
 var shuffled_list = [];
 var shuffled_list2 = [];
@@ -1087,7 +1087,8 @@ function create_body_diagram(){
     if ($('.body_parts').length == 0){
         return;
     }
-    var url = base_url + "/src/body/body_parts.svg";
+    var url = "/src/body/body_parts.svg";
+    console.log(url);
     
     $('#body_diagrams').load(url);
 }
@@ -1096,7 +1097,7 @@ function create_clothes_diagram(){
     if ($('.clothes').length == 0){
         return;
     }
-    var url = base_url + "/src/clothes/outfit" + rand_outfit_i + ".svg";
+    var url = "/src/clothes/outfit" + rand_outfit_i + ".svg";
     
     $('#clothes_diagrams').load(url);
 
