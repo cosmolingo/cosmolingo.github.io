@@ -1,5 +1,6 @@
 <?php
-include '/var/www/creds.php';
+include('/var/www/creds.php');
+include('functions.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Create connection

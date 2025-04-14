@@ -71,6 +71,7 @@
 <div id="leaderboard_container">
 <?php
 include('/var/www/creds.php');
+include('functions.php');
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);

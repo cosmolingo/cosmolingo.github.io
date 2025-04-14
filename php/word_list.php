@@ -201,7 +201,7 @@
     <textarea id="word_list_textarea" rows="10" cols="50"></textarea>
     </p>
     <div>
-      <input type="submit" id="js-close" value="Submit word list" />
+      <input type="button" id="js-close" value="Submit word list" />
     </div>
   </form>
 </dialog>
@@ -281,6 +281,8 @@
 </script>
 
 <h2>words list</h2>
+<button id="save-changes" class="button" disabled style="cursor:not-allowed;opacity:0.5;display:block;margin:0 auto;background-color:#a9e3bb">No changes to be saved</button>
+<br/>
 <table id='word_list'>
 <tr>
     <th>Type</th>
@@ -297,6 +299,7 @@
 </tr>
 <?php
     include('/var/www/creds.php');
+    include('functions.php');
     
     // Create connection
     $conn = new mysqli($servername, $username, $password, $dbname);
@@ -372,8 +375,13 @@
     </svg>
 </div>
 
+<div id="popup-message" style="display: none; position: fixed; top: 20px; right: 20px; background-color: #4CAF50; color: white; padding: 15px; border-radius: 5px; z-index: 1000;">
+</div>
+
 <script>
     $(document).ready(function() {
+        const saveChangesButton = $('#save-changes');
+        saveChangesButton.attr('disabled', true);
         $('#word_list textarea').on('keypress', function(e) {
             if (e.which == 13) {
                 e.preventDefault();
@@ -381,12 +389,33 @@
                 edit_word(row);
             }
         });
+        $('#word_list textarea').on('input', function() {
+            const row = $(this).closest('tr');
+            row.attr('data-changed', 'true');
+            const cell = $(this).closest('td');
+            cell.css('background-color', '#f39f95');
+            var button = $('#save-changes');
+            if (button.attr('disabled')) {
+                button.attr('disabled', false);
+                button.css('cursor', 'pointer');
+                button.css('opacity', '1');
+                button.text('Save changes');
+            }
+        });
+
+        // Save changes button functionality
+        $('#save-changes').on('click', function() {
+            const changedRows = $('#word_list tr[data-changed="true"]'); // Select all changed rows
+            changedRows.each(function() {
+                edit_word($(this)); // Submit each changed row
+            });
+        });
     });
     function submit_word(){
         $.ajax({
             type: 'POST',
             url: 'add_word.php',
-            data: { 
+            data: {
                 type: $('#new_word tr:nth-child(2) td:nth-child(1) textarea').val(),
                 gender: $('#new_word tr:nth-child(2) td:nth-child(2) textarea').val(),
                 tag: $('#new_word tr:nth-child(2) td:nth-child(3) textarea').val(),
@@ -422,7 +451,13 @@
                 pronunciation: row.children('td:nth-child(10)').children('textarea').val()
             },
             success: function(response) {
-                //
+                const popup = $('#popup-message');
+                popup.text("Word list changes have been saved !").fadeIn();
+                setTimeout(() => {
+                    popup.fadeOut();
+                }, 2000);
+                row.attr('data-changed', 'false');
+                row.children('td').css('background-color', '#e7e0c4');
             }
         });
     }

@@ -654,7 +654,7 @@ function get_words(){
                         continue;
                     }
                     var prep = ['le','la','les'][['m','f','p'].indexOf(genders[i])];
-                    if (['a','e','i','o','u','y','é','è'].includes(fr_words[i][0])){
+                    if (['a','e','i','o','u','y','é','è','â','ê'].includes(fr_words[i][0])){
                         prep = ['un','une','les'][['m','f','p'].indexOf(genders[i])];
                     }
                     fr_words[i] = prep + ' ' + fr_words[i];
@@ -1657,7 +1657,6 @@ function play_word_sound(){
     else{
         letters = arguments[0].data.letter.split('');
     }
-    console.log(letters);
     var total_duration = 0;
     var alphabet = pron_alphabets[lang_i];
     for (var i = 0; i < letters.length; i++) {
