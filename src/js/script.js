@@ -123,9 +123,9 @@ $(document).ready(function(){
         setup_all();
     }
     else{
-        var url = '/php/get_default_language.php';
+        var url = '/php/get_user_info.php';
         $.get(url).then(function(data){
-            lang_i = lang_params.indexOf(data);
+            lang_i = lang_params.indexOf(data.default_lang);
             if (lang_i == -1){
                 lang_i = 0;
             }

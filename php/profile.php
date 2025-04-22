@@ -57,6 +57,15 @@
         .leaderboard p{
             margin-top: 0px;
         }
+
+        .leaderboard select{
+            margin-top: 0px;
+        }
+
+        .lang_title{
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
     </style>
 </head>
 <body>
@@ -70,55 +79,16 @@
 </div>
 <div id="navigation"></div>
 <div id="leaderboard_container">
-<?php
-include('/var/www/creds.php');
-include('functions.php');
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-$sessionID = test_input($_COOKIE['sessionID']);
-$username = test_input($_COOKIE['username']);
-$sql = "SELECT sessionID FROM users WHERE username = '$username'";
-$result = $conn->query($sql);
-if ($result->num_rows > 0) {
-    $row = $result->fetch_assoc();
-    $db_sessionID = $row['sessionID'];
-    if ($sessionID != $db_sessionID) {
-        die("Session ID does not match");
-    }
-} else {
-    die("User not found");
-}
-
-$sql = "SELECT id FROM users WHERE username = '$username'";
-$result = $conn->query($sql);
-
-if ($result->num_rows > 0) {
-    $row = $result->fetch_assoc();
-    $id = $row['id'];
-
-    $sql = "SELECT score FROM scores WHERE user_id = $id";
-    $result = $conn->query($sql);
-    if ($result->num_rows > 0) {
-        $pairs = array();
-        $row = $result->fetch_assoc();
-        $score = $row['score'];
-        echo '<div class="leaderboard"><img class="avatar" src="../src/avatars/' . strtolower($username) . '.png"><h3>' . strtolower($username) . '</h3><p>' . $score . ' xp</p></div>';
-    }
-    else{
-        echo "0 results";
-    }
-} else {
-    echo "0 results";
-}
-$conn->close();
-?>
+<div class="leaderboard"><img class="avatar"><h3 class="username"></h3><p class="score"></p></div>
+<br/>
+<p class="lang_title">Learning language:</p>
+<select id="language_select" class="button">
+    <option value="ka">Kazakh</option>
+    <option value="fr">French</option>
+    <option value="ru">Russian</option>
+    <option value="kr">Korean</option>
+    <option value="jp">Japanese</option>
+</select>
 <br/>
 <button id="logout_button" class='button'>Logout</button>
 </div>
@@ -132,6 +102,34 @@ $conn->close();
         document.cookie = "sessionID=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
         document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
         window.location.href = "../index.html";
+    });
+
+    $(document).ready(function(){
+        $.ajax({
+            url: 'get_user_info.php',
+            type: 'GET',
+            success: function(data) {
+                $('#language_select').val(data.default_lang.toLowerCase());
+                $('.leaderboard .avatar').attr('src', "../src/avatars/" + data.username.toLowerCase() + ".png");
+                $('.leaderboard .username').text(data.username.toLowerCase());
+                $('.leaderboard .score').text(data.score + " xp");
+            },
+            error: function(xhr, status, error) {
+                console.error("Error fetching profile data:", error);
+            }
+        });
+    });
+
+    $('#language_select').change(function(){
+        var selectedLanguage = $(this).val();
+        $.ajax({
+            url: 'update_user_default_lang.php',
+            type: 'POST',
+            data: { default_lang: selectedLanguage },
+            error: function(xhr, status, error) {
+                console.error("Error updating language:", error);
+            }
+        });
     });
 </script>
 </body>

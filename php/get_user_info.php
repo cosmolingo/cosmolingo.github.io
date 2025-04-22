@@ -24,16 +24,33 @@ if ($result->num_rows > 0) {
     die("User not found");
 }
 
-$sql = "SELECT default_language FROM users WHERE username = '$username'";
+$sql = "SELECT id,default_language FROM users WHERE username = '$username'";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
-    $default_language = $row['default_language'];
+    $id = $row['id'];
+    $lang = $row['default_language'];
 
-    echo $default_language;
+    $sql = "SELECT score FROM scores WHERE user_id = $id";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        $pairs = array();
+        $row = $result->fetch_assoc();
+        $score = $row['score'];
+        $response = array(
+            "username" => $username,
+            "score" => $score,
+            "default_lang" => $lang,
+        );
+        header('Content-Type: application/json');
+        echo json_encode($response);
+    }
+    else{
+        die("0 results");
+    }
 } else {
-    echo "0 results";
+    die("0 results");
 }
 $conn->close();
 ?>
