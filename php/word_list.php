@@ -83,6 +83,7 @@
             font-family: 'Balsamiq Sans', cursive;
             width:100%;
             color:rgb(90, 72, 19);
+            font-size: 16px;
         }
 
         td:nth-child(1) textarea,th:nth-child(1),td:nth-child(2) textarea,th:nth-child(2) {
@@ -352,8 +353,9 @@
         $word_type = $row['word_type'];
         $word_tag = $row['word_tag'];
         $word_gender = $row['word_gender'];
+        $date = $row['date_added'];
 
-        echo "<tr id='" . $id . "'>
+        echo "<tr id='" . $id . "' date_added='" . $date . "'>
             <td><textarea>" . $word_type . "</textarea></td>
             <td><textarea>" . $word_gender . "</textarea></td>
             <td><textarea>" . $word_tag . "</textarea></td>

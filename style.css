@@ -892,6 +892,7 @@ h3{
     margin:0 auto;
     border-collapse: collapse;
     margin-bottom:25px;
+    text-transform: none;
 }
 
 #vowels_table td:not(:first-child){

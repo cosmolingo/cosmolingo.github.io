@@ -102,22 +102,39 @@ var hour_suffixes_1 = {
 var hour_suffixes_2 = {
     0:'',1:'ге',2:'ге',3:'ке',4:'ке',5:'ке',6:'ға',7:'ге',8:'ге',9:'ға',10:'ға',11:'ге',12:'ге'
 }
-
-var url_lang = getUrlParameter('lang');
 var lang_params = ['ka','ru','fr','kr','jp'];
-var lang_i = lang_params.indexOf(url_lang);
-if (lang_i == -1){
-    lang_i = 0;
-}
-var section = getUrlParameter('section');
-
-if (window.location.pathname.endsWith("index.html")) {
-    const newPath = window.location.pathname.replace("index.html", "");
-    const newUrl = window.location.origin + newPath + window.location.search + window.location.hash;
-    window.history.replaceState({}, document.title, newUrl);
-}
+var lang_i = 0;
+var section = '';
 
 $(document).ready(function(){
+    section = getUrlParameter('section');
+    if (window.location.pathname.endsWith("index.html")) {
+        const newPath = window.location.pathname.replace("index.html", "");
+        const newUrl = window.location.origin + newPath + window.location.search + window.location.hash;
+        window.history.replaceState({}, document.title, newUrl);
+    }
+
+    var url_lang = getUrlParameter('lang');
+    if (url_lang != false){
+        lang_i = lang_params.indexOf(url_lang);
+        if (lang_i == -1){
+            lang_i = 0;
+        }
+        setup_all();
+    }
+    else{
+        var url = '/php/get_default_language.php';
+        $.get(url).then(function(data){
+            lang_i = lang_params.indexOf(data);
+            if (lang_i == -1){
+                lang_i = 0;
+            }
+            setup_all();
+        });
+    }
+});
+
+function setup_all(){
     $('.test_clock').clockTimePicker();
     //Change theme color depending on the language
     document.documentElement.style.setProperty("--primary-color", colors[lang_i][0]);
@@ -176,7 +193,7 @@ $(document).ready(function(){
     
     var url = base_url + "/src/symbols/mascot.svg";
     $('#mascot_div').load(url);
-});
+};
 
 function get_most_mistakes_word_list(){
     var sorted_list = [...words_list].map(word => {
@@ -1088,7 +1105,6 @@ function create_body_diagram(){
         return;
     }
     var url = "/src/body/body_parts.svg";
-    console.log(url);
     
     $('#body_diagrams').load(url);
 }

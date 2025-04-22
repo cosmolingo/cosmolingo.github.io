@@ -109,7 +109,7 @@ if ($result->num_rows > 0) {
         $pairs = array();
         $row = $result->fetch_assoc();
         $score = $row['score'];
-        echo '<div class="leaderboard"><img class="avatar" src="../src/avatars/' . $username . '.png"><h3>' . $username . '</h3><p>' . $score . ' xp</p></div>';
+        echo '<div class="leaderboard"><img class="avatar" src="../src/avatars/' . strtolower($username) . '.png"><h3>' . strtolower($username) . '</h3><p>' . $score . ' xp</p></div>';
     }
     else{
         echo "0 results";

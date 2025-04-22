@@ -1,6 +1,7 @@
 <?php
 include('/var/www/creds.php');
 include('functions.php');
+date_default_timezone_set('Europe/Paris');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -36,6 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $korean = test_input($_POST['korean']);
     $japanese = test_input($_POST['japanese']);
     $pronunciation = test_input($_POST['pronunciation']);
+    $date = date("Y-m-d H:i:s");
     #$type = "n";
     #$gender = "m";
     #$tag = "animal";
@@ -47,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     #$japanese = "testjp";
     #$pronunciation = "testpron";
 
-    $sql = "INSERT INTO words (word,word_ka,word_ru,word_fr,word_kr,word_jp,word_pronunciation,word_type,word_tag,word_gender) VALUES ('$english','$kazakh','$russian','$french','$korean','$japanese','$pronunciation','$type','$tag','$gender')";
+    $sql = "INSERT INTO words (word,word_ka,word_ru,word_fr,word_kr,word_jp,word_pronunciation,word_type,word_tag,word_gender,date_added) VALUES ('$english','$kazakh','$russian','$french','$korean','$japanese','$pronunciation','$type','$tag','$gender','$date')";
     $result = $conn->query($sql);
     
     if ($result === FALSE) {
