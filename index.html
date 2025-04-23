@@ -49,6 +49,13 @@
 
     <div id="search_bar_div">
         <input id="search_bar" type="text" id="search_input" placeholder="" autofocus>
+        <i id="keyboard_button" class="fa-solid fa-keyboard" active="false"></i>
+    </div>
+
+    <div id="keyboard" style="display:none">
+        <div class="keyboard_close">
+            <i class="fa-solid fa-xmark"></i>
+        </div>
     </div>
     
     <div id="words_outer">
@@ -82,6 +89,13 @@
                     <div class="progress"></div>
                     <div class="progress_total"></div>
                 </div>
+                <p class="check_text left"></p>
+                <label class="switch">
+                    <input id="guess_game_lang_check" type="checkbox" checked="checked" autocomplete="off">
+                    <span class="slider round"></span>
+                </label>
+                <p class="check_text right"></p>
+                <br/>
                 <div id="guess_word"><p></p></div>
                 <input id="guess_input" type="text" placeholder="enter a guess" autofocus>
                 <p id="guess_result"></p>

@@ -105,6 +105,15 @@ var hour_suffixes_2 = {
 var lang_params = ['ka','ru','fr','kr','jp'];
 var lang_i = 0;
 var section = '';
+var lang_to_en = true;
+
+$('#guess_game_lang_check').on('change', function() {
+    if ($(this).is(':checked')) {
+        lang_to_en = true;
+    } else {
+        lang_to_en = false;
+    }
+});
 
 $(document).ready(function(){
     section = getUrlParameter('section');
@@ -559,6 +568,7 @@ function get_words(){
             if (line.length == 0) {
                 return;
             }
+            line = line.replace("&#039;", "'");//replace escaped apostrophes
             var is_hidden = false;
             var parts = line.split(":");
             var type    = parts[0].trim();
@@ -597,7 +607,7 @@ function get_words(){
             var en_words = parts[2].trim();
             var fr_words = parts[3].trim();
             var ru_words = parts[4].trim();
-            var ko_words = parts[5].trim();
+            var kr_words = parts[5].trim();
             var jp_words = parts[6].trim();
             var occs = parts[7].trim();
             var occs_ok = parts[8].trim();
@@ -647,7 +657,7 @@ function get_words(){
                 en_words: en_words,
                 fr_words: new_fr_words,
                 ru_words: ru_words,
-                ko_words: ko_words,
+                kr_words: kr_words,
                 jp_words: jp_words,
                 occs: occs,
                 occs_ok: occs_ok,
@@ -656,7 +666,7 @@ function get_words(){
             en_words = en_words.replace(/,/g,", ");
             new_fr_words = new_fr_words.replace(/,/g,", ");
             ru_words = ru_words.replace(/,/g,", ");
-            ko_words = ko_words.replace(/,/g,", ");
+            kr_words = kr_words.replace(/,/g,", ");
             jp_words = jp_words.replace(/,/g,", ");
 
             if (genders.length > 0 && lang_i == 2){
@@ -680,7 +690,7 @@ function get_words(){
             }
             
             if (is_hidden == false){
-                display_words = [ka_words,ru_words,new_fr_words,ko_words,jp_words];
+                display_words = [ka_words,ru_words,new_fr_words,kr_words,jp_words];
 
                 var wordElement = $("<p>").text(display_words[lang_i] + ' : ' + en_words_display);
                 wordElement.attr('type'    , type   );
@@ -690,7 +700,7 @@ function get_words(){
                 wordElement.attr('en_words', en_words);
                 wordElement.attr('fr_words', new_fr_words);
                 wordElement.attr('ru_words', ru_words);
-                wordElement.attr('ko_words', ko_words);
+                wordElement.attr('kr_words', kr_words);
                 wordElement.attr('jp_words', jp_words);
                 wordElement.attr('occs'    , occs    );
                 wordElement.attr('occs_ok' , occs_ok );
@@ -723,6 +733,14 @@ function get_words(){
         }
         shuffled_list = new_shuffled_list;
         
+        for (var i = 0; i < shuffled_list.length; i++){
+            if (shuffled_list[i].ka_words == 'күн'){
+                shuffled_list.unshift(shuffled_list[i]);
+                break;
+            }
+        }
+
+        setup_keyboard();
         update_tag_filter();
         update_game_guess();
         update_association_game();
@@ -754,6 +772,55 @@ function get_words(){
         audio.src = url;
     }
 }
+
+function setup_keyboard(){
+    if (lang_i > 2){
+        $('#keyboard_button').hide();
+        return;
+    }
+
+    var alphabet = alphabets[lang_i];
+    for (var i = 0; i < alphabet.length; i++) {
+        var ltr = alphabet[i];
+        var letter = $("<div>").html('<p>' + ltr + '</p>');
+        letter.addClass("letter");
+        letter.on("click", add_letter_to_input);
+        $("#keyboard").append(letter);
+    }
+}
+
+function add_letter_to_input(event){
+    var letter = $(this).text();
+    var input = $('#search_bar');
+    var input_value = input.val();
+    var input_value = input_value + letter;
+    input.val(input_value);
+    input.focus();
+    input.trigger('input');
+}
+
+$(document).on('keydown', function(e) {
+    if (e.key === "Escape" && $('#keyboard').is(':visible')) {
+        $('#keyboard').fadeOut(200);
+        $('#keyboard_button').attr('active', false);
+    }
+});
+
+$('#keyboard_button').click(function(){
+    $('#keyboard').fadeToggle(200);
+    if ($('#keyboard_button').attr('active') == 'true'){
+        $('#keyboard_button').attr('active',false);
+    }
+    else{
+        $('#keyboard_button').attr('active',true);
+    }
+});
+
+$('.keyboard_close').click(function(){
+    $('#keyboard').fadeOut(200);
+    $('#keyboard_button').attr('active',false);
+    $('#search_bar').focus();
+});
 
 function populate_clock(){
     if ($('.clock').length == 0){
@@ -1399,9 +1466,9 @@ function update_word_list(){
         var en_words = $(this).attr("en_words").toLowerCase();
         var fr_words = $(this).attr("fr_words").toLowerCase();
         var ru_words = $(this).attr("ru_words").toLowerCase();
-        var ko_words = $(this).attr("ko_words").toLowerCase();
+        var kr_words = $(this).attr("kr_words").toLowerCase();
         var jp_words = $(this).attr("jp_words").toLowerCase();
-        lang_words = [ka_words,ru_words,fr_words,ko_words,jp_words];
+        lang_words = [ka_words,ru_words,fr_words,kr_words,jp_words];
         if (type == 'v'){
             var len = en_words.split(",").length;
             for (var i = 0; i < len; i++){
@@ -1443,19 +1510,30 @@ $('#guess_input').on('keypress', function(e) {
     }
 
     var guess = $(this).val().toLowerCase();
-    var en_words = $('#guess_word').attr('en_words').toLowerCase().split(",");
-    var en_words_possible = en_words.slice();
-    if ($('#guess_word').attr('type') == 'v'){
-        var len = en_words.length;
-        for (var i = 0; i < len; i++){
-            var en_word = en_words[i];
-            en_words_possible.push('to ' + en_word);
-            en_words[i] = 'to ' + en_word;
+    if (lang_to_en){
+        var attr = 'en_words';
+    }
+    else{
+        var attr = lang_params[lang_i] + '_words';
+    }
+    var sol_words = $('#guess_word').attr(attr).toLowerCase().split(",");
+    var sol_words_possible = sol_words.slice();
+    if ($('#guess_word').attr(attr).toLowerCase().includes(',')){
+        sol_words_possible.push($('#guess_word').attr(attr).toLowerCase());
+    }
+    if (lang_to_en){
+        if ($('#guess_word').attr('type') == 'v'){
+            var len = sol_words.length;
+            for (var i = 0; i < len; i++){
+                var sol_word = sol_words[i];
+                sol_words_possible.push('to ' + sol_word);
+                sol_words[i] = 'to ' + sol_word;
+            }
         }
     }
     
     guess = guess.replace("?", "");
-    en_words_possible = en_words_possible.map(word => word.replace("?", ""));
+    sol_words_possible = sol_words_possible.map(word => word.replace("?", ""));
 
     if (guess_index == shuffled_list.length){
         if (game_done == false){
@@ -1482,19 +1560,19 @@ $('#guess_input').on('keypress', function(e) {
         $('#guess_result').animate({'opacity':1},{queue:false},{duration:5});
         clearTimeout(game_timeout);
         var time = 500;
-        if ((en_words_possible.includes(guess))){
+        if ((sol_words_possible.includes(guess))){
             $("#guess_result").text("Correct!");
             add_xp_word($('#guess_word').attr('en_words'),true);
             correct_guesses++;
         } else {
             if (guess.length == 0) {
-                $("#guess_result").text("It was " + en_words);
-                add_xp_word($('#guess_word').attr('en_words'),false);
+                var txt = "It was " + sol_words;
             }
             else{
-                $("#guess_result").text("Nope, it was " + en_words);
-                add_xp_word($('#guess_word').attr('en_words'),false);
+                var txt = "Nope, it was " + sol_words;
             }
+            $("#guess_result").text(txt);
+            add_xp_word($('#guess_word').attr('en_words'),false);
             time = 2500;
         }
 
@@ -1604,18 +1682,43 @@ function verify_association(){
 }
 
 function update_game_guess() {
+    $('#guess_game .check_text.left').text('english to ' + languages[lang_i]);
+    $('#guess_game .check_text.right').text(languages[lang_i] + ' to english');
     if (guess_index >= shuffled_list.length) {
         return;
     }
     var word = shuffled_list[guess_index];
-    var words = [word.ka_words,word.ru_words,word.fr_words,word.ko_words];
-    $("#guess_word p").text(words[lang_i]);// + ' ' + word.occs_ok + '/' + word.occs + ',' + word.ratio);
+
+    var lang_param = lang_params[lang_i];
+    var word_attr = word[lang_param + '_words'].replace(/,/g,", ");
+    if (word_attr.length > 0){
+        var existing_words = $('.word[' + lang_param + '_words="' + word_attr + '"]');
+        if (existing_words.length > 1){
+            existing_words.each(function(j,obj){
+                var existing_word = $(obj).attr('en_words');
+                if (word['en_words'].includes(existing_word) == false){
+                    word['en_words'] = word['en_words'] + ',' + existing_word;
+                }
+            });
+        }
+    }
+    var words = [word.ka_words,word.ru_words,word.fr_words,word.kr_words,word.jp_words,word.en_words];
+    if (lang_to_en){
+        $("#guess_word p").text(words[lang_i]);
+    }
+    else{
+        var txt = words[5];
+        if (word.type == 'v'){
+            txt = 'to ' + words[5];
+        }
+        $("#guess_word p").text(txt);
+    }
     $('#guess_word').attr('type', word.type);
-    $('#guess_word').attr('ka_words', word.ka_words);
     $('#guess_word').attr('en_words', word.en_words);
+    $('#guess_word').attr('ka_words', word.ka_words);
     $('#guess_word').attr('fr_words', word.fr_words);
     $('#guess_word').attr('ru_words', word.ru_words);
-    $('#guess_word').attr('ko_words', word.ko_words);
+    $('#guess_word').attr('kr_words', word.kr_words);
     $('#guess_word').attr('jp_words', word.jp_words);
     var ka_word = word.ka_words.replace(/,/g,", ");
     var col = $('.word[ka_words="' + ka_word + '"]').css('background-color');
@@ -1625,9 +1728,11 @@ function update_game_guess() {
     var col_idx = ['#fbc59f','#f4eb84','#c499e0','#f39f95','#a9e3bb','#a6cdf4','#e6b8b8'].indexOf(rgbToHex(col_r,col_g,col_b));
     $('#guess_word').attr('class','col' + (col_idx+1));
     $("#guess_input").val("");
-    var word_to_say = words[lang_i].replace(',',' ');
     $('#guess_word').off("click");
-    $('#guess_word').click({letter:word_to_say},play_word_sound);
+    if (lang_to_en){
+        var word_to_say = words[lang_i].replace(',',' ');
+        $('#guess_word').click({letter:word_to_say},play_word_sound);
+    }
 }
 
 function update_progress_bar(game_id,cg,tg,percent) {
