@@ -411,12 +411,28 @@ h1 .fa-sun{
     background-image: url('src/bg.png');
     background-size: 50%;
     text-align: center;
-    padding-top: 50px;
     padding-bottom: 25px;
     border-radius: 25px;
     box-shadow: 0 5px 20px rgba(0,0,0,0.35);
     border: 1.5px solid #5a4813;
     border-bottom: 3px solid #5a4813;
+}
+
+#keyboard .letter p{
+    font-size: 20px;
+    margin:0 auto;
+    height:50px;
+    line-height: 50px;
+}
+
+.keyboard_header{
+    width:100%;
+    height:50px;
+    text-align: center;
+    color: #5a4813;
+    margin-bottom:25px;
+    margin-top:10px;
+    cursor: pointer;
 }
 
 .keyboard_close{

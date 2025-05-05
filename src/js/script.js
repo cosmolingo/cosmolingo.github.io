@@ -210,9 +210,6 @@ function get_most_mistakes_word_list(){
         if (word.occs === 0 && word.occs_ok === 0) {
             ratio = 0.0;
         }
-        else if (word.occs === -1 && word.occs_ok === -1) {
-            ratio = 0.0;
-        }
         else {
             ratio = (1.0 + word.occs_ok) / (1.0 + word.occs);
         }
@@ -612,13 +609,13 @@ function get_words(){
             var occs = parts[7].trim();
             var occs_ok = parts[8].trim();
             if (occs == ''){
-                occs = -1;
+                occs = 0;
             }
             else{
                 occs = parseInt(occs);
             }
             if (occs_ok == ''){
-                occs_ok = -1;
+                occs_ok = 0;
             }
             else{
                 occs_ok = parseInt(occs_ok);
@@ -732,13 +729,6 @@ function get_words(){
             }
         }
         shuffled_list = new_shuffled_list;
-        
-        for (var i = 0; i < shuffled_list.length; i++){
-            if (shuffled_list[i].ka_words == 'күн'){
-                shuffled_list.unshift(shuffled_list[i]);
-                break;
-            }
-        }
 
         setup_keyboard();
         update_tag_filter();
@@ -787,6 +777,11 @@ function setup_keyboard(){
         letter.on("click", add_letter_to_input);
         $("#keyboard").append(letter);
     }
+
+    $('#keyboard').draggable({
+        handle: ".keyboard_header",
+        containment: "window",
+    });
 }
 
 function add_letter_to_input(event){
