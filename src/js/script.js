@@ -30,7 +30,6 @@ var letter_duration = new Array(100).fill(0);
 var nb_outfits = 6;
 var rand_outfit_i = Math.floor(Math.random() * nb_outfits) + 1;
 
-
 var languages = ['kazakh','russian','french','korean','japanese'];
 var colors = [['#7db1db','#5092c8'],['#ffb361','#ff9829'],['#c499e0','#a463ce'],['#f2e269','#e3b713'],['#e8766d','#d7544a']];
 var alphabets = [
@@ -40,6 +39,9 @@ var alphabets = [
     [],
     []
 ];
+var ka_lat_alphabet = [
+    "a","ä","b","v","g","R","d","é","j","z","i","I","k","K","l","m","n","N","o","ö","p","r","c","t","ou","ô","eu","f","h","H","ts", "ch", "sh","SH","è", "y","ae","yu","ya"
+]
 var pron_alphabets = [
     ["а","ә","б","в","г","ғ","д","е","ж","з","и","й","к","қ","л","м","н","ң","о","ө","п","р","с","т","у","ұ","ү","ф","х","һ","ц","ч","ш","щ","ы","і","э","ю","я"],
     ["а","б","в","г","д","е","ё","ж","з","и","й","к","л","м","н","о","п","р","с","т","у","ф","х","ц","ч","ш","щ","ъ","ы","ь","э","ю","я"],
@@ -107,6 +109,14 @@ var lang_i = 0;
 var section = '';
 var lang_to_en = true;
 
+let focusedInput = null;
+
+document.addEventListener('focusin', function(event) {
+  if (event.target.tagName === 'INPUT' || event.target.tagName === 'TEXTAREA') {
+    focusedInput = $(event.target);
+  }
+});
+
 $('#guess_game_lang_check').on('change', function() {
     if ($(this).is(':checked')) {
         lang_to_en = true;
@@ -170,8 +180,18 @@ function setup_all(){
         get_words();
         populate_numbers();
         $('#number_output p').text(special_numbers[lang_i][0]);
+        setup_number_game();
         setup_renderer();
         setup_toys();
+        $('#number_game_input').on('keydown', function(e) {
+            if (e.key === "Enter") {
+                check_number_game();
+            }
+        });
+
+        $('#number_game_output').click(function() {
+            setup_number_game();
+        });
         $('#title_dropdown').click(function(){
             var is_toggle_active = $('#title_dropdown').attr('active');
             if (is_toggle_active == 'false'){
@@ -204,6 +224,47 @@ function setup_all(){
     $('#mascot_div').load(url);
 };
 
+function latin_to_cyrillic(word){
+    var translated_word = '';
+    word = word.split(',');
+    for (var i = 0; i < word.length; i++){
+        var symbol = word[i];
+        if (ka_lat_alphabet.includes(symbol)){
+            var idx = ka_lat_alphabet.indexOf(symbol);
+            translated_word += alphabets[0][idx];
+        }
+        else{
+            translated_word += symbol;
+        }
+    }
+    return translated_word;
+}
+
+function setup_number_game(){
+    var random_number = Math.floor(Math.random() * 10000);
+    $('#number_game_output').html('<p>' + random_number + '</p>');
+    $('#number_game_output').attr('translated_number', get_spelled_out_number(random_number));
+    var rand_number = Math.floor(Math.random() * 7) + 1;
+    $('#number_game_output').attr('class', 'button_' + rand_number);
+    $('#number_game_input').val('');
+}
+
+function check_number_game(){
+    var input = $('#number_game_input').val();
+    game_timeout = setTimeout(function() {
+        $('#number_game_result').delay(2000).animate({ opacity: 0 },{queue:false});
+    }, 2000);
+    $('#number_game_result').animate({ opacity: 1 },{queue:false});
+    if (input == $('#number_game_output').attr('translated_number') || latin_to_cyrillic(input) == $('#number_game_output').attr('translated_number')){
+        add_xp(2);
+        setup_number_game();
+        $('#number_game_result').text('Correct!');
+    }
+    else{
+        $('#number_game_result').text('Wrong! Click the number to skip.');
+    }
+}
+
 function get_most_mistakes_word_list(){
     var sorted_list = [...words_list].map(word => {
         let ratio;
@@ -233,6 +294,14 @@ function add_xp_word(word,is_ok){
     $.post(url, {
         word:word,
         is_ok:is_ok
+    });
+    set_xp_nav();
+}
+
+function add_xp(xp){
+    var url = "/php/add_xp.php";
+    $.post(url, {
+        xp:xp
     });
     set_xp_nav();
 }
@@ -775,6 +844,7 @@ function setup_keyboard(){
         var letter = $("<div>").html('<p>' + ltr + '</p>');
         letter.addClass("letter");
         letter.on("click", add_letter_to_input);
+
         $("#keyboard").append(letter);
     }
 
@@ -786,12 +856,12 @@ function setup_keyboard(){
 
 function add_letter_to_input(event){
     var letter = $(this).text();
-    var input = $('#search_bar');
-    var input_value = input.val();
+
+    var input_value = focusedInput.val();
     var input_value = input_value + letter;
-    input.val(input_value);
-    input.focus();
-    input.trigger('input');
+    focusedInput.val(input_value);
+    focusedInput.focus();
+    focusedInput.trigger('input');
 }
 
 $(document).on('keydown', function(e) {
@@ -1471,7 +1541,7 @@ function update_word_list(){
                 en_words = en_words + "," + "to " + en_word;
             }
         }
-        if (lang_words[lang_i].includes(searchValue) || en_words.includes(searchValue)) {
+        if (lang_words[lang_i].includes(searchValue) || en_words.includes(searchValue) || lang_words[lang_i].includes(latin_to_cyrillic(searchValue))){
             var type_i = ['n','v','a','o'].indexOf(type);
             if ((filters[type_i]) || (filters.includes(true) == false)){
                 if ($('.tag-filter p').html() != 'tags'){
@@ -1555,7 +1625,7 @@ $('#guess_input').on('keypress', function(e) {
         $('#guess_result').animate({'opacity':1},{queue:false},{duration:5});
         clearTimeout(game_timeout);
         var time = 500;
-        if ((sol_words_possible.includes(guess))){
+        if (sol_words_possible.includes(guess) || sol_words_possible.includes(latin_to_cyrillic(guess))){
             $("#guess_result").text("Correct!");
             add_xp_word($('#guess_word').attr('en_words'),true);
             correct_guesses++;

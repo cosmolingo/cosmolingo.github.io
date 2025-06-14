@@ -493,7 +493,7 @@ h1 .fa-sun{
     box-shadow:0 2px 2px rgba(0,0,0,0.1);
 }
 
-#guess_word, #number_output{
+#guess_word, #number_output, #number_game_output{
     height:61px;
     width:260px;
     display: inline-table;
@@ -519,7 +519,7 @@ h1 .fa-sun{
     line-height: 20px;
 }
 
-#number_output p, #guess_word p{
+#number_output p, #number_game_output p, #guess_word p{
     margin:0 auto;
     display:table-cell;
     vertical-align: middle;
@@ -797,7 +797,7 @@ h3{
     margin-top:50px;
 }
 
-#guess_result,#wordle_output,#association_result{
+#guess_result,#wordle_output,#association_result,#number_game_result{
     font-size:20px;
     color:#f9f8e2;
     background-color:#5a4813;
@@ -811,7 +811,7 @@ h3{
     opacity:0;
 }
 
-#guess_input, #number_input{
+#guess_input, #number_input, #number_game_input{
     padding:0;
     height:65px;
     width:250px;
@@ -829,7 +829,7 @@ h3{
     text-align:center;
 }
 
-#guess_input:focus, #number_input:focus{
+#guess_input:focus, #number_input:focus, #number_game_input:focus{
     outline:none;
 }
 
@@ -842,8 +842,15 @@ h3{
     text-align: center;
 }
 
-#number_output{
+#number_output, #number_game_output{
     background-color:#fbc59f;
+}
+
+#number_game_output{
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
 }
 
 #clock_output{
