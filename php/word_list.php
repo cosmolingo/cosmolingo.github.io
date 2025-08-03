@@ -296,6 +296,7 @@
     <th>Korean</th>
     <th>Japanese</th>
     <th>Pronunciation</th>
+    <th>Date Added</th>
     <th>Remove</th>
 </tr>
 <?php
@@ -366,6 +367,7 @@
             <td><textarea>" . $word_kr . "</textarea></td>
             <td><textarea>" . $word_jp . "</textarea></td>
             <td><textarea>" . $word_pronunciation . "</textarea></td>
+            <td><textarea>" . $date . "</textarea></td>
             <td><button class='button remove_button' onclick='remove_word(" . $id . ")'><i class='fa-solid fa-xmark'></i></button></td>
         </tr>";
     }
@@ -450,9 +452,11 @@
                 french: row.children('td:nth-child(7)').children('textarea').val(),
                 korean: row.children('td:nth-child(8)').children('textarea').val(),
                 japanese: row.children('td:nth-child(9)').children('textarea').val(),
-                pronunciation: row.children('td:nth-child(10)').children('textarea').val()
+                pronunciation: row.children('td:nth-child(10)').children('textarea').val(),
+                date: row.children('td:nth-child(11)').children('textarea').val()
             },
             success: function(response) {
+                console.log(response);
                 const popup = $('#popup-message');
                 popup.text("Word list changes have been saved !").fadeIn();
                 setTimeout(() => {

@@ -36,8 +36,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $korean = test_input($_POST['korean']);
     $japanese = test_input($_POST['japanese']);
     $pronunciation = test_input($_POST['pronunciation']);
+    $date = test_input($_POST['date']);
 
-    $sql = "UPDATE words SET word='$english',word_ka='$kazakh',word_ru='$russian',word_fr='$french',word_kr='$korean',word_jp='$japanese',word_pronunciation='$pronunciation',word_type='$type',word_tag='$tag',word_gender='$gender' WHERE id='$id'";
+    $sql = "UPDATE words SET word='$english',word_ka='$kazakh',word_ru='$russian',word_fr='$french',word_kr='$korean',word_jp='$japanese',word_pronunciation='$pronunciation',word_type='$type',word_tag='$tag',word_gender='$gender',date_added='$date' WHERE id='$id'";
     $result = $conn->query($sql);
     
     if ($result === FALSE) {

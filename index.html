@@ -40,7 +40,9 @@
             <a  href="?lang=ru"><img class="flag" src="src/flags/ru.png" alt="ru"/></a>
             <a  href="?lang=fr"><img class="flag" src="src/flags/fr.png" alt="fr"/></a>
             <a  href="?lang=kr"><img class="flag" src="src/flags/kr.png" alt="kr"/></a>
+            <!--
             <a  href="?lang=jp"><img class="flag" src="src/flags/jp.png" alt="jp"/></a>
+            --> 
         </div>
     </div>
 
@@ -63,17 +65,16 @@
     <div id="words_outer">
         <div id="words">
             <div id="search_filters">
-                <div class="filter" active='false'     id="filter_nouns"     ><p>nouns</p></div>
-                <div class="filter" active='false'     id="filter_verbs"     ><p>verbs</p></div>
-                <div class="filter" active='false'     id="filter_adjectives"><p>adjectives</p></div>
-                <div class="filter" active='false'     id="filter_other"     ><p>other</p></div>
-                <div class="tag-filter" active='false' id="filter_tags"      ><p>tags</p><i class="fa-solid fa-sort-down"></i></div>
+                <div class="filter     filter_nouns"      active='false'          ><p>nouns</p></div>
+                <div class="filter     filter_verbs"      active='false'          ><p>verbs</p></div>
+                <div class="filter     filter_adjectives" active='false'          ><p>adjectives</p></div>
+                <div class="filter     filter_other"      active='false'          ><p>other</p></div>
+                <div class="tag-filter filter_tags"       active='false'          ><p>tags</p><i class="fa-solid fa-sort-down"></i></div>
+                <div class="tags_list">
+                    <div class="tag">all</div>
+                </div>
             </div>
         </div>
-    </div>
-    
-    <div id="tags_list">
-        <div class="tag">all</div>
     </div>
 
     <div id="main">
@@ -97,6 +98,24 @@
                     <span class="slider round"></span>
                 </label>
                 <p class="check_text right"></p>
+                <br/>
+                <div id="search_filters">
+                    <div class="filter     filter_nouns"      active='false'          ><p>nouns</p></div>
+                    <div class="filter     filter_verbs"      active='false'          ><p>verbs</p></div>
+                    <div class="filter     filter_adjectives" active='false'          ><p>adjectives</p></div>
+                    <div class="filter     filter_other"      active='false'          ><p>other</p></div>
+                    <div class="tag-filter filter_tags"       active='false'          ><p>tags</p><i class="fa-solid fa-sort-down"></i></div>
+                    <div class="tags_list">
+                        <div class="tag">all</div>
+                    </div>
+                </div>
+                <br/>
+                <div class="date_picker">
+                    <label for="start_guess_date">start date:</label>
+                    <input class="guess_date" id="start_guess_date" type="date" value="2024-01-01">
+                    <label for="end_guess_date">end date:</label>
+                    <input class="guess_date" id="end_guess_date" type="date">
+                </div>
                 <br/>
                 <div id="guess_word"><p></p></div>
                 <input id="guess_input" type="text" placeholder="enter a guess" autofocus>

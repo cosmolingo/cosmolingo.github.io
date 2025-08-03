@@ -154,6 +154,7 @@ $(document).ready(function(){
 });
 
 function setup_all(){
+    $('#end_guess_date').val(new Date().toISOString().split('T')[0]);
     $('.test_clock').clockTimePicker();
     //Change theme color depending on the language
     document.documentElement.style.setProperty("--primary-color", colors[lang_i][0]);
@@ -677,6 +678,7 @@ function get_words(){
             var jp_words = parts[6].trim();
             var occs = parts[7].trim();
             var occs_ok = parts[8].trim();
+            var date = parts[9].trim() + ':' + parts[10].trim() + ':' + parts[11].trim();
             if (occs == ''){
                 occs = 0;
             }
@@ -727,6 +729,7 @@ function get_words(){
                 jp_words: jp_words,
                 occs: occs,
                 occs_ok: occs_ok,
+                date: date,
             });
             ka_words = ka_words.replace(/,/g,", ");
             en_words = en_words.replace(/,/g,", ");
@@ -770,6 +773,7 @@ function get_words(){
                 wordElement.attr('jp_words', jp_words);
                 wordElement.attr('occs'    , occs    );
                 wordElement.attr('occs_ok' , occs_ok );
+                wordElement.attr('date'    , date   );
                 if (fr_words != '-' && fr_pron.length > 0){
                     wordElement.attr('fr_pron' , JSON.stringify(fr_pron));
                 }
@@ -1223,7 +1227,7 @@ function add_wordle_letter(){
 }
 
 function update_tag_filter(){
-    var tag_div = $('#tags_list');
+    var tag_div = $('.tags_list');
     for (var i = 0; i < tag_list.length; i++){
         var tag = $("<div>").text(tag_list[i]);
         tag.addClass('tag');
@@ -1397,15 +1401,19 @@ $(document).on('click','#grammar h2',function(e){
     }
 });
 
-$(document).on('click','#filter_tags',function(e){
-    if ($('#tags_list').is(':visible')){
+$(document).on('click','.filter_tags',function(e){
+    if ($(this).siblings('.tags_list').is(':visible')){
         $(this).attr('active','false');
-        $('#tags_list').fadeOut();
+        $(this).siblings('.tags_list').fadeOut();
     }
     else{
         $(this).attr('active','true');
-        $('#tags_list').fadeIn();
+        $(this).siblings('.tags_list').fadeIn();
     }
+});
+
+$(document).on('change','.guess_date',function(e){
+    update_game_guess();
 });
 
 $(document).on('click','.tag',function(e){
@@ -1414,11 +1422,16 @@ $(document).on('click','.tag',function(e){
         filter = $(this).html();
     }
     else{
-        $('#filter_tags').attr('active','false');
+        $(this).parent().siblings('.filter_tags').attr('active','false');
     }
-    $('.tag-filter p').html(filter);
-    $('#tags_list').fadeOut();
-    update_word_list();
+    $(this).parent().siblings('.tag-filter').children('p').html(filter);
+    $(this).parent().fadeOut();
+    if ($(this).parent().parent().parent().attr('id') == 'words'){
+        update_word_list();
+    }
+    else if ($(this).parent().parent().parent().attr('id') == 'guess_game'){
+        update_game_guess();
+    }
 });
 
 $(document).on('mousemove','.body_parts',function(e){
@@ -1435,7 +1448,12 @@ $(document).on('click','.body_parts',function(e){
 
 $(document).on('click','.filter',function(e){
     $(this).attr('active',$(this).attr('active') == 'true' ? 'false' : 'true');
-    update_word_list();
+    if ($(this).parent().parent().attr('id') == 'words'){
+        update_word_list();
+    }
+    else if ($(this).parent().parent().attr('id') == 'guess_game'){
+        update_game_guess();
+    }
 });
 
 $(window).resize(function() {
@@ -1443,10 +1461,12 @@ $(window).resize(function() {
 });
 
 function position_tag_list(){
-    var filter_tags = $('#filter_tags');
-    var tags_list = $('#tags_list');
-    tags_list.css('top',filter_tags.offset().top + filter_tags.height() + 15);
-    tags_list.css('left', filter_tags.offset().left + filter_tags.outerWidth() / 2 - tags_list.outerWidth() / 2);
+    $('.tags_list').each(function() {
+        var filter_tags = $(this).siblings('.filter_tags');
+        var top = filter_tags.offset().top + filter_tags.outerHeight() - 30 - $(this).parent().offset().top;
+        var left = filter_tags.offset().left + filter_tags.outerWidth() / 2 - $(this).outerWidth() / 2 - $(this).parent().offset().left;
+        $(this).css({ top: top, left: left });
+    });
 }
 
 function body_info(){
@@ -1522,7 +1542,7 @@ function clothes_info(){
 function update_word_list(){
     var searchValue = $('#search_bar').val().toLowerCase();
     var filters = [false,false,false,false];
-    $('.filter').each(function(i,e){
+    $('#words #search_filters .filter').each(function(i,e){
         filters[i] = $(e).attr('active') == 'true';
     });
     $(".word").each(function() {
@@ -1544,8 +1564,8 @@ function update_word_list(){
         if (lang_words[lang_i].includes(searchValue) || en_words.includes(searchValue) || lang_words[lang_i].includes(latin_to_cyrillic(searchValue))){
             var type_i = ['n','v','a','o'].indexOf(type);
             if ((filters[type_i]) || (filters.includes(true) == false)){
-                if ($('.tag-filter p').html() != 'tags'){
-                    if ($(this).attr('tags').split(',').includes($('.tag-filter p').html())){
+                if ($('#words #search_filters .tag-filter p').html() != 'tags'){
+                    if ($(this).attr('tags').split(',').includes($('#words #search_filters .tag-filter p').html())){
                         $(this).show();
                     }
                     else{
@@ -1753,6 +1773,43 @@ function update_game_guess() {
         return;
     }
     var word = shuffled_list[guess_index];
+
+    var filters = [false,false,false,false];
+    $('#guess_game #search_filters .filter').each(function(i,e){
+        filters[i] = $(e).attr('active') == 'true';
+    });
+
+    var type_i = ['n','v','a','o'].indexOf(word.type);
+
+    if (filters.includes(true) && !filters[type_i]){
+        guess_index++;
+        update_game_guess();
+        return;
+    }
+
+    if ($('#guess_game #search_filters .tag-filter p').html() != 'tags'){
+        if (word.tags.includes($('#guess_game #search_filters .tag-filter p').html()) == false){
+            guess_index++;
+            update_game_guess();
+            return;
+        }
+    }
+
+    // Filter by date range
+    var startDate = Date.parse($('#start_guess_date').val());
+    var endDate = Date.parse($('#end_guess_date').val());
+    var wordDate = Date.parse(word.date.split(' ')[0]);
+    console.log(wordDate, startDate, endDate);
+    if (startDate && wordDate < startDate) {
+        guess_index++;
+        update_game_guess();
+        return;
+    }
+    if (endDate && wordDate > endDate) {
+        guess_index++;
+        update_game_guess();
+        return;
+    }
 
     var lang_param = lang_params[lang_i];
     var word_attr = word[lang_param + '_words'].replace(/,/g,", ");

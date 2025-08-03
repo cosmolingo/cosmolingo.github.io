@@ -52,6 +52,7 @@
         $word_type = $row['word_type'];
         $word_tag = $row['word_tag'];
         $word_gender = $row['word_gender'];
+        $word_date = $row['date_added'];
         if ($id != -1){
             $word_occ = $row['occ_' . $id];
             $word_occ_ok = $row['occ_ok_' . $id];
@@ -79,6 +80,7 @@
         else{
             $output = $output . '::';
         }
+        $output = $output . ':' . $word_date;
         echo $output . '<br/>';
     }
 ?>
