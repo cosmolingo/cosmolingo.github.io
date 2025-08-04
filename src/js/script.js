@@ -1413,6 +1413,7 @@ $(document).on('click','.filter_tags',function(e){
 });
 
 $(document).on('change','.guess_date',function(e){
+    guess_index = 0;
     update_game_guess();
 });
 
@@ -1430,6 +1431,7 @@ $(document).on('click','.tag',function(e){
         update_word_list();
     }
     else if ($(this).parent().parent().parent().attr('id') == 'guess_game'){
+        guess_index = 0;
         update_game_guess();
     }
 });
@@ -1452,6 +1454,7 @@ $(document).on('click','.filter',function(e){
         update_word_list();
     }
     else if ($(this).parent().parent().attr('id') == 'guess_game'){
+        guess_index = 0;
         update_game_guess();
     }
 });
@@ -1799,7 +1802,7 @@ function update_game_guess() {
     var startDate = Date.parse($('#start_guess_date').val());
     var endDate = Date.parse($('#end_guess_date').val());
     var wordDate = Date.parse(word.date.split(' ')[0]);
-    console.log(wordDate, startDate, endDate);
+    
     if (startDate && wordDate < startDate) {
         guess_index++;
         update_game_guess();
@@ -1810,6 +1813,7 @@ function update_game_guess() {
         update_game_guess();
         return;
     }
+    console.log($('#start_guess_date').val(), $('#end_guess_date').val(), word.date, word.date.split(' ')[0]);
 
     var lang_param = lang_params[lang_i];
     var word_attr = word[lang_param + '_words'].replace(/,/g,", ");
