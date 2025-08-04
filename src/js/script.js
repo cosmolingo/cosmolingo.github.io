@@ -1802,7 +1802,6 @@ function update_game_guess() {
     var startDate = Date.parse($('#start_guess_date').val());
     var endDate = Date.parse($('#end_guess_date').val());
     var wordDate = Date.parse(word.date.split(' ')[0]);
-    
     if (startDate && wordDate < startDate) {
         guess_index++;
         update_game_guess();
