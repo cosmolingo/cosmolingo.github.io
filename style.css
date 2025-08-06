@@ -46,8 +46,9 @@ table{
 #flags_div{
     z-index: 90;
     position: absolute;
-    width:320px;
-    left:calc(50% - 340px / 2);
+    left:50%;
+    width: max-content;
+    transform: translateX(-50%);
     top:0px;
     padding-left:10px;
     padding-right:10px;
@@ -388,16 +389,54 @@ h1 .fa-sun{
 
 #keyboard_button{
     position:absolute;
-    font-size:25px;
+    font-size:30px;
+    padding: 10px;
+    padding-right: 15px;
     cursor: pointer;
-    top:50%;
-    right: 10px;
+    top: calc(50% - 30px);
+    right: 0px;
     z-index: 30;
-    opacity: 0.75;
-    transition: 0.25s ease-in-out opacity;
+    width: 30px;
+    background-color: #f2e574;
+    border-radius: 25px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.35);
+    border: 1.5px solid #5a4813;
+    border-bottom: 3px solid #5a4813;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-right: none;
+    transition: padding-right 0.2s ease-in-out,
+            background-color 0.2s ease-in-out,
+            border-bottom 0.2s ease-in-out,
+            box-shadow 0.2s ease-in-out;
+    white-space: nowrap;
+}
+
+#keyboard_button p{
+    margin-top: 0px;
+    margin-bottom: 0px;
+    display: inline-block;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+    font-size:20px;
+    vertical-align: middle;
+}
+
+#keyboard_button i{
+    vertical-align: middle;
 }
 
 #keyboard_button:hover,#keyboard_button[active="true"]{
+    padding-right: 110px;
+}
+
+#keyboard_button[active="true"]{
+    background-color:#d5be66;
+    border-bottom: 1.5px solid #5a4813;
+    box-shadow: 0 2px 2px rgba(0,0,0,0.25) inset;
+}
+
+#keyboard_button:hover p,#keyboard_button[active="true"] p{
     opacity: 1;
 }
 
@@ -996,6 +1035,11 @@ h3{
     border:1.5px solid #5a4813;
     border-bottom: 3px solid #5a4813;
     box-shadow:0 5px 10px rgba(0,0,0,0.1);
+}
+
+.table_div{
+    overflow-x: auto;
+    display: block;
 }
 
 .highlight{
@@ -1858,6 +1902,9 @@ input:checked + .slider:before {
 
 
 @media only screen and (max-width: 700px) {
+    #keyboard_button{
+        display: none;
+    }
     #logo_div{
         width: 285px;
         height: 50px;
@@ -1882,11 +1929,6 @@ input:checked + .slider:before {
 
     #alphabet, #numbers{
         text-align: center;
-    }
-
-    #flags_div{
-        width: 270px;
-        left: calc(50% - 290px / 2);
     }
 
     #clothes_arrow_left,#clothes_arrow_right{

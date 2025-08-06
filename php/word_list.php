@@ -6,6 +6,7 @@
     <link rel="icon" href="" type="image/x-icon">
     <title>words list</title>
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.js"></script>
     <link rel="stylesheet" href="../style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -161,34 +162,49 @@
 <div id="title">
     <h1><i class="fa-solid fa-signature"></i>word list<i class="fa-solid fa-signature"></i></h1>
 </div>
+
+<div id="keyboard_button" active="false">
+    <i class="fa-solid fa-keyboard"></i>
+    <p>keyboard</p>
+</div>
+
+<div id="keyboard" style="display:none">
+    <div class="keyboard_close">
+        <i class="fa-solid fa-xmark"></i>
+    </div>
+    <div class="keyboard_header"><i class="fa-solid fa-bars"></i></div>
+</div>
+
 <div id="navigation"></div>
 <h2>add a word</h2>
-<table id='new_word'>
-    <tr>
-        <th>Type</th>
-        <th>Gender</th>
-        <th>Tag</th>
-        <th>English</th>
-        <th>Kazakh</th>
-        <th>Russian</th>
-        <th>French</th>
-        <th>Korean</th>
-        <th>Japanese</th>
-        <th>Pronunciation</th>
-    </tr>
-    <tr>
-        <td><textarea></textarea></td>
-        <td><textarea></textarea></td>
-        <td><textarea></textarea></td>
-        <td><textarea></textarea></td>
-        <td><textarea></textarea></td>
-        <td><textarea></textarea></td>
-        <td><textarea></textarea></td>
-        <td><textarea></textarea></td>
-        <td><textarea></textarea></td>
-        <td><textarea></textarea></td>
-    </tr>
-</table>
+<div class="table_div">
+    <table id='new_word'>
+        <tr>
+            <th>Type</th>
+            <th>Gender</th>
+            <th>Tag</th>
+            <th>English</th>
+            <th>Kazakh</th>
+            <th>Russian</th>
+            <th>French</th>
+            <th>Korean</th>
+            <th>Japanese</th>
+            <th>Pronunciation</th>
+        </tr>
+        <tr>
+            <td><textarea></textarea></td>
+            <td><textarea></textarea></td>
+            <td><textarea></textarea></td>
+            <td><textarea></textarea></td>
+            <td><textarea></textarea></td>
+            <td><textarea></textarea></td>
+            <td><textarea></textarea></td>
+            <td><textarea></textarea></td>
+            <td><textarea></textarea></td>
+            <td><textarea></textarea></td>
+        </tr>
+    </table>
+</div>
 <button class="button" onclick="submit_word()" id="add_word">Add new word</button>
 
 <button class='button' id="show-dialog">Add multiple words</button>
@@ -284,21 +300,22 @@
 <h2>words list</h2>
 <button id="save-changes" class="button" disabled style="cursor:not-allowed;opacity:0.5;display:block;margin:0 auto;background-color:#a9e3bb">No changes to be saved</button>
 <br/>
-<table id='word_list'>
-<tr>
-    <th>Type</th>
-    <th>Gender</th>
-    <th>Tag</th>
-    <th>English</th>
-    <th>Kazakh</th>
-    <th>Russian</th>
-    <th>French</th>
-    <th>Korean</th>
-    <th>Japanese</th>
-    <th>Pronunciation</th>
-    <th>Date Added</th>
-    <th>Remove</th>
-</tr>
+<div class="table_div">
+    <table id='word_list'>
+    <tr>
+        <th>Type</th>
+        <th>Gender</th>
+        <th>Tag</th>
+        <th>English</th>
+        <th>Kazakh</th>
+        <th>Russian</th>
+        <th>French</th>
+        <th>Korean</th>
+        <th>Japanese</th>
+        <th>Pronunciation</th>
+        <th>Date Added</th>
+        <th>Remove</th>
+    </tr>
 <?php
     include('/var/www/creds.php');
     include('functions.php');
@@ -372,7 +389,8 @@
         </tr>";
     }
 ?>
-</table>
+    </table>
+</div>
 <div id="wave_bottom">
     <svg viewBox="0 0 1000 150" preserveAspectRatio="none" style="height: 100%; width: 100%;">
         <path d="M1000,48.29c0,0-106.81,108.65-238.66,0s-261.34,0-261.34,0s-106.81,108.65-238.66,0S0,48.29,0,48.29V150h1000 V48.29z" style="stroke: none;fill: #f2e269;"></path>
@@ -456,7 +474,6 @@
                 date: row.children('td:nth-child(11)').children('textarea').val()
             },
             success: function(response) {
-                console.log(response);
                 const popup = $('#popup-message');
                 popup.text("Word list changes have been saved !").fadeIn();
                 setTimeout(() => {
