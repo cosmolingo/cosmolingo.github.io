@@ -1,6 +1,6 @@
 <?php
-include('/var/www/creds.php');
 include('functions.php');
+include('/var/www/creds.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $connection = connect_user($servername, $username, $password, $dbname);
@@ -8,16 +8,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user_id = $connection['user_id'];
     $username = $connection['username'];
 
-    $id = test_input($_POST['id']);
+    $category_name = test_input($_POST['name']);
 
-    $sql = "DELETE FROM words WHERE id='$id'";
+    $sql = "INSERT INTO categories (user_id, name) VALUES ('$user_id', '$category_name')";
     $result = $conn->query($sql);
-    
+
     if ($result === FALSE) {
-        echo "Error updating record: " . $conn->error . "<br>";
-    }
-    else{
-        echo "Success";
+        echo "Error adding category: " . $conn->error;
+    } else {
+        echo "Category added successfully";
     }
 }
 ?>

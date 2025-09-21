@@ -152,7 +152,7 @@ table{
     text-align: center;
 }
 
-#login_username,#login_password{
+.text_box{
     padding:0;
     height:45px;
     width:150px;
@@ -162,13 +162,20 @@ table{
     border-radius:10px;
     border:none;
     background-color:#e7e0c4;
-    padding-left:10px;
     font-size:20px;
     font-family: "Balsamiq Sans", "Single Day", "Cherry Bomb One", sans-serif !important;
     box-shadow: inset 0 5px 10px 0 rgba(0, 0, 0, 0.05);
     position: relative;
     z-index:20;
     text-align:center;
+}
+
+#category_name{
+    margin-top: 0px;
+}
+
+#new_category_button{
+    margin-bottom: 0px;
 }
 
 #login_button{
@@ -1898,6 +1905,174 @@ input:checked + .slider:before {
 
 .slider.round:before {
     border-radius: 50%;
+}
+
+#title{
+    margin-bottom:200px;
+}
+
+table {
+    width: 90%;
+    border-collapse: collapse;
+    margin: 0 auto;
+    border-collapse: collapse;
+    font-size:20px;
+    border:1px solid #5a4813;
+    border-collapse:collapse;
+    margin:0 auto;
+    margin-bottom:75px;
+    border-radius:5px;
+    border-spacing: 0;
+    border-collapse: separate;
+    border-radius: 10px;
+    border:1.5px solid #5a4813;
+    border-bottom: 3px solid #5a4813;
+    box-shadow:0 5px 10px rgba(0,0,0,0.1);
+}
+
+table th:not(:last-child),
+table td:not(:last-child){
+    border-right: 1px solid black;
+}
+
+table th{
+    background-color: var(--primary-color);
+    height:45px;
+    text-align:center;
+}
+
+table>thead>tr:not(:last-child)>th,
+table>thead>tr:not(:last-child)>td,
+table>tbody>tr:not(:last-child)>th,
+table>tbody>tr:not(:last-child)>td,
+table>tfoot>tr:not(:last-child)>th,
+table>tfoot>tr:not(:last-child)>td,
+table>tr:not(:last-child)>td,
+table>tr:not(:last-child)>th,
+table>thead:not(:last-child),
+table>tbody:not(:last-child),
+table>tfoot:not(:last-child) {
+    border-bottom: 1px solid black;
+}
+
+th, td {
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+td{
+    background-color: #e7e0c4;
+}
+
+textarea {
+    resize: none;
+    border: none;
+    background-color: transparent;
+    font-family: 'Balsamiq Sans', cursive;
+    width:100%;
+    color:rgb(90, 72, 19);
+    font-size: 16px;
+}
+
+td:nth-child(1) textarea,th:nth-child(1),td:nth-child(2) textarea,th:nth-child(2) {
+    width: 60px;
+}
+
+td:nth-child(3) textarea,th:nth-child(3) {
+    width: 100px;
+}
+        
+table tr:last-child td {
+    border-bottom: 0;
+}
+table tr td:first-child,table tr td:nth-child(2){
+    border-left: 0;
+}
+table tr td:last-child{
+    border-right: 0;
+}
+
+table tr td:last-child, table tr th:last-child{
+    width: 70px;
+}
+
+table td:first-child{
+    text-align: right;
+}
+
+#user_categories table{
+    margin-bottom: 25px;
+    width: 100vw;
+    max-width: 500px;
+}
+
+#user_categories table td:last-child,#user_categories table th:last-child{
+    max-width: 50px;
+    text-align: center;
+}
+
+#user_categories table td:nth-child(1),#user_categories table th:nth-child(1){
+    max-width: 75px;
+    text-align: center;
+}
+
+#add_word{
+    margin: 0 auto;
+    display: block;
+    background-color: #f4eb84;
+}
+
+#new_word{
+    margin-bottom: 25px;
+}
+
+#title i{
+    font-size:40px;
+    transform: translateY(-3px);
+}
+
+#title i:nth-child(1){
+    margin-right: 10px;
+    transform: scaleX(-1) translateY(-3px);
+}
+
+#title i:nth-child(2){
+    margin-left: 10px;
+}
+
+h2{
+    cursor: auto;
+}
+
+#word_list td:last-child{
+    text-align: center;
+}
+
+.remove_button{
+    background-color: #f39f95 !important;
+    margin-bottom: 0px;
+}
+
+.remove_button:active{
+    background-color:#d8837a !important;
+}
+
+.add_button{
+    background-color: #a9e3bb !important;
+    margin-bottom: 0px;
+}
+
+.add_button:active{
+    background-color:#8ac59d !important;
+}
+
+#show-dialog{
+    margin:0 auto;
+    display:block;
+    margin-top: 25px;
 }
 
 

@@ -1,6 +1,6 @@
 <?php
-include('/var/www/creds.php');
 include('functions.php');
+include('/var/www/creds.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $connection = connect_user($servername, $username, $password, $dbname);
@@ -8,14 +8,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user_id = $connection['user_id'];
     $username = $connection['username'];
 
-    $default_lang = test_input($_POST['default_lang']);
-    $sql = "UPDATE users SET default_language='$default_lang' WHERE username='$username'";
+    $category_id = intval(test_input($_POST['category_id']));
+
+    // Ensure the category belongs to the user
+    $sql = "DELETE FROM categories WHERE id = '$category_id' AND user_id = '$user_id'";
     $result = $conn->query($sql);
+
     if ($result === FALSE) {
-        echo "Error updating record: " . $conn->error . "<br>";
+        echo "Error removing category: " . $conn->error;
     } else {
-        echo "Success";
+        echo "Category removed successfully";
     }
-    $conn->close();
 }
 ?>

@@ -124,14 +124,25 @@ function setup_keyboard() {
 
 let lastScrollY = $(window).scrollTop();
 let targetY = lastScrollY;
+let animating = false;
+
 function animateKeyboardButton() {
     // Smoothly interpolate towards the target scroll position
-    lastScrollY += (targetY - lastScrollY) * 0.1;
+    lastScrollY += (targetY - lastScrollY) * 0.1; // Faster catch-up
     $('#keyboard_button').css('transform', 'translateY(' + lastScrollY + 'px)');
-    requestAnimationFrame(animateKeyboardButton);
+    if (Math.abs(targetY - lastScrollY) > 0.5) {
+        requestAnimationFrame(animateKeyboardButton);
+    } else {
+        animating = false;
+    }
 }
+
 $(window).on('scroll', function() {
     targetY = $(window).scrollTop();
+    if (!animating) {
+        animating = true;
+        requestAnimationFrame(animateKeyboardButton);
+    }
 });
 
 // Start the animation loop
@@ -149,6 +160,7 @@ $(document).ready(function() {
         var url = '/php/get_user_info.php';
         $.get(url).then(function(data){
             lang_i = lang_params.indexOf(data.default_lang);
+            console.log(data);
             if (lang_i == -1){
                 lang_i = 0;
             }

@@ -105,11 +105,70 @@
         window.location.href = "../index.html";
     });
 
+    $(document).on('click', '#new_category_button', function() {
+        var categoryName = $('#category_name').val().trim();
+        if (categoryName === "") {
+            alert("Category name cannot be empty");
+            return;
+        }
+        $.ajax({
+            url: 'add_category.php',
+            type: 'POST',
+            data: { name: categoryName },
+            success: function(response) {
+                location.reload();
+            },
+            error: function(xhr, status, error) {
+                console.error("Error creating category:", error);
+            }
+        });
+    });
+
+    // Function to delete a category
+    function deleteCategory(categoryId, categoryName) {
+        if (!confirm("Are you sure you want to delete the category '" + categoryName + "'?")) return;
+        $.ajax({
+            url: 'remove_category.php',
+            type: 'POST',
+            data: { category_id: categoryId },
+            success: function(response) {
+                location.reload();
+            },
+            error: function(xhr, status, error) {
+                console.error("Error deleting category:", error);
+            }
+        });
+    }
+
     $(document).ready(function(){
         $.ajax({
             url: 'get_user_info.php',
             type: 'GET',
             success: function(data) {
+                // Append categories before language selection
+                if (data.categories) {
+                    var $container = $('#leaderboard_container');
+                    var $catDiv = $('<div class="table_div" id="user_categories"><p class="lang_title">Your categories:</p></div>');
+                    var $table = $('<table><tbody><tr><th>Name</th><th>Number of words</th><th>Action</th></tr></tbody></table>');
+                    data.categories.forEach(function(cat) {
+                        var $tr = $('<tr></tr>');
+                        var $nameTd = $('<td>' + cat.name + '</td>');
+                        var $countTd = $('<td>' + (cat.word_count !== undefined ? cat.word_count : '-') + '</td>');
+                        var $delTd = $('<td style="padding:4px 8px;text-align:center;"></td>');
+                        var $delBtn = $('<button class="button remove_button delete_category_btn"><i class="fa-solid fa-xmark"></i></button>');
+                        $delBtn.click(function() {
+                            deleteCategory(cat.id, cat.name);
+                        });
+                        $delTd.append($delBtn);
+                        $tr.append($nameTd).append($countTd).append($delTd);
+                        $table.find('tbody').append($tr);
+                    });
+                    $table.find('tbody').append('<tr><td><input type="text" class="text_box" id="category_name" name="category_name" placeholder="Category name"/></td><td></td><td><button type="submit" class="add_button button" id="new_category_button">Create</button></td></tr>')
+                    var $ul = $table;
+                    $catDiv.append($ul);
+                    // Insert after the new_category_button
+                    $container.find('.lang_title').before($catDiv);
+                }
                 $('#language_select').val(data.default_lang.toLowerCase());
                 $('.leaderboard .avatar').attr('src', "../src/avatars/" + data.username.toLowerCase() + ".png");
                 $('.leaderboard .username').text(data.username.toLowerCase());

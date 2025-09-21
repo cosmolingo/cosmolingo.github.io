@@ -2,27 +2,14 @@
 include('/var/www/creds.php');
 include('functions.php');
 
-// Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$sessionID = test_input($_COOKIE['sessionID']);
-$username = test_input($_COOKIE['username']);
-$sql = "SELECT sessionID FROM users WHERE username = '$username'";
-$result = $conn->query($sql);
-if ($result->num_rows > 0) {
-    $row = $result->fetch_assoc();
-    $db_sessionID = $row['sessionID'];
-    if ($sessionID != $db_sessionID) {
-        die("Session ID does not match");
-    }
-} else {
-    die("User not found");
-}
+$user_info = check_user_session($conn);
+$user_id = $user_info['user_id'];
+$username = $user_info['username'];
 
 $sql = "SELECT id,default_language FROM users WHERE username = '$username'";
 $result = $conn->query($sql);
@@ -32,16 +19,30 @@ if ($result->num_rows > 0) {
     $id = $row['id'];
     $lang = $row['default_language'];
 
+    // Get user's categories
+    $categories = array();
+    $cat_sql = "SELECT id, name, word_count FROM categories WHERE user_id = $id";
+    $cat_result = $conn->query($cat_sql);
+    if ($cat_result && $cat_result->num_rows > 0) {
+        while ($cat_row = $cat_result->fetch_assoc()) {
+            $categories[] = array(
+                "id" => $cat_row['id'],
+                "name" => $cat_row['name'],
+                "word_count" => $cat_row['word_count']
+            );
+        }
+    }
+
     $sql = "SELECT score FROM scores WHERE user_id = $id";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
-        $pairs = array();
         $row = $result->fetch_assoc();
         $score = $row['score'];
         $response = array(
             "username" => $username,
             "score" => $score,
             "default_lang" => $lang,
+            "categories" => $categories
         );
         header('Content-Type: application/json');
         echo json_encode($response);
