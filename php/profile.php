@@ -149,7 +149,7 @@
                 if (data.categories) {
                     var $container = $('#leaderboard_container');
                     var $catDiv = $('<div class="table_div" id="user_categories"><p class="lang_title">Your categories:</p></div>');
-                    var $table = $('<table><tbody><tr><th>Name</th><th>Number of words</th><th>Action</th></tr></tbody></table>');
+                    var $table = $('<table class="table"><tbody><tr><th>Name</th><th>Number of words</th><th>Action</th></tr></tbody></table>');
                     data.categories.forEach(function(cat) {
                         var $tr = $('<tr></tr>');
                         var $nameTd = $('<td>' + cat.name + '</td>');

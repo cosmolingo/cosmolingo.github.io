@@ -42,7 +42,7 @@
 <div id="navigation"></div>
 <h2>add a word</h2>
 <div class="table_div">
-    <table id='new_word'>
+    <table id='new_word' class='table'>
         <tr>
             <th>Type</th>
             <th>Gender</th>
@@ -165,7 +165,7 @@
 <button id="save-changes" class="button" disabled style="cursor:not-allowed;opacity:0.5;display:block;margin:0 auto;background-color:#a9e3bb">No changes to be saved</button>
 <br/>
 <div class="table_div">
-    <table id='word_list'>
+    <table id='word_list' class='table'>
     <tr>
         <th>Type</th>
         <th>Gender</th>

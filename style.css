@@ -65,33 +65,52 @@ table{
     width:50px;
 }
 
-#wave_top,#wave_bottom{
-    height:2vw;
-    width:200vw;
-    min-height:25px;
+#wave_top {
+    width: 300vw;
     overflow: hidden;
-    z-index:50;
-    animation: slidein 3s linear infinite;
-    transform: translateX(-50%);
-}
-
-#wave_top{
+    position: relative;
+    height: 1vw;
+    min-height: 25px;
     border-top:200px solid var(--primary-color);
 }
 
-#wave_bottom{
-    margin-top:100px;
-    border-bottom:50px solid var(--primary-color);
-    height:2.2vw;
+#wave_top_inner {
+    display: flex;
+    width: 300vw;
+    height: 100%;
+    will-change: transform;
+    position: relative;
+    top: -1px;
 }
 
-@keyframes slidein {
-    0%{
-      transform: translateX(0%);
-    }
-    100%{
-      transform: translateX(-50%);
-    }
+#wave_top_inner svg {
+    width: 300vw;
+    height: 100%;
+    display: block;
+}
+
+#wave_bottom {
+    width: 300vw;
+    overflow: hidden;
+    position: relative;
+    height: 2vw;
+    margin-top: 100px;
+    border-bottom: 50px solid var(--primary-color);
+}
+
+#wave_bottom_inner {
+    display: flex;
+    width: 300vw;
+    height: 100%;
+    position: relative;
+    top: 1px;
+    will-change: transform;
+}
+
+#wave_bottom_inner svg {
+    width: 300vw;
+    height: 100%;
+    display: block;
 }
 
 #navigation{
@@ -225,16 +244,6 @@ h1{
 
 #title_dropdown[active="true"] .fa-sort-down{
     transform:rotate(180deg) TranslateY(-5px);
-}
-
-#mascot_div{
-    position: absolute;
-    left: 25px;
-    width:200px;
-    fill: var(--primary-color);
-    filter: drop-shadow( 0px 3px 5px rgba(0, 0, 0, .15));
-    animation: 4s ease-in-out infinite alternate hover;
-    cursor: pointer;
 }
 
 #planet{
@@ -374,7 +383,6 @@ h1 .fa-sun{
     max-width:800px;
     margin:0 auto;
     height:fit-content;
-    margin-top:50px;
 }
 
 #search_bar_div::before{
@@ -1602,6 +1610,7 @@ border-right: 1px solid black;
     box-shadow: 0 0px 2px rgba(0,0,0,0.2);
     border:1px solid rgba(0,0,0,0);
     border-bottom: 3px solid rgba(0,0,0,0);
+    text-align: center;
 }
 
 #wordle table td.filled{
@@ -1907,11 +1916,7 @@ input:checked + .slider:before {
     border-radius: 50%;
 }
 
-#title{
-    margin-bottom:200px;
-}
-
-table {
+.table{
     width: 90%;
     border-collapse: collapse;
     margin: 0 auto;
@@ -1930,40 +1935,45 @@ table {
     box-shadow:0 5px 10px rgba(0,0,0,0.1);
 }
 
-table th:not(:last-child),
-table td:not(:last-child){
+.table th:not(:last-child),
+.table td:not(:last-child){
     border-right: 1px solid black;
 }
 
-table th{
+.table th,
+.table td{
+    border-right: 1px solid black;
+}
+
+.table th{
     background-color: var(--primary-color);
     height:45px;
     text-align:center;
 }
 
-table>thead>tr:not(:last-child)>th,
-table>thead>tr:not(:last-child)>td,
-table>tbody>tr:not(:last-child)>th,
-table>tbody>tr:not(:last-child)>td,
-table>tfoot>tr:not(:last-child)>th,
-table>tfoot>tr:not(:last-child)>td,
-table>tr:not(:last-child)>td,
-table>tr:not(:last-child)>th,
-table>thead:not(:last-child),
-table>tbody:not(:last-child),
-table>tfoot:not(:last-child) {
+.table>thead>tr:not(:last-child)>th,
+.table>thead>tr:not(:last-child)>td,
+.table>tbody>tr:not(:last-child)>th,
+.table>tbody>tr:not(:last-child)>td,
+.table>tfoot>tr:not(:last-child)>th,
+.table>tfoot>tr:not(:last-child)>td,
+.table>tr:not(:last-child)>td,
+.table>tr:not(:last-child)>th,
+.table>thead:not(:last-child),
+.table>tbody:not(:last-child),
+.table>tfoot:not(:last-child) {
     border-bottom: 1px solid black;
 }
 
-th, td {
+.table th,.table td {
     text-align: left;
 }
 
-th {
+.table th {
     background-color: #f2f2f2;
 }
 
-td{
+.table td {
     background-color: #e7e0c4;
 }
 
@@ -2027,20 +2037,6 @@ table td:first-child{
 
 #new_word{
     margin-bottom: 25px;
-}
-
-#title i{
-    font-size:40px;
-    transform: translateY(-3px);
-}
-
-#title i:nth-child(1){
-    margin-right: 10px;
-    transform: scaleX(-1) translateY(-3px);
-}
-
-#title i:nth-child(2){
-    margin-left: 10px;
 }
 
 h2{
