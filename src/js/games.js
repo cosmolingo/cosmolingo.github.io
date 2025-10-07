@@ -229,6 +229,7 @@ function add_wordle_letter(){
 
 $('#guess_game_lang_check').on('change', function() {
         lang_to_en = $(this).is(':checked');
+        shuffled_list = get_most_mistakes_word_list();
         guess_index++;
         update_game_guess();
 });

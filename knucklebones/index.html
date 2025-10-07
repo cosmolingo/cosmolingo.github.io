@@ -1,0 +1,305 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Knucklebones-lite (two grids + names)</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 16px; }
+    .topbar { display:flex; gap:12px; align-items:center; }
+    .boardRow { display:flex; gap:20px; margin-top:12px; align-items:flex-start; }
+    .gridWrap { border:1px solid #ddd; padding:10px; border-radius:8px; background:#fafafa; width:320px; }
+    .gridTitle { margin-bottom:8px; display:flex; gap:8px; align-items:center; }
+    .nameInput { font-size:14px; padding:6px 8px; border-radius:6px; border:1px solid #ccc; width:180px; }
+    .board { display:flex; gap:8px; }
+    .col { width:90px; min-height:120px; border:1px solid #333; padding:6px; border-radius:8px; background:#f4f4f4; cursor:pointer; display:flex; flex-direction:column; justify-content:flex-end; }
+    .col.disabled { opacity:0.5; cursor:not-allowed; }
+    .die { display:block; width:32px; height:32px; border-radius:6px; text-align:center; line-height:32px; margin:6px auto; border:1px solid #666; background:white; }
+    #controls { margin-top:10px; }
+    #status { margin-top:12px; font-weight:bold; }
+    .small { font-size:12px; color:#666; }
+  </style>
+</head>
+<body>
+  <h2>Knucklebones-lite — two grids + names</h2>
+
+  <div class="topbar">
+    <button id="createBtn">Create Game</button>
+    <input id="joinCode" placeholder="Game code" />
+    <button id="joinBtn">Join Game</button>
+    <div id="linkBox" class="small"></div>
+  </div>
+
+  <div id="gameArea" style="display:none;">
+    <div style="margin-top:10px;">Game code: <b id="gameCodeDisplay"></b></div>
+
+    <div style="margin-top:10px;">
+      <label>Your name:</label>
+      <input id="myNameInput" class="nameInput" placeholder="Your name" />
+    </div>
+
+    <div class="boardRow" style="margin-top:12px;">
+      <div class="gridWrap">
+        <div class="gridTitle">
+          <span id="myNameDisplay">Player 1</span>
+        </div>
+        <div class="board" id="myGrid"></div>
+      </div>
+
+      <div class="gridWrap">
+        <div class="gridTitle">
+          <span id="oppNameDisplay">Player 2</span>
+        </div>
+        <div class="board" id="oppGrid"></div>
+      </div>
+    </div>
+
+    <span id="currentRoll" style="font-weight:bold; font-size:16px;"></span>
+
+    <div id="status"></div>
+  </div>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+const API = '/api';
+let gameCode = null;
+let token = localStorage.getItem('kb_token') || null;
+let mySlot = 0; // 0 spectator, 1 or 2
+let clientVersion = 0;
+let pollTimer = null;
+let lastNameSent = '';
+
+// ------------------- Create / Join -------------------
+$('#createBtn').click(function(){
+  $.post(API + '/create.php', {}, function(res){
+    if (res && res.game_code) {
+      token = res.token;
+      localStorage.setItem('kb_token', token);
+      gameCode = res.game_code;
+      $('#gameCodeDisplay').text(gameCode);
+      $('#linkBox').text('Invite code: ' + gameCode);
+      $('#gameArea').show();
+      startPolling();
+    } else alert('create failed');
+  }, 'json').fail(function(xhr){ alert('create error: ' + xhr.responseText); });
+});
+
+$('#joinBtn').click(function(){
+  const code = $('#joinCode').val().trim();
+  if (!code) return alert('enter code');
+  $.ajax({
+    url: API + '/join.php',
+    method: 'POST',
+    contentType: 'application/json',
+    data: JSON.stringify({ game_code: code }),
+    success: function(res){
+      if (res && res.token) { token = res.token; localStorage.setItem('kb_token', token); }
+      gameCode = code;
+      $('#gameCodeDisplay').text(gameCode);
+      $('#gameArea').show();
+      startPolling();
+    },
+    dataType: 'json'
+  }).fail(function(xhr){ alert('join error: ' + xhr.responseText); });
+});
+
+// ------------------- Polling -------------------
+function startPolling(){
+  if (pollTimer) clearInterval(pollTimer);
+  fetchState();
+  pollTimer = setInterval(fetchState, 1200);
+}
+
+function fetchState(){
+  if (!gameCode) return;
+  $.getJSON(API + '/state.php', { game_code: gameCode, token: token }, function(res){
+    if (res && res.board) {
+      clientVersion = res.board.version || clientVersion;
+      updateSlot(res.slot);
+      renderBoards(res.board);
+      renderNames(res.board);
+
+      // update displayed roll
+      if (res.board.roll !== null && res.board.roll !== undefined) {
+        $('#currentRoll').text('Roll: ' + res.board.roll);
+      } else {
+        $('#currentRoll').text('');
+      }
+
+      // AUTO-ROLL: if it's my turn and no roll exists
+      if (token && res.board.turn_token === token && (res.board.roll === null || res.board.roll === undefined)) {
+        autoRoll();
+      }
+    }
+  }).fail(function(xhr){ console.error('state fail', xhr); });
+}
+
+function autoRoll(){
+  if (!gameCode || !token) return;
+  $.ajax({
+    url: API + '/roll.php',
+    method: 'POST',
+    contentType: 'application/json',
+    data: JSON.stringify({ game_code: gameCode, token: token }),
+    success: function(res){
+      // polling will pick up the new roll and display it
+      fetchState();
+    },
+    dataType: 'json'
+  });
+}
+
+function updateSlot(slot){
+  mySlot = slot;
+}
+
+// ------------------- Render -------------------
+function renderBoards(board){
+  $('#myGrid').empty();
+  $('#oppGrid').empty();
+
+  let myCols = [], oppCols = [];
+  if (mySlot === 1) {
+    myCols = board.player1_columns || [[],[],[]];
+    oppCols = board.player2_columns || [[],[],[]];
+  } else if (mySlot === 2) {
+    myCols = board.player2_columns || [[],[],[]];
+    oppCols = board.player1_columns || [[],[],[]];
+  } else {
+    myCols = board.player1_columns || [[],[],[]];
+    oppCols = board.player2_columns || [[],[],[]];
+  }
+
+  for (let i=0;i<3;i++){
+    const colDiv = $('<div>').addClass('col').attr('data-col', i);
+    const colArr = myCols[i] || [];
+    colArr.forEach(v => colDiv.append($('<div>').addClass('die').text(v)));
+    const isMyTurn = board.turn_token && token && board.turn_token === token;
+    const hasRoll = board.roll !== null && board.roll !== undefined;
+    if (mySlot > 0 && isMyTurn && hasRoll && colArr.length < 3) {
+      colDiv.off('click').on('click', function(){ place(i); }).removeClass('disabled');
+    } else {
+      colDiv.off('click').addClass('disabled');
+    }
+    $('#myGrid').append(colDiv);
+  }
+
+  for (let i=0;i<3;i++){
+    const colDiv = $('<div>').addClass('col disabled').attr('data-col', i);
+    const colArr = oppCols[i] || [];
+    colArr.forEach(v => colDiv.append($('<div>').addClass('die').text(v)));
+    $('#oppGrid').append(colDiv);
+  }
+
+  // roll display & status
+  if (board.roll !== null && board.roll !== undefined) {
+    $('#currentRoll').text('Roll: ' + board.roll);
+  } else {
+    $('#currentRoll').text('');
+  }
+  if (token && board.turn_token === token) {
+    $('#status').text('Your turn');
+    $('#rollBtn').prop('disabled', board.roll !== null && board.roll !== undefined);
+  } else {
+    $('#status').text('Opponent turn');
+    $('#rollBtn').prop('disabled', true);
+  }
+}
+
+// ------------------- Names -------------------
+function renderNames(board){
+  const p1 = board.player1_name ?? '';
+  const p2 = board.player2_name ?? '';
+
+  // If I'm player1, set myName = p1 and oppName = p2
+  if (mySlot === 1) {
+    $('#myName').val(p1);
+    $('#oppName').val(p2).prop('disabled', true);
+    $('#myName').prop('disabled', false);
+  } else if (mySlot === 2) {
+    $('#myName').val(p2);
+    $('#oppName').val(p1).prop('disabled', true);
+    $('#myName').prop('disabled', false);
+  } else {
+    // spectator: show p1 as "Your" grid (left), p2 as "opponent" (right), but both disabled
+    $('#myName').val(p1).prop('disabled', true);
+    $('#oppName').val(p2).prop('disabled', true);
+  }
+}
+
+// send name update to server
+function sendNameToServer(name){
+  if (!gameCode || !token) return;
+  name = name.trim();
+  if (name === '') return;
+  $.ajax({
+    url: API + '/set_name.php',
+    method: 'POST',
+    contentType: 'application/json',
+    data: JSON.stringify({ game_code: gameCode, token: token, name }),
+    success: function(res){
+      if (res && res.board) renderNames(res.board);
+    },
+    dataType: 'json'
+  });
+}
+
+// trigger send on blur or Enter
+$('#myNameInput').on('blur', function(){ sendNameToServer($(this).val()); });
+$('#myNameInput').on('keydown', function(e){
+  if (e.key === 'Enter') { e.preventDefault(); $(this).blur(); }
+});
+
+// render player names (span only)
+function renderNames(board){
+  const p1 = board.player1_name || 'Player 1';
+  const p2 = board.player2_name || 'Player 2';
+  if (mySlot === 1) {
+    $('#myNameDisplay').text(p1);
+    $('#oppNameDisplay').text(p2);
+  } else if (mySlot === 2) {
+    $('#myNameDisplay').text(p2);
+    $('#oppNameDisplay').text(p1);
+  } else {
+    // spectator
+    $('#myNameDisplay').text(p1);
+    $('#oppNameDisplay').text(p2);
+  }
+}
+
+// ------------------- Roll & Place -------------------
+$('#rollBtn').click(function(){
+  if (!gameCode || !token) return;
+  $.ajax({
+    url: API + '/roll.php',
+    method: 'POST',
+    contentType: 'application/json',
+    data: JSON.stringify({ game_code: gameCode, token: token }),
+    success: function(res){ fetchState(); },
+    dataType: 'json'
+  });
+});
+
+function place(colIndex){
+  $.ajax({
+    url: API + '/place.php',
+    method: 'POST',
+    contentType: 'application/json',
+    data: JSON.stringify({ game_code: gameCode, token: token, column_index: colIndex, client_version: clientVersion }),
+    success: function(res){
+      if (res && res.board) {
+        renderBoards(res.board);
+        renderNames(res.board);
+      } else fetchState();
+    },
+    error: function(xhr){
+      let msg = 'place error';
+      try { const j = JSON.parse(xhr.responseText); if (j.error) msg = j.error; } catch(e){}
+      alert(msg);
+      fetchState();
+    }
+  });
+}
+</script>
+</body>
+</html>
