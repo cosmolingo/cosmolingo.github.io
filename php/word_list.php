@@ -213,7 +213,6 @@
         $word_tag = $row['word_tag'];
         $word_gender = $row['word_gender'];
         $date = $row['date_added'];
-        echo "<script>console.log(" . $word . "," . $word_ka . ");</script>";
 
         echo "<tr id='" . $id . "' date_added='" . $date . "'>
             <td><textarea autocomplete='off'>" . $word_type . "</textarea></td>
