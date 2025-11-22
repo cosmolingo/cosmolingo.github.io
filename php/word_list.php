@@ -213,19 +213,20 @@
         $word_tag = $row['word_tag'];
         $word_gender = $row['word_gender'];
         $date = $row['date_added'];
+        echo "<script>console.log(" . $word . "," . $word_ka . ");</script>";
 
         echo "<tr id='" . $id . "' date_added='" . $date . "'>
-            <td><textarea>" . $word_type . "</textarea></td>
-            <td><textarea>" . $word_gender . "</textarea></td>
-            <td><textarea>" . $word_tag . "</textarea></td>
-            <td><textarea>" . $word .    "</textarea></td>
-            <td><textarea>" . $word_ka . "</textarea></td>
-            <td><textarea>" . $word_ru . "</textarea></td>
-            <td><textarea>" . $word_fr . "</textarea></td>
-            <td><textarea>" . $word_kr . "</textarea></td>
-            <td><textarea>" . $word_jp . "</textarea></td>
-            <td><textarea>" . $word_pronunciation . "</textarea></td>
-            <td><textarea>" . $date . "</textarea></td>
+            <td><textarea autocomplete='off'>" . $word_type . "</textarea></td>
+            <td><textarea autocomplete='off'>" . $word_gender . "</textarea></td>
+            <td><textarea autocomplete='off'>" . $word_tag . "</textarea></td>
+            <td><textarea autocomplete='off'>" . $word .    "</textarea></td>
+            <td><textarea autocomplete='off'>" . $word_ka . "</textarea></td>
+            <td><textarea autocomplete='off'>" . $word_ru . "</textarea></td>
+            <td><textarea autocomplete='off'>" . $word_fr . "</textarea></td>
+            <td><textarea autocomplete='off'>" . $word_kr . "</textarea></td>
+            <td><textarea autocomplete='off'>" . $word_jp . "</textarea></td>
+            <td><textarea autocomplete='off'>" . $word_pronunciation . "</textarea></td>
+            <td><textarea autocomplete='off'>" . $date . "</textarea></td>
             <td><button class='button remove_button' onclick='remove_word(" . $id . ")'><i class='fa-solid fa-xmark'></i></button></td>
         </tr>";
     }

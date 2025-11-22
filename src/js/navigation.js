@@ -160,7 +160,6 @@ $(document).ready(function() {
         var url = '/php/get_user_info.php';
         $.get(url).then(function(data){
             lang_i = lang_params.indexOf(data.default_lang);
-            console.log(data);
             if (lang_i == -1){
                 lang_i = 0;
             }

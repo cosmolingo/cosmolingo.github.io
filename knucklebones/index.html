@@ -2,25 +2,12 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Knucklebones-lite (two grids + names)</title>
-  <style>
-    body { font-family: Arial, sans-serif; padding: 16px; }
-    .topbar { display:flex; gap:12px; align-items:center; }
-    .boardRow { display:flex; gap:20px; margin-top:12px; align-items:flex-start; }
-    .gridWrap { border:1px solid #ddd; padding:10px; border-radius:8px; background:#fafafa; width:320px; }
-    .gridTitle { margin-bottom:8px; display:flex; gap:8px; align-items:center; }
-    .nameInput { font-size:14px; padding:6px 8px; border-radius:6px; border:1px solid #ccc; width:180px; }
-    .board { display:flex; gap:8px; }
-    .col { width:90px; min-height:120px; border:1px solid #333; padding:6px; border-radius:8px; background:#f4f4f4; cursor:pointer; display:flex; flex-direction:column; justify-content:flex-end; }
-    .col.disabled { opacity:0.5; cursor:not-allowed; }
-    .die { display:block; width:32px; height:32px; border-radius:6px; text-align:center; line-height:32px; margin:6px auto; border:1px solid #666; background:white; }
-    #controls { margin-top:10px; }
-    #status { margin-top:12px; font-weight:bold; }
-    .small { font-size:12px; color:#666; }
-  </style>
+  <title>Knucklebones</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1">
+  <link rel="stylesheet" href="knucklebones/style.css">
 </head>
 <body>
-  <h2>Knucklebones-lite — two grids + names</h2>
+  <h2>Knucklebones</h2>
 
   <div class="topbar">
     <button id="createBtn">Create Game</button>
