@@ -72,9 +72,19 @@ function set_xp_nav(){
 function add_letter_to_input(event){
     var letter = $(this).text();
 
-    var input_value = focusedInput.val();
-    var input_value = input_value + letter;
-    focusedInput.val(input_value);
+    var el = focusedInput.get(0);
+    var value = focusedInput.val() || "";
+    // If element supports selection (input/textarea), insert at caret/selection
+    if (typeof el.selectionStart === "number" && typeof el.selectionEnd === "number") {
+        var start = el.selectionStart;
+        var end = el.selectionEnd;
+        var newValue = value.slice(0, start) + letter + value.slice(end);
+        focusedInput.val(newValue);
+        var caretPos = start + letter.length;
+        el.selectionStart = el.selectionEnd = caretPos;
+    } else {
+        focusedInput.val(value + letter);
+    }
     focusedInput.focus();
     focusedInput.trigger('input');
 }
