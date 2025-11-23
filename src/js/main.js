@@ -21,6 +21,10 @@ const setupSteps = [
         $('#wave_bottom path').attr('style','stroke: none;fill: '+colors[lang_i][0]+';');
         $('#title h1').html('<i class="' + languages[lang_i] + '" ></i>   my <div id=title_dropdown active="false">' + languages[lang_i] + '<i class="fa-solid fa-sort-down"></i></div> words   <i class="' + languages[lang_i] + '" ></i>');
         $('link[rel="icon"]').attr('href', base_url + '/src/symbols/' + languages[lang_i] + '.ico');
+        const meta = document.querySelector("meta[name='theme-color']");
+        if (meta) {
+            meta.setAttribute("content", colors[lang_i][0]);
+        }
     },
     // Async grammar/section fetch and dependent setup
     async function grammarAndSectionSetup() {
@@ -104,46 +108,67 @@ $(document).ready(() => {
 
 (function() {
     const waveInner = document.getElementById('wave_top_inner');
+    if (!waveInner) return;
     const svg = waveInner.querySelector('svg');
-    let offset = 0;
-    const speed = 5; // px per frame, adjust for your needs
+    if (!svg) return;
 
-    // Wait for layout to ensure correct width
+    let offset = 0;
+    const speedFractionPerSecond = 0.2; // fraction of svg width moved per second (adjust to taste)
+    let lastTs = null;
+
     function getSvgWidth() {
-        return svg.clientWidth/2;
+        return svg.clientWidth / 2; // preserve original half-width behaviour
     }
 
-    function animate() {
-        offset -= speed;
+    function animate(ts) {
+        if (!lastTs) lastTs = ts;
+        const dt = (ts - lastTs) / 1000; // seconds
+        lastTs = ts;
+
         const svgWidth = getSvgWidth();
-        if (Math.abs(offset) >= svgWidth) {
-            offset = 0;
+        const movement = speedFractionPerSecond * svgWidth * dt;
+        offset -= movement;
+
+        // wrap offset to keep it within one svg width for smooth looping
+        while (Math.abs(offset) >= svgWidth) {
+            offset += (offset < 0 ? svgWidth : -svgWidth);
         }
+
         waveInner.style.transform = `translateX(${offset}px)`;
         requestAnimationFrame(animate);
     }
-    animate();
+    requestAnimationFrame(animate);
 })();
 
 (function() {
     const waveInner = document.getElementById('wave_bottom_inner');
     if (!waveInner) return;
     const svg = waveInner.querySelector('svg');
+    if (!svg) return;
+
     let offset = 0;
-    const speed = 5; // px per frame, adjust for your needs
+    const speedFractionPerSecond = 0.2; // same fraction as top wave
+    let lastTs = null;
 
     function getSvgWidth() {
-        return svg.clientWidth;
+        return svg.clientWidth; // preserve original full-width behaviour
     }
 
-    function animate() {
-        offset -= speed;
+    function animate(ts) {
+        if (!lastTs) lastTs = ts;
+        const dt = (ts - lastTs) / 1000;
+        lastTs = ts;
+
         const svgWidth = getSvgWidth();
-        if (Math.abs(offset) >= svgWidth) {
-            offset = 0;
+        const movement = speedFractionPerSecond * svgWidth * dt;
+        offset -= movement;
+
+        while (Math.abs(offset) >= svgWidth) {
+            offset += (offset < 0 ? svgWidth : -svgWidth);
         }
+
         waveInner.style.transform = `translateX(${offset}px)`;
         requestAnimationFrame(animate);
     }
-    animate();
+    requestAnimationFrame(animate);
 })();

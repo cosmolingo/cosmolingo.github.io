@@ -857,7 +857,8 @@ function populate_weather(){
         return;
     }
     $.get( "https://www.7timer.info/bin/civillight.php?lon=2.4&lat=48.9&ac=0&unit=metric&output=json&tzshift=0", function( data ) {
-        var weather = JSON.parse(data)['dataseries'];
+        let fixed = data.replace(/:\s*,/g,': null,').replace(/:\s*}/g, ': null}');
+        var weather = JSON.parse(fixed)['dataseries'];
         for (var i = 0; i < 7; i++){
             var weather_type = weather[i]['weather'];
             var weather_type = weather_types[weather_type]['src'];
