@@ -8,6 +8,8 @@
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.js"></script>
     <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="apple-touch-icon" href="/src/icon-192.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.0.3/tsparticles.confetti.bundle.min.js"></script>
@@ -19,6 +21,11 @@
     <script src="src/js/jscolor.min.js"></script>
     <script src="src/js/jquery-clock-timepicker.js"></script>
     <script src="src/js/navigation.js"></script>
+    <script>
+        if ("serviceWorker" in navigator) {
+            navigator.serviceWorker.register("/service-worker.js");
+        }
+    </script>
 </head>
 <body>    
     <!--
