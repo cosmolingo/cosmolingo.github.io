@@ -88,7 +88,9 @@
     <option value="fr">French</option>
     <option value="ru">Russian</option>
     <option value="kr">Korean</option>
+    <!--
     <option value="jp">Japanese</option>
+    -->
 </select>
 <br/>
 <button id="logout_button" class='button'>Logout</button>
