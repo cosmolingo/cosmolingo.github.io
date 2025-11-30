@@ -18,31 +18,161 @@
     <script src="../src/js/navigation.js"></script>
 </head>
 <body>
-<div id="wave_top">
-    <svg viewBox="0 0 1000 150" preserveAspectRatio="none" style="height: 100%; width: 100%;">
-        <path d="M1000,101.71c0,0-106.81-108.65-238.66,0s-261.34,0-261.34,0s-106.81-108.65-238.66,0S0,101.71,0,101.71V0h1000 V101.71z" style="stroke: none;fill: #f2e269;"></path>
-    </svg>
-</div>
-<div id="title">
-    <h1><i class="fa-solid fa-signature"></i>word list<i class="fa-solid fa-signature"></i></h1>
-</div>
-
-<div id="keyboard_button" active="false">
-    <i class="fa-solid fa-keyboard"></i>
-    <p>keyboard</p>
-</div>
-
-<div id="keyboard" style="display:none">
-    <div class="keyboard_close">
-        <i class="fa-solid fa-xmark"></i>
+    
+    <div id="wave_top">
+      <div id="wave_top_inner">
+        <svg id="wave_svg_top" viewBox="0 0 1000 150" preserveAspectRatio="none" style="height: 100%; width: 100%;">
+          <path d="M1000,101.71c0,0-106.81-108.65-238.66,0s-261.34,0-261.34,0s-106.81-108.65-238.66,0S0,101.71,0,101.71V0h1000 V101.71z" style="stroke: none;fill: #f9f8e2;"></path>
+        </svg>
+        <svg viewBox="0 0 1000 150" preserveAspectRatio="none" style="height: 100%; width: 100%;">
+          <path d="M1000,101.71c0,0-106.81-108.65-238.66,0s-261.34,0-261.34,0s-106.81-108.65-238.66,0S0,101.71,0,101.71V0h1000 V101.71z" style="stroke: none;fill: #f9f8e2;"></path>
+        </svg>
+      </div>
     </div>
-    <div class="keyboard_header"><i class="fa-solid fa-bars"></i></div>
-</div>
 
-<div id="navigation"></div>
-<h2>add a word</h2>
-<div class="table_div">
-    <table id='new_word' class='table'>
+    <div id="title">
+        <h1><i class="fa-solid fa-signature"></i>word list<i class="fa-solid fa-signature"></i></h1>
+    </div>
+
+    <div id="keyboard_button" active="false">
+        <i class="fa-solid fa-keyboard"></i>
+        <p>keyboard</p>
+    </div>
+
+    <div id="keyboard" style="display:none">
+        <div class="keyboard_close">
+            <i class="fa-solid fa-xmark"></i>
+        </div>
+        <div class="keyboard_header"><i class="fa-solid fa-bars"></i></div>
+    </div>
+
+    <div id="navigation"></div>
+    <h2>add a word</h2>
+    <div class="table_div">
+        <table id='new_word' class='table'>
+            <tr>
+                <th>Type</th>
+                <th>Gender</th>
+                <th>Tag</th>
+                <th>English</th>
+                <th>Kazakh</th>
+                <th>Russian</th>
+                <th>French</th>
+                <th>Korean</th>
+                <th>Japanese</th>
+                <th>Pronunciation</th>
+            </tr>
+            <tr>
+                <td><textarea></textarea></td>
+                <td><textarea></textarea></td>
+                <td><textarea></textarea></td>
+                <td><textarea></textarea></td>
+                <td><textarea></textarea></td>
+                <td><textarea></textarea></td>
+                <td><textarea></textarea></td>
+                <td><textarea></textarea></td>
+                <td><textarea></textarea></td>
+                <td><textarea></textarea></td>
+            </tr>
+        </table>
+    </div>
+    <button class="button" onclick="submit_word()" id="add_word">Add new word</button>
+
+    <button class='button' id="show-dialog">Add multiple words</button>
+    <dialog id="dialog">
+    <form method="dialog">
+        <p>
+        <label>
+            Word list (type-gender;tag:english:kazakh:french(pronunciation):russian:korean:japanese) :
+        </label>
+        <br/>
+        <textarea id="word_list_textarea" rows="10" cols="50"></textarea>
+        </p>
+        <div>
+        <input type="button" id="js-close" value="Submit word list" />
+        </div>
+    </form>
+    </dialog>
+
+    <script>
+        const showBtn = document.getElementById("show-dialog");
+        const dialog = document.getElementById("dialog");
+        const jsCloseBtn = dialog.querySelector("#js-close");
+
+        showBtn.addEventListener("click", () => {
+            dialog.showModal();
+        });
+
+        jsCloseBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            const wordListTextarea = document.getElementById("word_list_textarea");
+            const wordList = wordListTextarea.value.split("\n");
+            const ajaxPromises = wordList.map((word) => {
+                const line = parseLine(word.trim());
+                return $.ajax({
+                    type: 'POST',
+                    url: 'add_word.php',
+                    data: { 
+                        type: line[0],
+                        gender: line[1],
+                        tag: line[2],
+                        english: line[4],
+                        kazakh: line[3],
+                        russian: line[7],
+                        french: line[5],
+                        korean: line[8],
+                        japanese: line[9],
+                        pronunciation: line[6]
+                    },
+                });
+            });
+            Promise.all(ajaxPromises).then(() => {
+                location.reload();
+            }).catch((error) => {
+                console.error("An error occurred:", error);
+            });
+        });
+
+        function parseLine(line){
+            if (line.length == 0) {
+                return;
+            }
+            var parts = line.split(":");
+            var type  = parts[0].trim();
+            var tags = [];
+            var genders = [];
+            if (type.includes(';')){
+                tags = type.split(';')[1];
+                type = type.split(';')[0];
+            }
+            if (type.includes('-')){
+                genders = type.split('-')[1];
+                type = type.split('-')[0];
+            }
+            if (parts[3].includes('(')){
+                var pron = parts[3].split('(')[1];
+                pron = pron.split(')')[0];
+                parts[3] = parts[3].split('(')[0];
+            }
+            else{
+                var pron = '';
+            }
+            var ka_words = parts[1].trim();
+            var en_words = parts[2].trim();
+            var fr_words = parts[3].trim();
+            var ru_words = parts[4].trim();
+            var ko_words = parts[5].trim();
+            var jp_words = parts[6].trim();
+
+            return [type,genders,tags,ka_words,en_words,fr_words,pron,ru_words,ko_words,jp_words];
+        }
+    </script>
+
+    <h2>words list</h2>
+    <button id="save-changes" class="button" disabled style="cursor:not-allowed;opacity:0.5;display:block;margin:0 auto;background-color:#a9e3bb">No changes to be saved</button>
+    <br/>
+    <div class="table_div">
+        <table id='word_list' class='table'>
         <tr>
             <th>Type</th>
             <th>Gender</th>
@@ -54,288 +184,172 @@
             <th>Korean</th>
             <th>Japanese</th>
             <th>Pronunciation</th>
+            <th>Date Added</th>
+            <th>Remove</th>
         </tr>
-        <tr>
-            <td><textarea></textarea></td>
-            <td><textarea></textarea></td>
-            <td><textarea></textarea></td>
-            <td><textarea></textarea></td>
-            <td><textarea></textarea></td>
-            <td><textarea></textarea></td>
-            <td><textarea></textarea></td>
-            <td><textarea></textarea></td>
-            <td><textarea></textarea></td>
-            <td><textarea></textarea></td>
-        </tr>
-    </table>
-</div>
-<button class="button" onclick="submit_word()" id="add_word">Add new word</button>
+    <?php
+        include('/var/www/creds.php');
+        include('functions.php');
+        
+        $connection = connect_user($servername, $username, $password, $dbname);
+        $conn = $connection['conn'];
+        $user_id = $connection['user_id'];
+        $username = $connection['username'];
 
-<button class='button' id="show-dialog">Add multiple words</button>
-<dialog id="dialog">
-  <form method="dialog">
-    <p>
-      <label>
-        Word list (type-gender;tag:english:kazakh:french(pronunciation):russian:korean:japanese) :
-    </label>
-    <br/>
-    <textarea id="word_list_textarea" rows="10" cols="50"></textarea>
-    </p>
-    <div>
-      <input type="button" id="js-close" value="Submit word list" />
+        $sql = "SELECT * FROM words";
+        $result = $conn->query($sql);
+
+        $items = array();
+
+        while($row = $result->fetch_assoc()) {
+            $items[] = $row;
+        }
+
+        $items = array_reverse($items ,true);
+
+        foreach($items as $row){
+            $id = $row['id'];
+            $word = $row['word'];
+            $word_ka = $row['word_ka'];
+            $word_ru = $row['word_ru'];
+            $word_fr = $row['word_fr'];
+            $word_kr = $row['word_kr'];
+            $word_jp = $row['word_jp'];
+            $word_pronunciation = $row['word_pronunciation'];
+            $word_type = $row['word_type'];
+            $word_tag = $row['word_tag'];
+            $word_gender = $row['word_gender'];
+            $date = $row['date_added'];
+
+            echo "<tr id='" . $id . "' date_added='" . $date . "'>
+                <td><textarea autocomplete='off'>" . $word_type . "</textarea></td>
+                <td><textarea autocomplete='off'>" . $word_gender . "</textarea></td>
+                <td><textarea autocomplete='off'>" . $word_tag . "</textarea></td>
+                <td><textarea autocomplete='off'>" . $word .    "</textarea></td>
+                <td><textarea autocomplete='off'>" . $word_ka . "</textarea></td>
+                <td><textarea autocomplete='off'>" . $word_ru . "</textarea></td>
+                <td><textarea autocomplete='off'>" . $word_fr . "</textarea></td>
+                <td><textarea autocomplete='off'>" . $word_kr . "</textarea></td>
+                <td><textarea autocomplete='off'>" . $word_jp . "</textarea></td>
+                <td><textarea autocomplete='off'>" . $word_pronunciation . "</textarea></td>
+                <td><textarea autocomplete='off'>" . $date . "</textarea></td>
+                <td><button class='button remove_button' onclick='remove_word(" . $id . ")'><i class='fa-solid fa-xmark'></i></button></td>
+            </tr>";
+        }
+    ?>
+        </table>
     </div>
-  </form>
-</dialog>
+    
+    <div id="wave_bottom">
+      <div id="wave_bottom_inner">
+        <svg viewBox="0 0 1000 150" preserveAspectRatio="none" style="height: 100%; width: 100%;">
+          <path d="M1000,48.29c0,0-106.81,108.65-238.66,0s-261.34,0-261.34,0s-106.81,108.65-238.66,0S0,48.29,0,48.29V150h1000 V48.29z" style="stroke: none;fill: #f9f8e2;"></path>
+        </svg>
+        <svg viewBox="0 0 1000 150" preserveAspectRatio="none" style="height: 100%; width: 100%;">
+          <path d="M1000,48.29c0,0-106.81,108.65-238.66,0s-261.34,0-261.34,0s-106.81,108.65-238.66,0S0,48.29,0,48.29V150h1000 V48.29z" style="stroke: none;fill: #f9f8e2;"></path>
+        </svg>
+      </div>
+    </div>
 
-<script>
-    const showBtn = document.getElementById("show-dialog");
-    const dialog = document.getElementById("dialog");
-    const jsCloseBtn = dialog.querySelector("#js-close");
+    <div id="popup-message" style="display: none; position: fixed; top: 20px; right: 20px; background-color: #4CAF50; color: white; padding: 15px; border-radius: 5px; z-index: 1000;">
+    </div>
 
-    showBtn.addEventListener("click", () => {
-        dialog.showModal();
-    });
+    <script>
+        $(document).ready(function() {
+            const saveChangesButton = $('#save-changes');
+            saveChangesButton.attr('disabled', true);
+            $('#word_list textarea').on('keypress', function(e) {
+                if (e.which == 13) {
+                    e.preventDefault();
+                    var row = $(this).closest('tr');
+                    edit_word(row);
+                }
+            });
+            $('#word_list textarea').on('input', function() {
+                const row = $(this).closest('tr');
+                row.attr('data-changed', 'true');
+                const cell = $(this).closest('td');
+                cell.css('background-color', '#f39f95');
+                var button = $('#save-changes');
+                if (button.attr('disabled')) {
+                    button.attr('disabled', false);
+                    button.css('cursor', 'pointer');
+                    button.css('opacity', '1');
+                    button.text('Save changes');
+                }
+            });
 
-    jsCloseBtn.addEventListener("click", (e) => {
-        e.preventDefault();
-        const wordListTextarea = document.getElementById("word_list_textarea");
-        const wordList = wordListTextarea.value.split("\n");
-        const ajaxPromises = wordList.map((word) => {
-            const line = parseLine(word.trim());
-            return $.ajax({
+            // Save changes button functionality
+            $('#save-changes').on('click', function() {
+                const changedRows = $('#word_list tr[data-changed="true"]'); // Select all changed rows
+                changedRows.each(function() {
+                    edit_word($(this)); // Submit each changed row
+                });
+            });
+        });
+        function submit_word(){
+            $.ajax({
                 type: 'POST',
                 url: 'add_word.php',
-                data: { 
-                    type: line[0],
-                    gender: line[1],
-                    tag: line[2],
-                    english: line[4],
-                    kazakh: line[3],
-                    russian: line[7],
-                    french: line[5],
-                    korean: line[8],
-                    japanese: line[9],
-                    pronunciation: line[6]
+                data: {
+                    type: $('#new_word tr:nth-child(2) td:nth-child(1) textarea').val(),
+                    gender: $('#new_word tr:nth-child(2) td:nth-child(2) textarea').val(),
+                    tag: $('#new_word tr:nth-child(2) td:nth-child(3) textarea').val(),
+                    english: $('#new_word tr:nth-child(2) td:nth-child(4) textarea').val(),
+                    kazakh: $('#new_word tr:nth-child(2) td:nth-child(5) textarea').val(),
+                    russian: $('#new_word tr:nth-child(2) td:nth-child(6) textarea').val(),
+                    french: $('#new_word tr:nth-child(2) td:nth-child(7) textarea').val(),
+                    korean: $('#new_word tr:nth-child(2) td:nth-child(8) textarea').val(),
+                    japanese: $('#new_word tr:nth-child(2) td:nth-child(9) textarea').val(),
+                    pronunciation: $('#new_word tr:nth-child(2) td:nth-child(10) textarea').val()
                 },
+                success: function(response) {
+                    location.reload();
+                }
             });
-        });
-        Promise.all(ajaxPromises).then(() => {
-            location.reload();
-        }).catch((error) => {
-            console.error("An error occurred:", error);
-        });
-    });
-
-    function parseLine(line){
-        if (line.length == 0) {
-            return;
         }
-        var parts = line.split(":");
-        var type  = parts[0].trim();
-        var tags = [];
-        var genders = [];
-        if (type.includes(';')){
-            tags = type.split(';')[1];
-            type = type.split(';')[0];
-        }
-        if (type.includes('-')){
-            genders = type.split('-')[1];
-            type = type.split('-')[0];
-        }
-        if (parts[3].includes('(')){
-            var pron = parts[3].split('(')[1];
-            pron = pron.split(')')[0];
-            parts[3] = parts[3].split('(')[0];
-        }
-        else{
-            var pron = '';
-        }
-        var ka_words = parts[1].trim();
-        var en_words = parts[2].trim();
-        var fr_words = parts[3].trim();
-        var ru_words = parts[4].trim();
-        var ko_words = parts[5].trim();
-        var jp_words = parts[6].trim();
 
-        return [type,genders,tags,ka_words,en_words,fr_words,pron,ru_words,ko_words,jp_words];
-    }
-</script>
-
-<h2>words list</h2>
-<button id="save-changes" class="button" disabled style="cursor:not-allowed;opacity:0.5;display:block;margin:0 auto;background-color:#a9e3bb">No changes to be saved</button>
-<br/>
-<div class="table_div">
-    <table id='word_list' class='table'>
-    <tr>
-        <th>Type</th>
-        <th>Gender</th>
-        <th>Tag</th>
-        <th>English</th>
-        <th>Kazakh</th>
-        <th>Russian</th>
-        <th>French</th>
-        <th>Korean</th>
-        <th>Japanese</th>
-        <th>Pronunciation</th>
-        <th>Date Added</th>
-        <th>Remove</th>
-    </tr>
-<?php
-    include('/var/www/creds.php');
-    include('functions.php');
-    
-    $connection = connect_user($servername, $username, $password, $dbname);
-    $conn = $connection['conn'];
-    $user_id = $connection['user_id'];
-    $username = $connection['username'];
-
-    $sql = "SELECT * FROM words";
-    $result = $conn->query($sql);
-
-    $items = array();
-
-    while($row = $result->fetch_assoc()) {
-        $items[] = $row;
-    }
-
-    $items = array_reverse($items ,true);
-
-    foreach($items as $row){
-        $id = $row['id'];
-        $word = $row['word'];
-        $word_ka = $row['word_ka'];
-        $word_ru = $row['word_ru'];
-        $word_fr = $row['word_fr'];
-        $word_kr = $row['word_kr'];
-        $word_jp = $row['word_jp'];
-        $word_pronunciation = $row['word_pronunciation'];
-        $word_type = $row['word_type'];
-        $word_tag = $row['word_tag'];
-        $word_gender = $row['word_gender'];
-        $date = $row['date_added'];
-
-        echo "<tr id='" . $id . "' date_added='" . $date . "'>
-            <td><textarea autocomplete='off'>" . $word_type . "</textarea></td>
-            <td><textarea autocomplete='off'>" . $word_gender . "</textarea></td>
-            <td><textarea autocomplete='off'>" . $word_tag . "</textarea></td>
-            <td><textarea autocomplete='off'>" . $word .    "</textarea></td>
-            <td><textarea autocomplete='off'>" . $word_ka . "</textarea></td>
-            <td><textarea autocomplete='off'>" . $word_ru . "</textarea></td>
-            <td><textarea autocomplete='off'>" . $word_fr . "</textarea></td>
-            <td><textarea autocomplete='off'>" . $word_kr . "</textarea></td>
-            <td><textarea autocomplete='off'>" . $word_jp . "</textarea></td>
-            <td><textarea autocomplete='off'>" . $word_pronunciation . "</textarea></td>
-            <td><textarea autocomplete='off'>" . $date . "</textarea></td>
-            <td><button class='button remove_button' onclick='remove_word(" . $id . ")'><i class='fa-solid fa-xmark'></i></button></td>
-        </tr>";
-    }
-?>
-    </table>
-</div>
-<div id="wave_bottom">
-    <svg viewBox="0 0 1000 150" preserveAspectRatio="none" style="height: 100%; width: 100%;">
-        <path d="M1000,48.29c0,0-106.81,108.65-238.66,0s-261.34,0-261.34,0s-106.81,108.65-238.66,0S0,48.29,0,48.29V150h1000 V48.29z" style="stroke: none;fill: #f2e269;"></path>
-    </svg>
-</div>
-
-<div id="popup-message" style="display: none; position: fixed; top: 20px; right: 20px; background-color: #4CAF50; color: white; padding: 15px; border-radius: 5px; z-index: 1000;">
-</div>
-
-<script>
-    $(document).ready(function() {
-        const saveChangesButton = $('#save-changes');
-        saveChangesButton.attr('disabled', true);
-        $('#word_list textarea').on('keypress', function(e) {
-            if (e.which == 13) {
-                e.preventDefault();
-                var row = $(this).closest('tr');
-                edit_word(row);
-            }
-        });
-        $('#word_list textarea').on('input', function() {
-            const row = $(this).closest('tr');
-            row.attr('data-changed', 'true');
-            const cell = $(this).closest('td');
-            cell.css('background-color', '#f39f95');
-            var button = $('#save-changes');
-            if (button.attr('disabled')) {
-                button.attr('disabled', false);
-                button.css('cursor', 'pointer');
-                button.css('opacity', '1');
-                button.text('Save changes');
-            }
-        });
-
-        // Save changes button functionality
-        $('#save-changes').on('click', function() {
-            const changedRows = $('#word_list tr[data-changed="true"]'); // Select all changed rows
-            changedRows.each(function() {
-                edit_word($(this)); // Submit each changed row
+        function edit_word(row){
+            $.ajax({
+                type: 'POST',
+                url: 'edit_word.php',
+                data: {
+                    id: row.attr('id'),
+                    type: row.children('td:nth-child(1)').children('textarea').val(),
+                    gender: row.children('td:nth-child(2)').children('textarea').val(),
+                    tag: row.children('td:nth-child(3)').children('textarea').val(),
+                    english: row.children('td:nth-child(4)').children('textarea').val(),
+                    kazakh: row.children('td:nth-child(5)').children('textarea').val(),
+                    russian: row.children('td:nth-child(6)').children('textarea').val(),
+                    french: row.children('td:nth-child(7)').children('textarea').val(),
+                    korean: row.children('td:nth-child(8)').children('textarea').val(),
+                    japanese: row.children('td:nth-child(9)').children('textarea').val(),
+                    pronunciation: row.children('td:nth-child(10)').children('textarea').val(),
+                    date: row.children('td:nth-child(11)').children('textarea').val()
+                },
+                success: function(response) {
+                    const popup = $('#popup-message');
+                    popup.text("Word list changes have been saved !").fadeIn();
+                    setTimeout(() => {
+                        popup.fadeOut();
+                    }, 2000);
+                    row.attr('data-changed', 'false');
+                    row.children('td').css('background-color', '#e7e0c4');
+                }
             });
-        });
-    });
-    function submit_word(){
-        $.ajax({
-            type: 'POST',
-            url: 'add_word.php',
-            data: {
-                type: $('#new_word tr:nth-child(2) td:nth-child(1) textarea').val(),
-                gender: $('#new_word tr:nth-child(2) td:nth-child(2) textarea').val(),
-                tag: $('#new_word tr:nth-child(2) td:nth-child(3) textarea').val(),
-                english: $('#new_word tr:nth-child(2) td:nth-child(4) textarea').val(),
-                kazakh: $('#new_word tr:nth-child(2) td:nth-child(5) textarea').val(),
-                russian: $('#new_word tr:nth-child(2) td:nth-child(6) textarea').val(),
-                french: $('#new_word tr:nth-child(2) td:nth-child(7) textarea').val(),
-                korean: $('#new_word tr:nth-child(2) td:nth-child(8) textarea').val(),
-                japanese: $('#new_word tr:nth-child(2) td:nth-child(9) textarea').val(),
-                pronunciation: $('#new_word tr:nth-child(2) td:nth-child(10) textarea').val()
-            },
-            success: function(response) {
-                location.reload();
-            }
-        });
-    }
+        }
 
-    function edit_word(row){
-        $.ajax({
-            type: 'POST',
-            url: 'edit_word.php',
-            data: {
-                id: row.attr('id'),
-                type: row.children('td:nth-child(1)').children('textarea').val(),
-                gender: row.children('td:nth-child(2)').children('textarea').val(),
-                tag: row.children('td:nth-child(3)').children('textarea').val(),
-                english: row.children('td:nth-child(4)').children('textarea').val(),
-                kazakh: row.children('td:nth-child(5)').children('textarea').val(),
-                russian: row.children('td:nth-child(6)').children('textarea').val(),
-                french: row.children('td:nth-child(7)').children('textarea').val(),
-                korean: row.children('td:nth-child(8)').children('textarea').val(),
-                japanese: row.children('td:nth-child(9)').children('textarea').val(),
-                pronunciation: row.children('td:nth-child(10)').children('textarea').val(),
-                date: row.children('td:nth-child(11)').children('textarea').val()
-            },
-            success: function(response) {
-                const popup = $('#popup-message');
-                popup.text("Word list changes have been saved !").fadeIn();
-                setTimeout(() => {
-                    popup.fadeOut();
-                }, 2000);
-                row.attr('data-changed', 'false');
-                row.children('td').css('background-color', '#e7e0c4');
-            }
-        });
-    }
-
-    function remove_word(id){
-        $.ajax({
-            type: 'POST',
-            url: 'remove_word.php',
-            data: { id: id },
-            success: function(response) {
-                location.reload();
-            }
-        });
-    }
-</script>
+        function remove_word(id){
+            $.ajax({
+                type: 'POST',
+                url: 'remove_word.php',
+                data: { id: id },
+                success: function(response) {
+                    location.reload();
+                }
+            });
+        }
+    </script>
+    <script src="../src/js/wave.js"></script>
 </body>
 </html>

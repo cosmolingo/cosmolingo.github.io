@@ -29,54 +29,68 @@
     </style>
     </head>
 <body>
-<div id="wave_top">
-    <svg viewBox="0 0 1000 150" preserveAspectRatio="none" style="height: 100%; width: 100%;">
-        <path d="M1000,101.71c0,0-106.81-108.65-238.66,0s-261.34,0-261.34,0s-106.81-108.65-238.66,0S0,101.71,0,101.71V0h1000 V101.71z" style="stroke: none;fill: #f2e269;"></path>
-    </svg>
-</div>
-<div id="title">
-    <h1><i class="fa-solid fa-user"></i>login<i class="fa-solid fa-user"></i></h1>
-</div>
-<div id="navigation"></div>
+    <div id="wave_top">
+      <div id="wave_top_inner">
+        <svg id="wave_svg_top" viewBox="0 0 1000 150" preserveAspectRatio="none" style="height: 100%; width: 100%;">
+          <path d="M1000,101.71c0,0-106.81-108.65-238.66,0s-261.34,0-261.34,0s-106.81-108.65-238.66,0S0,101.71,0,101.71V0h1000 V101.71z" style="stroke: none;fill: #f9f8e2;"></path>
+        </svg>
+        <svg viewBox="0 0 1000 150" preserveAspectRatio="none" style="height: 100%; width: 100%;">
+          <path d="M1000,101.71c0,0-106.81-108.65-238.66,0s-261.34,0-261.34,0s-106.81-108.65-238.66,0S0,101.71,0,101.71V0h1000 V101.71z" style="stroke: none;fill: #f9f8e2;"></path>
+        </svg>
+      </div>
+    </div>
 
-<div id="login">
-    <input type="text" class="text_box" id="login_username" name="username" placeholder="username">
-    <input type="password" class="text_box" id="login_password" name="password" placeholder="password">
-    <br/>
-    <button type="submit" class="button" id="login_button">login</button>
-</div>
-<div id="wave_bottom">
-    <svg viewBox="0 0 1000 150" preserveAspectRatio="none" style="height: 100%; width: 100%;">
-        <path d="M1000,48.29c0,0-106.81,108.65-238.66,0s-261.34,0-261.34,0s-106.81,108.65-238.66,0S0,48.29,0,48.29V150h1000 V48.29z" style="stroke: none;fill: #f2e269;"></path>
-    </svg>
-</div>
-<script>
-    $(document).ready(function(){
-        $("#login_button").click(function(){
-            var username = $("#login_username").val();
-            var password = $("#login_password").val();
-            if(username == "" || password == ""){
-                alert("Please fill in all fields");
-            }
-            var url = "/php/login.php";
-            $.ajax({
-                type: "POST",
-                url: url,
-                data: {username: username, password: password},
-                success: function(data){
-                    data = data.split("<br/>");
-                    if (data[0] == "success"){
-                        document.cookie = 'sessionID=' + data[1] + ';expires=' + new Date(new Date().getTime() + 1000*60*60*24*7).toUTCString() + ';path=/';
-                        document.cookie = 'username=' + username + ';expires=' + new Date(new Date().getTime() + 1000*60*60*24*7).toUTCString() + ';path=/';
-                        window.location.href = window.location.origin;
-                    }
-                    else{
-                        alert(data[1]);
-                    }
+    <div id="title">
+        <h1><i class="fa-solid fa-user"></i>login<i class="fa-solid fa-user"></i></h1>
+    </div>
+    <div id="navigation"></div>
+
+    <div id="login">
+        <input type="text" class="text_box" id="login_username" name="username" placeholder="username">
+        <input type="password" class="text_box" id="login_password" name="password" placeholder="password">
+        <br/>
+        <button type="submit" class="button" id="login_button">login</button>
+    </div>
+    
+    <div id="wave_bottom">
+      <div id="wave_bottom_inner">
+        <svg viewBox="0 0 1000 150" preserveAspectRatio="none" style="height: 100%; width: 100%;">
+          <path d="M1000,48.29c0,0-106.81,108.65-238.66,0s-261.34,0-261.34,0s-106.81,108.65-238.66,0S0,48.29,0,48.29V150h1000 V48.29z" style="stroke: none;fill: #f9f8e2;"></path>
+        </svg>
+        <svg viewBox="0 0 1000 150" preserveAspectRatio="none" style="height: 100%; width: 100%;">
+          <path d="M1000,48.29c0,0-106.81,108.65-238.66,0s-261.34,0-261.34,0s-106.81,108.65-238.66,0S0,48.29,0,48.29V150h1000 V48.29z" style="stroke: none;fill: #f9f8e2;"></path>
+        </svg>
+      </div>
+    </div>
+
+    <script src="src/js/wave.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#login_button").click(function(){
+                var username = $("#login_username").val();
+                var password = $("#login_password").val();
+                if(username == "" || password == ""){
+                    alert("Please fill in all fields");
                 }
+                var url = "/php/login.php";
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: {username: username, password: password},
+                    success: function(data){
+                        data = data.split("<br/>");
+                        if (data[0] == "success"){
+                            document.cookie = 'sessionID=' + data[1] + ';expires=' + new Date(new Date().getTime() + 1000*60*60*24*7).toUTCString() + ';path=/';
+                            document.cookie = 'username=' + username + ';expires=' + new Date(new Date().getTime() + 1000*60*60*24*7).toUTCString() + ';path=/';
+                            window.location.href = window.location.origin;
+                        }
+                        else{
+                            alert(data[1]);
+                        }
+                    }
+                });
             });
         });
-    });
-</script>
+    </script>
 </body>
 </html>

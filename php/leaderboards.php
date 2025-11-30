@@ -60,57 +60,73 @@
     </style>
 </head>
 <body>
-<div id="wave_top">
-    <svg viewBox="0 0 1000 150" preserveAspectRatio="none" style="height: 100%; width: 100%;">
-        <path d="M1000,101.71c0,0-106.81-108.65-238.66,0s-261.34,0-261.34,0s-106.81-108.65-238.66,0S0,101.71,0,101.71V0h1000 V101.71z" style="stroke: none;fill: #f2e269;"></path>
-    </svg>
-</div>
-<div id="title">
-    <h1><i class="fa-solid fa-ranking-star"></i>leaderboard<i class="fa-solid fa-ranking-star"></i></h1>
-</div>
-<div id="navigation"></div>
-<div id="leaderboard_container">
-<?php
-include('/var/www/creds.php');
-include('functions.php');
+    
+    <div id="wave_top">
+      <div id="wave_top_inner">
+        <svg id="wave_svg_top" viewBox="0 0 1000 150" preserveAspectRatio="none" style="height: 100%; width: 100%;">
+          <path d="M1000,101.71c0,0-106.81-108.65-238.66,0s-261.34,0-261.34,0s-106.81-108.65-238.66,0S0,101.71,0,101.71V0h1000 V101.71z" style="stroke: none;fill: #f9f8e2;"></path>
+        </svg>
+        <svg viewBox="0 0 1000 150" preserveAspectRatio="none" style="height: 100%; width: 100%;">
+          <path d="M1000,101.71c0,0-106.81-108.65-238.66,0s-261.34,0-261.34,0s-106.81-108.65-238.66,0S0,101.71,0,101.71V0h1000 V101.71z" style="stroke: none;fill: #f9f8e2;"></path>
+        </svg>
+      </div>
+    </div>
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+    <div id="title">
+        <h1><i class="fa-solid fa-ranking-star"></i>leaderboard<i class="fa-solid fa-ranking-star"></i></h1>
+    </div>
+    <div id="navigation"></div>
+    <div id="leaderboard_container">
+    <?php
+    include('/var/www/creds.php');
+    include('functions.php');
 
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-$sql = "SELECT * FROM scores";
-$result = $conn->query($sql);
+    // Create connection
+    $conn = new mysqli($servername, $username, $password, $dbname);
 
-if ($result->num_rows > 0) {
-    $pairs = array();
-    while($row = $result->fetch_assoc()) {
-        $user_id = $row['user_id'];
-        $score = $row['score'];
-
-        $user_sql = "SELECT username FROM users WHERE id = $user_id";
-        $user_result = $conn->query($user_sql);
-
-        if ($user_result->num_rows > 0) {
-            $user_row = $user_result->fetch_assoc();
-            $username = $user_row['username'];
-            #$pairs[] = array("username" => $username, "score" => $score);
-            echo '<div class="leaderboard"><img class="avatar" src="../src/avatars/' . $username . '.png"><h3>' . $username . '</h3><p>' . $score . ' xp</p></div>';
-        }
+    // Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
     }
-    #echo json_encode($pairs);
-} else {
-    echo "0 results";
-}
-$conn->close();
-?>
-</div>
-<div id="wave_bottom">
-    <svg viewBox="0 0 1000 150" preserveAspectRatio="none" style="height: 100%; width: 100%;">
-        <path d="M1000,48.29c0,0-106.81,108.65-238.66,0s-261.34,0-261.34,0s-106.81,108.65-238.66,0S0,48.29,0,48.29V150h1000 V48.29z" style="stroke: none;fill: #f2e269;"></path>
-    </svg>
-</div>
+    $sql = "SELECT * FROM scores";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        $pairs = array();
+        while($row = $result->fetch_assoc()) {
+            $user_id = $row['user_id'];
+            $score = $row['score'];
+
+            $user_sql = "SELECT username FROM users WHERE id = $user_id";
+            $user_result = $conn->query($user_sql);
+
+            if ($user_result->num_rows > 0) {
+                $user_row = $user_result->fetch_assoc();
+                $username = $user_row['username'];
+                #$pairs[] = array("username" => $username, "score" => $score);
+                echo '<div class="leaderboard"><img class="avatar" src="../src/avatars/' . $username . '.png"><h3>' . $username . '</h3><p>' . $score . ' xp</p></div>';
+            }
+        }
+        #echo json_encode($pairs);
+    } else {
+        echo "0 results";
+    }
+    $conn->close();
+    ?>
+    </div>
+    
+    <div id="wave_bottom">
+      <div id="wave_bottom_inner">
+        <svg viewBox="0 0 1000 150" preserveAspectRatio="none" style="height: 100%; width: 100%;">
+          <path d="M1000,48.29c0,0-106.81,108.65-238.66,0s-261.34,0-261.34,0s-106.81,108.65-238.66,0S0,48.29,0,48.29V150h1000 V48.29z" style="stroke: none;fill: #f9f8e2;"></path>
+        </svg>
+        <svg viewBox="0 0 1000 150" preserveAspectRatio="none" style="height: 100%; width: 100%;">
+          <path d="M1000,48.29c0,0-106.81,108.65-238.66,0s-261.34,0-261.34,0s-106.81,108.65-238.66,0S0,48.29,0,48.29V150h1000 V48.29z" style="stroke: none;fill: #f9f8e2;"></path>
+        </svg>
+      </div>
+    </div>
+
+    <script src="../src/js/wave.js"></script>
+
 </body>
 </html>
