@@ -65,13 +65,51 @@ table{
     width:50px;
 }
 
+.bg_letters{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200vw;
+    height: calc(190px + 1vw);
+    background: url('src/bg_letters.png');
+    background-blend-mode: luminosity;
+    background-color: var(--primary-color);
+    background-size: 100%;
+    background-attachment: fixed;
+    z-index: 2;
+    animation-name: bgScroll;
+    animation-duration: 120s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    background-position-y: -50%;
+}
+
+
+@keyframes bgScroll {
+    from {
+        transform: scaleY(-1) translateX(0%);
+    }
+    to {
+        transform: scaleY(-1) translateX(-50%);
+    }
+}
+
 #wave_top {
     width: 300vw;
     overflow: hidden;
     position: relative;
-    height: 1vw;
+    height: 2vw;
     min-height: 25px;
-    border-top:200px solid var(--primary-color);
+    background: url('src/bg_letters.png');
+    background-size: 2000px;
+    background-repeat: repeat;
+    background-color: var(--primary-color);
+    background-blend-mode: luminosity;
+    padding-bottom: 200px;
+    animation-name: bgScroll;
+    animation-duration: 120s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
 }
 
 #wave_top_inner {
@@ -80,7 +118,6 @@ table{
     height: 100%;
     will-change: transform;
     position: relative;
-    top: -1px;
 }
 
 #wave_top_inner svg {
@@ -94,8 +131,17 @@ table{
     overflow: hidden;
     position: relative;
     height: 2vw;
-    margin-top: 100px;
-    border-bottom: 50px solid var(--primary-color);
+    background: url('src/bg_letters.png');
+    background-color: var(--primary-color);
+    background-size: 2000px;
+    background-repeat: repeat;
+    background-blend-mode: luminosity;
+    padding-top: 100px;
+    margin-top: 50px;
+    animation-name: bgScroll;
+    animation-duration: 120s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
 }
 
 #wave_bottom_inner {
@@ -204,7 +250,7 @@ table{
 #title{
     position:relative;
     margin:0 auto;
-    margin-top:-225px;
+    margin-top:-200px;
     margin-bottom: 125px;
     width:fit-content;
 }
@@ -520,10 +566,11 @@ h1 .fa-sun{
     justify-content: space-evenly;
     overflow-y: auto;
     padding-bottom:10px;
+    background-color: #ded5ac;
     background-image: url('src/bg.png');
     background-attachment: local;
     background-size: 50%;
-    background-color: #ded5ac;
+    z-index:1;
 }
 
 .word{
@@ -1301,6 +1348,7 @@ border-right: 1px solid black;
     width:100%;
     text-align: center;
     height:35px;
+    z-index: 2;
 }
 
 .tag-filter p{
@@ -2163,11 +2211,6 @@ h2{
 
     #guess_word{
         margin-bottom:25px;
-    }
-
-    #wave_top{
-        border-top:150px solid var(--primary-color);
-        margin-bottom:50px;
     }
 
     .word{

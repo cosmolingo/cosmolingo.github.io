@@ -17,8 +17,8 @@ const setupSteps = [
     () => {
         document.documentElement.style.setProperty("--primary-color", colors[lang_i][0]);
         document.documentElement.style.setProperty("--secondary-color", colors[lang_i][1]);
-        $('#wave_top path').attr('style','stroke: none;fill: '+colors[lang_i][0]+';');
-        $('#wave_bottom path').attr('style','stroke: none;fill: '+colors[lang_i][0]+';');
+        //$('#wave_top path').attr('style','stroke: none;fill: '+colors[lang_i][0]+';');
+        //$('#wave_bottom path').attr('style','stroke: none;fill: '+colors[lang_i][0]+';');
         $('#title h1').html('<i class="' + languages[lang_i] + '" ></i>   my <div id=title_dropdown active="false">' + languages[lang_i] + '<i class="fa-solid fa-sort-down"></i></div> words   <i class="' + languages[lang_i] + '" ></i>');
         $('link[rel="icon"]').attr('href', base_url + '/src/symbols/' + languages[lang_i] + '.ico');
         const meta = document.querySelector("meta[name='theme-color']");
@@ -113,7 +113,7 @@ $(document).ready(() => {
     if (!svg) return;
 
     let offset = 0;
-    const speedFractionPerSecond = 0.2; // fraction of svg width moved per second (adjust to taste)
+    const speedFractionPerSecond = 0.3; // fraction of svg width moved per second (adjust to taste)
     let lastTs = null;
 
     function getSvgWidth() {
@@ -147,11 +147,11 @@ $(document).ready(() => {
     if (!svg) return;
 
     let offset = 0;
-    const speedFractionPerSecond = 0.2; // same fraction as top wave
+    const speedFractionPerSecond = 0.3; // same fraction as top wave
     let lastTs = null;
 
     function getSvgWidth() {
-        return svg.clientWidth; // preserve original full-width behaviour
+        return svg.clientWidth / 2; // preserve original full-width behaviour
     }
 
     function animate(ts) {
