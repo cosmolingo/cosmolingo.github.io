@@ -12,7 +12,7 @@ if ($conn->connect_error) {
 
 $seed = date('z');
 
-$sql = "SELECT * FROM words
+$sql = "SELECT word,word_ka FROM words
         ORDER BY RAND($seed)
         LIMIT 1
         ";
