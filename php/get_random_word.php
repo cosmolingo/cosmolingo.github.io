@@ -18,6 +18,8 @@ $sql = "SELECT word,word_ka FROM words
         ";
 $result = $conn->query($sql);
 $word = $result->fetch_assoc();
+$word['ka'] = $word['word_ka'];
+unset($word['word_ka']);
 
 header('Content-Type: application/json');
 echo json_encode($word);
