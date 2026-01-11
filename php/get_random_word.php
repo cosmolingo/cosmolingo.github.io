@@ -13,6 +13,7 @@ if ($conn->connect_error) {
 $seed = date('z');
 
 $sql = "SELECT word,word_ka FROM words
+        WHERE word_ka <> '-'
         ORDER BY RAND($seed)
         LIMIT 1
         ";
