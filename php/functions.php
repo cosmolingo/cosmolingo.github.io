@@ -29,6 +29,21 @@ function check_user_session($conn) {
     }
 }
 
+function check_is_admin($servername, $username, $password, $dbname, $username_to_search){
+    $conn = new mysqli($servername, $username, $password, $dbname);
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+    $sql = "SELECT is_admin FROM users WHERE username = '$username_to_search'";
+    $result = $conn->query($sql);
+    if ($result && $result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        return $row['is_admin'];
+    } else {
+        die("User not found");
+    }
+}
+
 function connect_user($servername, $username, $password, $dbname){
     $conn = new mysqli($servername, $username, $password, $dbname);
     if ($conn->connect_error) {

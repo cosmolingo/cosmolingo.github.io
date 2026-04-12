@@ -194,7 +194,13 @@
         $connection = connect_user($servername, $username, $password, $dbname);
         $conn = $connection['conn'];
         $user_id = $connection['user_id'];
-        $username = $connection['username'];
+        $_username = $connection['username'];
+
+        $is_admin = check_is_admin($servername, $username, $password, $dbname, $_username);
+
+        if ($is_admin == false){
+            die('User is not an admin !');
+        }
 
         $sql = "SELECT * FROM words";
         $result = $conn->query($sql);
