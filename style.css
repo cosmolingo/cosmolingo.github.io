@@ -204,6 +204,12 @@ table{
     font-size: 14px;
 }
 
+.fa-users-gear{
+    margin-left: 3px;
+    transform: scale(0.75);
+    color: #e5c100;
+}
+
 #user_xp{
     display: block;
     font-size: 10px;

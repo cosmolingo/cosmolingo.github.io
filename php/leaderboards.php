@@ -97,14 +97,19 @@
             $user_id = $row['user_id'];
             $score = $row['score'];
 
-            $user_sql = "SELECT username FROM users WHERE id = $user_id";
+            $user_sql = "SELECT username,is_admin FROM users WHERE id = $user_id";
             $user_result = $conn->query($user_sql);
 
             if ($user_result->num_rows > 0) {
                 $user_row = $user_result->fetch_assoc();
                 $username = $user_row['username'];
+                $is_admin = $user_row['is_admin'];
+                $username_full = $username;
+                if ($is_admin){
+                    $username_full = $username . '<i class="fa-solid fa-users-gear"></i>';
+                }
                 #$pairs[] = array("username" => $username, "score" => $score);
-                echo '<div class="leaderboard"><img class="avatar" src="../src/avatars/' . $username . '.png"><h3>' . $username . '</h3><p>' . $score . ' xp</p></div>';
+                echo '<div class="leaderboard"><img class="avatar" src="../src/avatars/' . $username . '.png"><h3>' . $username_full . '</h3><p>' . $score . ' xp</p></div>';
             }
         }
         #echo json_encode($pairs);
