@@ -1,3 +1,4 @@
+
 (function() {
     const waveInner = document.getElementById('wave_top_inner');
     if (!waveInner) return;
@@ -5,11 +6,12 @@
     if (!svg) return;
 
     let offset = 0;
-    const speedFractionPerSecond = 0.3; // fraction of svg width moved per second (adjust to taste)
+    const speedFractionPerSecond = 0.2; // fraction of container width moved per second
     let lastTs = null;
 
-    function getSvgWidth() {
-        return svg.clientWidth / 2; // preserve original half-width behaviour
+    function getContainerWidth() {
+        // Use the actual rendered width of the container for wrapping
+        return waveInner.offsetWidth / 2; // two SVGs side by side
     }
 
     function animate(ts) {
@@ -17,34 +19,31 @@
         const dt = (ts - lastTs) / 1000; // seconds
         lastTs = ts;
 
-        const svgWidth = getSvgWidth();
-        const movement = speedFractionPerSecond * svgWidth * dt;
-        offset -= movement;
+        const containerWidth = getContainerWidth();
+        const movement = speedFractionPerSecond * containerWidth * dt;
+        offset += movement;
 
-        // wrap offset to keep it within one svg width for smooth looping
-        while (Math.abs(offset) >= svgWidth) {
-            offset += (offset < 0 ? svgWidth : -svgWidth);
-        }
-
-        waveInner.style.transform = `translateX(${offset}px)`;
+        // Modular arithmetic for perfect wrapping
+        offset = ((offset % containerWidth) + containerWidth) % containerWidth;
+        waveInner.style.transform = `translateX(${-offset}px)`;
         requestAnimationFrame(animate);
     }
     requestAnimationFrame(animate);
 })();
 
+
 (function() {
-    console.log('bottom wave');
     const waveInner = document.getElementById('wave_bottom_inner');
     if (!waveInner) return;
     const svg = waveInner.querySelector('svg');
     if (!svg) return;
 
     let offset = 0;
-    const speedFractionPerSecond = 0.3; // same fraction as top wave
+    const speedFractionPerSecond = 0.2; // same fraction as top wave
     let lastTs = null;
 
-    function getSvgWidth() {
-        return svg.clientWidth / 2; // preserve original full-width behaviour
+    function getContainerWidth() {
+        return waveInner.offsetWidth / 2; // two SVGs side by side
     }
 
     function animate(ts) {
@@ -52,15 +51,12 @@
         const dt = (ts - lastTs) / 1000;
         lastTs = ts;
 
-        const svgWidth = getSvgWidth();
-        const movement = speedFractionPerSecond * svgWidth * dt;
-        offset -= movement;
+        const containerWidth = getContainerWidth();
+        const movement = speedFractionPerSecond * containerWidth * dt;
+        offset += movement;
 
-        while (Math.abs(offset) >= svgWidth) {
-            offset += (offset < 0 ? svgWidth : -svgWidth);
-        }
-
-        waveInner.style.transform = `translateX(${offset}px)`;
+        offset = ((offset % containerWidth) + containerWidth) % containerWidth;
+        waveInner.style.transform = `translateX(${-offset}px)`;
         requestAnimationFrame(animate);
     }
     requestAnimationFrame(animate);
