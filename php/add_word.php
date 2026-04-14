@@ -4,10 +4,16 @@ include('functions.php');
 date_default_timezone_set('Europe/Paris');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-$connection = connect_user($servername, $username, $password, $dbname);
+    $connection = connect_user($servername, $username, $password, $dbname);
     $conn = $connection['conn'];
     $user_id = $connection['user_id'];
-    $username = $connection['username'];
+    $_username = $connection['username'];
+
+    $is_admin = check_is_admin($servername, $username, $password, $dbname, $_username);
+
+    if ($is_admin == false){
+        die('User is not an admin !');
+    }
 
     $type = test_input($_POST['type']);
     $gender = test_input($_POST['gender']);
