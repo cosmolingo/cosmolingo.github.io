@@ -1,4 +1,4 @@
-Je suis un <citoyen> français.
+Je suis un <citoyen> français..
 Êtes-vous contente de votre <poids> ?
 La ville a une population de deux <millions> de personnes.
 La largeur de la porte est de quatre-vingts <centimètres>.
