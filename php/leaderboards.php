@@ -78,8 +78,8 @@
     <div id="navigation"></div>
     <div id="leaderboard_container">
     <?php
-    include('/var/www/creds.php');
     include('functions.php');
+    include($creds);
 
     // Create connection
     $conn = new mysqli($servername, $username, $password, $dbname);

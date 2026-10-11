@@ -1,4 +1,5 @@
-const base_url = 'https://cosmolingo.studio';
+let base_url = 'https://cosmolingo.studio';
+base_url = '';
 let words_list = [];
 let shuffled_list = [];
 let shuffled_list2 = [];

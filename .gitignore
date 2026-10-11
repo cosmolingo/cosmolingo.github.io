@@ -11,3 +11,6 @@ INFO
 *.psd
 droplet backup/
 *.xlsx
+launch_server.bat
+update-website.ps1
+deploy.log

@@ -1,6 +1,7 @@
 <?php
-include('/var/www/creds.php');
 include('functions.php');
+include($creds);
+
 date_default_timezone_set('Europe/Paris');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

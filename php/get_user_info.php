@@ -1,6 +1,6 @@
 <?php
-include('/var/www/creds.php');
 include('functions.php');
+include($creds);
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {

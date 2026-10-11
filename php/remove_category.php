@@ -1,6 +1,6 @@
 <?php
 include('functions.php');
-include('/var/www/creds.php');
+include($creds);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $connection = connect_user($servername, $username, $password, $dbname);

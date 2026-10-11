@@ -1,6 +1,6 @@
 <?php
-include('/var/www/creds.php');
 include('functions.php');
+include($creds);
 
 $connection = connect_user($servername, $username, $password, $dbname);
 $conn = $connection['conn'];
